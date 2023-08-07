@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--"control" means checkbox / radio button-->
-
     <!--LIGHT-->
     <!--12%-->
     <color name="ate_switch_track_disabled_light">#1F000000</color>
@@ -43,5 +42,4 @@
     <!--Grey 800, #424242, Opacity 100%-->
     <color name="ate_switch_thumb_disabled_dark">#FF424242</color>
     <!---->
-
 </resources>
