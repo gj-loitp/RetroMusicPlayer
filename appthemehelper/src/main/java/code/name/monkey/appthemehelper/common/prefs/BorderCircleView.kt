@@ -19,7 +19,7 @@ class BorderCircleView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
-    private val mCheck: Drawable? = ContextCompat.getDrawable(context, R.drawable.ate_check)
+    private val mCheck: Drawable? = ContextCompat.getDrawable(context, R.drawable.ic_ate_check)
     private val paint: Paint = Paint()
     private val paintBorder: Paint
     private val borderWidth: Int = resources.getDimension(R.dimen.ate_circleview_border).toInt()

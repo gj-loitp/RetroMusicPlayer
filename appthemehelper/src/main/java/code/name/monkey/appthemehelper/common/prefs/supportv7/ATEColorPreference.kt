@@ -36,7 +36,7 @@ class ATEColorPreference @JvmOverloads constructor(
     private var border: Int = 0
 
     init {
-        widgetLayoutResource = R.layout.ate_preference_color
+        widgetLayoutResource = R.layout.v_ate_preference_color
         isPersistent = false
 
         icon?.colorFilter = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
