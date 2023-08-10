@@ -4,9 +4,9 @@ import android.app.WallpaperManager
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
-import code.name.monkey.appthemehelper.ThemeStore
-import code.name.monkey.appthemehelper.util.VersionUtils
 import code.name.monkey.retromusic.util.PreferenceUtil
+import code.roy.appthemehelper.ThemeStore
+import code.roy.appthemehelper.util.VersionUtils
 
 class WallpaperAccentManager(val context: Context) {
 

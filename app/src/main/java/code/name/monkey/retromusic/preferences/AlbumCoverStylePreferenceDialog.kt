@@ -26,7 +26,6 @@ import androidx.core.graphics.BlendModeCompat.SRC_IN
 import androidx.fragment.app.DialogFragment
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
-import code.name.monkey.appthemehelper.common.prefs.supportv7.ATEDialogPreference
 import code.name.monkey.retromusic.App
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.PreferenceDialogNowPlayingScreenBinding
@@ -36,6 +35,7 @@ import code.name.monkey.retromusic.fragments.AlbumCoverStyle
 import code.name.monkey.retromusic.fragments.AlbumCoverStyle.*
 import code.name.monkey.retromusic.util.PreferenceUtil
 import code.name.monkey.retromusic.util.ViewUtil
+import code.roy.appthemehelper.common.prefs.supportv7.ATEDialogPreference
 import com.bumptech.glide.Glide
 
 class AlbumCoverStylePreference @JvmOverloads constructor(

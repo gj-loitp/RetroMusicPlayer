@@ -22,8 +22,6 @@ import android.view.KeyEvent
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode
 import androidx.core.os.LocaleListCompat
-import code.name.monkey.appthemehelper.common.ATHToolbarActivity
-import code.name.monkey.appthemehelper.util.VersionUtils
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.extensions.exitFullscreen
 import code.name.monkey.retromusic.extensions.hideStatusBar
@@ -37,8 +35,9 @@ import code.name.monkey.retromusic.extensions.surfaceColor
 import code.name.monkey.retromusic.util.PreferenceUtil
 import code.name.monkey.retromusic.util.theme.getNightMode
 import code.name.monkey.retromusic.util.theme.getThemeResValue
+import code.roy.appthemehelper.util.VersionUtils
 
-abstract class AbsThemeActivity : ATHToolbarActivity(), Runnable {
+abstract class AbsThemeActivity : code.roy.appthemehelper.common.ATHToolbarActivity(), Runnable {
 
     private val handler = Handler(Looper.getMainLooper())
 

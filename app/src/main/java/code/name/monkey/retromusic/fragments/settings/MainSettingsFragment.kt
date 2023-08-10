@@ -22,12 +22,12 @@ import android.view.ViewGroup
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import code.name.monkey.appthemehelper.ThemeStore
 import code.name.monkey.retromusic.App
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.FragmentMainSettingsBinding
 import code.name.monkey.retromusic.extensions.drawAboveSystemBarsWithPadding
 import code.name.monkey.retromusic.extensions.goToProVersion
+import code.roy.appthemehelper.ThemeStore
 
 class MainSettingsFragment : Fragment(), View.OnClickListener {
 

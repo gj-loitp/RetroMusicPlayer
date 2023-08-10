@@ -12,7 +12,6 @@ import androidx.core.content.FileProvider
 import androidx.core.content.contentValuesOf
 import androidx.core.net.toUri
 import androidx.fragment.app.FragmentActivity
-import code.name.monkey.appthemehelper.util.VersionUtils
 import code.name.monkey.retromusic.Constants
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.db.PlaylistEntity
@@ -26,6 +25,7 @@ import code.name.monkey.retromusic.model.Song
 import code.name.monkey.retromusic.model.lyrics.AbsSynchronizedLyrics
 import code.name.monkey.retromusic.repository.Repository
 import code.name.monkey.retromusic.repository.SongRepository
+import code.roy.appthemehelper.util.VersionUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.withContext

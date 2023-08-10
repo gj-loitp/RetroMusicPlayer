@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat.SRC_IN
 import androidx.fragment.app.DialogFragment
-import code.name.monkey.appthemehelper.common.prefs.supportv7.ATEDialogPreference
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.PreferenceDialogAudioFadeBinding
 import code.name.monkey.retromusic.extensions.addAccentColor
@@ -16,6 +15,7 @@ import code.name.monkey.retromusic.extensions.colorButtons
 import code.name.monkey.retromusic.extensions.colorControlNormal
 import code.name.monkey.retromusic.extensions.materialDialog
 import code.name.monkey.retromusic.util.PreferenceUtil
+import code.roy.appthemehelper.common.prefs.supportv7.ATEDialogPreference
 import com.google.android.material.slider.Slider
 
 

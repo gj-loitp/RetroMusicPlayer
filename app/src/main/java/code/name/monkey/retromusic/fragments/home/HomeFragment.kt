@@ -27,9 +27,8 @@ import androidx.core.view.updateLayoutParams
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import code.name.monkey.appthemehelper.common.ATHToolbarActivity
-import code.name.monkey.appthemehelper.util.ColorUtil
-import code.name.monkey.appthemehelper.util.ToolbarContentTintHelper
+import code.roy.appthemehelper.common.ATHToolbarActivity
+import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.name.monkey.retromusic.*
 import code.name.monkey.retromusic.adapter.HomeAdapter
 import code.name.monkey.retromusic.databinding.FragmentHomeBinding
@@ -50,6 +49,7 @@ import code.name.monkey.retromusic.interfaces.IScrollHelper
 import code.name.monkey.retromusic.model.Song
 import code.name.monkey.retromusic.util.PreferenceUtil
 import code.name.monkey.retromusic.util.PreferenceUtil.userName
+import code.roy.appthemehelper.util.ColorUtil
 import com.bumptech.glide.Glide
 import com.google.android.material.transition.MaterialFadeThrough
 import com.google.android.material.transition.MaterialSharedAxis
@@ -203,11 +203,11 @@ class HomeFragment :
         menu.removeItem(R.id.action_layout_type)
         menu.removeItem(R.id.action_sort_order)
         menu.findItem(R.id.action_settings).setShowAsAction(SHOW_AS_ACTION_IF_ROOM)
-        ToolbarContentTintHelper.handleOnCreateOptionsMenu(
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.handleOnCreateOptionsMenu(
             requireContext(),
             binding.toolbar,
             menu,
-            ATHToolbarActivity.getToolbarBackgroundColor(binding.toolbar)
+            code.roy.appthemehelper.common.ATHToolbarActivity.getToolbarBackgroundColor(binding.toolbar)
         )
         //Setting up cast button
         requireContext().setUpMediaRouteButton(menu)
@@ -307,7 +307,7 @@ class HomeFragment :
 
     override fun onPrepareMenu(menu: Menu) {
         super.onPrepareMenu(menu)
-        ToolbarContentTintHelper.handleOnPrepareOptionsMenu(requireActivity(), binding.toolbar)
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.handleOnPrepareOptionsMenu(requireActivity(), binding.toolbar)
     }
 
     override fun onResume() {

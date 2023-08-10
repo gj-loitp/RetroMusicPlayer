@@ -20,10 +20,7 @@ import android.view.View
 import android.widget.ImageButton
 import android.widget.SeekBar
 import android.widget.TextView
-import code.name.monkey.appthemehelper.util.ATHUtil
-import code.name.monkey.appthemehelper.util.ColorUtil
-import code.name.monkey.appthemehelper.util.MaterialValueHelper
-import code.name.monkey.appthemehelper.util.TintHelper
+import code.roy.appthemehelper.util.TintHelper
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.FragmentCardPlayerPlaybackControlsBinding
 import code.name.monkey.retromusic.extensions.*
@@ -33,6 +30,9 @@ import code.name.monkey.retromusic.fragments.base.goToArtist
 import code.name.monkey.retromusic.helper.MusicPlayerRemote
 import code.name.monkey.retromusic.util.PreferenceUtil
 import code.name.monkey.retromusic.util.color.MediaNotificationProcessor
+import code.roy.appthemehelper.util.ATHUtil
+import code.roy.appthemehelper.util.ColorUtil
+import code.roy.appthemehelper.util.MaterialValueHelper
 
 class CardPlaybackControlsFragment :
     AbsPlayerControlsFragment(R.layout.fragment_card_player_playback_controls) {
@@ -137,12 +137,12 @@ class CardPlaybackControlsFragment :
             accentColor().ripAlpha()
         }
         binding.image.setColorFilter(colorFinal, PorterDuff.Mode.SRC_IN)
-        TintHelper.setTintAuto(
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(
             binding.mediaButton.playPauseButton,
             MaterialValueHelper.getPrimaryTextColor(context, ColorUtil.isColorLight(colorFinal)),
             false
         )
-        TintHelper.setTintAuto(binding.mediaButton.playPauseButton, colorFinal, true)
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(binding.mediaButton.playPauseButton, colorFinal, true)
 
         volumeFragment?.setTintable(colorFinal)
     }

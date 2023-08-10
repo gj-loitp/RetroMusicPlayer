@@ -19,18 +19,18 @@ import android.os.Bundle
 import androidx.core.content.edit
 import androidx.preference.Preference
 import androidx.preference.TwoStatePreference
-import code.name.monkey.appthemehelper.ACCENT_COLORS
-import code.name.monkey.appthemehelper.ACCENT_COLORS_SUB
-import code.name.monkey.appthemehelper.ThemeStore
-import code.name.monkey.appthemehelper.common.prefs.supportv7.ATEColorPreference
-import code.name.monkey.appthemehelper.common.prefs.supportv7.ATESwitchPreference
-import code.name.monkey.appthemehelper.util.ColorUtil
-import code.name.monkey.appthemehelper.util.VersionUtils
 import code.name.monkey.retromusic.*
 import code.name.monkey.retromusic.appshortcuts.DynamicShortcutManager
 import code.name.monkey.retromusic.extensions.materialDialog
 import code.name.monkey.retromusic.fragments.NowPlayingScreen.*
 import code.name.monkey.retromusic.util.PreferenceUtil
+import code.roy.appthemehelper.ACCENT_COLORS
+import code.roy.appthemehelper.ACCENT_COLORS_SUB
+import code.roy.appthemehelper.ThemeStore
+import code.roy.appthemehelper.common.prefs.ATEColorPreference
+import code.roy.appthemehelper.common.prefs.supportv7.ATESwitchPreference
+import code.roy.appthemehelper.util.ColorUtil
+import code.roy.appthemehelper.util.VersionUtils
 import com.afollestad.materialdialogs.color.colorChooser
 import com.google.android.material.color.DynamicColors
 

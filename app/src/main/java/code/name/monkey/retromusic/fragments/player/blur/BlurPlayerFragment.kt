@@ -22,7 +22,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.preference.PreferenceManager
-import code.name.monkey.appthemehelper.util.ToolbarContentTintHelper
+import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.name.monkey.retromusic.NEW_BLUR_AMOUNT
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.FragmentBlurBinding
@@ -78,7 +78,7 @@ class BlurPlayerFragment : AbsPlayerFragment(R.layout.fragment_blur),
         binding.playerToolbar.apply {
             inflateMenu(R.menu.menu_player)
             setNavigationOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
-            ToolbarContentTintHelper.colorizeToolbar(this, Color.WHITE, activity)
+            code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(this, Color.WHITE, activity)
         }.setOnMenuItemClickListener(this)
     }
 
@@ -90,7 +90,7 @@ class BlurPlayerFragment : AbsPlayerFragment(R.layout.fragment_blur),
         playbackControlsFragment.setColor(color)
         lastColor = color.backgroundColor
         libraryViewModel.updateColor(color.backgroundColor)
-        ToolbarContentTintHelper.colorizeToolbar(binding.playerToolbar, Color.WHITE, activity)
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(binding.playerToolbar, Color.WHITE, activity)
     }
 
     override fun toggleFavorite(song: Song) {

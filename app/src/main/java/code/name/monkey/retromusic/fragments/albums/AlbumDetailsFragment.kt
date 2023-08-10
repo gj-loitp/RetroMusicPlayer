@@ -30,8 +30,8 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import code.name.monkey.appthemehelper.common.ATHToolbarActivity.getToolbarBackgroundColor
-import code.name.monkey.appthemehelper.util.ToolbarContentTintHelper
+import code.roy.appthemehelper.common.ATHToolbarActivity.getToolbarBackgroundColor
+import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.name.monkey.retromusic.EXTRA_ALBUM_ID
 import code.name.monkey.retromusic.EXTRA_ARTIST_ID
 import code.name.monkey.retromusic.EXTRA_ARTIST_NAME
@@ -339,7 +339,7 @@ class AlbumDetailsFragment : AbsMainActivityFragment(R.layout.fragment_album_det
         inflater.inflate(R.menu.menu_album_detail, menu)
         val sortOrder = menu.findItem(R.id.action_sort_order)
         setUpSortOrderMenu(sortOrder.subMenu!!)
-        ToolbarContentTintHelper.handleOnCreateOptionsMenu(
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.handleOnCreateOptionsMenu(
             requireContext(),
             binding.toolbar,
             menu,

@@ -20,9 +20,6 @@ import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.Toolbar
-import code.name.monkey.appthemehelper.util.ColorUtil
-import code.name.monkey.appthemehelper.util.MaterialValueHelper
-import code.name.monkey.appthemehelper.util.ToolbarContentTintHelper
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.FragmentFlatPlayerBinding
 import code.name.monkey.retromusic.extensions.colorControlNormal
@@ -36,6 +33,8 @@ import code.name.monkey.retromusic.util.PreferenceUtil
 import code.name.monkey.retromusic.util.ViewUtil
 import code.name.monkey.retromusic.util.color.MediaNotificationProcessor
 import code.name.monkey.retromusic.views.DrawableGradient
+import code.roy.appthemehelper.util.ColorUtil
+import code.roy.appthemehelper.util.MaterialValueHelper
 
 class FlatPlayerFragment : AbsPlayerFragment(R.layout.fragment_flat_player) {
     override fun playerToolbar(): Toolbar {
@@ -63,7 +62,7 @@ class FlatPlayerFragment : AbsPlayerFragment(R.layout.fragment_flat_player) {
         binding.playerToolbar.inflateMenu(R.menu.menu_player)
         binding.playerToolbar.setNavigationOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
         binding.playerToolbar.setOnMenuItemClickListener(this)
-        ToolbarContentTintHelper.colorizeToolbar(
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
             binding.playerToolbar,
             colorControlNormal(),
             requireActivity()
@@ -114,7 +113,7 @@ class FlatPlayerFragment : AbsPlayerFragment(R.layout.fragment_flat_player) {
         lastColor = color.backgroundColor
         controlsFragment.setColor(color)
         libraryViewModel.updateColor(color.backgroundColor)
-        ToolbarContentTintHelper.colorizeToolbar(
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
             binding.playerToolbar,
             colorControlNormal(),
             requireActivity()

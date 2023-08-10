@@ -4,7 +4,7 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
-import code.name.monkey.appthemehelper.util.TintHelper
+import code.roy.appthemehelper.util.TintHelper
 import code.name.monkey.retromusic.App.Companion.getContext
 import code.name.monkey.retromusic.Constants.USER_BANNER
 import code.name.monkey.retromusic.Constants.USER_PROFILE
@@ -178,7 +178,7 @@ object RetroGlideExtension {
     }
 
     private fun getErrorUserProfile(context: Context): Drawable {
-        return TintHelper.createTintedDrawable(
+        return code.roy.appthemehelper.util.TintHelper.createTintedDrawable(
             context,
             R.drawable.ic_account,
             context.accentColor()

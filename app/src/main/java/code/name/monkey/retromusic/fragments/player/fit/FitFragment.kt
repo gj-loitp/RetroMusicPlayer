@@ -17,7 +17,7 @@ package code.name.monkey.retromusic.fragments.player.fit
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.Toolbar
-import code.name.monkey.appthemehelper.util.ToolbarContentTintHelper
+import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.FragmentFitBinding
 import code.name.monkey.retromusic.extensions.colorControlNormal
@@ -59,7 +59,7 @@ class FitFragment : AbsPlayerFragment(R.layout.fragment_fit) {
         playbackControlsFragment.setColor(color)
         lastColor = color.primaryTextColor
         libraryViewModel.updateColor(color.primaryTextColor)
-        ToolbarContentTintHelper.colorizeToolbar(
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
             binding.playerToolbar,
             colorControlNormal(),
             requireActivity()
@@ -97,7 +97,7 @@ class FitFragment : AbsPlayerFragment(R.layout.fragment_fit) {
             inflateMenu(R.menu.menu_player)
             setNavigationOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
             setOnMenuItemClickListener(this@FitFragment)
-            ToolbarContentTintHelper.colorizeToolbar(
+            code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
                 this,
                 colorControlNormal(),
                 requireActivity()

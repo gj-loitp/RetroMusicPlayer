@@ -33,9 +33,8 @@ import androidx.fragment.app.commit
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import code.name.monkey.appthemehelper.util.ColorUtil
-import code.name.monkey.appthemehelper.util.TintHelper
-import code.name.monkey.appthemehelper.util.ToolbarContentTintHelper
+import code.roy.appthemehelper.util.TintHelper
+import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.adapter.song.PlayingQueueAdapter
 import code.name.monkey.retromusic.databinding.FragmentClassicPlayerBinding
@@ -57,6 +56,7 @@ import code.name.monkey.retromusic.util.MusicUtil
 import code.name.monkey.retromusic.util.PreferenceUtil
 import code.name.monkey.retromusic.util.ViewUtil
 import code.name.monkey.retromusic.util.color.MediaNotificationProcessor
+import code.roy.appthemehelper.util.ColorUtil
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.from
 import com.google.android.material.card.MaterialCardView
@@ -163,7 +163,7 @@ class ClassicPlayerFragment : AbsPlayerFragment(R.layout.fragment_classic_player
             return@setOnTouchListener false
         }
 
-        ToolbarContentTintHelper.colorizeToolbar(
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
             binding.playerToolbar,
             Color.WHITE,
             requireActivity()
@@ -319,12 +319,12 @@ class ClassicPlayerFragment : AbsPlayerFragment(R.layout.fragment_classic_player
         )
         volumeFragment?.setTintableColor(color.primaryTextColor)
 
-        TintHelper.setTintAuto(
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(
             binding.playerControlsContainer.playPauseButton,
             color.primaryTextColor,
             true
         )
-        TintHelper.setTintAuto(
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(
             binding.playerControlsContainer.playPauseButton,
             color.backgroundColor,
             false
@@ -334,7 +334,7 @@ class ClassicPlayerFragment : AbsPlayerFragment(R.layout.fragment_classic_player
         updateShuffleState()
         updatePrevNextColor()
 
-        ToolbarContentTintHelper.colorizeToolbar(
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
             binding.playerToolbar,
             Color.WHITE,
             requireActivity()
@@ -431,7 +431,7 @@ class ClassicPlayerFragment : AbsPlayerFragment(R.layout.fragment_classic_player
         binding.playerToolbar.setNavigationOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
         binding.playerToolbar.setOnMenuItemClickListener(this)
 
-        ToolbarContentTintHelper.colorizeToolbar(
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
             binding.playerToolbar,
             Color.WHITE,
             requireActivity()

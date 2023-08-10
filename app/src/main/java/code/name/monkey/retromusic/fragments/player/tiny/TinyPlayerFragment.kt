@@ -25,8 +25,7 @@ import android.view.View
 import android.view.animation.LinearInterpolator
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.getSystemService
-import code.name.monkey.appthemehelper.util.ToolbarContentTintHelper
-import code.name.monkey.appthemehelper.util.VersionUtils
+import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.FragmentTinyPlayerBinding
 import code.name.monkey.retromusic.extensions.*
@@ -42,6 +41,7 @@ import code.name.monkey.retromusic.util.MusicUtil
 import code.name.monkey.retromusic.util.PreferenceUtil
 import code.name.monkey.retromusic.util.ViewUtil
 import code.name.monkey.retromusic.util.color.MediaNotificationProcessor
+import code.roy.appthemehelper.util.VersionUtils
 import kotlin.math.abs
 
 class TinyPlayerFragment : AbsPlayerFragment(R.layout.fragment_tiny_player),
@@ -82,7 +82,7 @@ class TinyPlayerFragment : AbsPlayerFragment(R.layout.fragment_tiny_player),
         ViewUtil.setProgressDrawable(binding.progressBar, color.backgroundColor)
 
         Handler(Looper.myLooper()!!).post {
-            ToolbarContentTintHelper.colorizeToolbar(
+            code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
                 binding.playerToolbar,
                 color.secondaryTextColor,
                 requireActivity()

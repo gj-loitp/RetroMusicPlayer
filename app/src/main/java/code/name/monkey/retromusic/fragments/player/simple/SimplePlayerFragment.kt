@@ -17,7 +17,7 @@ package code.name.monkey.retromusic.fragments.player.simple
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.Toolbar
-import code.name.monkey.appthemehelper.util.ToolbarContentTintHelper
+import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.FragmentSimplePlayerBinding
 import code.name.monkey.retromusic.extensions.colorControlNormal
@@ -77,7 +77,7 @@ class SimplePlayerFragment : AbsPlayerFragment(R.layout.fragment_simple_player) 
         lastColor = color.backgroundColor
         libraryViewModel.updateColor(color.backgroundColor)
         controlsFragment.setColor(color)
-        ToolbarContentTintHelper.colorizeToolbar(
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
             binding.playerToolbar,
             colorControlNormal(),
             requireActivity()
@@ -99,7 +99,7 @@ class SimplePlayerFragment : AbsPlayerFragment(R.layout.fragment_simple_player) 
         binding.playerToolbar.inflateMenu(R.menu.menu_player)
         binding.playerToolbar.setNavigationOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
         binding.playerToolbar.setOnMenuItemClickListener(this)
-        ToolbarContentTintHelper.colorizeToolbar(
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
             binding.playerToolbar,
             colorControlNormal(),
             requireActivity()

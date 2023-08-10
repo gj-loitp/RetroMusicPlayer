@@ -18,7 +18,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.Toolbar
-import code.name.monkey.appthemehelper.util.ToolbarContentTintHelper
+import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.FragmentCardPlayerBinding
 import code.name.monkey.retromusic.extensions.drawAboveSystemBars
@@ -59,7 +59,7 @@ class CardFragment : AbsPlayerFragment(R.layout.fragment_card_player) {
         playbackControlsFragment.setColor(color)
         lastColor = color.primaryTextColor
         libraryViewModel.updateColor(color.primaryTextColor)
-        ToolbarContentTintHelper.colorizeToolbar(binding.playerToolbar, Color.WHITE, activity)
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(binding.playerToolbar, Color.WHITE, activity)
     }
 
     override fun toggleFavorite(song: Song) {
@@ -95,7 +95,7 @@ class CardFragment : AbsPlayerFragment(R.layout.fragment_card_player) {
             setNavigationOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
             setOnMenuItemClickListener(this@CardFragment)
 
-            ToolbarContentTintHelper.colorizeToolbar(this, Color.WHITE, activity)
+            code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(this, Color.WHITE, activity)
         }
     }
 

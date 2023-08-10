@@ -18,7 +18,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.Toolbar
-import code.name.monkey.appthemehelper.util.ToolbarContentTintHelper
+import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.FragmentHomePlayerBinding
 import code.name.monkey.retromusic.extensions.colorControlNormal
@@ -94,7 +94,7 @@ class HomePlayerFragment : AbsPlayerFragment(R.layout.fragment_home_player),
     override fun onColorChanged(color: MediaNotificationProcessor) {
         lastColor = color.backgroundColor
         libraryViewModel.updateColor(color.backgroundColor)
-        ToolbarContentTintHelper.colorizeToolbar(
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
             binding.playerToolbar,
             Color.WHITE,
             requireActivity()
@@ -121,7 +121,7 @@ class HomePlayerFragment : AbsPlayerFragment(R.layout.fragment_home_player),
         binding.playerToolbar.setNavigationOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
         binding.playerToolbar.setOnMenuItemClickListener(this)
 
-        ToolbarContentTintHelper.colorizeToolbar(
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
             binding.playerToolbar,
             colorControlNormal(),
             requireActivity()

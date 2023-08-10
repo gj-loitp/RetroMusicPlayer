@@ -14,11 +14,10 @@
 package code.name.monkey.retromusic.util
 
 import android.view.ViewGroup
-import code.name.monkey.appthemehelper.ThemeStore.Companion.accentColor
-import code.name.monkey.appthemehelper.util.ColorUtil.isColorLight
-import code.name.monkey.appthemehelper.util.MaterialValueHelper.getPrimaryTextColor
-import code.name.monkey.appthemehelper.util.TintHelper
 import code.name.monkey.retromusic.views.PopupBackground
+import code.roy.appthemehelper.ThemeStore.Companion.accentColor
+import code.roy.appthemehelper.util.ColorUtil.isColorLight
+import code.roy.appthemehelper.util.MaterialValueHelper.getPrimaryTextColor
 import me.zhanghai.android.fastscroll.FastScroller
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 import me.zhanghai.android.fastscroll.PopupStyles
@@ -38,7 +37,7 @@ object ThemedFastScroller {
         }
 
         fastScrollerBuilder.setThumbDrawable(
-            TintHelper.createTintedDrawable(
+            code.roy.appthemehelper.util.TintHelper.createTintedDrawable(
                 context,
                 R.drawable.afs_md2_thumb,
                 color

@@ -17,8 +17,7 @@ package code.name.monkey.retromusic.fragments.player.md3
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.Toolbar
-import code.name.monkey.appthemehelper.util.ATHUtil
-import code.name.monkey.appthemehelper.util.ToolbarContentTintHelper
+import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.FragmentMd3PlayerBinding
 import code.name.monkey.retromusic.extensions.drawAboveSystemBars
@@ -27,6 +26,7 @@ import code.name.monkey.retromusic.fragments.player.PlayerAlbumCoverFragment
 import code.name.monkey.retromusic.helper.MusicPlayerRemote
 import code.name.monkey.retromusic.model.Song
 import code.name.monkey.retromusic.util.color.MediaNotificationProcessor
+import code.roy.appthemehelper.util.ATHUtil
 
 class MD3PlayerFragment : AbsPlayerFragment(R.layout.fragment_md3_player) {
 
@@ -56,7 +56,7 @@ class MD3PlayerFragment : AbsPlayerFragment(R.layout.fragment_md3_player) {
         lastColor = color.backgroundColor
         libraryViewModel.updateColor(color.backgroundColor)
 
-        ToolbarContentTintHelper.colorizeToolbar(
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
             binding.playerToolbar,
             ATHUtil.resolveColor(requireContext(), androidx.appcompat.R.attr.colorControlNormal),
             requireActivity()
@@ -101,7 +101,7 @@ class MD3PlayerFragment : AbsPlayerFragment(R.layout.fragment_md3_player) {
         binding.playerToolbar.setNavigationOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
         binding.playerToolbar.setOnMenuItemClickListener(this)
 
-        ToolbarContentTintHelper.colorizeToolbar(
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
             binding.playerToolbar,
             ATHUtil.resolveColor(requireContext(), androidx.appcompat.R.attr.colorControlNormal),
             requireActivity()

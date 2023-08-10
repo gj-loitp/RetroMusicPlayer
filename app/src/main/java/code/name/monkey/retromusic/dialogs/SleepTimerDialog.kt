@@ -30,7 +30,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.getSystemService
 import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
-import code.name.monkey.appthemehelper.util.VersionUtils
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.DialogSleepTimerBinding
 import code.name.monkey.retromusic.extensions.addAccentColor
@@ -41,6 +40,7 @@ import code.name.monkey.retromusic.service.MusicService.Companion.ACTION_PENDING
 import code.name.monkey.retromusic.service.MusicService.Companion.ACTION_QUIT
 import code.name.monkey.retromusic.util.MusicUtil
 import code.name.monkey.retromusic.util.PreferenceUtil
+import code.roy.appthemehelper.util.VersionUtils
 
 class SleepTimerDialog : DialogFragment() {
 

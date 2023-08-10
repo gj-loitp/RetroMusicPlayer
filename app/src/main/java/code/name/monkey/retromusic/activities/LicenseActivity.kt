@@ -16,14 +16,14 @@ package code.name.monkey.retromusic.activities
 import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
-import code.name.monkey.appthemehelper.util.ATHUtil.isWindowBackgroundDark
-import code.name.monkey.appthemehelper.util.ColorUtil.lightenColor
-import code.name.monkey.appthemehelper.util.ToolbarContentTintHelper
+import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.name.monkey.retromusic.activities.base.AbsThemeActivity
 import code.name.monkey.retromusic.databinding.ActivityLicenseBinding
 import code.name.monkey.retromusic.extensions.accentColor
 import code.name.monkey.retromusic.extensions.drawAboveSystemBars
 import code.name.monkey.retromusic.extensions.surfaceColor
+import code.roy.appthemehelper.util.ATHUtil.isWindowBackgroundDark
+import code.roy.appthemehelper.util.ColorUtil.lightenColor
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.nio.charset.StandardCharsets
@@ -36,7 +36,7 @@ class LicenseActivity : AbsThemeActivity() {
         binding = ActivityLicenseBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
-        ToolbarContentTintHelper.colorBackButton(binding.toolbar)
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.colorBackButton(binding.toolbar)
         try {
             val buf = StringBuilder()
             val json = assets.open("license.html")

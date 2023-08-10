@@ -19,7 +19,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.Toolbar
-import code.name.monkey.appthemehelper.util.ToolbarContentTintHelper
+import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.FragmentFullBinding
 import code.name.monkey.retromusic.extensions.drawAboveSystemBars
@@ -95,7 +95,7 @@ class FullPlayerFragment : AbsPlayerFragment(R.layout.fragment_full) {
         binding.mask.backgroundTintList = ColorStateList.valueOf(color.backgroundColor)
         controlsFragment.setColor(color)
         libraryViewModel.updateColor(color.backgroundColor)
-        ToolbarContentTintHelper.colorizeToolbar(binding.playerToolbar, Color.WHITE, activity)
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(binding.playerToolbar, Color.WHITE, activity)
         binding.coverLyrics.getFragment<CoverLyricsFragment>().setColors(color)
     }
 

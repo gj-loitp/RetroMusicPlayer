@@ -21,7 +21,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import code.name.monkey.appthemehelper.ThemeStore.Companion.accentColor
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.PreferenceDialogLibraryCategoriesListitemBinding
 import code.name.monkey.retromusic.extensions.showToast
@@ -29,6 +28,7 @@ import code.name.monkey.retromusic.model.CategoryInfo
 import code.name.monkey.retromusic.util.PreferenceUtil
 import code.name.monkey.retromusic.util.SwipeAndDragHelper
 import code.name.monkey.retromusic.util.SwipeAndDragHelper.ActionCompletionContract
+import code.roy.appthemehelper.ThemeStore.Companion.accentColor
 
 class CategoryInfoAdapter : RecyclerView.Adapter<CategoryInfoAdapter.ViewHolder>(),
     ActionCompletionContract {

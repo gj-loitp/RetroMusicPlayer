@@ -23,8 +23,6 @@ import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.widget.ImageButton
 import android.widget.TextView
-import code.name.monkey.appthemehelper.util.ColorUtil
-import code.name.monkey.appthemehelper.util.TintHelper
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.FragmentColorPlayerPlaybackControlsBinding
 import code.name.monkey.retromusic.extensions.applyColor
@@ -37,6 +35,7 @@ import code.name.monkey.retromusic.fragments.base.goToArtist
 import code.name.monkey.retromusic.helper.MusicPlayerRemote
 import code.name.monkey.retromusic.util.PreferenceUtil
 import code.name.monkey.retromusic.util.color.MediaNotificationProcessor
+import code.roy.appthemehelper.util.ColorUtil
 import com.google.android.material.slider.Slider
 import kotlin.math.sqrt
 
@@ -120,8 +119,8 @@ class ColorPlaybackControlsFragment :
     }
 
     override fun setColor(color: MediaNotificationProcessor) {
-        TintHelper.setTintAuto(binding.playPauseButton, color.primaryTextColor, true)
-        TintHelper.setTintAuto(binding.playPauseButton, color.backgroundColor, false)
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(binding.playPauseButton, color.primaryTextColor, true)
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(binding.playPauseButton, color.backgroundColor, false)
         binding.progressSlider.applyColor(color.primaryTextColor)
 
         binding.title.setTextColor(color.primaryTextColor)
@@ -140,8 +139,8 @@ class ColorPlaybackControlsFragment :
     }
 
     private fun setUpPlayPauseFab() {
-        TintHelper.setTintAuto(binding.playPauseButton, Color.WHITE, true)
-        TintHelper.setTintAuto(binding.playPauseButton, Color.BLACK, false)
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(binding.playPauseButton, Color.WHITE, true)
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(binding.playPauseButton, Color.BLACK, false)
         binding.playPauseButton.setOnClickListener {
             if (MusicPlayerRemote.isPlaying) {
                 MusicPlayerRemote.pauseSong()

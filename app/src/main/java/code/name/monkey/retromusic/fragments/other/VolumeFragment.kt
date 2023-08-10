@@ -23,7 +23,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.getSystemService
 import androidx.fragment.app.Fragment
-import code.name.monkey.appthemehelper.ThemeStore
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.FragmentVolumeBinding
 import code.name.monkey.retromusic.extensions.applyColor
@@ -31,6 +30,7 @@ import code.name.monkey.retromusic.helper.MusicPlayerRemote
 import code.name.monkey.retromusic.util.PreferenceUtil
 import code.name.monkey.retromusic.volume.AudioVolumeObserver
 import code.name.monkey.retromusic.volume.OnAudioVolumeChangedListener
+import code.roy.appthemehelper.ThemeStore
 import com.google.android.material.slider.Slider
 
 class VolumeFragment : Fragment(), Slider.OnChangeListener, OnAudioVolumeChangedListener,

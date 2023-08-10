@@ -20,8 +20,6 @@ import android.view.View
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import code.name.monkey.appthemehelper.util.ATHUtil
-import code.name.monkey.appthemehelper.util.MaterialValueHelper
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.FragmentMaterialPlaybackControlsBinding
 import code.name.monkey.retromusic.extensions.*
@@ -32,6 +30,8 @@ import code.name.monkey.retromusic.helper.MusicPlayerRemote
 import code.name.monkey.retromusic.helper.PlayPauseButtonOnClickHandler
 import code.name.monkey.retromusic.util.PreferenceUtil
 import code.name.monkey.retromusic.util.color.MediaNotificationProcessor
+import code.roy.appthemehelper.util.ATHUtil
+import code.roy.appthemehelper.util.MaterialValueHelper
 import com.google.android.material.slider.Slider
 
 /**

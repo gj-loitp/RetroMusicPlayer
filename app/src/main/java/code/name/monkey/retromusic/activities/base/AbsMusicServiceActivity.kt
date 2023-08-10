@@ -20,7 +20,6 @@ import android.os.Bundle
 import android.os.IBinder
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
-import code.name.monkey.appthemehelper.util.VersionUtils
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.db.toPlayCount
 import code.name.monkey.retromusic.helper.MusicPlayerRemote
@@ -35,6 +34,7 @@ import code.name.monkey.retromusic.service.MusicService.Companion.REPEAT_MODE_CH
 import code.name.monkey.retromusic.service.MusicService.Companion.SHUFFLE_MODE_CHANGED
 import code.name.monkey.retromusic.util.PreferenceUtil
 import code.name.monkey.retromusic.util.logD
+import code.roy.appthemehelper.util.VersionUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject

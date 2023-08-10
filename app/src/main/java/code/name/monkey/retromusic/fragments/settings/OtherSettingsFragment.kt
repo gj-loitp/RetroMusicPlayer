@@ -19,7 +19,6 @@ import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import androidx.preference.Preference
-import code.name.monkey.appthemehelper.common.prefs.supportv7.ATEListPreference
 import code.name.monkey.retromusic.LANGUAGE_NAME
 import code.name.monkey.retromusic.LAST_ADDED_CUTOFF
 import code.name.monkey.retromusic.R
@@ -27,6 +26,7 @@ import code.name.monkey.retromusic.extensions.installLanguageAndRecreate
 import code.name.monkey.retromusic.fragments.LibraryViewModel
 import code.name.monkey.retromusic.fragments.ReloadType.HomeSections
 import code.name.monkey.retromusic.util.PreferenceUtil
+import code.roy.appthemehelper.common.prefs.supportv7.ATEListPreference
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 /**

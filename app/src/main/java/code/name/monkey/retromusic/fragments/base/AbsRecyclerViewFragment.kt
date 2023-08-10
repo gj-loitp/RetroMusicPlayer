@@ -24,8 +24,8 @@ import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import code.name.monkey.appthemehelper.common.ATHToolbarActivity
-import code.name.monkey.appthemehelper.util.ToolbarContentTintHelper
+import code.roy.appthemehelper.common.ATHToolbarActivity
+import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.adapter.base.AbsMultiSelectAdapter
 import code.name.monkey.retromusic.databinding.FragmentMainRecyclerBinding
@@ -185,16 +185,16 @@ abstract class AbsRecyclerViewFragment<A : RecyclerView.Adapter<*>, LM : Recycle
     }
 
     override fun onPrepareMenu(menu: Menu) {
-        ToolbarContentTintHelper.handleOnPrepareOptionsMenu(requireActivity(), toolbar)
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.handleOnPrepareOptionsMenu(requireActivity(), toolbar)
     }
 
     override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_main, menu)
-        ToolbarContentTintHelper.handleOnCreateOptionsMenu(
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.handleOnCreateOptionsMenu(
             requireContext(),
             toolbar,
             menu,
-            ATHToolbarActivity.getToolbarBackgroundColor(toolbar)
+            code.roy.appthemehelper.common.ATHToolbarActivity.getToolbarBackgroundColor(toolbar)
         )
     }
 

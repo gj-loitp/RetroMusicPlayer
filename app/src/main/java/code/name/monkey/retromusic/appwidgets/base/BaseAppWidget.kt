@@ -25,7 +25,6 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.widget.RemoteViews
 import androidx.core.content.ContextCompat
-import code.name.monkey.appthemehelper.util.VersionUtils
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.model.Song
 import code.name.monkey.retromusic.service.MusicService
@@ -34,6 +33,7 @@ import code.name.monkey.retromusic.service.MusicService.Companion.EXTRA_APP_WIDG
 import code.name.monkey.retromusic.service.MusicService.Companion.FAVORITE_STATE_CHANGED
 import code.name.monkey.retromusic.service.MusicService.Companion.META_CHANGED
 import code.name.monkey.retromusic.service.MusicService.Companion.PLAY_STATE_CHANGED
+import code.roy.appthemehelper.util.VersionUtils
 
 abstract class BaseAppWidget : AppWidgetProvider() {
 

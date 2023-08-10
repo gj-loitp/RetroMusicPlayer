@@ -20,7 +20,6 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.provider.MediaStore.Audio.AudioColumns
 import android.provider.MediaStore.Audio.Media
-import code.name.monkey.appthemehelper.util.VersionUtils
 import code.name.monkey.retromusic.Constants
 import code.name.monkey.retromusic.Constants.IS_MUSIC
 import code.name.monkey.retromusic.Constants.baseProjection
@@ -33,6 +32,7 @@ import code.name.monkey.retromusic.model.Song
 import code.name.monkey.retromusic.providers.BlacklistStore
 import code.name.monkey.retromusic.util.PreferenceUtil
 import code.name.monkey.retromusic.util.getExternalStoragePublicDirectory
+import code.roy.appthemehelper.util.VersionUtils
 import java.text.Collator
 
 /**

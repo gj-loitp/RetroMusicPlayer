@@ -21,7 +21,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.preference.PreferenceManager
-import code.name.monkey.appthemehelper.util.ToolbarContentTintHelper
+import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.name.monkey.retromusic.NEW_BLUR_AMOUNT
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.FragmentCardBlurPlayerBinding
@@ -72,7 +72,7 @@ class CardBlurFragment : AbsPlayerFragment(R.layout.fragment_card_blur_player),
         playbackControlsFragment.setColor(color)
         lastColor = color.backgroundColor
         libraryViewModel.updateColor(color.backgroundColor)
-        ToolbarContentTintHelper.colorizeToolbar(binding.playerToolbar, Color.WHITE, activity)
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(binding.playerToolbar, Color.WHITE, activity)
 
         binding.title.setTextColor(Color.WHITE)
         binding.text.setTextColor(Color.WHITE)
@@ -111,7 +111,7 @@ class CardBlurFragment : AbsPlayerFragment(R.layout.fragment_card_blur_player),
             setNavigationOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
             setTitleTextColor(Color.WHITE)
             setSubtitleTextColor(Color.WHITE)
-            ToolbarContentTintHelper.colorizeToolbar(binding.playerToolbar, Color.WHITE, activity)
+            code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(binding.playerToolbar, Color.WHITE, activity)
             setOnMenuItemClickListener(this@CardBlurFragment)
         }
     }

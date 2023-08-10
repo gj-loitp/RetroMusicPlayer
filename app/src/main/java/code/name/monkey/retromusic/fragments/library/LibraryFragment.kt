@@ -23,9 +23,8 @@ import androidx.core.text.parseAsHtml
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
-import code.name.monkey.appthemehelper.ThemeStore
-import code.name.monkey.appthemehelper.common.ATHToolbarActivity.getToolbarBackgroundColor
-import code.name.monkey.appthemehelper.util.ToolbarContentTintHelper
+import code.roy.appthemehelper.common.ATHToolbarActivity.getToolbarBackgroundColor
+import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.FragmentLibraryBinding
 import code.name.monkey.retromusic.dialogs.CreatePlaylistDialog
@@ -35,6 +34,7 @@ import code.name.monkey.retromusic.extensions.whichFragment
 import code.name.monkey.retromusic.fragments.base.AbsMainActivityFragment
 import code.name.monkey.retromusic.model.CategoryInfo
 import code.name.monkey.retromusic.util.PreferenceUtil
+import code.roy.appthemehelper.ThemeStore
 
 class LibraryFragment : AbsMainActivityFragment(R.layout.fragment_library) {
 
@@ -87,12 +87,12 @@ class LibraryFragment : AbsMainActivityFragment(R.layout.fragment_library) {
     }
 
     override fun onPrepareMenu(menu: Menu) {
-        ToolbarContentTintHelper.handleOnPrepareOptionsMenu(requireActivity(), binding.toolbar)
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.handleOnPrepareOptionsMenu(requireActivity(), binding.toolbar)
     }
 
     override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_main, menu)
-        ToolbarContentTintHelper.handleOnCreateOptionsMenu(
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.handleOnCreateOptionsMenu(
             requireContext(),
             binding.toolbar,
             menu,

@@ -20,8 +20,7 @@ import android.view.View
 import android.view.animation.DecelerateInterpolator
 import android.widget.ImageButton
 import android.widget.TextView
-import code.name.monkey.appthemehelper.util.ColorUtil
-import code.name.monkey.appthemehelper.util.TintHelper
+import code.roy.appthemehelper.util.TintHelper
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.FragmentCardBlurPlayerPlaybackControlsBinding
 import code.name.monkey.retromusic.extensions.applyColor
@@ -33,6 +32,7 @@ import code.name.monkey.retromusic.helper.MusicPlayerRemote
 import code.name.monkey.retromusic.helper.PlayPauseButtonOnClickHandler
 import code.name.monkey.retromusic.util.PreferenceUtil
 import code.name.monkey.retromusic.util.color.MediaNotificationProcessor
+import code.roy.appthemehelper.util.ColorUtil
 import com.google.android.material.slider.Slider
 
 class CardBlurPlaybackControlsFragment :
@@ -83,8 +83,8 @@ class CardBlurPlaybackControlsFragment :
 
     private fun setUpPlayPauseFab() {
         binding.mediaButton.playPauseButton.apply {
-            TintHelper.setTintAuto(this, Color.WHITE, true)
-            TintHelper.setTintAuto(this, Color.BLACK, false)
+            code.roy.appthemehelper.util.TintHelper.setTintAuto(this, Color.WHITE, true)
+            code.roy.appthemehelper.util.TintHelper.setTintAuto(this, Color.BLACK, false)
             setOnClickListener(PlayPauseButtonOnClickHandler())
         }
     }

@@ -17,7 +17,7 @@ package code.name.monkey.retromusic.fragments.player.plain
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.Toolbar
-import code.name.monkey.appthemehelper.util.ToolbarContentTintHelper
+import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.FragmentPlainPlayerBinding
 import code.name.monkey.retromusic.extensions.colorControlNormal
@@ -65,7 +65,7 @@ class PlainPlayerFragment : AbsPlayerFragment(R.layout.fragment_plain_player) {
             inflateMenu(R.menu.menu_player)
             setNavigationOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
             setOnMenuItemClickListener(this@PlainPlayerFragment)
-            ToolbarContentTintHelper.colorizeToolbar(
+            code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
                 this,
                 colorControlNormal(),
                 requireActivity()
@@ -110,7 +110,7 @@ class PlainPlayerFragment : AbsPlayerFragment(R.layout.fragment_plain_player) {
         plainPlaybackControlsFragment.setColor(color)
         lastColor = color.primaryTextColor
         libraryViewModel.updateColor(color.primaryTextColor)
-        ToolbarContentTintHelper.colorizeToolbar(
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
             binding.playerToolbar,
             colorControlNormal(),
             requireActivity()

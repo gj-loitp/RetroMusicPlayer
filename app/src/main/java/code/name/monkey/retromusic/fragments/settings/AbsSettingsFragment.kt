@@ -23,7 +23,7 @@ import androidx.core.view.updatePadding
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceManager
-import code.name.monkey.appthemehelper.common.prefs.supportv7.ATEPreferenceFragmentCompat
+import code.roy.appthemehelper.common.prefs.supportv7.ATEPreferenceFragmentCompat
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.extensions.dip
 import code.name.monkey.retromusic.extensions.goToProVersion
@@ -35,7 +35,7 @@ import dev.chrisbanes.insetter.applyInsetter
  * @author Hemanth S (h4h13).
  */
 
-abstract class AbsSettingsFragment : ATEPreferenceFragmentCompat() {
+abstract class AbsSettingsFragment : code.roy.appthemehelper.common.prefs.supportv7.ATEPreferenceFragmentCompat() {
 
     internal fun showProToastAndNavigate(message: String) {
         showToast(getString(R.string.message_pro_feature, message))

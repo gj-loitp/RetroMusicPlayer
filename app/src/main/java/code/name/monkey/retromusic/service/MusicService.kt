@@ -44,7 +44,6 @@ import androidx.core.content.getSystemService
 import androidx.core.os.BundleCompat
 import androidx.media.MediaBrowserServiceCompat
 import androidx.preference.PreferenceManager
-import code.name.monkey.appthemehelper.util.VersionUtils
 import code.name.monkey.retromusic.*
 import code.name.monkey.retromusic.activities.LockScreenActivity
 import code.name.monkey.retromusic.appwidgets.*
@@ -85,6 +84,7 @@ import code.name.monkey.retromusic.util.PreferenceUtil.registerOnSharedPreferenc
 import code.name.monkey.retromusic.util.PreferenceUtil.unregisterOnSharedPreferenceChangedListener
 import code.name.monkey.retromusic.volume.AudioVolumeObserver
 import code.name.monkey.retromusic.volume.OnAudioVolumeChangedListener
+import code.roy.appthemehelper.util.VersionUtils
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.target.Target

@@ -19,10 +19,6 @@ import android.view.View
 import android.view.animation.DecelerateInterpolator
 import android.widget.ImageButton
 import android.widget.TextView
-import code.name.monkey.appthemehelper.util.ATHUtil
-import code.name.monkey.appthemehelper.util.ColorUtil
-import code.name.monkey.appthemehelper.util.MaterialValueHelper
-import code.name.monkey.appthemehelper.util.TintHelper
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.FragmentLockScreenPlaybackControlsBinding
 import code.name.monkey.retromusic.extensions.applyColor
@@ -33,6 +29,9 @@ import code.name.monkey.retromusic.helper.MusicPlayerRemote
 import code.name.monkey.retromusic.helper.PlayPauseButtonOnClickHandler
 import code.name.monkey.retromusic.util.PreferenceUtil
 import code.name.monkey.retromusic.util.color.MediaNotificationProcessor
+import code.roy.appthemehelper.util.ATHUtil
+import code.roy.appthemehelper.util.ColorUtil
+import code.roy.appthemehelper.util.MaterialValueHelper
 import com.google.android.material.slider.Slider
 
 /**
@@ -134,12 +133,12 @@ class LockScreenControlsFragment :
         val isDark = ColorUtil.isColorLight(colorFinal)
         binding.text.setTextColor(colorFinal)
 
-        TintHelper.setTintAuto(
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(
             binding.playPauseButton,
             MaterialValueHelper.getPrimaryTextColor(context, isDark),
             false
         )
-        TintHelper.setTintAuto(binding.playPauseButton, colorFinal, true)
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(binding.playPauseButton, colorFinal, true)
     }
 
     private fun setUpPlayPauseFab() {

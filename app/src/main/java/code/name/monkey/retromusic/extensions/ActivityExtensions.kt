@@ -20,11 +20,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.DimenRes
 import androidx.appcompat.app.AppCompatActivity
-import code.name.monkey.appthemehelper.util.ToolbarContentTintHelper
+import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import com.google.android.material.appbar.MaterialToolbar
 
 fun AppCompatActivity.applyToolbar(toolbar: MaterialToolbar) {
-    ToolbarContentTintHelper.colorBackButton(toolbar)
+    code.roy.appthemehelper.util.ToolbarContentTintHelper.colorBackButton(toolbar)
     setSupportActionBar(toolbar)
 }
 

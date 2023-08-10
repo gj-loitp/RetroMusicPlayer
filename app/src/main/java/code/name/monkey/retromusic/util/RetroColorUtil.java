@@ -32,9 +32,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import code.name.monkey.appthemehelper.ThemeStore;
-import code.name.monkey.appthemehelper.util.ColorUtil;
-import code.name.monkey.appthemehelper.util.VersionUtils;
+import code.roy.appthemehelper.ThemeStore;
+import code.roy.appthemehelper.util.VersionUtils;
 
 public class RetroColorUtil {
   public static int desaturateColor(int color, float ratio) {
@@ -68,9 +67,9 @@ public class RetroColorUtil {
     int background = getSwatch(palette).getRgb();
 
     if (inverse != -1) {
-      return ColorUtil.INSTANCE.getReadableText(inverse, background, 150);
+      return code.roy.appthemehelper.util.ColorUtil.INSTANCE.getReadableText(inverse, background, 150);
     }
-    return ColorUtil.INSTANCE.stripAlpha(getSwatch(palette).getTitleTextColor());
+    return code.roy.appthemehelper.util.ColorUtil.INSTANCE.stripAlpha(getSwatch(palette).getTitleTextColor());
   }
 
   @NonNull
@@ -195,8 +194,8 @@ public class RetroColorUtil {
 
   @ColorInt
   public static int shiftBackgroundColorForLightText(@ColorInt int backgroundColor) {
-    while (ColorUtil.INSTANCE.isColorLight(backgroundColor)) {
-      backgroundColor = ColorUtil.INSTANCE.darkenColor(backgroundColor);
+    while (code.roy.appthemehelper.util.ColorUtil.INSTANCE.isColorLight(backgroundColor)) {
+      backgroundColor = code.roy.appthemehelper.util.ColorUtil.INSTANCE.darkenColor(backgroundColor);
     }
     return backgroundColor;
   }
@@ -204,8 +203,8 @@ public class RetroColorUtil {
   @ColorInt
   public static int shiftBackgroundColorForDarkText(@ColorInt int backgroundColor) {
     int color = backgroundColor;
-    while (!ColorUtil.INSTANCE.isColorLight(backgroundColor)) {
-      color = ColorUtil.INSTANCE.lightenColor(backgroundColor);
+    while (!code.roy.appthemehelper.util.ColorUtil.INSTANCE.isColorLight(backgroundColor)) {
+      color = code.roy.appthemehelper.util.ColorUtil.INSTANCE.lightenColor(backgroundColor);
     }
     return color;
   }
@@ -213,17 +212,17 @@ public class RetroColorUtil {
   @ColorInt
   public static int shiftBackgroundColor(@ColorInt int backgroundColor) {
     int color = backgroundColor;
-    if (ColorUtil.INSTANCE.isColorLight(color)) {
-      color = ColorUtil.INSTANCE.shiftColor(color, 0.5F);
+    if (code.roy.appthemehelper.util.ColorUtil.INSTANCE.isColorLight(color)) {
+      color = code.roy.appthemehelper.util.ColorUtil.INSTANCE.shiftColor(color, 0.5F);
     } else {
-      color = ColorUtil.INSTANCE.shiftColor(color, 1.5F);
+      color = code.roy.appthemehelper.util.ColorUtil.INSTANCE.shiftColor(color, 1.5F);
     }
     return color;
   }
 
   public static int getMD3AccentColor(@NotNull Context context) {
     if (VersionUtils.hasS()) {
-      return ContextCompat.getColor(context, code.name.monkey.appthemehelper.R.color.m3_accent_color);
+      return ContextCompat.getColor(context, code.roy.appthemehelper.R.color.m3_accent_color);
     } else {
       return ThemeStore.Companion.accentColor(context);
     }

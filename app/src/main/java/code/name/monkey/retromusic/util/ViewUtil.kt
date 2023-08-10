@@ -23,9 +23,10 @@ import android.widget.ProgressBar
 import android.widget.SeekBar
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat.SRC_IN
-import code.name.monkey.appthemehelper.util.ATHUtil
-import code.name.monkey.appthemehelper.util.ColorUtil
-import code.name.monkey.appthemehelper.util.MaterialValueHelper
+import code.roy.appthemehelper.util.ATHUtil
+import code.roy.appthemehelper.util.ColorUtil.isColorLight
+import code.roy.appthemehelper.util.ColorUtil.withAlpha
+import code.roy.appthemehelper.util.MaterialValueHelper
 
 object ViewUtil {
 
@@ -61,14 +62,14 @@ object ViewUtil {
         background.colorFilter = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
             MaterialValueHelper.getPrimaryDisabledTextColor(
                 progressSlider.context,
-                ColorUtil.isColorLight(primaryColor)
+                isColorLight(primaryColor)
             ), SRC_IN
         )
 
         val secondaryProgress = layerDrawable.findDrawableByLayerId(android.R.id.secondaryProgress)
         secondaryProgress?.colorFilter =
             BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
-                ColorUtil.withAlpha(
+                withAlpha(
                     newColor,
                     0.65f
                 ), SRC_IN

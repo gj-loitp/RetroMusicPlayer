@@ -33,10 +33,10 @@ import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
 import androidx.core.content.getSystemService
 import androidx.core.view.*
-import code.name.monkey.appthemehelper.ThemeStore
-import code.name.monkey.appthemehelper.util.TintHelper
+import code.roy.appthemehelper.util.TintHelper
 import code.name.monkey.retromusic.util.PreferenceUtil
 import code.name.monkey.retromusic.util.RetroUtil
+import code.roy.appthemehelper.ThemeStore
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.card.MaterialCardView
@@ -65,7 +65,7 @@ fun View.hidden() {
 
 fun EditText.appHandleColor(): EditText {
     if (PreferenceUtil.materialYou) return this
-    TintHelper.colorHandles(this, ThemeStore.accentColor(context))
+    code.roy.appthemehelper.util.TintHelper.colorHandles(this, ThemeStore.accentColor(context))
     return this
 }
 

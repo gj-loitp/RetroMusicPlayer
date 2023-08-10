@@ -20,11 +20,11 @@ import android.provider.BaseColumns
 import android.provider.MediaStore
 import android.provider.Settings
 import androidx.core.net.toUri
-import code.name.monkey.appthemehelper.util.VersionUtils
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.extensions.showToast
 import code.name.monkey.retromusic.model.Song
 import code.name.monkey.retromusic.util.MusicUtil.getSongFileUri
+import code.roy.appthemehelper.util.VersionUtils
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 object RingtoneManager {

@@ -20,10 +20,6 @@ import android.view.animation.DecelerateInterpolator
 import android.widget.ImageButton
 import android.widget.SeekBar
 import android.widget.TextView
-import code.name.monkey.appthemehelper.util.ATHUtil
-import code.name.monkey.appthemehelper.util.ColorUtil
-import code.name.monkey.appthemehelper.util.MaterialValueHelper
-import code.name.monkey.appthemehelper.util.TintHelper
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.FragmentFlatPlayerPlaybackControlsBinding
 import code.name.monkey.retromusic.extensions.*
@@ -35,6 +31,9 @@ import code.name.monkey.retromusic.helper.MusicProgressViewUpdateHelper.Callback
 import code.name.monkey.retromusic.helper.PlayPauseButtonOnClickHandler
 import code.name.monkey.retromusic.util.PreferenceUtil
 import code.name.monkey.retromusic.util.color.MediaNotificationProcessor
+import code.roy.appthemehelper.util.ATHUtil
+import code.roy.appthemehelper.util.ColorUtil
+import code.roy.appthemehelper.util.MaterialValueHelper
 
 class FlatPlaybackControlsFragment :
     AbsPlayerControlsFragment(R.layout.fragment_flat_player_playback_controls), Callback {
@@ -126,8 +125,8 @@ class FlatPlaybackControlsFragment :
         val colorSecondary =
             MaterialValueHelper.getSecondaryTextColor(context, ColorUtil.isColorLight(darkColor))
 
-        TintHelper.setTintAuto(binding.playPauseButton, colorPrimary, false)
-        TintHelper.setTintAuto(binding.playPauseButton, color, true)
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(binding.playPauseButton, colorPrimary, false)
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(binding.playPauseButton, color, true)
 
         binding.title.setBackgroundColor(color)
         binding.title.setTextColor(colorPrimary)

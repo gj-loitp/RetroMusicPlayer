@@ -17,7 +17,7 @@ package code.name.monkey.retromusic.fragments.player.adaptive
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.Toolbar
-import code.name.monkey.appthemehelper.util.ToolbarContentTintHelper
+import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.FragmentAdaptivePlayerBinding
 import code.name.monkey.retromusic.extensions.*
@@ -61,7 +61,7 @@ class AdaptiveFragment : AbsPlayerFragment(R.layout.fragment_adaptive_player) {
         binding.playerToolbar.apply {
             inflateMenu(R.menu.menu_player)
             setNavigationOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
-            ToolbarContentTintHelper.colorizeToolbar(this, surfaceColor(), requireActivity())
+            code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(this, surfaceColor(), requireActivity())
             setTitleTextColor(textColorPrimary())
             setSubtitleTextColor(textColorSecondary())
             setOnMenuItemClickListener(this@AdaptiveFragment)
@@ -102,7 +102,7 @@ class AdaptiveFragment : AbsPlayerFragment(R.layout.fragment_adaptive_player) {
         playbackControlsFragment.setColor(color)
         lastColor = color.primaryTextColor
         libraryViewModel.updateColor(color.primaryTextColor)
-        ToolbarContentTintHelper.colorizeToolbar(
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
             binding.playerToolbar,
             colorControlNormal(),
             requireActivity()

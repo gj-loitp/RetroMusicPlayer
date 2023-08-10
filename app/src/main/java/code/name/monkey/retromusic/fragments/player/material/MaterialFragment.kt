@@ -20,7 +20,7 @@ import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.Toolbar
-import code.name.monkey.appthemehelper.util.ToolbarContentTintHelper
+import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.FragmentMaterialBinding
 import code.name.monkey.retromusic.extensions.colorControlNormal
@@ -99,7 +99,7 @@ class MaterialFragment : AbsPlayerFragment(R.layout.fragment_material) {
         lastColor = color.backgroundColor
         libraryViewModel.updateColor(color.backgroundColor)
 
-        ToolbarContentTintHelper.colorizeToolbar(
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
             binding.playerToolbar,
             colorControlNormal(),
             requireActivity()
@@ -141,7 +141,7 @@ class MaterialFragment : AbsPlayerFragment(R.layout.fragment_material) {
             inflateMenu(R.menu.menu_player)
             setNavigationOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
             setOnMenuItemClickListener(this@MaterialFragment)
-            ToolbarContentTintHelper.colorizeToolbar(
+            code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
                 this,
                 colorControlNormal(),
                 requireActivity()

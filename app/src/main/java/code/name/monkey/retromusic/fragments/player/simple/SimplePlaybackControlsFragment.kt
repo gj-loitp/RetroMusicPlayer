@@ -18,10 +18,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.DecelerateInterpolator
 import android.widget.ImageButton
-import code.name.monkey.appthemehelper.util.ATHUtil
-import code.name.monkey.appthemehelper.util.ColorUtil
-import code.name.monkey.appthemehelper.util.MaterialValueHelper
-import code.name.monkey.appthemehelper.util.TintHelper
+import code.roy.appthemehelper.util.TintHelper
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.FragmentSimpleControlsFragmentBinding
 import code.name.monkey.retromusic.extensions.accentColor
@@ -35,6 +32,9 @@ import code.name.monkey.retromusic.helper.MusicPlayerRemote
 import code.name.monkey.retromusic.util.MusicUtil
 import code.name.monkey.retromusic.util.PreferenceUtil
 import code.name.monkey.retromusic.util.color.MediaNotificationProcessor
+import code.roy.appthemehelper.util.ATHUtil
+import code.roy.appthemehelper.util.ColorUtil
+import code.roy.appthemehelper.util.MaterialValueHelper
 
 /**
  * @author Hemanth S (h4h13).
@@ -159,7 +159,7 @@ class SimplePlaybackControlsFragment :
 
         volumeFragment?.setTintable(colorFinal)
 
-        TintHelper.setTintAuto(
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(
             binding.playPauseButton,
             MaterialValueHelper.getPrimaryTextColor(
                 requireContext(),
@@ -167,7 +167,7 @@ class SimplePlaybackControlsFragment :
             ),
             false
         )
-        TintHelper.setTintAuto(binding.playPauseButton, colorFinal, true)
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(binding.playPauseButton, colorFinal, true)
         binding.text.setTextColor(colorFinal)
 
         updateRepeatState()

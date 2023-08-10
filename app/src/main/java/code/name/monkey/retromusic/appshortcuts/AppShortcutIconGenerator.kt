@@ -21,10 +21,10 @@ import android.os.Build
 import android.util.TypedValue
 import androidx.annotation.RequiresApi
 import androidx.core.graphics.drawable.toBitmap
-import code.name.monkey.appthemehelper.ThemeStore
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.extensions.getTintedDrawable
 import code.name.monkey.retromusic.util.PreferenceUtil
+import code.roy.appthemehelper.ThemeStore
 
 @RequiresApi(Build.VERSION_CODES.N_MR1)
 object AppShortcutIconGenerator {

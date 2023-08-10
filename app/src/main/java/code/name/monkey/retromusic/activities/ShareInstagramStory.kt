@@ -24,8 +24,6 @@ import android.view.MenuItem
 import androidx.core.net.toUri
 import androidx.core.os.BundleCompat
 import androidx.core.view.drawToBitmap
-import code.name.monkey.appthemehelper.util.ColorUtil
-import code.name.monkey.appthemehelper.util.MaterialValueHelper
 import code.name.monkey.retromusic.activities.base.AbsThemeActivity
 import code.name.monkey.retromusic.databinding.ActivityShareInstagramBinding
 import code.name.monkey.retromusic.extensions.accentColor
@@ -37,6 +35,8 @@ import code.name.monkey.retromusic.glide.RetroMusicColoredTarget
 import code.name.monkey.retromusic.model.Song
 import code.name.monkey.retromusic.util.Share
 import code.name.monkey.retromusic.util.color.MediaNotificationProcessor
+import code.roy.appthemehelper.util.ColorUtil
+import code.roy.appthemehelper.util.MaterialValueHelper
 import com.bumptech.glide.Glide
 
 /**

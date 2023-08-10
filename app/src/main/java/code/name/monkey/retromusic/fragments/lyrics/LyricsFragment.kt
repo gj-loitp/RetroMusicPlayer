@@ -27,9 +27,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.transition.Fade
-import code.name.monkey.appthemehelper.common.ATHToolbarActivity
-import code.name.monkey.appthemehelper.util.ToolbarContentTintHelper
-import code.name.monkey.appthemehelper.util.VersionUtils
+import code.roy.appthemehelper.common.ATHToolbarActivity
+import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.activities.tageditor.TagWriter
 import code.name.monkey.retromusic.databinding.FragmentLyricsBinding
@@ -46,6 +45,7 @@ import code.name.monkey.retromusic.model.Song
 import code.name.monkey.retromusic.util.FileUtils
 import code.name.monkey.retromusic.util.LyricUtil
 import code.name.monkey.retromusic.util.UriUtil
+import code.roy.appthemehelper.util.VersionUtils
 import com.afollestad.materialdialogs.input.input
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -168,7 +168,7 @@ class LyricsFragment : AbsMainActivityFragment(R.layout.fragment_lyrics),
 
     private fun setupToolbar() {
         mainActivity.setSupportActionBar(binding.toolbar)
-        ToolbarContentTintHelper.colorBackButton(binding.toolbar)
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.colorBackButton(binding.toolbar)
         binding.toolbar.setNavigationOnClickListener {
             findNavController().navigateUp()
         }
@@ -180,11 +180,11 @@ class LyricsFragment : AbsMainActivityFragment(R.layout.fragment_lyrics),
 
     override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_lyrics, menu)
-        ToolbarContentTintHelper.handleOnCreateOptionsMenu(
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.handleOnCreateOptionsMenu(
             requireContext(),
             binding.toolbar,
             menu,
-            ATHToolbarActivity.getToolbarBackgroundColor(binding.toolbar)
+            code.roy.appthemehelper.common.ATHToolbarActivity.getToolbarBackgroundColor(binding.toolbar)
         )
     }
 

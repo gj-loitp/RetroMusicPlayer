@@ -23,7 +23,7 @@ import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
 import androidx.preference.PreferenceManager
-import code.name.monkey.appthemehelper.util.ToolbarContentTintHelper
+import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.SNOWFALL
 import code.name.monkey.retromusic.databinding.FragmentPlayerBinding
@@ -91,7 +91,7 @@ class PlayerFragment : AbsPlayerFragment(R.layout.fragment_player),
         lastColor = color.backgroundColor
         libraryViewModel.updateColor(color.backgroundColor)
 
-        ToolbarContentTintHelper.colorizeToolbar(
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
             binding.playerToolbar,
             colorControlNormal(),
             requireActivity()
@@ -145,7 +145,7 @@ class PlayerFragment : AbsPlayerFragment(R.layout.fragment_player),
         binding.playerToolbar.setNavigationOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
         binding.playerToolbar.setOnMenuItemClickListener(this)
 
-        ToolbarContentTintHelper.colorizeToolbar(
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
             binding.playerToolbar,
             colorControlNormal(),
             requireActivity()

@@ -16,7 +16,7 @@ package code.name.monkey.retromusic.activities
 
 import android.os.Bundle
 import android.view.MenuItem
-import code.name.monkey.appthemehelper.util.ToolbarContentTintHelper
+import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.name.monkey.retromusic.activities.base.AbsThemeActivity
 import code.name.monkey.retromusic.databinding.ActivityDonationBinding
 import code.name.monkey.retromusic.extensions.openUrl
@@ -56,7 +56,7 @@ class SupportDevelopmentActivity : AbsThemeActivity() {
 
     private fun setupToolbar() {
         binding.toolbar.setBackgroundColor(surfaceColor())
-        ToolbarContentTintHelper.colorBackButton(binding.toolbar)
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.colorBackButton(binding.toolbar)
         setSupportActionBar(binding.toolbar)
     }
 

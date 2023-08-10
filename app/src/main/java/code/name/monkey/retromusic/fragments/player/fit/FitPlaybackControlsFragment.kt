@@ -20,9 +20,6 @@ import android.view.animation.DecelerateInterpolator
 import android.widget.ImageButton
 import android.widget.SeekBar
 import android.widget.TextView
-import code.name.monkey.appthemehelper.util.ColorUtil
-import code.name.monkey.appthemehelper.util.MaterialValueHelper
-import code.name.monkey.appthemehelper.util.TintHelper
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.FragmentFitPlaybackControlsBinding
 import code.name.monkey.retromusic.extensions.*
@@ -32,6 +29,8 @@ import code.name.monkey.retromusic.fragments.base.goToArtist
 import code.name.monkey.retromusic.helper.MusicPlayerRemote
 import code.name.monkey.retromusic.util.PreferenceUtil
 import code.name.monkey.retromusic.util.color.MediaNotificationProcessor
+import code.roy.appthemehelper.util.ColorUtil
+import code.roy.appthemehelper.util.MaterialValueHelper
 
 class FitPlaybackControlsFragment :
     AbsPlayerControlsFragment(R.layout.fragment_fit_playback_controls) {
@@ -139,12 +138,12 @@ class FitPlaybackControlsFragment :
     }
 
     private fun setFabColor(i: Int) {
-        TintHelper.setTintAuto(
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(
             binding.playPauseButton,
             MaterialValueHelper.getPrimaryTextColor(context, ColorUtil.isColorLight(i)),
             false
         )
-        TintHelper.setTintAuto(binding.playPauseButton, i, true)
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(binding.playPauseButton, i, true)
     }
 
     private fun setUpPlayPauseFab() {

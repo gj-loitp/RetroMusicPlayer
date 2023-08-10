@@ -21,9 +21,7 @@ import android.view.animation.DecelerateInterpolator
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import code.name.monkey.appthemehelper.util.ColorUtil
-import code.name.monkey.appthemehelper.util.MaterialValueHelper
-import code.name.monkey.appthemehelper.util.TintHelper
+import code.roy.appthemehelper.util.TintHelper
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.FragmentBlurPlayerPlaybackControlsBinding
 import code.name.monkey.retromusic.extensions.applyColor
@@ -36,6 +34,8 @@ import code.name.monkey.retromusic.fragments.base.goToArtist
 import code.name.monkey.retromusic.helper.MusicPlayerRemote
 import code.name.monkey.retromusic.util.PreferenceUtil
 import code.name.monkey.retromusic.util.color.MediaNotificationProcessor
+import code.roy.appthemehelper.util.ColorUtil
+import code.roy.appthemehelper.util.MaterialValueHelper
 import com.google.android.material.slider.Slider
 
 class BlurPlaybackControlsFragment :
@@ -118,7 +118,7 @@ class BlurPlaybackControlsFragment :
     override fun setColor(color: MediaNotificationProcessor) {
         lastPlaybackControlsColor = Color.WHITE
         lastDisabledPlaybackControlsColor =
-            ContextCompat.getColor(requireContext(), code.name.monkey.appthemehelper.R.color.md_grey_500)
+            ContextCompat.getColor(requireContext(), code.roy.appthemehelper.R.color.md_grey_500)
 
         binding.title.setTextColor(lastPlaybackControlsColor)
 
@@ -138,12 +138,12 @@ class BlurPlaybackControlsFragment :
     }
 
     private fun setFabColor(i: Int) {
-        TintHelper.setTintAuto(
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(
             binding.playPauseButton,
             MaterialValueHelper.getPrimaryTextColor(context, ColorUtil.isColorLight(i)),
             false
         )
-        TintHelper.setTintAuto(binding.playPauseButton, i, true)
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(binding.playPauseButton, i, true)
     }
 
     private fun setUpPlayPauseFab() {

@@ -22,8 +22,6 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.widget.RemoteViews
 import androidx.core.graphics.drawable.toBitmap
-import code.name.monkey.appthemehelper.util.MaterialValueHelper
-import code.name.monkey.appthemehelper.util.VersionUtils
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.activities.MainActivity
 import code.name.monkey.retromusic.appwidgets.base.BaseAppWidget
@@ -38,6 +36,8 @@ import code.name.monkey.retromusic.service.MusicService.Companion.TOGGLE_FAVORIT
 import code.name.monkey.retromusic.util.MusicUtil
 import code.name.monkey.retromusic.util.PreferenceUtil
 import code.name.monkey.retromusic.util.RetroUtil
+import code.roy.appthemehelper.util.MaterialValueHelper
+import code.roy.appthemehelper.util.VersionUtils
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget

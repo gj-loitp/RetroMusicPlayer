@@ -17,11 +17,11 @@ package code.name.monkey.retromusic.fragments.player.tiny
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
-import code.name.monkey.appthemehelper.util.ColorUtil
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.FragmentTinyControlsFragmentBinding
 import code.name.monkey.retromusic.fragments.base.AbsPlayerControlsFragment
 import code.name.monkey.retromusic.util.color.MediaNotificationProcessor
+import code.roy.appthemehelper.util.ColorUtil
 
 class TinyPlaybackControlsFragment :
     AbsPlayerControlsFragment(R.layout.fragment_tiny_controls_fragment) {

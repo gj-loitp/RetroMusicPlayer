@@ -5,7 +5,6 @@ import android.content.Context
 import android.media.MediaPlayer
 import android.media.PlaybackParams
 import android.os.PowerManager
-import code.name.monkey.appthemehelper.util.VersionUtils.hasMarshmallow
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.extensions.showToast
 import code.name.monkey.retromusic.extensions.uri
@@ -15,6 +14,7 @@ import code.name.monkey.retromusic.service.AudioFader.Companion.createFadeAnimat
 import code.name.monkey.retromusic.service.playback.Playback.PlaybackCallbacks
 import code.name.monkey.retromusic.util.PreferenceUtil
 import code.name.monkey.retromusic.util.logE
+import code.roy.appthemehelper.util.VersionUtils.hasMarshmallow
 import kotlinx.coroutines.*
 
 /** @author Prathamesh M */

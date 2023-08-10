@@ -33,8 +33,8 @@ import androidx.palette.graphics.Palette;
 
 import java.util.List;
 
-import code.name.monkey.appthemehelper.util.ATHUtil;
-import code.name.monkey.appthemehelper.util.ColorUtil;
+import code.roy.appthemehelper.util.ATHUtil;
+import code.roy.appthemehelper.util.ColorUtil;
 
 /** A class the processes media notifications and extracts the right text and background colors. */
 public class MediaNotificationProcessor {

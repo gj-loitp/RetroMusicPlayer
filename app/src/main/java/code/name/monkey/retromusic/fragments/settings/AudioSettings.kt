@@ -21,12 +21,12 @@ import android.media.audiofx.AudioEffect
 import android.os.Bundle
 import androidx.core.app.ActivityCompat
 import androidx.preference.Preference
-import code.name.monkey.appthemehelper.util.VersionUtils
 import code.name.monkey.retromusic.BLUETOOTH_PLAYBACK
 import code.name.monkey.retromusic.EQUALIZER
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.activities.base.AbsBaseActivity.Companion.BLUETOOTH_PERMISSION_REQUEST
 import code.name.monkey.retromusic.util.NavigationUtil
+import code.roy.appthemehelper.util.VersionUtils
 
 /**
  * @author Hemanth S (h4h13).

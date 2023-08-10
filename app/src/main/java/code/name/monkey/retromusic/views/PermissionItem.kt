@@ -6,11 +6,11 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import androidx.core.content.withStyledAttributes
-import code.name.monkey.appthemehelper.ThemeStore
-import code.name.monkey.appthemehelper.util.ColorUtil
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.ItemPermissionBinding
 import code.name.monkey.retromusic.extensions.accentOutlineColor
+import code.roy.appthemehelper.ThemeStore
+import code.roy.appthemehelper.util.ColorUtil
 
 class PermissionItem @JvmOverloads constructor(
     context: Context,

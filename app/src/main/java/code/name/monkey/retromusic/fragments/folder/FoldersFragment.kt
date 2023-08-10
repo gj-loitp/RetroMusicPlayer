@@ -32,9 +32,8 @@ import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import code.name.monkey.appthemehelper.ThemeStore.Companion.accentColor
-import code.name.monkey.appthemehelper.common.ATHToolbarActivity
-import code.name.monkey.appthemehelper.util.ToolbarContentTintHelper
+import code.roy.appthemehelper.common.ATHToolbarActivity
+import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.adapter.SongFileAdapter
 import code.name.monkey.retromusic.adapter.Storage
@@ -64,6 +63,7 @@ import code.name.monkey.retromusic.util.getExternalStoragePublicDirectory
 import code.name.monkey.retromusic.views.BreadCrumbLayout
 import code.name.monkey.retromusic.views.BreadCrumbLayout.Crumb
 import code.name.monkey.retromusic.views.BreadCrumbLayout.SelectionCallback
+import code.roy.appthemehelper.ThemeStore.Companion.accentColor
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialFadeThrough
 import kotlinx.coroutines.Dispatchers
@@ -338,7 +338,7 @@ class FoldersFragment : AbsMainActivityFragment(R.layout.fragment_folder),
     }
 
     override fun onPrepareMenu(menu: Menu) {
-        ToolbarContentTintHelper.handleOnPrepareOptionsMenu(requireActivity(), toolbar)
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.handleOnPrepareOptionsMenu(requireActivity(), toolbar)
     }
 
     override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
@@ -351,8 +351,8 @@ class FoldersFragment : AbsMainActivityFragment(R.layout.fragment_folder),
         menu.removeItem(R.id.action_grid_size)
         menu.removeItem(R.id.action_layout_type)
         menu.removeItem(R.id.action_sort_order)
-        ToolbarContentTintHelper.handleOnCreateOptionsMenu(
-            requireContext(), toolbar, menu, ATHToolbarActivity.getToolbarBackgroundColor(
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.handleOnCreateOptionsMenu(
+            requireContext(), toolbar, menu, code.roy.appthemehelper.common.ATHToolbarActivity.getToolbarBackgroundColor(
                 toolbar
             )
         )

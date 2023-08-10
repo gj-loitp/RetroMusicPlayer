@@ -19,7 +19,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.core.animation.doOnEnd
-import code.name.monkey.appthemehelper.util.ToolbarContentTintHelper
+import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.FragmentColorPlayerBinding
 import code.name.monkey.retromusic.extensions.colorControlNormal
@@ -61,7 +61,7 @@ class ColorFragment : AbsPlayerFragment(R.layout.fragment_color_player) {
         }
         animator.start()
         binding.playerToolbar.post {
-            ToolbarContentTintHelper.colorizeToolbar(
+            code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
                 binding.playerToolbar,
                 color.secondaryTextColor,
                 requireActivity()
@@ -121,7 +121,7 @@ class ColorFragment : AbsPlayerFragment(R.layout.fragment_color_player) {
             inflateMenu(R.menu.menu_player)
             setNavigationOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
             setOnMenuItemClickListener(this@ColorFragment)
-            ToolbarContentTintHelper.colorizeToolbar(
+            code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
                 this,
                 colorControlNormal(),
                 requireActivity()

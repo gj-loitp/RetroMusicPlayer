@@ -21,8 +21,8 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.core.content.getSystemService
 import androidx.core.net.toUri
-import code.name.monkey.appthemehelper.util.TintHelper
-import code.name.monkey.appthemehelper.util.ToolbarContentTintHelper
+import code.roy.appthemehelper.util.TintHelper
+import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.activities.base.AbsThemeActivity
 import code.name.monkey.retromusic.activities.bugreport.model.DeviceInfo
@@ -53,12 +53,12 @@ open class BugReportActivity : AbsThemeActivity() {
     private fun initViews() {
         val accentColor = accentColor()
         setSupportActionBar(binding.toolbar)
-        ToolbarContentTintHelper.colorBackButton(binding.toolbar)
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.colorBackButton(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding.cardDeviceInfo.airTextDeviceInfo.setOnClickListener { copyDeviceInfoToClipBoard() }
 
-        TintHelper.setTintAuto(binding.sendFab, accentColor, true)
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(binding.sendFab, accentColor, true)
         binding.sendFab.setOnClickListener { reportIssue() }
     }
 

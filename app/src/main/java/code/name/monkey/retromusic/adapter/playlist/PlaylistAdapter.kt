@@ -24,8 +24,7 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.core.view.isGone
 import androidx.core.view.setPadding
 import androidx.fragment.app.FragmentActivity
-import code.name.monkey.appthemehelper.util.ATHUtil
-import code.name.monkey.appthemehelper.util.TintHelper
+import code.roy.appthemehelper.util.TintHelper
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.adapter.base.AbsMultiSelectAdapter
 import code.name.monkey.retromusic.adapter.base.MediaEntryViewHolder
@@ -42,6 +41,7 @@ import code.name.monkey.retromusic.interfaces.IPlaylistClickListener
 import code.name.monkey.retromusic.model.Song
 import code.name.monkey.retromusic.util.MusicUtil
 import code.name.monkey.retromusic.util.PreferenceUtil
+import code.roy.appthemehelper.util.ATHUtil
 import com.bumptech.glide.Glide
 import me.zhanghai.android.fastscroll.PopupTextProvider
 
@@ -113,7 +113,7 @@ class PlaylistAdapter(
         }
     }
 
-    private fun getIconRes(): Drawable = TintHelper.createTintedDrawable(
+    private fun getIconRes(): Drawable = code.roy.appthemehelper.util.TintHelper.createTintedDrawable(
         activity,
         R.drawable.ic_playlist_play,
         ATHUtil.resolveColor(activity, android.R.attr.colorControlNormal)
