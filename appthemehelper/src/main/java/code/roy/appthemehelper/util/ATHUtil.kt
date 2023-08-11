@@ -6,9 +6,6 @@ import androidx.annotation.AttrRes
 import androidx.core.content.res.use
 import java.lang.Exception
 
-/**
- * @author Aidan Follestad (afollestad)
- */
 object ATHUtil {
 
     fun isWindowBackgroundDark(context: Context): Boolean {
@@ -16,7 +13,11 @@ object ATHUtil {
     }
 
     @JvmOverloads
-    fun resolveColor(context: Context, @AttrRes attr: Int, fallback: Int = 0): Int {
+    fun resolveColor(
+        context: Context,
+        @AttrRes attr: Int,
+        fallback: Int = 0,
+    ): Int {
         context.theme.obtainStyledAttributes(intArrayOf(attr)).use {
             return try {
                 it.getColor(0, fallback);

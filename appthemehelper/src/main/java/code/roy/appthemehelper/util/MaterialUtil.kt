@@ -12,7 +12,7 @@ object MaterialUtil {
     @JvmStatic
     fun setTint(
         button: MaterialButton, background: Boolean = true,
-        color: Int = ThemeStore.accentColor(button.context)
+        color: Int = ThemeStore.accentColor(button.context),
     ) {
 
         button.isAllCaps = false
@@ -42,7 +42,7 @@ object MaterialUtil {
     fun tintColor(
         button: MaterialButton,
         textColor: Int = Color.WHITE,
-        backgroundColor: Int = Color.BLACK
+        backgroundColor: Int = Color.BLACK,
     ) {
         val backgroundColorStateList = ColorStateList.valueOf(backgroundColor)
         val textColorColorStateList = ColorStateList.valueOf(textColor)
@@ -53,7 +53,10 @@ object MaterialUtil {
 
     @JvmOverloads
     @JvmStatic
-    fun setTint(textInputLayout: TextInputLayout, background: Boolean = true) {
+    fun setTint(
+        textInputLayout: TextInputLayout,
+        background: Boolean = true,
+    ) {
         val context = textInputLayout.context
         val accentColor = ThemeStore.accentColor(context)
         val colorState = ColorStateList.valueOf(accentColor)

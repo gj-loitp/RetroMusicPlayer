@@ -6,12 +6,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.StyleRes
 
-/**
- * @author Aidan Follestad (afollestad), Karim Abou Zeid (kabouzeid)
- */
 internal interface ThemeStoreInterface {
-
-    // Activity theme
 
     fun activityTheme(@StyleRes theme: Int): ThemeStore
 

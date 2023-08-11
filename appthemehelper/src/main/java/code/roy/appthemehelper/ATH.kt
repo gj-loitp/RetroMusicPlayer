@@ -10,16 +10,13 @@ import android.view.WindowInsetsController
 import android.view.WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
 import androidx.annotation.ColorInt
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 object ATH {
 
     fun didThemeValuesChange(context: Context, since: Long): Boolean {
-        return code.roy.appthemehelper.ThemeStore.Companion.isConfigured(context) && code.roy.appthemehelper.ThemeStore.Companion.prefs(
+        return ThemeStore.isConfigured(context) && ThemeStore.prefs(
             context
         ).getLong(
-            code.roy.appthemehelper.ThemeStorePrefKeys.Companion.VALUES_CHANGED,
+            ThemeStorePrefKeys.VALUES_CHANGED,
             -1
         ) > since
     }

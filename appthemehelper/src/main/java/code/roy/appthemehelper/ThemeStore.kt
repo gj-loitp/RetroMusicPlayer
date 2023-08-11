@@ -3,8 +3,12 @@ package code.roy.appthemehelper
 import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Color
-import androidx.annotation.*
+import androidx.annotation.AttrRes
+import androidx.annotation.CheckResult
+import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
 import androidx.annotation.IntRange
+import androidx.annotation.StyleRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
@@ -13,10 +17,6 @@ import code.roy.appthemehelper.util.ATHUtil.resolveColor
 import code.roy.appthemehelper.util.ColorUtil
 import code.roy.appthemehelper.util.VersionUtils
 
-
-/**
- * @author Aidan Follestad (afollestad), Karim Abou Zeid (kabouzeid)
- */
 class ThemeStore
 private constructor(private val mContext: Context) : ThemeStorePrefKeys, ThemeStoreInterface {
 
@@ -223,7 +223,11 @@ private constructor(private val mContext: Context) : ThemeStorePrefKeys, ThemeSt
         fun primaryColor(context: Context): Int {
             return prefs(context).getInt(
                 ThemeStorePrefKeys.KEY_PRIMARY_COLOR,
-                resolveColor(context, androidx.appcompat.R.attr.colorPrimary, Color.parseColor("#455A64"))
+                resolveColor(
+                    context,
+                    androidx.appcompat.R.attr.colorPrimary,
+                    Color.parseColor("#455A64")
+                )
             )
         }
 
@@ -240,7 +244,11 @@ private constructor(private val mContext: Context) : ThemeStorePrefKeys, ThemeSt
             } else {
                 prefs(context).getInt(
                     ThemeStorePrefKeys.KEY_ACCENT_COLOR,
-                    resolveColor(context, androidx.appcompat.R.attr.colorAccent, Color.parseColor("#263238"))
+                    resolveColor(
+                        context,
+                        androidx.appcompat.R.attr.colorAccent,
+                        Color.parseColor("#263238")
+                    )
                 )
             }
             return if (isWindowBackgroundDark(context) && desaturatedColor) ColorUtil.desaturateColor(
@@ -254,7 +262,11 @@ private constructor(private val mContext: Context) : ThemeStorePrefKeys, ThemeSt
         fun wallpaperColor(context: Context, isDarkMode: Boolean): Int {
             return prefs(context).getInt(
                 if (isDarkMode) ThemeStorePrefKeys.KEY_WALLPAPER_COLOR_DARK else ThemeStorePrefKeys.KEY_WALLPAPER_COLOR_LIGHT,
-                resolveColor(context, androidx.appcompat.R.attr.colorAccent, Color.parseColor("#263238"))
+                resolveColor(
+                    context,
+                    androidx.appcompat.R.attr.colorAccent,
+                    Color.parseColor("#263238")
+                )
             )
         }
 
@@ -329,10 +341,11 @@ private constructor(private val mContext: Context) : ThemeStorePrefKeys, ThemeSt
         }
 
         fun isConfigured(
-            context: Context, @IntRange(
+            context: Context,
+            @IntRange(
                 from = 0,
                 to = Integer.MAX_VALUE.toLong()
-            ) version: Int
+            ) version: Int,
         ): Boolean {
             val prefs = prefs(context)
             val lastVersion = prefs.getInt(ThemeStorePrefKeys.IS_CONFIGURED_VERSION_KEY, -1)

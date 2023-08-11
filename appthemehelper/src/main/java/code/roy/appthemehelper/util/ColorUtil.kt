@@ -51,7 +51,7 @@ object ColorUtil {
     @ColorInt
     fun lightenColor(
         @ColorInt color: Int,
-        value: Float
+        value: Float,
     ): Int {
         val hsl = FloatArray(3)
         ColorUtils.colorToHSL(color, hsl)
@@ -63,7 +63,7 @@ object ColorUtil {
     @ColorInt
     fun darkenColor(
         @ColorInt color: Int,
-        value: Float
+        value: Float,
     ): Int {
         val hsl = FloatArray(3)
         ColorUtils.colorToHSL(color, hsl)
@@ -186,7 +186,7 @@ object ColorUtil {
     fun getReadableText(
         @ColorInt textColor: Int,
         @ColorInt backgroundColor: Int,
-        difference: Int
+        difference: Int,
     ): Int {
         var textColorFinal = textColor
         val isLight = isColorLight(backgroundColor)
