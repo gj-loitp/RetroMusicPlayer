@@ -16,7 +16,7 @@ import kotlin.math.min
 class BorderCircleView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+    defStyleAttr: Int = 0,
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
     private val mCheck: Drawable? = ContextCompat.getDrawable(context, R.drawable.ic_ate_check)
@@ -61,7 +61,7 @@ class BorderCircleView @JvmOverloads constructor(
             if (heightMode == MeasureSpec.AT_MOST) {
                 height = min(height, MeasureSpec.getSize(heightMeasureSpec))
             }
-            setMeasuredDimension(width, height)
+            setMeasuredDimension(/* measuredWidth = */ width, /* measuredHeight = */ height)
         } else {
             super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         }
@@ -77,16 +77,16 @@ class BorderCircleView @JvmOverloads constructor(
 
         val circleCenter = (canvasSize - borderWidth * 2) / 2
         canvas.drawCircle(
-            (circleCenter + borderWidth).toFloat(),
-            (circleCenter + borderWidth).toFloat(),
-            (canvasSize - borderWidth * 2) / 2 + borderWidth - 4.0f,
-            paintBorder
+            /* cx = */ (circleCenter + borderWidth).toFloat(),
+            /* cy = */ (circleCenter + borderWidth).toFloat(),
+            /* radius = */ (canvasSize - borderWidth * 2) / 2 + borderWidth - 4.0f,
+            /* paint = */ paintBorder
         )
         canvas.drawCircle(
-            (circleCenter + borderWidth).toFloat(),
-            (circleCenter + borderWidth).toFloat(),
-            (canvasSize - borderWidth * 2) / 2 - 4.0f,
-            paint
+            /* cx = */ (circleCenter + borderWidth).toFloat(),
+            /* cy = */ (circleCenter + borderWidth).toFloat(),
+            /* radius = */ (canvasSize - borderWidth * 2) / 2 - 4.0f,
+            /* paint = */ paint
         )
 
         if (isActivated) {
@@ -100,11 +100,16 @@ class BorderCircleView @JvmOverloads constructor(
                 whiteFilter = PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN)
             }
             if (paint.color == Color.WHITE) {
-                paintCheck!!.colorFilter = blackFilter
+                paintCheck?.colorFilter = blackFilter
             } else {
-                paintCheck!!.colorFilter = whiteFilter
+                paintCheck?.colorFilter = whiteFilter
             }
-            mCheck.setBounds(offset, offset, mCheck.intrinsicWidth - offset, mCheck.intrinsicHeight - offset)
+            mCheck.setBounds(
+                /* left = */ offset,
+                /* top = */ offset,
+                /* right = */ mCheck.intrinsicWidth - offset,
+                /* bottom = */ mCheck.intrinsicHeight - offset
+            )
             mCheck.draw(canvas)
         }
     }

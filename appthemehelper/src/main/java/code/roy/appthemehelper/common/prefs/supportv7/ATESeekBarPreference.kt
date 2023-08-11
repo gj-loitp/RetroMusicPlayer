@@ -19,7 +19,7 @@ class ATESeekBarPreference @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = -1,
-    defStyleRes: Int = -1
+    defStyleRes: Int = -1,
 ) : SeekBarPreference(context, attrs, defStyleAttr, defStyleRes) {
 
     var unit: String = ""
@@ -42,8 +42,8 @@ class ATESeekBarPreference @JvmOverloads constructor(
         super.onBindViewHolder(view)
         val seekBar = view.findViewById(androidx.preference.R.id.seekbar) as SeekBar
         code.roy.appthemehelper.util.TintHelper.setTintAuto(
-            seekBar, // Set MD3 accent if MD3 is enabled or in-app accent otherwise
-            ThemeStore.accentColor(context), false
+            /* view = */ seekBar, // Set MD3 accent if MD3 is enabled or in-app accent otherwise
+            /* color = */ ThemeStore.accentColor(context), /* background = */ false
         )
         (view.findViewById(androidx.preference.R.id.seekbar_value) as TextView).apply {
             appendUnit(editableText)

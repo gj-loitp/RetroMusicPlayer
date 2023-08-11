@@ -2,13 +2,13 @@ package code.roy.appthemehelper.common;
 
 import android.graphics.Color;
 import android.view.Menu;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 
 import code.roy.appthemehelper.ATHActivity;
 import code.roy.appthemehelper.util.ATHUtil;
 import code.roy.appthemehelper.util.ToolbarContentTintHelper;
-
 
 public class ATHToolbarActivity extends ATHActivity {
 

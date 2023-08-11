@@ -7,9 +7,6 @@ import code.roy.appthemehelper.ATH
 import code.roy.appthemehelper.ThemeStore
 import com.google.android.material.materialswitch.MaterialSwitch
 
-/**
- * @author Aidan Follestad (afollestad)
- */
 class ATESwitch @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
@@ -18,7 +15,7 @@ class ATESwitch @JvmOverloads constructor(
 
     init {
         if (!isInEditMode && !ThemeStore.isMD3Enabled(context)) {
-            code.roy.appthemehelper.ATH.setTint(this, ThemeStore.accentColor(context))
+            ATH.setTint(this, ThemeStore.accentColor(context))
         }
     }
 

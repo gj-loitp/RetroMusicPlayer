@@ -10,9 +10,6 @@ import code.roy.appthemehelper.common.prefs.supportv7.dialogs.ATEPreferenceDialo
 import code.roy.appthemehelper.common.prefs.supportv7.dialogs.ATEListPreferenceDialogFragmentCompat;
 import code.roy.appthemehelper.common.prefs.supportv7.dialogs.ATEPreferenceDialogFragment;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public abstract class ATEPreferenceFragmentCompat extends PreferenceFragmentCompat {
     @Override
     public void onDisplayPreferenceDialog(Preference preference) {

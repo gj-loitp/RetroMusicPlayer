@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2019 Hemanth Savarala.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by
- *  the Free Software Foundation either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- */
-
 package code.roy.appthemehelper.common.prefs.supportv7.dialogs;
 
 import android.app.Dialog;
@@ -90,7 +76,9 @@ public class ATEPreferenceDialogFragment extends DialogFragment implements Dialo
 
     private void requestInputMethod(Dialog dialog) {
         Window window = dialog.getWindow();
-        window.setSoftInputMode(5);
+        if (window != null) {
+            window.setSoftInputMode(5);
+        }
     }
 
     @Override

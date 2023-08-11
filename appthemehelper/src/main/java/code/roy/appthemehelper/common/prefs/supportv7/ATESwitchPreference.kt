@@ -8,14 +8,11 @@ import androidx.preference.CheckBoxPreference
 import code.roy.appthemehelper.R
 import code.roy.appthemehelper.util.ATHUtil
 
-/**
- * @author Aidan Follestad (afollestad)
- */
 class ATESwitchPreference @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = -1,
-    defStyleRes: Int = -1
+    defStyleRes: Int = -1,
 ) :
     CheckBoxPreference(context, attrs, defStyleAttr, defStyleRes) {
 
@@ -23,8 +20,8 @@ class ATESwitchPreference @JvmOverloads constructor(
         widgetLayoutResource = R.layout.v_ate_preference_switch_support
         icon?.colorFilter = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
             ATHUtil.resolveColor(
-                context,
-                android.R.attr.colorControlNormal
+                context = context,
+                attr = android.R.attr.colorControlNormal
             ), BlendModeCompat.SRC_IN
         )
     }
