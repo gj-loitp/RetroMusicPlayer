@@ -6,7 +6,7 @@ android {
     namespace "code.roy.appthemehelper"
 
     defaultConfig {
-        minSdk 21
+        minSdk 23
         targetSdk 33
     }
     buildTypes {

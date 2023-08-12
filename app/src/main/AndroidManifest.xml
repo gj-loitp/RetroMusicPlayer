@@ -32,7 +32,7 @@
         tools:targetApi="s" />
 
     <application
-        android:name=".App"
+        android:name="code.roy.retromusic.App"
         android:allowBackup="@bool/allowBackup"
         android:appCategory="audio"
         android:configChanges="locale|layoutDirection"
@@ -177,7 +177,7 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <activity
-            android:name=".activities.saf.SAFGuideActivity"
+            android:name="code.roy.retromusic.activities.saf.SAFGuideActivity"
             android:theme="@style/Theme.Intro" />
 
         <activity

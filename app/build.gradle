@@ -6,11 +6,11 @@ apply plugin: 'com.google.devtools.ksp'
 
 android {
     compileSdk 33
-    namespace "code.name.monkey.retromusic"
-//    namespace "com.roy.retromusic"
+//    namespace "code.name.monkey.retromusic"
+    namespace "code.roy.retromusic"
 
     defaultConfig {
-        minSdk 21
+        minSdk 23
         targetSdk 33
         vectorDrawables.useSupportLibrary = true
         applicationId namespace
