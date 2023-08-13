@@ -1,4 +1,4 @@
-package code.roy.retromusic.model.smartplaylist
+package code.roy.retromusic.model.playlist
 
 import androidx.annotation.Keep
 import code.roy.retromusic.App

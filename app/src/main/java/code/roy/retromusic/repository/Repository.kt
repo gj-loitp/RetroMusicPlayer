@@ -26,7 +26,7 @@ import code.roy.retromusic.model.Genre
 import code.roy.retromusic.model.Home
 import code.roy.retromusic.model.Playlist
 import code.roy.retromusic.model.Song
-import code.roy.retromusic.model.smartplaylist.NotPlayedPlaylist
+import code.roy.retromusic.model.playlist.NotPlayedPlaylist
 import code.roy.retromusic.network.LastFMService
 import code.roy.retromusic.network.Result
 import code.roy.retromusic.network.Result.Error

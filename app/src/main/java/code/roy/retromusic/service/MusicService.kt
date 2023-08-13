@@ -64,7 +64,7 @@ import code.roy.retromusic.glide.RetroGlideExtension.songCoverOptions
 import code.roy.retromusic.helper.ShuffleHelper.makeShuffleList
 import code.roy.retromusic.model.Song
 import code.roy.retromusic.model.Song.Companion.emptySong
-import code.roy.retromusic.model.smartplaylist.AbsSmartPlaylist
+import code.roy.retromusic.model.playlist.AbsSmartPlaylist
 import code.roy.retromusic.providers.HistoryStore
 import code.roy.retromusic.service.notification.PlayingNotification
 import code.roy.retromusic.service.notification.PlayingNotificationClassic

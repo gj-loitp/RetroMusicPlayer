@@ -1,4 +1,4 @@
-package code.roy.retromusic.model.smartplaylist
+package code.roy.retromusic.model.playlist
 
 import androidx.annotation.DrawableRes
 import kotlin.math.abs

@@ -23,9 +23,9 @@ import code.roy.retromusic.appshortcuts.shortcuttype.ShuffleAllShortcutType
 import code.roy.retromusic.appshortcuts.shortcuttype.TopTracksShortcutType
 import code.roy.retromusic.extensions.extraNotNull
 import code.roy.retromusic.model.Playlist
-import code.roy.retromusic.model.smartplaylist.LastAddedPlaylist
-import code.roy.retromusic.model.smartplaylist.ShuffleAllPlaylist
-import code.roy.retromusic.model.smartplaylist.TopTracksPlaylist
+import code.roy.retromusic.model.playlist.LastAddedPlaylist
+import code.roy.retromusic.model.playlist.ShuffleAllPlaylist
+import code.roy.retromusic.model.playlist.TopTracksPlaylist
 import code.roy.retromusic.service.MusicService
 import code.roy.retromusic.service.MusicService.Companion.ACTION_PLAY_PLAYLIST
 import code.roy.retromusic.service.MusicService.Companion.INTENT_EXTRA_PLAYLIST
