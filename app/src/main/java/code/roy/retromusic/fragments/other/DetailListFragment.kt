@@ -205,14 +205,14 @@ class DetailListFragment : AbsMainActivityFragment(R.layout.fragment_playlist_de
     private fun artistAdapter(artists: List<Artist>): ArtistAdapter = ArtistAdapter(
         requireActivity(),
         artists,
-        R.layout.item_grid_circle,
+        R.layout.v_item_grid_circle,
         this
     )
 
     private fun albumAdapter(albums: List<Album>): AlbumAdapter = AlbumAdapter(
         requireActivity(),
         albums,
-        R.layout.item_grid,
+        R.layout.v_item_grid,
         this
     )
 

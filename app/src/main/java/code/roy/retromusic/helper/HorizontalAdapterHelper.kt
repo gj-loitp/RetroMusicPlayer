@@ -20,7 +20,7 @@ import code.roy.retromusic.R
 
 object HorizontalAdapterHelper {
 
-    const val LAYOUT_RES = R.layout.item_image
+    const val LAYOUT_RES = R.layout.v_item_image
 
     private const val TYPE_FIRST = 1
     private const val TYPE_MIDDLE = 2

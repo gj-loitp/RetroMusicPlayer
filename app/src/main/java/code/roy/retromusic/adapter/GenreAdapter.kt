@@ -22,7 +22,7 @@ import android.view.ViewOutlineProvider
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.ItemGenreBinding
+import code.roy.retromusic.databinding.VItemGenreBinding
 import code.roy.retromusic.glide.RetroGlideExtension
 import code.roy.retromusic.glide.RetroGlideExtension.asBitmapPalette
 import code.roy.retromusic.glide.RetroGlideExtension.songCoverOptions
@@ -53,7 +53,7 @@ class GenreAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(ItemGenreBinding.inflate(LayoutInflater.from(activity), parent, false))
+        return ViewHolder(VItemGenreBinding.inflate(LayoutInflater.from(activity), parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -99,7 +99,7 @@ class GenreAdapter(
         notifyDataSetChanged()
     }
 
-    inner class ViewHolder(val binding: ItemGenreBinding) : RecyclerView.ViewHolder(binding.root),
+    inner class ViewHolder(val binding: VItemGenreBinding) : RecyclerView.ViewHolder(binding.root),
         View.OnClickListener {
         override fun onClick(v: View?) {
             listener.onClickGenre(dataSet[layoutPosition], itemView)

@@ -202,15 +202,15 @@ class SongsFragment : AbsRecyclerViewCustomGridSizeFragment<SongAdapter, GridLay
     private fun setupLayoutMenu(subMenu: SubMenu) {
         when (itemLayoutRes()) {
             R.layout.item_card -> subMenu.findItem(R.id.action_layout_card).isChecked = true
-            R.layout.item_grid -> subMenu.findItem(R.id.action_layout_normal).isChecked = true
+            R.layout.v_item_grid -> subMenu.findItem(R.id.action_layout_normal).isChecked = true
             R.layout.item_card_color ->
                 subMenu.findItem(R.id.action_layout_colored_card).isChecked = true
 
-            R.layout.item_grid_circle ->
+            R.layout.v_item_grid_circle ->
                 subMenu.findItem(R.id.action_layout_circular).isChecked = true
 
             R.layout.image -> subMenu.findItem(R.id.action_layout_image).isChecked = true
-            R.layout.item_image_gradient ->
+            R.layout.v_item_image_gradient ->
                 subMenu.findItem(R.id.action_layout_gradient_image).isChecked = true
         }
     }
@@ -284,12 +284,12 @@ class SongsFragment : AbsRecyclerViewCustomGridSizeFragment<SongAdapter, GridLay
 
     private fun handleLayoutResType(item: MenuItem): Boolean {
         val layoutRes = when (item.itemId) {
-            R.id.action_layout_normal -> R.layout.item_grid
+            R.id.action_layout_normal -> R.layout.v_item_grid
             R.id.action_layout_card -> R.layout.item_card
             R.id.action_layout_colored_card -> R.layout.item_card_color
-            R.id.action_layout_circular -> R.layout.item_grid_circle
+            R.id.action_layout_circular -> R.layout.v_item_grid_circle
             R.id.action_layout_image -> R.layout.image
-            R.id.action_layout_gradient_image -> R.layout.item_image_gradient
+            R.id.action_layout_gradient_image -> R.layout.v_item_image_gradient
             else -> PreferenceUtil.songGridStyle.layoutResId
         }
         if (layoutRes != PreferenceUtil.songGridStyle.layoutResId) {

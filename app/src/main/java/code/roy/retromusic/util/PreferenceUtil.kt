@@ -567,7 +567,7 @@ object PreferenceUtil {
                     it.getResourceId(position, 0)
                 }
             return if (layoutRes == 0) {
-                R.layout.item_image
+                R.layout.v_item_image
             } else layoutRes
         }
 

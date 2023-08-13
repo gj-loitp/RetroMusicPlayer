@@ -95,7 +95,7 @@
         <item>@layout/item_artist_square</item>
         <item>@layout/item_album_card</item>
         <item>@layout/item_artist_card</item>
-        <item>@layout/item_image</item>
+        <item>@layout/v_item_image</item>
     </array>
 
     <array name="pref_auto_download_images_values">

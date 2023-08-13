@@ -73,7 +73,7 @@ class ArtistAdapter(
             try {
                 LayoutInflater.from(activity).inflate(itemLayoutRes, parent, false)
             } catch (e: Resources.NotFoundException) {
-                LayoutInflater.from(activity).inflate(R.layout.item_grid_circle, parent, false)
+                LayoutInflater.from(activity).inflate(R.layout.v_item_grid_circle, parent, false)
             }
         return createViewHolder(view)
     }

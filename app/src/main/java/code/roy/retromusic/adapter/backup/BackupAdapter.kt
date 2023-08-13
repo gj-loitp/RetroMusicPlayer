@@ -8,7 +8,7 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.ItemListBackupBinding
+import code.roy.retromusic.databinding.VItemListBackupBinding
 import java.io.File
 
 
@@ -20,7 +20,7 @@ class BackupAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            ItemListBackupBinding.inflate(LayoutInflater.from(activity), parent, false)
+            VItemListBackupBinding.inflate(LayoutInflater.from(activity), parent, false)
         )
     }
 
@@ -36,7 +36,7 @@ class BackupAdapter(
         notifyDataSetChanged()
     }
 
-    inner class ViewHolder(val binding: ItemListBackupBinding) :
+    inner class ViewHolder(val binding: VItemListBackupBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {

@@ -34,14 +34,14 @@ class ContributorAdapter(
         return if (viewType == HEADER) {
             ViewHolder(
                 LayoutInflater.from(parent.context).inflate(
-                    R.layout.item_contributor_header,
+                    R.layout.v_item_contributor_header,
                     parent,
                     false
                 )
             )
         } else ViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.item_contributor,
+                R.layout.v_item_contributor,
                 parent,
                 false
             )
