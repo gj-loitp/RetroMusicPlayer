@@ -23,7 +23,7 @@ import android.widget.TextView
 import code.roy.appthemehelper.util.ATHUtil
 import code.roy.appthemehelper.util.MaterialValueHelper
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.FragmentPeekControlPlayerBinding
+import code.roy.retromusic.databinding.FPeekControlPlayerBinding
 import code.roy.retromusic.extensions.accentColor
 import code.roy.retromusic.extensions.applyColor
 import code.roy.retromusic.fragments.base.AbsPlayerControlsFragment
@@ -37,9 +37,9 @@ import com.google.android.material.slider.Slider
  * Created by hemanths on 2019-10-04.
  */
 
-class PeekPlayerControlFragment : AbsPlayerControlsFragment(R.layout.fragment_peek_control_player) {
+class PeekPlayerControlFragment : AbsPlayerControlsFragment(R.layout.f_peek_control_player) {
 
-    private var _binding: FragmentPeekControlPlayerBinding? = null
+    private var _binding: FPeekControlPlayerBinding? = null
     private val binding get() = _binding!!
 
     override val progressSlider: Slider
@@ -68,7 +68,7 @@ class PeekPlayerControlFragment : AbsPlayerControlsFragment(R.layout.fragment_pe
         savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentPeekControlPlayerBinding.bind(view)
+        _binding = FPeekControlPlayerBinding.bind(view)
         setUpPlayPauseFab()
     }
 

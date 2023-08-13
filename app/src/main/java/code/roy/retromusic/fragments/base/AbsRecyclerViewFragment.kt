@@ -26,11 +26,9 @@ import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import code.roy.appthemehelper.common.ATHToolbarActivity
-import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.roy.retromusic.R
 import code.roy.retromusic.adapter.base.AbsMultiSelectAdapter
-import code.roy.retromusic.databinding.FragmentMainRecyclerBinding
+import code.roy.retromusic.databinding.FMainRecyclerBinding
 import code.roy.retromusic.dialogs.CreatePlaylistDialog
 import code.roy.retromusic.dialogs.ImportPlaylistDialog
 import code.roy.retromusic.extensions.accentColor
@@ -42,9 +40,9 @@ import me.zhanghai.android.fastscroll.FastScroller
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 
 abstract class AbsRecyclerViewFragment<A : RecyclerView.Adapter<*>, LM : RecyclerView.LayoutManager> :
-    AbsMainActivityFragment(R.layout.fragment_main_recycler), IScrollHelper {
+    AbsMainActivityFragment(R.layout.f_main_recycler), IScrollHelper {
 
-    private var _binding: FragmentMainRecyclerBinding? = null
+    private var _binding: FMainRecyclerBinding? = null
     private val binding get() = _binding!!
     protected var adapter: A? = null
     protected var layoutManager: LM? = null
@@ -53,7 +51,7 @@ abstract class AbsRecyclerViewFragment<A : RecyclerView.Adapter<*>, LM : Recycle
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentMainRecyclerBinding.bind(view)
+        _binding = FMainRecyclerBinding.bind(view)
         postponeEnterTransition()
         view.doOnPreDraw { startPostponedEnterTransition() }
         enterTransition = MaterialFadeThrough().addTarget(binding.recyclerView)

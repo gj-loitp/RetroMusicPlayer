@@ -19,13 +19,12 @@ import android.view.View
 import android.view.animation.DecelerateInterpolator
 import android.widget.ImageButton
 import android.widget.TextView
-import code.roy.appthemehelper.ThemeStore.Companion.accentColor
 import code.roy.retromusic.util.color.MediaNotificationProcessor
 import code.roy.appthemehelper.util.ATHUtil
 import code.roy.appthemehelper.util.ColorUtil
 import code.roy.appthemehelper.util.MaterialValueHelper
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.FragmentPlainControlsFragmentBinding
+import code.roy.retromusic.databinding.FPlainControlsFragmentBinding
 import code.roy.retromusic.extensions.accentColor
 import code.roy.retromusic.extensions.applyColor
 import code.roy.retromusic.extensions.getSongInfo
@@ -41,9 +40,9 @@ import com.google.android.material.slider.Slider
  */
 
 class PlainPlaybackControlsFragment :
-    AbsPlayerControlsFragment(R.layout.fragment_plain_controls_fragment) {
+    AbsPlayerControlsFragment(R.layout.f_plain_controls_fragment) {
 
-    private var _binding: FragmentPlainControlsFragmentBinding? = null
+    private var _binding: FPlainControlsFragmentBinding? = null
     private val binding get() = _binding!!
 
     override val progressSlider: Slider
@@ -102,7 +101,7 @@ class PlainPlaybackControlsFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentPlainControlsFragmentBinding.bind(view)
+        _binding = FPlainControlsFragmentBinding.bind(view)
         setUpPlayPauseFab()
     }
 

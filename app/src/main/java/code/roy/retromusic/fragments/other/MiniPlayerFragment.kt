@@ -25,7 +25,7 @@ import android.view.View
 import androidx.core.text.toSpannable
 import androidx.core.view.isVisible
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.FragmentMiniPlayerBinding
+import code.roy.retromusic.databinding.FMiniPlayerBinding
 import code.roy.retromusic.extensions.accentColor
 import code.roy.retromusic.extensions.show
 import code.roy.retromusic.extensions.textColorPrimary
@@ -41,10 +41,10 @@ import code.roy.retromusic.util.RetroUtil
 import com.bumptech.glide.Glide
 import kotlin.math.abs
 
-open class MiniPlayerFragment : AbsMusicServiceFragment(R.layout.fragment_mini_player),
+open class MiniPlayerFragment : AbsMusicServiceFragment(R.layout.f_mini_player),
     MusicProgressViewUpdateHelper.Callback, View.OnClickListener {
 
-    private var _binding: FragmentMiniPlayerBinding? = null
+    private var _binding: FMiniPlayerBinding? = null
     private val binding get() = _binding!!
     private lateinit var progressViewUpdateHelper: MusicProgressViewUpdateHelper
 
@@ -62,7 +62,7 @@ open class MiniPlayerFragment : AbsMusicServiceFragment(R.layout.fragment_mini_p
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentMiniPlayerBinding.bind(view)
+        _binding = FMiniPlayerBinding.bind(view)
         view.setOnTouchListener(FlingPlayBackController(requireContext()))
         setUpMiniPlayer()
         setUpButtons()

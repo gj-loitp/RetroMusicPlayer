@@ -23,7 +23,7 @@ import code.roy.appthemehelper.util.ATHUtil
 import code.roy.appthemehelper.util.ColorUtil
 import code.roy.appthemehelper.util.MaterialValueHelper
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.FragmentMd3PlayerPlaybackControlsBinding
+import code.roy.retromusic.databinding.FMd3PlayerPlaybackControlsBinding
 import code.roy.retromusic.extensions.accentColor
 import code.roy.retromusic.extensions.animateRadius
 import code.roy.retromusic.extensions.animateToCircle
@@ -41,9 +41,9 @@ import code.roy.retromusic.util.PreferenceUtil
 import com.google.android.material.slider.Slider
 
 class MD3PlaybackControlsFragment :
-    AbsPlayerControlsFragment(R.layout.fragment_md3_player_playback_controls) {
+    AbsPlayerControlsFragment(R.layout.f_md3_player_playback_controls) {
 
-    private var _binding: FragmentMd3PlayerPlaybackControlsBinding? = null
+    private var _binding: FMd3PlayerPlaybackControlsBinding? = null
     private val binding get() = _binding!!
 
     override val progressSlider: Slider
@@ -69,7 +69,7 @@ class MD3PlaybackControlsFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentMd3PlayerPlaybackControlsBinding.bind(view)
+        _binding = FMd3PlayerPlaybackControlsBinding.bind(view)
         setUpMusicControllers()
         binding.playPauseButton.setOnClickListener {
             if (MusicPlayerRemote.isPlaying) {

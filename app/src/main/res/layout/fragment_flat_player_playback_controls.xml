@@ -144,7 +144,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleContainer"
         tools:ignore="ContentDescription,UnusedAttribute"
-        tools:showIn="@layout/fragment_player_playback_controls">
+        tools:showIn="@layout/f_player_playback_controls">
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/playPauseButton"

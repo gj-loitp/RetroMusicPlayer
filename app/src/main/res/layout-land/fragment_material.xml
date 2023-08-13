@@ -23,7 +23,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -35,7 +35,7 @@
             <include layout="@layout/v_status_bar" />
         </FrameLayout>
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
@@ -52,7 +52,7 @@
                     tools:layout="@layout/fragment_album_cover" />
             </code.roy.retromusic.views.HeightFitSquareLayout>
 
-            <LinearLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -67,7 +67,7 @@
                         android:name="code.roy.retromusic.fragments.player.material.MaterialControlsFragment"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        tools:layout="@layout/fragment_material_playback_controls" />
+                        tools:layout="@layout/f_material_playback_controls" />
                 </FrameLayout>
 
                 <FrameLayout
@@ -83,8 +83,8 @@
                         android:layout_gravity="bottom"
                         app:navigationIcon="@drawable/ic_keyboard_arrow_down" />
                 </FrameLayout>
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </FrameLayout>

@@ -23,17 +23,17 @@ import code.roy.appthemehelper.ThemeStore
 import code.roy.appthemehelper.util.VersionUtils
 import code.roy.retromusic.R
 import code.roy.retromusic.appshortcuts.DynamicShortcutManager
-import code.roy.retromusic.databinding.FragmentSettingsBinding
+import code.roy.retromusic.databinding.FSettingsBinding
 import code.roy.retromusic.extensions.findNavController
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.color.ColorCallback
 
-class SettingsFragment : Fragment(R.layout.fragment_settings), ColorCallback {
-    private var _binding: FragmentSettingsBinding? = null
+class SettingsFragment : Fragment(R.layout.f_settings), ColorCallback {
+    private var _binding: FSettingsBinding? = null
     private val binding get() = _binding!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        _binding = FragmentSettingsBinding.bind(view)
+        _binding = FSettingsBinding.bind(view)
         setupToolbar()
     }
 

@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:overScrollMode="@integer/overScrollMode">
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -179,5 +179,5 @@
             app:settingListItemText="@string/about_settings_summary"
             app:settingListItemTitle="@string/action_about" />
 
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.core.widget.NestedScrollView>

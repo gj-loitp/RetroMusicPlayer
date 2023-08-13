@@ -8,7 +8,6 @@
     android:orientation="vertical"
     tools:ignore="MissingPrefix">
 
-
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/songCurrentProgress"
         android:layout_width="wrap_content"
@@ -25,11 +24,11 @@
 
     <com.google.android.material.slider.Slider
         android:id="@+id/progressSlider"
+        style="@style/Widget.Retro.Slider"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:maxHeight="2dp"
-        style="@style/Widget.Retro.Slider"
         app:layout_constraintEnd_toStartOf="@id/songTotalTime"
         app:layout_constraintStart_toEndOf="@id/songCurrentProgress"
         app:layout_constraintTop_toTopOf="parent"
@@ -49,7 +48,7 @@
         app:layout_constraintTop_toTopOf="@id/progressSlider"
         tools:text="@tools:sample/date/hhmmss" />
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/text_container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -95,7 +94,7 @@
             android:textColor="?android:attr/textColorSecondary"
             app:layout_constrainedWidth="true"
             tools:text="@tools:sample/full_names" />
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/songInfo"
@@ -168,7 +167,7 @@
         tools:ignore="MissingPrefix"
         tools:tint="@color/md_black_1000" />
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/shuffleButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -184,7 +183,7 @@
         tools:ignore="MissingPrefix"
         tools:tint="@color/md_black_1000" />
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/repeatButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

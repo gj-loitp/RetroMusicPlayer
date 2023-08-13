@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import code.roy.retromusic.R
 import code.roy.retromusic.adapter.song.OrderablePlaylistSongAdapter
-import code.roy.retromusic.databinding.FragmentPlaylistDetailNewBinding
+import code.roy.retromusic.databinding.FPlaylistDetailNewBinding
 import code.roy.retromusic.db.PlaylistWithSongs
 import code.roy.retromusic.db.toSongs
 import code.roy.retromusic.extensions.accentColor
@@ -39,13 +39,13 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
 
-class PlaylistDetailsFragment : AbsMainActivityFragment(R.layout.fragment_playlist_detail_new) {
+class PlaylistDetailsFragment : AbsMainActivityFragment(R.layout.f_playlist_detail_new) {
     private val arguments by navArgs<PlaylistDetailsFragmentArgs>()
     private val viewModel by viewModel<PlaylistDetailsViewModel> {
         parametersOf(arguments.extraPlaylistId)
     }
 
-    private var _binding: FragmentPlaylistDetailNewBinding? = null
+    private var _binding: FPlaylistDetailNewBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var playlist: PlaylistWithSongs
@@ -63,7 +63,7 @@ class PlaylistDetailsFragment : AbsMainActivityFragment(R.layout.fragment_playli
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentPlaylistDetailNewBinding.bind(view)
+        _binding = FPlaylistDetailNewBinding.bind(view)
         enterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true).addTarget(view)
         returnTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false)
         mainActivity.setSupportActionBar(binding.toolbar)

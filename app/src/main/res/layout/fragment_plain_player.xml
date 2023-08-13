@@ -12,7 +12,7 @@
 
     <include layout="@layout/v_status_bar" />
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/titleContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
             android:maxLines="1"
             android:paddingTop="8dp"
             tools:text="Text" />
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/playerAlbumCoverFragment"
@@ -64,7 +64,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/playerAlbumCoverFragment"
-        tools:layout="@layout/fragment_player_playback_controls" />
+        tools:layout="@layout/f_player_playback_controls" />
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/playerToolbar"

@@ -43,7 +43,7 @@ import code.roy.retromusic.adapter.album.AlbumAdapter
 import code.roy.retromusic.adapter.artist.ArtistAdapter
 import code.roy.retromusic.adapter.song.ShuffleButtonSongAdapter
 import code.roy.retromusic.adapter.song.SongAdapter
-import code.roy.retromusic.databinding.FragmentPlaylistDetailBinding
+import code.roy.retromusic.databinding.FPlaylistDetailBinding
 import code.roy.retromusic.db.toSong
 import code.roy.retromusic.fragments.base.AbsMainActivityFragment
 import code.roy.retromusic.interfaces.IAlbumClickListener
@@ -56,10 +56,10 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialSharedAxis
 
 
-class DetailListFragment : AbsMainActivityFragment(R.layout.fragment_playlist_detail),
+class DetailListFragment : AbsMainActivityFragment(R.layout.f_playlist_detail),
     IArtistClickListener, IAlbumClickListener {
     private val args by navArgs<DetailListFragmentArgs>()
-    private var _binding: FragmentPlaylistDetailBinding? = null
+    private var _binding: FPlaylistDetailBinding? = null
     private val binding get() = _binding!!
     private var showClearHistoryOption = false
 
@@ -84,7 +84,7 @@ class DetailListFragment : AbsMainActivityFragment(R.layout.fragment_playlist_de
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentPlaylistDetailBinding.bind(view)
+        _binding = FPlaylistDetailBinding.bind(view)
         postponeEnterTransition()
         view.doOnPreDraw { startPostponedEnterTransition() }
         mainActivity.setSupportActionBar(binding.toolbar)

@@ -26,12 +26,12 @@ import code.roy.monkey.retromusic.extensions.goToProVersion
 import code.roy.appthemehelper.ThemeStore
 import code.roy.retromusic.App
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.FragmentMainSettingsBinding
+import code.roy.retromusic.databinding.FMainSettingsBinding
 import code.roy.retromusic.extensions.drawAboveSystemBarsWithPadding
 
 class MainSettingsFragment : Fragment(), View.OnClickListener {
 
-    private var _binding: code.roy.retromusic.databinding.FragmentMainSettingsBinding? = null
+    private var _binding: code.roy.retromusic.databinding.FMainSettingsBinding? = null
     private val binding get() = _binding!!
 
 
@@ -57,7 +57,7 @@ class MainSettingsFragment : Fragment(), View.OnClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMainSettingsBinding.inflate(inflater, container, false)
+        _binding = FMainSettingsBinding.inflate(inflater, container, false)
         return binding.root
     }
 

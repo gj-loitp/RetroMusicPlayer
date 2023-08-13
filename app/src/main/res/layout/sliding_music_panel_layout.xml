@@ -38,7 +38,7 @@
             android:name="code.roy.retromusic.fragments.other.MiniPlayerFragment"
             android:layout_width="match_parent"
             android:layout_height="@dimen/mini_player_height"
-            tools:layout="@layout/fragment_mini_player" />
+            tools:layout="@layout/f_mini_player" />
 
     </FrameLayout>
 

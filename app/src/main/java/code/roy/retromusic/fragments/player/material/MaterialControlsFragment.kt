@@ -19,14 +19,12 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
-import code.roy.appthemehelper.ThemeStore.Companion.textColorSecondary
 import code.roy.retromusic.util.color.MediaNotificationProcessor
 import code.roy.appthemehelper.util.ATHUtil
 import code.roy.appthemehelper.util.MaterialValueHelper
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.FragmentMaterialPlaybackControlsBinding
+import code.roy.retromusic.databinding.FMaterialPlaybackControlsBinding
 import code.roy.retromusic.extensions.applyColor
 import code.roy.retromusic.extensions.getSongInfo
 import code.roy.retromusic.extensions.hide
@@ -45,10 +43,10 @@ import com.google.android.material.slider.Slider
  * @author Hemanth S (h4h13).
  */
 class MaterialControlsFragment :
-    AbsPlayerControlsFragment(R.layout.fragment_material_playback_controls) {
+    AbsPlayerControlsFragment(R.layout.f_material_playback_controls) {
 
 
-    private var _binding: FragmentMaterialPlaybackControlsBinding? = null
+    private var _binding: FMaterialPlaybackControlsBinding? = null
     private val binding get() = _binding!!
 
     override val progressSlider: Slider
@@ -74,7 +72,7 @@ class MaterialControlsFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentMaterialPlaybackControlsBinding.bind(view)
+        _binding = FMaterialPlaybackControlsBinding.bind(view)
         setUpPlayPauseFab()
         binding.title.isSelected = true
         binding.text.isSelected = true

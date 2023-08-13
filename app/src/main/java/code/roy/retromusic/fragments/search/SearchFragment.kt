@@ -31,7 +31,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.TransitionManager
 import code.roy.retromusic.R
 import code.roy.retromusic.adapter.SearchAdapter
-import code.roy.retromusic.databinding.FragmentSearchBinding
+import code.roy.retromusic.databinding.FSearchBinding
 import code.roy.retromusic.extensions.accentColor
 import code.roy.retromusic.extensions.addAlpha
 import code.roy.retromusic.extensions.dip
@@ -49,13 +49,13 @@ import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import java.util.*
 
 
-class SearchFragment : AbsMainActivityFragment(R.layout.fragment_search),
+class SearchFragment : AbsMainActivityFragment(R.layout.f_search),
     ChipGroup.OnCheckedStateChangeListener {
     companion object {
         const val QUERY = "query"
     }
 
-    private var _binding: FragmentSearchBinding? = null
+    private var _binding: FSearchBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var searchAdapter: SearchAdapter
@@ -67,7 +67,7 @@ class SearchFragment : AbsMainActivityFragment(R.layout.fragment_search),
         super.onViewCreated(view, savedInstanceState)
         enterTransition = MaterialFadeThrough().addTarget(view)
         reenterTransition = MaterialFadeThrough().addTarget(view)
-        _binding = FragmentSearchBinding.bind(view)
+        _binding = FSearchBinding.bind(view)
         mainActivity.setSupportActionBar(binding.toolbar)
         libraryViewModel.clearSearchResult()
         setupRecyclerView()

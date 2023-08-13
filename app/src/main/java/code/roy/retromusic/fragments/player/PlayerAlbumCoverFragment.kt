@@ -32,7 +32,7 @@ import code.roy.retromusic.LYRICS_TYPE
 import code.roy.retromusic.R
 import code.roy.retromusic.SHOW_LYRICS
 import code.roy.retromusic.adapter.album.AlbumCoverPagerAdapter
-import code.roy.retromusic.databinding.FragmentPlayerAlbumCoverBinding
+import code.roy.retromusic.databinding.FPlayerAlbumCoverBinding
 import code.roy.retromusic.extensions.isColorLight
 import code.roy.retromusic.extensions.surfaceColor
 import code.roy.retromusic.fragments.NowPlayingScreen
@@ -52,11 +52,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class PlayerAlbumCoverFragment : AbsMusicServiceFragment(R.layout.fragment_player_album_cover),
+class PlayerAlbumCoverFragment : AbsMusicServiceFragment(R.layout.f_player_album_cover),
     ViewPager.OnPageChangeListener, MusicProgressViewUpdateHelper.Callback,
     SharedPreferences.OnSharedPreferenceChangeListener {
 
-    private var _binding: FragmentPlayerAlbumCoverBinding? = null
+    private var _binding: FPlayerAlbumCoverBinding? = null
     private val binding get() = _binding!!
     private var callbacks: Callbacks? = null
     private var currentPosition: Int = 0
@@ -111,7 +111,7 @@ class PlayerAlbumCoverFragment : AbsMusicServiceFragment(R.layout.fragment_playe
     @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentPlayerAlbumCoverBinding.bind(view)
+        _binding = FPlayerAlbumCoverBinding.bind(view)
         setupViewPager()
         progressViewUpdateHelper = MusicProgressViewUpdateHelper(this, 500, 1000)
         maybeInitLyrics()

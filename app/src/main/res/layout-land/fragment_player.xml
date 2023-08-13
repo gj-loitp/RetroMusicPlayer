@@ -78,7 +78,7 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="bottom"
                     android:layout_weight="1"
-                    tools:layout="@layout/fragment_player_playback_controls" />
+                    tools:layout="@layout/f_player_playback_controls" />
 
             </LinearLayout>
         </LinearLayout>

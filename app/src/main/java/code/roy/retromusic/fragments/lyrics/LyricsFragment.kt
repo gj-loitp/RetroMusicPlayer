@@ -24,7 +24,6 @@ import android.view.*
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.transition.Fade
@@ -32,7 +31,7 @@ import code.roy.appthemehelper.ThemeStore.Companion.accentColor
 import code.roy.appthemehelper.util.VersionUtils
 import code.roy.retromusic.R
 import code.roy.retromusic.activities.tageditor.TagWriter
-import code.roy.retromusic.databinding.FragmentLyricsBinding
+import code.roy.retromusic.databinding.FLyricsBinding
 import code.roy.retromusic.extensions.accentColor
 import code.roy.retromusic.extensions.materialDialog
 import code.roy.retromusic.extensions.openUrl
@@ -56,10 +55,10 @@ import java.io.FileOutputStream
 import java.util.*
 import kotlin.collections.set
 
-class LyricsFragment : AbsMainActivityFragment(R.layout.fragment_lyrics),
+class LyricsFragment : AbsMainActivityFragment(R.layout.f_lyrics),
     MusicProgressViewUpdateHelper.Callback {
 
-    private var _binding: FragmentLyricsBinding? = null
+    private var _binding: FLyricsBinding? = null
     private val binding get() = _binding!!
     private lateinit var song: Song
 
@@ -108,7 +107,7 @@ class LyricsFragment : AbsMainActivityFragment(R.layout.fragment_lyrics),
         super.onViewCreated(view, savedInstanceState)
         enterTransition = Fade()
         exitTransition = Fade()
-        _binding = FragmentLyricsBinding.bind(view)
+        _binding = FLyricsBinding.bind(view)
         updateHelper = MusicProgressViewUpdateHelper(this, 500, 1000)
         updateTitleSong()
         setupLyricsView()

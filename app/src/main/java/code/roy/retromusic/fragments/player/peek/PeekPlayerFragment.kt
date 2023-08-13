@@ -19,7 +19,7 @@ import android.view.View
 import androidx.appcompat.widget.Toolbar
 import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.FragmentPeekPlayerBinding
+import code.roy.retromusic.databinding.FPeekPlayerBinding
 import code.roy.retromusic.extensions.colorControlNormal
 import code.roy.retromusic.extensions.drawAboveSystemBarsWithPadding
 import code.roy.retromusic.extensions.getSongInfo
@@ -38,17 +38,17 @@ import code.roy.retromusic.util.color.MediaNotificationProcessor
  * Created by hemanths on 2019-10-03.
  */
 
-class PeekPlayerFragment : AbsPlayerFragment(R.layout.fragment_peek_player) {
+class PeekPlayerFragment : AbsPlayerFragment(R.layout.f_peek_player) {
 
     private lateinit var controlsFragment: PeekPlayerControlFragment
     private var lastColor: Int = 0
-    private var _binding: FragmentPeekPlayerBinding? = null
+    private var _binding: FPeekPlayerBinding? = null
     private val binding get() = _binding!!
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentPeekPlayerBinding.bind(view)
+        _binding = FPeekPlayerBinding.bind(view)
         setUpPlayerToolbar()
         setUpSubFragments()
         binding.title.isSelected = true
