@@ -1,22 +1,11 @@
-/*
- * Copyright (c) 2019 Hemanth Savarala.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by
- *  the Free Software Foundation either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- */
 package code.roy.retromusic.model
 
 import android.os.Parcelable
+import androidx.annotation.Keep
 import kotlinx.parcelize.Parcelize
 
 // update equals and hashcode if fields changes
+@Keep
 @Parcelize
 open class Song(
     open val id: Long,
@@ -31,9 +20,8 @@ open class Song(
     open val artistId: Long,
     open val artistName: String,
     open val composer: String?,
-    open val albumArtist: String?
+    open val albumArtist: String?,
 ) : Parcelable {
-
 
     // need to override manually because is open and cannot be a data class
     override fun equals(other: Any?): Boolean {
@@ -75,7 +63,6 @@ open class Song(
         result = 31 * result + (albumArtist?.hashCode() ?: 0)
         return result
     }
-
 
     companion object {
 

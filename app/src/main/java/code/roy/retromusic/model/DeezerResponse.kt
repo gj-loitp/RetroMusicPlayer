@@ -1,7 +1,9 @@
 package code.roy.retromusic.model
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
+@Keep
 data class Data(
     @SerializedName("id")
     val id: String,
@@ -28,14 +30,15 @@ data class Data(
     @SerializedName("tracklist")
     val tracklist: String,
     @SerializedName("type")
-    val type: String
+    val type: String,
 )
 
+@Keep
 data class DeezerResponse(
     @SerializedName("data")
     val data: List<Data>,
     @SerializedName("next")
     val next: String,
     @SerializedName("total")
-    val total: Int
+    val total: Int,
 )

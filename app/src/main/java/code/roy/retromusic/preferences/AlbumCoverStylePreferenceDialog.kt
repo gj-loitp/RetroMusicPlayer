@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2019 Hemanth Savarala.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by
- *  the Free Software Foundation either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- */
-
 package code.roy.retromusic.preferences
 
 import android.app.Dialog
@@ -48,7 +34,7 @@ class AlbumCoverStylePreference @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = -1,
-    defStyleRes: Int = -1
+    defStyleRes: Int = -1,
 ) : ATEDialogPreference(context, attrs, defStyleAttr, defStyleRes) {
 
     private val mLayoutRes = R.layout.pref_dialog_now_playing_screen
@@ -96,7 +82,11 @@ class AlbumCoverStylePreferenceDialog : DialogFragment(),
             .colorButtons()
     }
 
-    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+    override fun onPageScrolled(
+        position: Int,
+        positionOffset: Float,
+        positionOffsetPixels: Int,
+    ) {
     }
 
     override fun onPageSelected(position: Int) {
@@ -129,7 +119,7 @@ class AlbumCoverStylePreferenceDialog : DialogFragment(),
         override fun destroyItem(
             collection: ViewGroup,
             position: Int,
-            view: Any
+            view: Any,
         ) {
             collection.removeView(view as View)
         }
@@ -138,7 +128,10 @@ class AlbumCoverStylePreferenceDialog : DialogFragment(),
             return values().size
         }
 
-        override fun isViewFromObject(view: View, instace: Any): Boolean {
+        override fun isViewFromObject(
+            view: View,
+            instace: Any,
+        ): Boolean {
             return view === instace
         }
 
@@ -157,5 +150,5 @@ class AlbumCoverStylePreferenceDialog : DialogFragment(),
 }
 
 private fun isAlbumCoverStyle(style: AlbumCoverStyle): Boolean {
-    return (!App.isProVersion() && (style == AlbumCoverStyle.Circle || style == AlbumCoverStyle.Card || style == AlbumCoverStyle.FullCard))
+    return (!App.isProVersion() && (style == Circle || style == Card || style == FullCard))
 }

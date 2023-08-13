@@ -1,6 +1,5 @@
 package code.roy.retromusic.preferences
 
-
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
@@ -58,7 +57,11 @@ class NowPlayingScreenPreferenceDialog : DialogFragment(), ViewPager.OnPageChang
     override fun onPageScrollStateChanged(state: Int) {
     }
 
-    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+    override fun onPageScrolled(
+        position: Int,
+        positionOffset: Float,
+        positionOffsetPixels: Int,
+    ) {
     }
 
     override fun onPageSelected(position: Int) {
@@ -102,7 +105,10 @@ class NowPlayingScreenPreferenceDialog : DialogFragment(), ViewPager.OnPageChang
 
 private class NowPlayingScreenAdapter(private val context: Context) : PagerAdapter() {
 
-    override fun instantiateItem(collection: ViewGroup, position: Int): Any {
+    override fun instantiateItem(
+        collection: ViewGroup,
+        position: Int,
+    ): Any {
         val nowPlayingScreen = values()[position]
 
         val inflater = LayoutInflater.from(context)
@@ -130,7 +136,10 @@ private class NowPlayingScreenAdapter(private val context: Context) : PagerAdapt
         return values().size
     }
 
-    override fun isViewFromObject(view: View, instance: Any): Boolean {
+    override fun isViewFromObject(
+        view: View,
+        instance: Any,
+    ): Boolean {
         return view === instance
     }
 

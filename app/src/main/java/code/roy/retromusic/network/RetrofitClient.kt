@@ -14,11 +14,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.util.concurrent.TimeUnit
 
-
 fun provideDefaultCache(): Cache? {
     val cacheDir = File(App.getContext().cacheDir.absolutePath, "/okhttp-lastfm/")
     if (cacheDir.mkdirs() || cacheDir.isDirectory) {
-        return Cache(cacheDir, 1024 * 1024 * 10)
+        return Cache(directory = cacheDir, maxSize = 1024 * 1024 * 10)
     }
     return null
 }

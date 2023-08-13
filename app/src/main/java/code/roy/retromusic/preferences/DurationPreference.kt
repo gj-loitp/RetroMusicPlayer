@@ -18,17 +18,16 @@ import code.roy.retromusic.extensions.materialDialog
 import code.roy.retromusic.util.PreferenceUtil
 import com.google.android.material.slider.Slider
 
-
 class DurationPreference @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
-    defStyleRes: Int = 0
+    defStyleRes: Int = 0,
 ) : ATEDialogPreference(context, attrs, defStyleAttr, defStyleRes) {
     init {
         icon?.colorFilter = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
-            context.colorControlNormal(),
-            SRC_IN
+            /* color = */ context.colorControlNormal(),
+            /* blendModeCompat = */ SRC_IN
         )
     }
 }

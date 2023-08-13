@@ -2,20 +2,22 @@ package code.roy.retromusic.model
 
 import android.content.Context
 import android.os.Parcelable
+import androidx.annotation.Keep
 import code.roy.retromusic.repository.RealPlaylistRepository
 import code.roy.retromusic.util.MusicUtil
 import kotlinx.parcelize.Parcelize
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 
+@Keep
 @Parcelize
 open class Playlist(
     val id: Long,
-    val name: String
+    val name: String,
 ) : Parcelable, KoinComponent {
 
     companion object {
-        val empty = Playlist(-1, "")
+        val empty = Playlist(id = -1, name = "")
     }
 
     // this default implementation covers static playlists
@@ -27,8 +29,8 @@ open class Playlist(
         val songCount = getSongs().size
         val songCountString = MusicUtil.getSongCountString(context, songCount)
         return MusicUtil.buildInfoString(
-            songCountString,
-            ""
+            string1 = songCountString,
+            string2 = ""
         )
     }
 

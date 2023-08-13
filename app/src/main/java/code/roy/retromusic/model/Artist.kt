@@ -1,33 +1,21 @@
-/*
- * Copyright (c) 2019 Hemanth Savarala.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by
- *  the Free Software Foundation either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- */
-
 package code.roy.retromusic.model
 
+import androidx.annotation.Keep
 import code.roy.retromusic.helper.SortOrder
 import code.roy.retromusic.util.MusicUtil
 import code.roy.retromusic.util.PreferenceUtil
 import java.text.Collator
 
+@Keep
 data class Artist(
     val id: Long,
     val albums: List<Album>,
-    val isAlbumArtist: Boolean = false
+    val isAlbumArtist: Boolean = false,
 ) {
     constructor(
         artistName: String,
         albums: List<Album>,
-        isAlbumArtist: Boolean = false
+        isAlbumArtist: Boolean = false,
     ) : this(albums[0].artistId, albums, isAlbumArtist) {
         name = artistName
     }
@@ -39,8 +27,10 @@ data class Artist(
             return when {
                 MusicUtil.isVariousArtists(name) ->
                     VARIOUS_ARTISTS_DISPLAY_NAME
+
                 MusicUtil.isArtistNameUnknown(name) ->
                     UNKNOWN_ARTIST_DISPLAY_NAME
+
                 else -> name!!
             }
         }
@@ -68,22 +58,27 @@ data class Artist(
                     SortOrder.ArtistSongSortOrder.SONG_A_Z -> { o1, o2 ->
                         collator.compare(o1.title, o2.title)
                     }
+
                     SortOrder.ArtistSongSortOrder.SONG_Z_A -> { o1, o2 ->
                         collator.compare(o2.title, o1.title)
                     }
+
                     SortOrder.ArtistSongSortOrder.SONG_ALBUM -> { o1, o2 ->
                         collator.compare(o1.albumName, o2.albumName)
                     }
+
                     SortOrder.ArtistSongSortOrder.SONG_YEAR -> { o1, o2 ->
                         o2.year.compareTo(
                             o1.year
                         )
                     }
+
                     SortOrder.ArtistSongSortOrder.SONG_DURATION -> { o1, o2 ->
                         o1.duration.compareTo(
                             o2.duration
                         )
                     }
+
                     else -> {
                         throw IllegalArgumentException("invalid ${PreferenceUtil.artistDetailSongSortOrder}")
                     }
