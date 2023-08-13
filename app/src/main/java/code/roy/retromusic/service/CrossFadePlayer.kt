@@ -17,15 +17,6 @@ import code.roy.retromusic.util.PreferenceUtil
 import code.roy.retromusic.util.logE
 import kotlinx.coroutines.*
 
-/** @author Prathamesh M */
-
-/*
-* To make Crossfade work we need two MediaPlayer's
-* Basically, we switch back and forth between those two mp's
-* e.g. When song is about to end (Reaches Crossfade duration) we let current mediaplayer
-* play but with decreasing volume and start the player with the next song with increasing volume
-* and vice versa for upcoming song and so on.
-*/
 class CrossFadePlayer(context: Context) : LocalPlayback(context) {
 
     private var currentPlayer: CurrentPlayer = CurrentPlayer.NOT_SET
@@ -34,7 +25,7 @@ class CrossFadePlayer(context: Context) : LocalPlayback(context) {
     private var durationListener = DurationListener()
     private var mIsInitialized = false
     private var hasDataSource: Boolean = false /* Whether first player has DataSource */
-    private var nextDataSource:String? = null
+    private var nextDataSource: String? = null
     private var crossFadeAnimator: Animator? = null
     override var callbacks: Playback.PlaybackCallbacks? = null
     private var crossFadeDuration = PreferenceUtil.crossFadeDuration
@@ -93,7 +84,10 @@ class CrossFadePlayer(context: Context) : LocalPlayback(context) {
         return true
     }
 
-    override fun seek(whereto: Int, force: Boolean): Int {
+    override fun seek(
+        whereto: Int,
+        force: Boolean,
+    ): Int {
         if (force) {
             endFade()
         }
@@ -211,9 +205,11 @@ class CrossFadePlayer(context: Context) : LocalPlayback(context) {
             CurrentPlayer.PLAYER_ONE -> {
                 player1
             }
+
             CurrentPlayer.PLAYER_TWO -> {
                 player2
             }
+
             CurrentPlayer.NOT_SET -> {
                 null
             }
@@ -225,16 +221,21 @@ class CrossFadePlayer(context: Context) : LocalPlayback(context) {
             CurrentPlayer.PLAYER_ONE -> {
                 player2
             }
+
             CurrentPlayer.PLAYER_TWO -> {
                 player1
             }
+
             CurrentPlayer.NOT_SET -> {
                 null
             }
         }
     }
 
-    private fun crossFade(fadeInMp: MediaPlayer, fadeOutMp: MediaPlayer) {
+    private fun crossFade(
+        fadeInMp: MediaPlayer,
+        fadeOutMp: MediaPlayer,
+    ) {
         isCrossFading = true
         crossFadeAnimator = createFadeAnimator(context, fadeInMp, fadeOutMp) {
             crossFadeAnimator = null
@@ -264,7 +265,11 @@ class CrossFadePlayer(context: Context) : LocalPlayback(context) {
         }
     }
 
-    override fun onError(mp: MediaPlayer?, what: Int, extra: Int): Boolean {
+    override fun onError(
+        mp: MediaPlayer?,
+        what: Int,
+        extra: Int,
+    ): Boolean {
         mIsInitialized = false
         mp?.release()
         player1 = MediaPlayer()
@@ -291,7 +296,7 @@ class CrossFadePlayer(context: Context) : LocalPlayback(context) {
             job = launch {
                 while (isActive) {
                     delay(250)
-                    onDurationUpdated(position(), duration())
+                    onDurationUpdated(progress = position(), total = duration())
                 }
             }
         }

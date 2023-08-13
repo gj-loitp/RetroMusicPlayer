@@ -8,7 +8,6 @@ import code.roy.retromusic.model.Song
 import code.roy.retromusic.service.playback.Playback
 import code.roy.retromusic.util.PreferenceUtil
 
-
 class PlaybackManager(val context: Context) {
 
     var playback: Playback? = null
@@ -139,8 +138,10 @@ class PlaybackManager(val context: Context) {
     private fun closeAudioEffectSession() {
         val audioEffectsIntent = Intent(AudioEffect.ACTION_CLOSE_AUDIO_EFFECT_CONTROL_SESSION)
         if (playback != null) {
-            audioEffectsIntent.putExtra(AudioEffect.EXTRA_AUDIO_SESSION,
-                playback!!.audioSessionId)
+            audioEffectsIntent.putExtra(
+                AudioEffect.EXTRA_AUDIO_SESSION,
+                playback!!.audioSessionId
+            )
         }
         audioEffectsIntent.putExtra(AudioEffect.EXTRA_PACKAGE_NAME, context.packageName)
         context.sendBroadcast(audioEffectsIntent)

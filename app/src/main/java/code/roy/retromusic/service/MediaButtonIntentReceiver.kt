@@ -1,18 +1,3 @@
-/*
- * Copyright (c) 2019 Hemanth Savarala.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by
- *  the Free Software Foundation either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- */
-
-
 package code.roy.retromusic.service
 
 import android.content.Context
@@ -44,7 +29,10 @@ import code.roy.retromusic.service.MusicService.Companion.ACTION_TOGGLE_PAUSE
  */
 class MediaButtonIntentReceiver : MediaButtonReceiver() {
 
-    override fun onReceive(context: Context, intent: Intent) {
+    override fun onReceive(
+        context: Context,
+        intent: Intent,
+    ) {
         if (DEBUG) Log.v(TAG, "Received intent: $intent")
         if (handleIntent(context, intent) && isOrderedBroadcast) {
             abortBroadcast()
@@ -91,15 +79,16 @@ class MediaButtonIntentReceiver : MediaButtonReceiver() {
             println("Intent Action: ${intent.action}")
             val intentAction = intent.action
             if (Intent.ACTION_MEDIA_BUTTON == intentAction) {
-                val event = intent.extras?.let { BundleCompat.getParcelable(it, Intent.EXTRA_KEY_EVENT, KeyEvent::class.java) }
-                    ?: return false
+                val event = intent.extras?.let {
+                    BundleCompat.getParcelable(
+                        it, Intent.EXTRA_KEY_EVENT, KeyEvent::class.java
+                    )
+                } ?: return false
 
                 val keycode = event.keyCode
                 val action = event.action
-                val eventTime = if (event.eventTime != 0L)
-                    event.eventTime
-                else
-                    System.currentTimeMillis()
+                val eventTime = if (event.eventTime != 0L) event.eventTime
+                else System.currentTimeMillis()
 
                 var command: String? = null
                 when (keycode) {
@@ -162,19 +151,22 @@ class MediaButtonIntentReceiver : MediaButtonReceiver() {
             }
         }
 
-        private fun acquireWakeLockAndSendMessage(context: Context, msg: Message, delay: Long) {
+        private fun acquireWakeLockAndSendMessage(
+            context: Context,
+            msg: Message,
+            delay: Long,
+        ) {
             if (wakeLock == null) {
                 val appContext = context.applicationContext
                 val pm = appContext.getSystemService<PowerManager>()
                 wakeLock = pm?.newWakeLock(
-                    PowerManager.PARTIAL_WAKE_LOCK,
-                    "RetroMusicApp:Wakelock headset button"
+                    PowerManager.PARTIAL_WAKE_LOCK, "RetroMusicApp:Wakelock headset button"
                 )
                 wakeLock!!.setReferenceCounted(false)
             }
             if (DEBUG) Log.v(TAG, "Acquiring wake lock and sending " + msg.what)
             // Make sure we don't indefinitely hold the wake lock under any circumstances
-            wakeLock!!.acquire(10000)
+            wakeLock?.acquire(10000)
 
             mHandler.sendMessageDelayed(msg, delay)
         }
@@ -187,7 +179,7 @@ class MediaButtonIntentReceiver : MediaButtonReceiver() {
 
             if (wakeLock != null) {
                 if (DEBUG) Log.v(TAG, "Releasing wake lock")
-                wakeLock!!.release()
+                wakeLock?.release()
                 wakeLock = null
             }
         }

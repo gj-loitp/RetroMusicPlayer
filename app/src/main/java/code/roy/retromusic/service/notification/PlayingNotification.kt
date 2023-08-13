@@ -1,19 +1,4 @@
-/*
- * Copyright (c) 2019 Hemanth Savarala.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by
- *  the Free Software Foundation either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- */
-
 package code.roy.retromusic.service.notification
-
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -22,7 +7,6 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import code.roy.retromusic.R
 import code.roy.retromusic.model.Song
-
 
 abstract class PlayingNotification(context: Context) :
     NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID) {
@@ -38,19 +22,18 @@ abstract class PlayingNotification(context: Context) :
         internal const val NOTIFICATION_CHANNEL_ID = "playing_notification"
         const val NOTIFICATION_ID = 1
 
-
         @RequiresApi(26)
         fun createNotificationChannel(
             context: Context,
-            notificationManager: NotificationManager
+            notificationManager: NotificationManager,
         ) {
             var notificationChannel: NotificationChannel? = notificationManager
                 .getNotificationChannel(NOTIFICATION_CHANNEL_ID)
             if (notificationChannel == null) {
                 notificationChannel = NotificationChannel(
-                    NOTIFICATION_CHANNEL_ID,
-                    context.getString(R.string.playing_notification_name),
-                    NotificationManager.IMPORTANCE_LOW
+                    /* id = */ NOTIFICATION_CHANNEL_ID,
+                    /* name = */ context.getString(R.string.playing_notification_name),
+                    /* importance = */ NotificationManager.IMPORTANCE_LOW
                 )
                 notificationChannel.description =
                     context.getString(R.string.playing_notification_description)

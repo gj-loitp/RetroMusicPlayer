@@ -1,16 +1,3 @@
-/*
- * Copyright (c) 2019 Hemanth Savarala.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by
- *  the Free Software Foundation either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- */
 package code.roy.retromusic.service
 
 import android.annotation.SuppressLint
@@ -110,10 +97,6 @@ import kotlinx.coroutines.Dispatchers.Main
 import org.koin.java.KoinJavaComponent.get
 import java.util.*
 
-
-/**
- * @author Karim Abou Zeid (kabouzeid), Andrew Neal. Modified by Prathamesh More
- */
 class MusicService : MediaBrowserServiceCompat(),
     OnSharedPreferenceChangeListener, Playback.PlaybackCallbacks, OnAudioVolumeChangedListener {
     private val musicBind: IBinder = MusicBinder()
@@ -301,8 +284,18 @@ class MusicService : MediaBrowserServiceCompat(),
         setupMediaSession()
 
         uiThreadHandler = Handler(Looper.getMainLooper())
-        ContextCompat.registerReceiver(this, widgetIntentReceiver, IntentFilter(APP_WIDGET_UPDATE), ContextCompat.RECEIVER_NOT_EXPORTED)
-        ContextCompat.registerReceiver(this, updateFavoriteReceiver, IntentFilter(FAVORITE_STATE_CHANGED), ContextCompat.RECEIVER_NOT_EXPORTED)
+        ContextCompat.registerReceiver(
+            this,
+            widgetIntentReceiver,
+            IntentFilter(APP_WIDGET_UPDATE),
+            ContextCompat.RECEIVER_NOT_EXPORTED
+        )
+        ContextCompat.registerReceiver(
+            /* context = */ this,
+            /* receiver = */ updateFavoriteReceiver,
+            /* filter = */ IntentFilter(FAVORITE_STATE_CHANGED),
+            /* flags = */ ContextCompat.RECEIVER_NOT_EXPORTED
+        )
         registerReceiver(lockScreenReceiver, IntentFilter(Intent.ACTION_SCREEN_ON))
         sessionToken = mediaSession?.sessionToken
         notificationManager = getSystemService()
@@ -310,14 +303,14 @@ class MusicService : MediaBrowserServiceCompat(),
         mediaStoreObserver = MediaStoreObserver(this, playerHandler!!)
         throttledSeekHandler = ThrottledSeekHandler(this, Handler(mainLooper))
         contentResolver.registerContentObserver(
-            MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
-            true,
-            mediaStoreObserver
+            /* uri = */ MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+            /* notifyForDescendants = */ true,
+            /* observer = */ mediaStoreObserver
         )
         contentResolver.registerContentObserver(
-            MediaStore.Audio.Media.INTERNAL_CONTENT_URI,
-            true,
-            mediaStoreObserver
+            /* uri = */ MediaStore.Audio.Media.INTERNAL_CONTENT_URI,
+            /* notifyForDescendants = */ true,
+            /* observer = */ mediaStoreObserver
         )
         val audioVolumeObserver = AudioVolumeObserver(this)
         audioVolumeObserver.register(AudioManager.STREAM_MUSIC, this)
@@ -614,7 +607,6 @@ class MusicService : MediaBrowserServiceCompat(),
         rootHints: Bundle?,
     ): BrowserRoot {
 
-
         // Check origin to ensure we're not allowing any arbitrary app to browse app contents
         return if (!mPackageValidator!!.isKnownCaller(clientPackageName, clientUid)) {
             // Request from an untrusted package: return an empty browser root
@@ -787,7 +779,10 @@ class MusicService : MediaBrowserServiceCompat(),
     }
 
     @Synchronized
-    fun openTrackAndPrepareNextAt(position: Int, completion: (success: Boolean) -> Unit) {
+    fun openTrackAndPrepareNextAt(
+        position: Int,
+        completion: (success: Boolean) -> Unit,
+    ) {
         this.position = position
         openCurrent { success ->
             completion(success)
@@ -847,6 +842,7 @@ class MusicService : MediaBrowserServiceCompat(),
             playbackManager.setNextDataSource(getSongAt(nextPosition).uri.toString())
             this.nextPosition = nextPosition
         } catch (ignored: Exception) {
+            ignored.printStackTrace()
         }
     }
 
@@ -876,7 +872,7 @@ class MusicService : MediaBrowserServiceCompat(),
     }
 
     private fun releaseWakeLock() {
-        if (wakeLock!!.isHeld) {
+        if (wakeLock?.isHeld == true) {
             wakeLock?.release()
         }
     }
@@ -1373,10 +1369,10 @@ class MusicService : MediaBrowserServiceCompat(),
             if (VersionUtils.hasMarshmallow()) PendingIntent.FLAG_IMMUTABLE else 0
         )
         mediaSession = MediaSessionCompat(
-            this,
-            BuildConfig.APPLICATION_ID,
-            mediaButtonReceiverComponentName,
-            mediaButtonReceiverPendingIntent
+            /* context = */ this,
+            /* tag = */ BuildConfig.APPLICATION_ID,
+            /* mbrComponent = */ mediaButtonReceiverComponentName,
+            /* mbrIntent = */ mediaButtonReceiverPendingIntent
         )
         val mediaSessionCallback = MediaSessionCallback(this)
         mediaSession?.setCallback(mediaSessionCallback)

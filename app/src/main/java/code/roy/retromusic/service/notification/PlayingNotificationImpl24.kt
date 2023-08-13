@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2019 Hemanth Savarala.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by
- *  the Free Software Foundation either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- */
-
 package code.roy.retromusic.service.notification
 
 import android.annotation.SuppressLint
@@ -54,9 +40,12 @@ class PlayingNotificationImpl24(
         action.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
         val clickIntent =
             PendingIntent.getActivity(
-                context,
+                /* context = */ context,
+                /* requestCode = */
                 0,
+                /* intent = */
                 action,
+                /* flags = */
                 PendingIntent.FLAG_UPDATE_CURRENT or if (VersionUtils.hasMarshmallow())
                     PendingIntent.FLAG_IMMUTABLE
                 else 0
@@ -66,29 +55,29 @@ class PlayingNotificationImpl24(
         val intent = Intent(ACTION_QUIT)
         intent.component = serviceName
         val deleteIntent = PendingIntent.getService(
-            context,
-            0,
-            intent,
-            PendingIntent.FLAG_UPDATE_CURRENT or (if (VersionUtils.hasMarshmallow())
+            /* context = */ context,
+            /* requestCode = */ 0,
+            /* intent = */ intent,
+            /* flags = */ PendingIntent.FLAG_UPDATE_CURRENT or (if (VersionUtils.hasMarshmallow())
                 PendingIntent.FLAG_IMMUTABLE
             else 0)
         )
         val toggleFavorite = buildFavoriteAction(false)
         val playPauseAction = buildPlayAction(true)
         val previousAction = NotificationCompat.Action(
-            R.drawable.ic_skip_previous,
-            context.getString(R.string.action_previous),
-            retrievePlaybackAction(ACTION_REWIND)
+            /* icon = */ R.drawable.ic_skip_previous,
+            /* title = */ context.getString(R.string.action_previous),
+            /* intent = */ retrievePlaybackAction(ACTION_REWIND)
         )
         val nextAction = NotificationCompat.Action(
-            R.drawable.ic_skip_next,
-            context.getString(R.string.action_next),
-            retrievePlaybackAction(ACTION_SKIP)
+            /* icon = */ R.drawable.ic_skip_next,
+            /* title = */ context.getString(R.string.action_next),
+            /* intent = */ retrievePlaybackAction(ACTION_SKIP)
         )
         val dismissAction = NotificationCompat.Action(
-            R.drawable.ic_close,
-            context.getString(R.string.action_cancel),
-            retrievePlaybackAction(ACTION_QUIT)
+            /* icon = */ R.drawable.ic_close,
+            /* title = */ context.getString(R.string.action_cancel),
+            /* intent = */ retrievePlaybackAction(ACTION_QUIT)
         )
         setSmallIcon(R.drawable.ic_notification)
         setContentIntent(clickIntent)
@@ -127,7 +116,10 @@ class PlayingNotificationImpl24(
                 bigNotificationImageSize,
                 bigNotificationImageSize
             ) {
-                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                override fun onResourceReady(
+                    resource: Bitmap,
+                    transition: Transition<in Bitmap>?,
+                ) {
                     setLargeIcon(resource)
                     onUpdate()
                 }
@@ -136,8 +128,8 @@ class PlayingNotificationImpl24(
                     super.onLoadFailed(errorDrawable)
                     setLargeIcon(
                         BitmapFactory.decodeResource(
-                            context.resources,
-                            R.drawable.default_audio_art
+                            /* res = */ context.resources,
+                            /* id = */ R.drawable.default_audio_art
                         )
                     )
                     onUpdate()
@@ -146,8 +138,8 @@ class PlayingNotificationImpl24(
                 override fun onLoadCleared(placeholder: Drawable?) {
                     setLargeIcon(
                         BitmapFactory.decodeResource(
-                            context.resources,
-                            R.drawable.default_audio_art
+                            /* res = */ context.resources,
+                            /* id = */ R.drawable.default_audio_art
                         )
                     )
                     onUpdate()
@@ -159,9 +151,9 @@ class PlayingNotificationImpl24(
         val playButtonResId =
             if (isPlaying) R.drawable.ic_pause_white_48dp else R.drawable.ic_play_arrow_white_48dp
         return NotificationCompat.Action.Builder(
-            playButtonResId,
-            context.getString(R.string.action_play_pause),
-            retrievePlaybackAction(ACTION_TOGGLE_PAUSE)
+            /* icon = */ playButtonResId,
+            /* title = */ context.getString(R.string.action_play_pause),
+            /* intent = */ retrievePlaybackAction(ACTION_TOGGLE_PAUSE)
         ).build()
     }
 
@@ -169,9 +161,9 @@ class PlayingNotificationImpl24(
         val favoriteResId =
             if (isFavorite) R.drawable.ic_favorite else R.drawable.ic_favorite_border
         return NotificationCompat.Action.Builder(
-            favoriteResId,
-            context.getString(R.string.action_toggle_favorite),
-            retrievePlaybackAction(TOGGLE_FAVORITE)
+            /* icon = */ favoriteResId,
+            /* title = */ context.getString(R.string.action_toggle_favorite),
+            /* intent = */ retrievePlaybackAction(TOGGLE_FAVORITE)
         ).build()
     }
 
