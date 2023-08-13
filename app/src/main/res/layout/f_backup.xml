@@ -9,8 +9,8 @@
         style="@style/Widget.Material3.Button.OutlinedButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="4dp"
         android:paddingVertical="10dp"
         android:text="@string/create_new_backup"
@@ -42,7 +42,7 @@
         app:layout_constraintStart_toEndOf="@+id/create_backup"
         app:layout_constraintTop_toTopOf="@+id/create_backup" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/backup_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

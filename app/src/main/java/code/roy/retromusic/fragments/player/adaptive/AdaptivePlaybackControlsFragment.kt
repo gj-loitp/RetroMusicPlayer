@@ -22,7 +22,7 @@ import code.roy.appthemehelper.util.ATHUtil
 import code.roy.appthemehelper.util.ColorUtil
 import code.roy.appthemehelper.util.MaterialValueHelper
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.FragmentAdaptivePlayerPlaybackControlsBinding
+import code.roy.retromusic.databinding.FAdaptivePlayerPlaybackControlsBinding
 import code.roy.retromusic.extensions.accentColor
 import code.roy.retromusic.extensions.applyColor
 import code.roy.retromusic.extensions.getSongInfo
@@ -36,9 +36,9 @@ import code.roy.retromusic.util.color.MediaNotificationProcessor
 import com.google.android.material.slider.Slider
 
 class AdaptivePlaybackControlsFragment :
-    AbsPlayerControlsFragment(R.layout.fragment_adaptive_player_playback_controls) {
+    AbsPlayerControlsFragment(R.layout.f_adaptive_player_playback_controls) {
 
-    private var _binding: FragmentAdaptivePlayerPlaybackControlsBinding? = null
+    private var _binding: FAdaptivePlayerPlaybackControlsBinding? = null
     private val binding get() = _binding!!
 
     override val progressSlider: Slider
@@ -64,7 +64,7 @@ class AdaptivePlaybackControlsFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentAdaptivePlayerPlaybackControlsBinding.bind(view)
+        _binding = FAdaptivePlayerPlaybackControlsBinding.bind(view)
 
         setUpPlayPauseFab()
     }

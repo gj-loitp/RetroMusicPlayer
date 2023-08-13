@@ -8,7 +8,7 @@
     android:paddingBottom="@dimen/mini_player_height"
     grid:alignmentMode="alignBounds">
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
@@ -24,9 +24,9 @@
         <include
             android:id="@+id/card_social"
             layout="@layout/card_social" />
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -42,5 +42,5 @@
         <include
             android:id="@+id/card_other"
             layout="@layout/card_other" />
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.gridlayout.widget.GridLayout>

@@ -37,7 +37,7 @@
                     android:name="code.roy.retromusic.fragments.player.PlayerAlbumCoverFragment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:layout="@layout/fragment_album_flat_cover" />
+                    tools:layout="@layout/f_album_flat_cover" />
             </code.roy.retromusic.views.HeightFitSquareLayout>
 
             <androidx.appcompat.widget.LinearLayoutCompat

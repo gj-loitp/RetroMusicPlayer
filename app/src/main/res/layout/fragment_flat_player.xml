@@ -31,7 +31,7 @@
         app:layout_constraintHeight_percent="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/status_bar"
-        tools:layout="@layout/fragment_album_flat_cover" />
+        tools:layout="@layout/f_album_flat_cover" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/playbackControlsFragment"

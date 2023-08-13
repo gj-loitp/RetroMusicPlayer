@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout="@layout/fragment_album_full_cover" />
+        tools:layout="@layout/f_album_full_cover" />
 
     <View
         android:id="@+id/mask"

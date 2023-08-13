@@ -107,7 +107,7 @@
 
             <include
                 android:id="@+id/fragment_album_content"
-                layout="@layout/fragment_album_content"
+                layout="@layout/f_album_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"

@@ -124,7 +124,6 @@
         app:layout_constraintTop_toBottomOf="@id/recyclerView"
         tools:visibility="visible" />
 
-
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/biographyText"
         style="@style/TextAppearance.MaterialComponents.Body1"
@@ -189,7 +188,6 @@
         app:layout_constraintTop_toBottomOf="@id/listenersLabel"
         tools:text="100000"
         tools:visibility="visible" />
-
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/scrobbles"

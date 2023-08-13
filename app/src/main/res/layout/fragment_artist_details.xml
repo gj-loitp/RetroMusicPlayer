@@ -90,7 +90,7 @@
 
             <include
                 android:id="@+id/fragment_artist_content"
-                layout="@layout/fragment_artist_content"
+                layout="@layout/f_artist_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"

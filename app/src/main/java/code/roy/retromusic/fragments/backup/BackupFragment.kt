@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import code.roy.retromusic.R
 import code.roy.retromusic.adapter.backup.BackupAdapter
-import code.roy.retromusic.databinding.FragmentBackupBinding
+import code.roy.retromusic.databinding.FBackupBinding
 import code.roy.retromusic.extensions.accentColor
 import code.roy.retromusic.extensions.accentOutlineColor
 import code.roy.retromusic.extensions.materialDialog
@@ -28,17 +28,17 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
 
-class BackupFragment : Fragment(R.layout.fragment_backup), BackupAdapter.BackupClickedListener {
+class BackupFragment : Fragment(R.layout.f_backup), BackupAdapter.BackupClickedListener {
 
     private val backupViewModel by viewModels<BackupViewModel>()
     private var backupAdapter: BackupAdapter? = null
 
-    private var _binding: code.roy.retromusic.databinding.FragmentBackupBinding? = null
+    private var _binding: FBackupBinding? = null
     private val binding get() = _binding!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentBackupBinding.bind(view)
+        _binding = FBackupBinding.bind(view)
         initAdapter()
         setupRecyclerview()
         backupViewModel.backupsLiveData.observe(viewLifecycleOwner) {

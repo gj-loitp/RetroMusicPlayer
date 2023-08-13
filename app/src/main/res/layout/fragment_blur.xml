@@ -39,7 +39,6 @@
         <include layout="@layout/v_status_bar" />
     </FrameLayout>
 
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/playerAlbumCoverFragment"
         android:name="code.roy.retromusic.fragments.player.PlayerAlbumCoverFragment"
@@ -60,7 +59,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/playerAlbumCoverFragment"
         tools:layout="@layout/f_player_playback_controls" />
-
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/playerToolbar"

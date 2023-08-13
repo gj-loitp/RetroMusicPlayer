@@ -25,21 +25,21 @@ import code.roy.retromusic.App
 import code.roy.retromusic.Constants
 import code.roy.retromusic.R
 import code.roy.retromusic.adapter.ContributorAdapter
-import code.roy.retromusic.databinding.FragmentAboutBinding
+import code.roy.retromusic.databinding.FAboutBinding
 import code.roy.retromusic.extensions.openUrl
 import code.roy.retromusic.fragments.LibraryViewModel
 import code.roy.retromusic.util.NavigationUtil
 import dev.chrisbanes.insetter.applyInsetter
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
-class AboutFragment : Fragment(R.layout.fragment_about), View.OnClickListener {
-    private var _binding: FragmentAboutBinding? = null
+class AboutFragment : Fragment(R.layout.f_about), View.OnClickListener {
+    private var _binding: FAboutBinding? = null
     private val binding get() = _binding!!
     private val libraryViewModel by activityViewModel<LibraryViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentAboutBinding.bind(view)
+        _binding = FAboutBinding.bind(view)
         binding.aboutContent.cardOther.version.setSummary(getAppVersion())
         setUpView()
         loadContributors()
