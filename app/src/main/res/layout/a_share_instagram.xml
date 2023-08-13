@@ -12,7 +12,7 @@
         android:id="@+id/mainContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/instagram_story_background"
+        android:background="@drawable/shape_instagram_story_background"
         android:gravity="center"
         android:minHeight="1080dp"
         android:orientation="vertical"

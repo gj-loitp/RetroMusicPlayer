@@ -31,7 +31,7 @@
         android:layout_height="match_parent"
         android:max="100"
         android:progress="80"
-        android:progressDrawable="@drawable/progress_drawable_vertical"
+        android:progressDrawable="@drawable/layer_progress_drawable_vertical"
         android:secondaryProgress="100" />
 
     <include layout="@layout/v_status_bar" />

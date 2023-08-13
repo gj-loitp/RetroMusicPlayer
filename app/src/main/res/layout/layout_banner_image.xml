@@ -31,7 +31,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                android:background="@drawable/shadow_up"
+                android:background="@drawable/shape_shadow_up"
                 app:layout_constraintBottom_toBottomOf="parent" />
 
             <code.roy.retromusic.views.RetroShapeableImageView

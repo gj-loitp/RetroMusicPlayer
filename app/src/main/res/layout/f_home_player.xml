@@ -70,7 +70,7 @@
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/shadow_down_strong"
+        android:background="@drawable/shape_shadow_down_strong"
         app:layout_constraintBottom_toBottomOf="@id/toolbarContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

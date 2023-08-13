@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:layout_gravity="bottom"
-        android:background="@drawable/shadow_up" />
+        android:background="@drawable/shape_shadow_up" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/title"

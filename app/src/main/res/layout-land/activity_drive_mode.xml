@@ -28,7 +28,7 @@
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/shadow_up_down"
+        android:background="@drawable/shape_shadow_up_down"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -164,7 +164,7 @@
         android:progressDrawable="@drawable/color_progress_seek"
         android:progressTint="@color/md_white_1000"
         android:splitTrack="false"
-        android:thumb="@drawable/switch_thumb_material"
+        android:thumb="@drawable/selector_switch_thumb_material"
         app:layout_constraintBottom_toTopOf="@id/songCurrentProgress"
         app:layout_constraintEnd_toEndOf="@id/shuffleButton"
         app:layout_constraintStart_toStartOf="@id/repeatButton"

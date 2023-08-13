@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:alpha="0"
-    android:background="@drawable/lyrics_mask"
+    android:background="@drawable/shape_lyrics_mask"
     android:clipToPadding="false"
     android:elevation="20dp"
     android:padding="16dp"

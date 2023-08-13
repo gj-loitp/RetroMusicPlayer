@@ -66,7 +66,7 @@
                 android:id="@+id/action_prev"
                 android:layout_width="42dp"
                 android:layout_height="42dp"
-                android:background="@drawable/notification_selector"
+                android:background="@drawable/ripple_notification_selector"
                 android:scaleType="centerInside"
                 tools:src="@drawable/ic_skip_previous"
                 tools:tint="?colorOnPrimary" />
@@ -75,7 +75,7 @@
                 android:id="@+id/action_play_pause"
                 android:layout_width="42dp"
                 android:layout_height="42dp"
-                android:background="@drawable/notification_selector"
+                android:background="@drawable/ripple_notification_selector"
                 android:scaleType="centerInside"
                 tools:src="@drawable/ic_pause_white_48dp"
                 tools:tint="?colorOnPrimary" />
@@ -84,7 +84,7 @@
                 android:id="@+id/action_next"
                 android:layout_width="42dp"
                 android:layout_height="42dp"
-                android:background="@drawable/notification_selector"
+                android:background="@drawable/ripple_notification_selector"
                 android:scaleType="centerInside"
                 tools:src="@drawable/ic_skip_next"
                 tools:tint="?colorOnPrimary" />
@@ -93,7 +93,7 @@
                 android:id="@+id/action_quit"
                 android:layout_width="42dp"
                 android:layout_height="42dp"
-                android:background="@drawable/notification_selector"
+                android:background="@drawable/ripple_notification_selector"
                 android:scaleType="centerInside"
                 tools:src="@drawable/ic_close"
                 tools:tint="?colorOnPrimary" />

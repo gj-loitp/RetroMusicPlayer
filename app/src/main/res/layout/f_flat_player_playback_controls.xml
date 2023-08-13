@@ -29,7 +29,7 @@
         android:paddingVertical="@dimen/seekbar_padding"
         android:progressDrawable="@drawable/color_progress_seek"
         android:splitTrack="false"
-        android:thumb="@drawable/switch_square"
+        android:thumb="@drawable/shape_switch_square"
         app:layout_constraintEnd_toStartOf="@id/songTotalTime"
         app:layout_constraintStart_toEndOf="@id/songCurrentProgress"
         app:layout_constraintTop_toTopOf="parent"

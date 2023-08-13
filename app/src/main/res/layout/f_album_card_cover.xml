@@ -30,6 +30,6 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/shadow_up_edited" />
+            android:background="@drawable/shape_shadow_up_edited" />
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

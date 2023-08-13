@@ -10,7 +10,7 @@
         android:id="@+id/bannerContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/shadow_pro" />
+        android:background="@drawable/shape_shadow_pro" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
