@@ -25,7 +25,7 @@ import androidx.core.content.getSystemService
 import androidx.fragment.app.Fragment
 import code.roy.appthemehelper.ThemeStore
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.FragmentVolumeBinding
+import code.roy.retromusic.databinding.FVolumeBinding
 import code.roy.retromusic.extensions.applyColor
 import code.roy.retromusic.helper.MusicPlayerRemote
 import code.roy.retromusic.util.PreferenceUtil
@@ -36,7 +36,7 @@ import com.google.android.material.slider.Slider
 class VolumeFragment : Fragment(), Slider.OnChangeListener, OnAudioVolumeChangedListener,
     View.OnClickListener {
 
-    private var _binding: FragmentVolumeBinding? = null
+    private var _binding: FVolumeBinding? = null
     private val binding get() = _binding!!
 
     private var audioVolumeObserver: AudioVolumeObserver? = null
@@ -49,7 +49,7 @@ class VolumeFragment : Fragment(), Slider.OnChangeListener, OnAudioVolumeChanged
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        _binding = FragmentVolumeBinding.inflate(inflater, container, false)
+        _binding = FVolumeBinding.inflate(inflater, container, false)
         return binding.root
     }
 

@@ -2,18 +2,12 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/imageContainer"
+    android:id="@+id/imageContainerCard"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     android:background="?attr/rectSelector"
-    android:orientation="vertical"
-    android:padding="4dp"
-    app:cardCornerRadius="@dimen/m3_card_corner_radius"
-    app:layout_constraintDimensionRatio="3:4"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    app:cardCornerRadius="@dimen/m3_card_corner_radius">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
@@ -24,27 +18,28 @@
             android:layout_width="156dp"
             android:layout_height="156dp"
             android:scaleType="centerCrop"
-            app:layout_constraintBottom_toTopOf="@+id/title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/default_album_art"
             tools:src="@tools:sample/avatars" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/title"
+        <FrameLayout
+            android:id="@+id/paletteColorContainer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:ellipsize="end"
-            android:maxLines="2"
             android:padding="8dp"
-            android:singleLine="true"
-            android:textAppearance="@style/TextViewBody1"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingPrefix"
-            tools:text="@tools:sample/full_names" />
+            app:layout_constraintTop_toBottomOf="@id/image">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textAppearance="@style/TextViewNormal"
+                tools:text="@string/home" />
+        </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

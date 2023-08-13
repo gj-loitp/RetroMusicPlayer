@@ -29,7 +29,7 @@ import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.roy.retromusic.util.color.MediaNotificationProcessor
 import code.roy.appthemehelper.util.VersionUtils
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.FragmentTinyPlayerBinding
+import code.roy.retromusic.databinding.FTinyPlayerBinding
 import code.roy.retromusic.extensions.drawAboveSystemBars
 import code.roy.retromusic.extensions.getSongInfo
 import code.roy.retromusic.extensions.hide
@@ -48,9 +48,9 @@ import code.roy.retromusic.util.PreferenceUtil
 import code.roy.retromusic.util.ViewUtil
 import kotlin.math.abs
 
-class TinyPlayerFragment : AbsPlayerFragment(R.layout.fragment_tiny_player),
+class TinyPlayerFragment : AbsPlayerFragment(R.layout.f_tiny_player),
     MusicProgressViewUpdateHelper.Callback {
-    private var _binding: code.roy.retromusic.databinding.FragmentTinyPlayerBinding? = null
+    private var _binding: code.roy.retromusic.databinding.FTinyPlayerBinding? = null
     private val binding get() = _binding!!
 
     private var lastColor: Int = 0
@@ -133,7 +133,7 @@ class TinyPlayerFragment : AbsPlayerFragment(R.layout.fragment_tiny_player),
     @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentTinyPlayerBinding.bind(view)
+        _binding = FTinyPlayerBinding.bind(view)
         binding.title.isSelected = true
         binding.progressBar.setOnClickListener(PlayPauseButtonOnClickHandler())
         binding.progressBar.setOnTouchListener(ProgressHelper(requireContext()))

@@ -1,17 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright (c) 2019 Hemanth Savarala.
-  ~
-  ~ Licensed under the GNU General Public License v3
-  ~
-  ~ This is free software: you can redistribute it and/or modify it under
-  ~ the terms of the GNU General Public License as published by
-  ~  the Free Software Foundation either version 3 of the License, or (at your option) any later version.
-  ~
-  ~ This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
-  ~ without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  ~ See the GNU General Public License for more details.
-  -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -24,7 +12,7 @@
         android:id="@+id/abs_playlists"
         layout="@layout/abs_playlists" />
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -42,7 +30,7 @@
             android:paddingBottom="@dimen/mini_player_height"
             tools:itemCount="10"
             tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            tools:listitem="@layout/item_album_card"
+            tools:listitem="@layout/v_item_album_card"
             tools:spanCount="3" />
-    </LinearLayout>
-</LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.appcompat.widget.LinearLayoutCompat>

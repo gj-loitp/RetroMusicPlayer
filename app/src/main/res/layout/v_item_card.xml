@@ -35,7 +35,7 @@
                 tools:ignore="ContentDescription"
                 tools:src="@tools:sample/avatars" />
 
-            <LinearLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/titleContainer"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
                     android:paddingTop="4dp"
                     android:singleLine="true"
                     tools:text="@tools:sample/full_names" />
-            </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/menu"

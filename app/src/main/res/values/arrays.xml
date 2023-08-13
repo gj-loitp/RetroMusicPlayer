@@ -91,10 +91,10 @@
     </string-array>
 
     <array name="pref_home_grid_style_layout">
-        <item>@layout/item_artist</item>
-        <item>@layout/item_artist_square</item>
-        <item>@layout/item_album_card</item>
-        <item>@layout/item_artist_card</item>
+        <item>@layout/v_item_artist</item>
+        <item>@layout/v_item_artist_square</item>
+        <item>@layout/v_item_album_card</item>
+        <item>@layout/v_item_artist_card</item>
         <item>@layout/v_item_image</item>
     </array>
 

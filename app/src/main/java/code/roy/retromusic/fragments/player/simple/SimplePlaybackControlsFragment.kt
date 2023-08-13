@@ -24,7 +24,7 @@ import code.roy.appthemehelper.util.ATHUtil
 import code.roy.appthemehelper.util.ColorUtil
 import code.roy.appthemehelper.util.MaterialValueHelper
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.FragmentSimpleControlsFragmentBinding
+import code.roy.retromusic.databinding.FSimpleControlsFragmentBinding
 import code.roy.retromusic.extensions.accentColor
 import code.roy.retromusic.extensions.getSongInfo
 import code.roy.retromusic.extensions.hide
@@ -41,9 +41,9 @@ import code.roy.retromusic.util.PreferenceUtil
  */
 
 class SimplePlaybackControlsFragment :
-    AbsPlayerControlsFragment(R.layout.fragment_simple_controls_fragment) {
+    AbsPlayerControlsFragment(R.layout.f_simple_controls_fragment) {
 
-    private var _binding: FragmentSimpleControlsFragmentBinding? = null
+    private var _binding: FSimpleControlsFragmentBinding? = null
     private val binding get() = _binding!!
 
     override val shuffleButton: ImageButton
@@ -79,7 +79,7 @@ class SimplePlaybackControlsFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentSimpleControlsFragmentBinding.bind(view)
+        _binding = FSimpleControlsFragmentBinding.bind(view)
         setUpPlayPauseFab()
         binding.title.isSelected = true
         binding.text.setOnClickListener {

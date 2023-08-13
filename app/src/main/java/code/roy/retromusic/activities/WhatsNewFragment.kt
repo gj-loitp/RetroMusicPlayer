@@ -20,7 +20,7 @@ import code.roy.appthemehelper.util.ColorUtil.lightenColor
 import code.roy.appthemehelper.util.MaterialValueHelper.getPrimaryTextColor
 import code.roy.retromusic.BuildConfig
 import code.roy.retromusic.Constants
-import code.roy.retromusic.databinding.FragmentWhatsNewBinding
+import code.roy.retromusic.databinding.FWhatsNewBinding
 import code.roy.retromusic.extensions.accentColor
 import code.roy.retromusic.extensions.openUrl
 import code.roy.retromusic.util.PreferenceUtil.lastVersion
@@ -29,7 +29,7 @@ import java.nio.charset.StandardCharsets
 import java.util.*
 
 class WhatsNewFragment : BottomSheetDialogFragment() {
-    private var _binding: code.roy.retromusic.databinding.FragmentWhatsNewBinding? = null
+    private var _binding: code.roy.retromusic.databinding.FWhatsNewBinding? = null
     val binding get() = _binding!!
 
     override fun onCreateView(
@@ -37,7 +37,7 @@ class WhatsNewFragment : BottomSheetDialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentWhatsNewBinding.inflate(inflater, container, false)
+        _binding = FWhatsNewBinding.inflate(inflater, container, false)
         return binding.root
     }
 

@@ -52,7 +52,7 @@ public class SAFGuideActivity extends IntroActivity {
             .image(R.drawable.saf_guide_1)
             .background(code.roy.appthemehelper.R.color.md_deep_purple_300)
             .backgroundDark(code.roy.appthemehelper.R.color.md_deep_purple_400)
-            .layout(R.layout.fragment_simple_slide_large_image)
+            .layout(R.layout.f_simple_slide_large_image)
             .build());
     addSlide(
         new SimpleSlide.Builder()
@@ -61,7 +61,7 @@ public class SAFGuideActivity extends IntroActivity {
             .image(R.drawable.saf_guide_2)
             .background(code.roy.appthemehelper.R.color.md_deep_purple_500)
             .backgroundDark(code.roy.appthemehelper.R.color.md_deep_purple_600)
-            .layout(R.layout.fragment_simple_slide_large_image)
+            .layout(R.layout.f_simple_slide_large_image)
             .build());
     addSlide(
         new SimpleSlide.Builder()
@@ -70,7 +70,7 @@ public class SAFGuideActivity extends IntroActivity {
             .image(R.drawable.saf_guide_3)
             .background(code.roy.appthemehelper.R.color.md_deep_purple_700)
             .backgroundDark(code.roy.appthemehelper.R.color.md_deep_purple_800)
-            .layout(R.layout.fragment_simple_slide_large_image)
+            .layout(R.layout.f_simple_slide_large_image)
             .build());
   }
 }

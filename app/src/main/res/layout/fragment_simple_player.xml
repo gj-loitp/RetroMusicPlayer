@@ -11,8 +11,7 @@
 
     <include layout="@layout/v_shadow_statusbar_toolbar" />
 
-    <include
-        layout="@layout/v_status_bar" />
+    <include layout="@layout/v_status_bar" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/playerAlbumCoverFragment"

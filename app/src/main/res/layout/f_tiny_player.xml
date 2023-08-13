@@ -90,7 +90,7 @@
         android:layout_gravity="bottom"
         app:layout_constraintBottom_toTopOf="@id/playerToolbar"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout="@layout/fragment_tiny_controls_fragment" />
+        tools:layout="@layout/f_tiny_controls_fragment" />
 
     <code.roy.retromusic.views.VerticalTextView
         android:id="@+id/title"

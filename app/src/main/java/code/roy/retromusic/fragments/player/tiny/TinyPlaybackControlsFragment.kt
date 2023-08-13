@@ -19,13 +19,13 @@ import android.view.View
 import android.widget.ImageButton
 import code.roy.appthemehelper.util.ColorUtil
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.FragmentTinyControlsFragmentBinding
+import code.roy.retromusic.databinding.FTinyControlsFragmentBinding
 import code.roy.retromusic.fragments.base.AbsPlayerControlsFragment
 import code.roy.retromusic.util.color.MediaNotificationProcessor
 
 class TinyPlaybackControlsFragment :
-    AbsPlayerControlsFragment(R.layout.fragment_tiny_controls_fragment) {
-    private var _binding: FragmentTinyControlsFragmentBinding? = null
+    AbsPlayerControlsFragment(R.layout.f_tiny_controls_fragment) {
+    private var _binding: FTinyControlsFragmentBinding? = null
     private val binding get() = _binding!!
 
     override val shuffleButton: ImageButton
@@ -51,7 +51,7 @@ class TinyPlaybackControlsFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentTinyControlsFragmentBinding.bind(view)
+        _binding = FTinyControlsFragmentBinding.bind(view)
     }
 
     override fun onServiceConnected() {
