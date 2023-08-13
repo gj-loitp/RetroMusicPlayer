@@ -31,7 +31,7 @@
         android:overScrollMode="@integer/overScrollMode"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -56,7 +56,6 @@
                     tools:srcCompat="@tools:sample/backgrounds/scenic[5]" />
 
             </code.roy.retromusic.views.WidthFitSquareCardView>
-
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/albumTitleContainer"
@@ -153,6 +152,6 @@
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="52dp" />
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

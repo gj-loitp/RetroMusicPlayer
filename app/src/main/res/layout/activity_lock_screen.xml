@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop" />
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#80000000"
@@ -46,8 +46,7 @@
 
         </code.roy.retromusic.views.WidthFitSquareCardView>
 
-
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -61,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:layout="@layout/f_lock_screen_playback_controls" />
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/slide"
@@ -73,5 +72,5 @@
             android:padding="16dp"
             android:text="@string/swipe_to_unlock"
             android:textColor="?android:attr/textColorPrimary" />
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </RelativeLayout>

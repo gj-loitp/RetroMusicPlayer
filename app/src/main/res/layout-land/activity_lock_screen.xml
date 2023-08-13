@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop" />
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#80000000"
@@ -66,8 +66,7 @@
                 </com.google.android.material.card.MaterialCardView>
             </code.roy.retromusic.views.HeightFitSquareLayout>
 
-
-            <LinearLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -82,9 +81,9 @@
                     android:layout_height="match_parent"
                     tools:layout="@layout/f_lock_screen_playback_controls" />
 
-            </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </RelativeLayout>

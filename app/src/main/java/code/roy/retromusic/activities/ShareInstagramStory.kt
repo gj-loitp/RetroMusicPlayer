@@ -28,7 +28,7 @@ import code.roy.retromusic.util.color.MediaNotificationProcessor
 import code.roy.appthemehelper.util.ColorUtil
 import code.roy.appthemehelper.util.MaterialValueHelper
 import code.roy.retromusic.activities.base.AbsThemeActivity
-import code.roy.retromusic.databinding.ActivityShareInstagramBinding
+import code.roy.retromusic.databinding.AShareInstagramBinding
 import code.roy.retromusic.extensions.accentColor
 import code.roy.retromusic.extensions.setStatusBarColor
 import code.roy.retromusic.glide.RetroGlideExtension
@@ -45,7 +45,7 @@ import com.bumptech.glide.Glide
 
 class ShareInstagramStory : AbsThemeActivity() {
 
-    private lateinit var binding: ActivityShareInstagramBinding
+    private lateinit var binding: AShareInstagramBinding
 
     companion object {
         const val EXTRA_SONG = "extra_song"
@@ -61,7 +61,7 @@ class ShareInstagramStory : AbsThemeActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityShareInstagramBinding.inflate(layoutInflater)
+        binding = AShareInstagramBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setStatusBarColor(Color.TRANSPARENT)
 

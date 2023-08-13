@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.updateLayoutParams
 import androidx.lifecycle.lifecycleScope
 import code.roy.retromusic.PLAYLISTS
-import code.roy.retromusic.databinding.ActivityRestoreBinding
+import code.roy.retromusic.databinding.ARestoreBinding
 import code.roy.retromusic.extensions.accentColor
 import code.roy.retromusic.extensions.accentOutlineColor
 import code.roy.retromusic.extensions.addAccentColor
@@ -26,13 +26,13 @@ import kotlinx.coroutines.launch
 
 class RestoreActivity : AppCompatActivity() {
 
-    lateinit var binding: code.roy.retromusic.databinding.ActivityRestoreBinding
+    lateinit var binding: ARestoreBinding
     private val backupViewModel: BackupViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         updateTheme()
         super.onCreate(savedInstanceState)
-        binding = ActivityRestoreBinding.inflate(layoutInflater)
+        binding = ARestoreBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setWidth()
         val backupUri = intent?.data

@@ -7,7 +7,7 @@
     android:focusable="true"
     android:focusableInTouchMode="true">
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="false"
@@ -60,7 +60,7 @@
                 app:layout_constraintStart_toEndOf="@+id/imageContainer"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <LinearLayout
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -127,7 +127,6 @@
                         android:layout_marginTop="8dp"
                         app:hintEnabled="true">
 
-
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/albumArtistText"
                             android:layout_width="match_parent"
@@ -160,8 +159,7 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
-
-                    <LinearLayout
+                    <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:baselineAligned="false"
@@ -176,7 +174,6 @@
                             android:layout_weight="1"
                             app:hintEnabled="true">
 
-
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/genreText"
                                 android:layout_width="match_parent"
@@ -188,7 +185,6 @@
 
                         </com.google.android.material.textfield.TextInputLayout>
 
-
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/yearContainer"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -198,7 +194,6 @@
                             android:layout_marginTop="8dp"
                             android:layout_weight="1"
                             app:hintEnabled="true">
-
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/yearText"
@@ -211,9 +206,9 @@
                                 android:maxLines="1" />
 
                         </com.google.android.material.textfield.TextInputLayout>
-                    </LinearLayout>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
 
-                    <LinearLayout
+                    <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:baselineAligned="false"
@@ -262,7 +257,7 @@
                                 android:maxLines="1" />
 
                         </com.google.android.material.textfield.TextInputLayout>
-                    </LinearLayout>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/lyricsContainer"
@@ -271,7 +266,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         app:hintEnabled="true">
-
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/lyricsText"
@@ -288,12 +282,11 @@
                     <Space
                         android:layout_width="match_parent"
                         android:layout_height="52dp" />
-                </LinearLayout>
+                </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.core.widget.NestedScrollView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
-
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/saveTags"
@@ -320,4 +313,3 @@
         android:visibility="gone" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
-

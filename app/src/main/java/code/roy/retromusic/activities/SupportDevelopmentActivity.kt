@@ -18,7 +18,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.roy.retromusic.activities.base.AbsThemeActivity
-import code.roy.retromusic.databinding.ActivityDonationBinding
+import code.roy.retromusic.databinding.ADonationBinding
 import code.roy.retromusic.extensions.openUrl
 import code.roy.retromusic.extensions.setStatusBarColorAuto
 import code.roy.retromusic.extensions.setTaskDescriptionColorAuto
@@ -27,7 +27,7 @@ import code.roy.retromusic.extensions.surfaceColor
 
 class SupportDevelopmentActivity : AbsThemeActivity() {
 
-    lateinit var binding: ActivityDonationBinding
+    lateinit var binding: ADonationBinding
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
             onBackPressedDispatcher.onBackPressed()
@@ -38,7 +38,7 @@ class SupportDevelopmentActivity : AbsThemeActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityDonationBinding.inflate(layoutInflater)
+        binding = ADonationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setStatusBarColorAuto()

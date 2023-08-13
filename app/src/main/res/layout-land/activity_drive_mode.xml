@@ -1,24 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright (c) 2020 Hemanth Savarala.
-  ~
-  ~ Licensed under the GNU General Public License v3
-  ~
-  ~ This is free software: you can redistribute it and/or modify it under
-  ~ the terms of the GNU General Public License as published by
-  ~  the Free Software Foundation either version 3 of the License, or (at your option) any later version.
-  ~
-  ~ This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
-  ~ without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  ~ See the GNU General Public License for more details.
-  -->
-
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
 
     <code.roy.retromusic.views.StatusBarView
         android:id="@+id/status_bar"
@@ -47,7 +33,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/close"
@@ -122,7 +107,6 @@
         app:srcCompat="@drawable/ic_repeat"
         tools:layout_editor_absoluteY="240dp" />
 
-
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/shuffleButton"
         android:layout_width="72dp"
@@ -135,7 +119,7 @@
         app:layout_constraintTop_toTopOf="@+id/nextButton"
         app:srcCompat="@drawable/ic_shuffle" />
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/titleContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -169,15 +153,14 @@
             android:textAppearance="@style/TextViewHeadline6"
             android:textColor="@color/md_grey_200"
             tools:text="@tools:sample/lorem/random" />
-    </LinearLayout>
-
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <com.google.android.material.slider.Slider
         android:id="@+id/progressSlider"
+        style="@style/Widget.Retro.Slider"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:maxHeight="3dp"
-        style="@style/Widget.Retro.Slider"
         android:progressDrawable="@drawable/color_progress_seek"
         android:progressTint="@color/md_white_1000"
         android:splitTrack="false"

@@ -30,7 +30,7 @@
         android:overScrollMode="@integer/overScrollMode"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -45,7 +45,7 @@
                 app:cardCornerRadius="8dp"
                 app:cardUseCompatPadding="true">
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center|top"
@@ -53,7 +53,7 @@
                     android:padding="8dp"
                     android:src="@drawable/ic_paypal" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|bottom"
@@ -75,7 +75,7 @@
                 app:cardCornerRadius="8dp"
                 app:cardUseCompatPadding="true">
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center|top"
@@ -83,16 +83,16 @@
                     android:padding="8dp"
                     android:src="@drawable/ic_kofi" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="96dp"
-                    android:text="Ko-fi"
                     android:paddingBottom="16dp"
+                    android:text="Ko-fi"
                     android:textAppearance="?textAppearanceLabelMedium" />
             </com.google.android.material.card.MaterialCardView>
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.core.widget.NestedScrollView>
 

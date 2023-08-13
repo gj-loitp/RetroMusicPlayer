@@ -27,7 +27,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
                 style="@style/Toolbar"
@@ -41,7 +40,7 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
@@ -50,7 +49,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/appBarLayout">
 
-            <LinearLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -70,9 +69,9 @@
                     android:text="@string/black_theme_name"
                     android:textAppearance="@style/TextViewSubtitle1"
                     android:textColor="@color/md_white_1000" />
-            </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <LinearLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -92,9 +91,9 @@
                     android:text="@string/now_playing_themes"
                     android:textAppearance="@style/TextViewSubtitle1"
                     android:textColor="@color/md_white_1000" />
-            </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <LinearLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -114,9 +113,9 @@
                     android:text="@string/carousal_effect_on_now_playing_screen"
                     android:textAppearance="@style/TextViewSubtitle1"
                     android:textColor="@color/md_white_1000" />
-            </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <LinearLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -136,11 +135,11 @@
                     android:text="@string/support_development"
                     android:textAppearance="@style/TextViewSubtitle1"
                     android:textColor="@color/md_white_1000" />
-            </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/actions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -174,7 +173,6 @@
                 app:backgroundTint="@color/md_white_1000"
                 app:cornerRadius="28dp" />
 
-
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/purchaseButton"
                 android:layout_width="match_parent"
@@ -186,6 +184,6 @@
                 android:textAppearance="@style/TextViewHeadline6"
                 app:cornerRadius="28dp" />
 
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

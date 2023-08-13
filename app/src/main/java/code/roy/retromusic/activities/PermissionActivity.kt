@@ -30,7 +30,7 @@ import androidx.core.view.isVisible
 import code.roy.appthemehelper.util.VersionUtils
 import code.roy.retromusic.R
 import code.roy.retromusic.activities.base.AbsMusicServiceActivity
-import code.roy.retromusic.databinding.ActivityPermissionBinding
+import code.roy.retromusic.databinding.APermissionBinding
 import code.roy.retromusic.extensions.accentBackgroundColor
 import code.roy.retromusic.extensions.accentColor
 import code.roy.retromusic.extensions.setStatusBarColorAuto
@@ -38,11 +38,11 @@ import code.roy.retromusic.extensions.setTaskDescriptionColorAuto
 import code.roy.retromusic.extensions.show
 
 class PermissionActivity : AbsMusicServiceActivity() {
-    private lateinit var binding: ActivityPermissionBinding
+    private lateinit var binding: APermissionBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityPermissionBinding.inflate(layoutInflater)
+        binding = APermissionBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setStatusBarColorAuto()
         setTaskDescriptionColorAuto()

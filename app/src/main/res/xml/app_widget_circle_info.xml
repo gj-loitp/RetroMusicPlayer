@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:initialLayout="@layout/app_widget_circle"
+    android:initialLayout="@layout/v_app_widget_circle"
     android:maxResizeWidth="@dimen/app_widget_circle_max_width"
     android:maxResizeHeight="@dimen/app_widget_circle_max_height"
     android:minWidth="@dimen/app_widget_circle_min_width"

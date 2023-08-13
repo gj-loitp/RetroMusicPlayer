@@ -10,7 +10,7 @@
 
     <include
         android:id="@+id/abs_playlists"
-        layout="@layout/abs_playlists" />
+        layout="@layout/v_abs_playlists" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"

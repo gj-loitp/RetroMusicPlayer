@@ -26,19 +26,19 @@ import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.roy.retromusic.R
 import code.roy.retromusic.activities.base.AbsThemeActivity
 import code.roy.retromusic.activities.bugreport.model.DeviceInfo
-import code.roy.retromusic.databinding.ActivityBugReportBinding
+import code.roy.retromusic.databinding.ABugReportBinding
 import code.roy.retromusic.extensions.accentColor
 import code.roy.retromusic.extensions.setTaskDescriptionColorAuto
 import code.roy.retromusic.extensions.showToast
 
 open class BugReportActivity : AbsThemeActivity() {
 
-    private lateinit var binding: code.roy.retromusic.databinding.ActivityBugReportBinding
+    private lateinit var binding: ABugReportBinding
     private var deviceInfo: DeviceInfo? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityBugReportBinding.inflate(layoutInflater)
+        binding = ABugReportBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setTaskDescriptionColorAuto()
 
@@ -53,12 +53,12 @@ open class BugReportActivity : AbsThemeActivity() {
     private fun initViews() {
         val accentColor = accentColor()
         setSupportActionBar(binding.toolbar)
-        code.roy.appthemehelper.util.ToolbarContentTintHelper.colorBackButton(binding.toolbar)
+        ToolbarContentTintHelper.colorBackButton(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding.cardDeviceInfo.airTextDeviceInfo.setOnClickListener { copyDeviceInfoToClipBoard() }
 
-        code.roy.appthemehelper.util.TintHelper.setTintAuto(binding.sendFab, accentColor, true)
+        TintHelper.setTintAuto(binding.sendFab, accentColor, true)
         binding.sendFab.setOnClickListener { reportIssue() }
     }
 

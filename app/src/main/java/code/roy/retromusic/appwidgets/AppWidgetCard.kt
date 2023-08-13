@@ -51,7 +51,7 @@ class AppWidgetCard : BaseAppWidget() {
      * actions if service not running.
      */
     override fun defaultAppWidget(context: Context, appWidgetIds: IntArray) {
-        val appWidgetView = RemoteViews(context.packageName, R.layout.app_widget_card)
+        val appWidgetView = RemoteViews(context.packageName, R.layout.v_app_widget_card)
 
         appWidgetView.setViewVisibility(R.id.media_titles, View.INVISIBLE)
         appWidgetView.setImageViewResource(R.id.image, R.drawable.default_audio_art)
@@ -86,7 +86,7 @@ class AppWidgetCard : BaseAppWidget() {
      * Update all active widget instances by pushing changes
      */
     override fun performUpdate(service: MusicService, appWidgetIds: IntArray?) {
-        val appWidgetView = RemoteViews(service.packageName, R.layout.app_widget_card)
+        val appWidgetView = RemoteViews(service.packageName, R.layout.v_app_widget_card)
 
         val isPlaying = service.isPlaying
         val song = service.currentSong

@@ -21,7 +21,7 @@ import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.roy.appthemehelper.util.ATHUtil.isWindowBackgroundDark
 import code.roy.appthemehelper.util.ColorUtil.lightenColor
 import code.roy.retromusic.activities.base.AbsThemeActivity
-import code.roy.retromusic.databinding.ActivityLicenseBinding
+import code.roy.retromusic.databinding.ALicenseBinding
 import code.roy.retromusic.extensions.accentColor
 import code.roy.retromusic.extensions.drawAboveSystemBars
 import code.roy.retromusic.extensions.surfaceColor
@@ -31,10 +31,10 @@ import java.nio.charset.StandardCharsets
 
 /** Created by hemanths on 2019-09-27.  */
 class LicenseActivity : AbsThemeActivity() {
-    private lateinit var binding: ActivityLicenseBinding
+    private lateinit var binding: ALicenseBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLicenseBinding.inflate(layoutInflater)
+        binding = ALicenseBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
         ToolbarContentTintHelper.colorBackButton(binding.toolbar)

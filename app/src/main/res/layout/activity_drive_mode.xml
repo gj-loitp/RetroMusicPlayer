@@ -1,16 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright (c) 2020 Hemanth Savarala.
-  ~
-  ~ Licensed under the GNU General Public License v3
-  ~
-  ~ This is free software: you can redistribute it and/or modify it under
-  ~ the terms of the GNU General Public License as published by
-  ~  the Free Software Foundation either version 3 of the License, or (at your option) any later version.
-  ~
-  ~ This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
-  ~ without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  ~ See the GNU General Public License for more details.
-  -->
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -144,7 +132,7 @@
         app:layout_constraintTop_toTopOf="@+id/repeatButton"
         app:srcCompat="@drawable/ic_shuffle" />
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/titleContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -175,14 +163,14 @@
             android:textAppearance="@style/TextViewHeadline5"
             android:textColor="@color/md_grey_200"
             tools:text="@tools:sample/lorem/random" />
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <com.google.android.material.slider.Slider
         android:id="@+id/progressSlider"
+        style="@style/Widget.Retro.Slider"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:maxHeight="3dp"
-        style="@style/Widget.Retro.Slider"
         app:layout_constraintBottom_toTopOf="@id/songCurrentProgress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

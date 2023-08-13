@@ -50,7 +50,7 @@ class AppWidgetBig : BaseAppWidget() {
      */
     override fun defaultAppWidget(context: Context, appWidgetIds: IntArray) {
         val appWidgetView = RemoteViews(
-            context.packageName, R.layout.app_widget_big
+            context.packageName, R.layout.v_app_widget_big
         )
 
         appWidgetView.setViewVisibility(
@@ -88,7 +88,7 @@ class AppWidgetBig : BaseAppWidget() {
      */
     override fun performUpdate(service: MusicService, appWidgetIds: IntArray?) {
         val appWidgetView = RemoteViews(
-            service.packageName, R.layout.app_widget_big
+            service.packageName, R.layout.v_app_widget_big
         )
 
         val isPlaying = service.isPlaying

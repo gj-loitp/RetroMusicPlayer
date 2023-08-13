@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         tools:ignore="ContentDescription" />
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/media_actions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,7 +21,7 @@
         android:layoutDirection="ltr"
         android:orientation="horizontal">
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/button_prev"
             android:layout_width="72dp"
             android:layout_height="72dp"
@@ -32,7 +32,7 @@
             tools:src="@drawable/ic_skip_previous"
             tools:tint="@color/ate_primary_text_dark" />
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/button_toggle_play_pause"
             android:layout_width="72dp"
             android:layout_height="72dp"
@@ -43,7 +43,7 @@
             tools:src="@drawable/ic_play_arrow_white_32dp"
             tools:tint="@color/ate_primary_text_dark" />
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/button_next"
             android:layout_width="72dp"
             android:layout_height="72dp"
@@ -55,7 +55,7 @@
             tools:tint="@color/ate_primary_text_dark" />
 
 
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <FrameLayout
         android:id="@+id/clickable_area"
@@ -64,7 +64,7 @@
         android:layout_above="@id/media_actions"
         android:layout_alignParentTop="true" />
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/media_titles"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -84,7 +84,7 @@
             android:textColor="@color/ate_primary_text_dark"
             tools:text="Title" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -95,6 +95,6 @@
             android:textColor="@color/ate_secondary_text_dark"
             tools:text="Text" />
 
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </RelativeLayout>
