@@ -25,7 +25,7 @@ import code.roy.retromusic.util.color.MediaNotificationProcessor
 import code.roy.appthemehelper.util.ColorUtil
 import code.roy.appthemehelper.util.MaterialValueHelper
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.FragmentBlurPlayerPlaybackControlsBinding
+import code.roy.retromusic.databinding.FBlurPlayerPlaybackControlsBinding
 import code.roy.retromusic.extensions.applyColor
 import code.roy.retromusic.extensions.getSongInfo
 import code.roy.retromusic.extensions.hide
@@ -38,8 +38,8 @@ import code.roy.retromusic.util.PreferenceUtil
 import com.google.android.material.slider.Slider
 
 class BlurPlaybackControlsFragment :
-    AbsPlayerControlsFragment(R.layout.fragment_blur_player_playback_controls) {
-    private var _binding: FragmentBlurPlayerPlaybackControlsBinding? = null
+    AbsPlayerControlsFragment(R.layout.f_blur_player_playback_controls) {
+    private var _binding: FBlurPlayerPlaybackControlsBinding? = null
     private val binding get() = _binding!!
 
     override val progressSlider: Slider
@@ -65,7 +65,7 @@ class BlurPlaybackControlsFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentBlurPlayerPlaybackControlsBinding.bind(view)
+        _binding = FBlurPlayerPlaybackControlsBinding.bind(view)
         setUpPlayPauseFab()
         binding.title.isSelected = true
         binding.text.isSelected = true

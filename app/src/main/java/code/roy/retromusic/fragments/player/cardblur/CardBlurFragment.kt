@@ -23,7 +23,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.preference.PreferenceManager
 import code.roy.retromusic.NEW_BLUR_AMOUNT
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.FragmentCardBlurPlayerBinding
+import code.roy.retromusic.databinding.FCardBlurPlayerBinding
 import code.roy.retromusic.extensions.drawAboveSystemBars
 import code.roy.retromusic.extensions.whichFragment
 import code.roy.retromusic.fragments.base.AbsPlayerFragment
@@ -40,7 +40,7 @@ import code.roy.retromusic.util.color.MediaNotificationProcessor
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestBuilder
 
-class CardBlurFragment : AbsPlayerFragment(R.layout.fragment_card_blur_player),
+class CardBlurFragment : AbsPlayerFragment(R.layout.f_card_blur_player),
     SharedPreferences.OnSharedPreferenceChangeListener {
     override fun playerToolbar(): Toolbar {
         return binding.playerToolbar
@@ -51,7 +51,7 @@ class CardBlurFragment : AbsPlayerFragment(R.layout.fragment_card_blur_player),
         get() = lastColor
     private lateinit var playbackControlsFragment: CardBlurPlaybackControlsFragment
 
-    private var _binding: FragmentCardBlurPlayerBinding? = null
+    private var _binding: FCardBlurPlayerBinding? = null
     private val binding get() = _binding!!
     private var lastRequest: RequestBuilder<Drawable>? = null
 
@@ -90,7 +90,7 @@ class CardBlurFragment : AbsPlayerFragment(R.layout.fragment_card_blur_player),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentCardBlurPlayerBinding.bind(view)
+        _binding = FCardBlurPlayerBinding.bind(view)
         setUpSubFragments()
         setUpPlayerToolbar()
         binding.playerToolbar.drawAboveSystemBars()

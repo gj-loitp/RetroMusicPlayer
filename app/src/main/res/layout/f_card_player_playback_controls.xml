@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,7 +9,7 @@
     android:orientation="vertical"
     tools:ignore="MissingPrefix">
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="@dimen/progress_container_height"
         android:background="@color/twenty_percent_black_overlay">
@@ -45,7 +45,7 @@
             tools:ignore="RtlHardcoded,RtlSymmetry"
             tools:text="@tools:sample/date/hhmmss" />
 
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <include
         android:id="@+id/media_button"
@@ -58,7 +58,7 @@
         android:paddingStart="8dp"
         android:paddingEnd="8dp" />
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -78,7 +78,7 @@
             app:srcCompat="@drawable/ic_play_circle_filled"
             app:tint="?colorAccent" />
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -128,6 +128,6 @@
                 android:paddingTop="4dp"
                 android:textSize="12sp"
                 tools:text="@tools:sample/lorem/random" />
-        </LinearLayout>
-    </LinearLayout>
-</LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -26,7 +26,7 @@
 
         <include layout="@layout/v_shadow_statusbar_toolbar" />
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 app:navigationIcon="@drawable/ic_keyboard_arrow_down" />
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
     </FrameLayout>
 
     <com.google.android.material.card.MaterialCardView
@@ -60,6 +60,6 @@
             android:name="code.roy.retromusic.fragments.player.card.CardPlaybackControlsFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:layout="@layout/fragment_card_player_playback_controls" />
+            tools:layout="@layout/f_card_player_playback_controls" />
     </com.google.android.material.card.MaterialCardView>
 </FrameLayout>

@@ -18,7 +18,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.Toolbar
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.FragmentFitBinding
+import code.roy.retromusic.databinding.FFitBinding
 import code.roy.retromusic.extensions.colorControlNormal
 import code.roy.retromusic.extensions.drawAboveSystemBars
 import code.roy.retromusic.extensions.whichFragment
@@ -28,8 +28,8 @@ import code.roy.retromusic.helper.MusicPlayerRemote
 import code.roy.retromusic.model.Song
 import code.roy.retromusic.util.color.MediaNotificationProcessor
 
-class FitFragment : AbsPlayerFragment(R.layout.fragment_fit) {
-    private var _binding: FragmentFitBinding? = null
+class FitFragment : AbsPlayerFragment(R.layout.f_fit) {
+    private var _binding: FFitBinding? = null
     private val binding get() = _binding!!
 
     override fun playerToolbar(): Toolbar {
@@ -78,7 +78,7 @@ class FitFragment : AbsPlayerFragment(R.layout.fragment_fit) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentFitBinding.bind(view)
+        _binding = FFitBinding.bind(view)
         setUpSubFragments()
         setUpPlayerToolbar()
         playerToolbar().drawAboveSystemBars()

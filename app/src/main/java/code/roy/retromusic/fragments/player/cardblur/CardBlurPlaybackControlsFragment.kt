@@ -24,7 +24,7 @@ import code.roy.appthemehelper.util.TintHelper
 import code.roy.retromusic.util.color.MediaNotificationProcessor
 import code.roy.appthemehelper.util.ColorUtil
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.FragmentCardBlurPlayerPlaybackControlsBinding
+import code.roy.retromusic.databinding.FCardBlurPlayerPlaybackControlsBinding
 import code.roy.retromusic.extensions.applyColor
 import code.roy.retromusic.extensions.getSongInfo
 import code.roy.retromusic.extensions.hide
@@ -36,9 +36,9 @@ import code.roy.retromusic.util.PreferenceUtil
 import com.google.android.material.slider.Slider
 
 class CardBlurPlaybackControlsFragment :
-    AbsPlayerControlsFragment(R.layout.fragment_card_blur_player_playback_controls) {
+    AbsPlayerControlsFragment(R.layout.f_card_blur_player_playback_controls) {
 
-    private var _binding: FragmentCardBlurPlayerPlaybackControlsBinding? = null
+    private var _binding: FCardBlurPlayerPlaybackControlsBinding? = null
     private val binding get() = _binding!!
 
     override val progressSlider: Slider
@@ -64,7 +64,7 @@ class CardBlurPlaybackControlsFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentCardBlurPlayerPlaybackControlsBinding.bind(view)
+        _binding = FCardBlurPlayerPlaybackControlsBinding.bind(view)
         setUpPlayPauseFab()
         binding.progressSlider.applyColor(Color.WHITE)
     }

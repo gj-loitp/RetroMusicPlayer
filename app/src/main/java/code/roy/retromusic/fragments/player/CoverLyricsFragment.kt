@@ -10,7 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.preference.PreferenceManager
 import code.roy.retromusic.R
 import code.roy.retromusic.SHOW_LYRICS
-import code.roy.retromusic.databinding.FragmentCoverLyricsBinding
+import code.roy.retromusic.databinding.FCoverLyricsBinding
 import code.roy.retromusic.extensions.dipToPix
 import code.roy.retromusic.fragments.NowPlayingScreen
 import code.roy.retromusic.fragments.base.AbsMusicServiceFragment
@@ -29,10 +29,10 @@ import org.jaudiotagger.audio.exceptions.CannotReadException
 import java.io.File
 import java.io.FileNotFoundException
 
-class CoverLyricsFragment : AbsMusicServiceFragment(R.layout.fragment_cover_lyrics),
+class CoverLyricsFragment : AbsMusicServiceFragment(R.layout.f_cover_lyrics),
     MusicProgressViewUpdateHelper.Callback, SharedPreferences.OnSharedPreferenceChangeListener {
     private var progressViewUpdateHelper: MusicProgressViewUpdateHelper? = null
-    private var _binding: FragmentCoverLyricsBinding? = null
+    private var _binding: FCoverLyricsBinding? = null
     private val binding get() = _binding!!
 
     private val lyricsLayout: FrameLayout get() = binding.playerLyrics
@@ -43,7 +43,7 @@ class CoverLyricsFragment : AbsMusicServiceFragment(R.layout.fragment_cover_lyri
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentCoverLyricsBinding.bind(view)
+        _binding = FCoverLyricsBinding.bind(view)
         progressViewUpdateHelper = MusicProgressViewUpdateHelper(this, 500, 1000)
         if (PreferenceUtil.showLyrics) {
             progressViewUpdateHelper?.start()

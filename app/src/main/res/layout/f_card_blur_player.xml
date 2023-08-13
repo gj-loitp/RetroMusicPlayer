@@ -24,8 +24,7 @@
 
     <include layout="@layout/v_shadow_statusbar_toolbar" />
 
-
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -84,7 +83,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                tools:layout="@layout/fragment_cover_lyrics" />
+                tools:layout="@layout/f_cover_lyrics" />
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/playbackControlsFragment"
@@ -92,7 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                tools:layout="@layout/fragment_card_blur_player_playback_controls" />
+                tools:layout="@layout/f_card_blur_player_playback_controls" />
         </FrameLayout>
 
         <com.google.android.material.appbar.MaterialToolbar
@@ -102,6 +101,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             app:navigationIcon="@drawable/ic_keyboard_arrow_down" />
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </FrameLayout>

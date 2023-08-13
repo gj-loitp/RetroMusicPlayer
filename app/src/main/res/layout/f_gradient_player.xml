@@ -61,7 +61,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/playerAlbumCoverFragment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout="@layout/fragment_cover_lyrics" />
+            tools:layout="@layout/f_cover_lyrics" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

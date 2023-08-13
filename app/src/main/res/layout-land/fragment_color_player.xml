@@ -13,14 +13,14 @@
 
     <include layout="@layout/v_shadow_statusbar_toolbar" />
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <include layout="@layout/v_status_bar" />
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
@@ -37,7 +37,7 @@
                     tools:layout="@layout/fragment_album_cover" />
             </code.roy.retromusic.views.HeightFitSquareLayout>
 
-            <LinearLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -57,8 +57,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     app:navigationIcon="@drawable/ic_keyboard_arrow_down" />
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </FrameLayout>

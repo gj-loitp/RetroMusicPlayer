@@ -26,7 +26,7 @@ import android.widget.TextView
 import code.roy.retromusic.util.color.MediaNotificationProcessor
 import code.roy.appthemehelper.util.ColorUtil
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.FragmentColorPlayerPlaybackControlsBinding
+import code.roy.retromusic.databinding.FColorPlayerPlaybackControlsBinding
 import code.roy.retromusic.extensions.applyColor
 import code.roy.retromusic.extensions.getSongInfo
 import code.roy.retromusic.extensions.hide
@@ -40,9 +40,9 @@ import com.google.android.material.slider.Slider
 import kotlin.math.sqrt
 
 class ColorPlaybackControlsFragment :
-    AbsPlayerControlsFragment(R.layout.fragment_color_player_playback_controls) {
+    AbsPlayerControlsFragment(R.layout.f_color_player_playback_controls) {
 
-    private var _binding: FragmentColorPlayerPlaybackControlsBinding? = null
+    private var _binding: FColorPlayerPlaybackControlsBinding? = null
     private val binding get() = _binding!!
 
     override val progressSlider: Slider
@@ -68,7 +68,7 @@ class ColorPlaybackControlsFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentColorPlayerPlaybackControlsBinding.bind(view)
+        _binding = FColorPlayerPlaybackControlsBinding.bind(view)
 
         setUpPlayPauseFab()
         binding.title.isSelected = true

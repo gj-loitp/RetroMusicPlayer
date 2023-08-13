@@ -25,7 +25,7 @@ import code.roy.appthemehelper.util.ATHUtil
 import code.roy.appthemehelper.util.ColorUtil
 import code.roy.appthemehelper.util.MaterialValueHelper
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.FragmentCardPlayerPlaybackControlsBinding
+import code.roy.retromusic.databinding.FCardPlayerPlaybackControlsBinding
 import code.roy.retromusic.extensions.accentColor
 import code.roy.retromusic.extensions.getSongInfo
 import code.roy.retromusic.extensions.hide
@@ -38,10 +38,10 @@ import code.roy.retromusic.helper.MusicPlayerRemote
 import code.roy.retromusic.util.PreferenceUtil
 
 class CardPlaybackControlsFragment :
-    AbsPlayerControlsFragment(R.layout.fragment_card_player_playback_controls) {
+    AbsPlayerControlsFragment(R.layout.f_card_player_playback_controls) {
 
 
-    private var _binding: FragmentCardPlayerPlaybackControlsBinding? = null
+    private var _binding: FCardPlayerPlaybackControlsBinding? = null
     private val binding get() = _binding!!
 
     override val seekBar: SeekBar
@@ -67,7 +67,7 @@ class CardPlaybackControlsFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentCardPlayerPlaybackControlsBinding.bind(view)
+        _binding = FCardPlayerPlaybackControlsBinding.bind(view)
         setUpPlayPauseFab()
         binding.title.isSelected = true
         binding.text.isSelected = true

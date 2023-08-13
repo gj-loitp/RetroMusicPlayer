@@ -13,26 +13,25 @@
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.Guideline
-            android:layout_width="1dp"
-            android:orientation="vertical"
             android:id="@+id/middle_guideline"
-            app:layout_constraintGuide_percent="0.5"
-            android:layout_height="match_parent"/>
-
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/playerAlbumCoverFragment"
             android:name="code.roy.retromusic.fragments.player.PlayerAlbumCoverFragment"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintDimensionRatio="w,1:1"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintDimensionRatio="w,1:1"
             app:layout_constraintEnd_toEndOf="@id/middle_guideline"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbarContainer"
             tools:layout="@layout/fragment_album_cover" />
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/toolbarContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,37 +52,36 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                        app:navigationIcon="@drawable/ic_keyboard_arrow_down" />
-        </LinearLayout>
+                app:navigationIcon="@drawable/ic_keyboard_arrow_down" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <include
             android:id="@+id/playerControlsContainer"
-            layout="@layout/fragment_classic_controls"
+            layout="@layout/f_classic_controls"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:elevation="24dp"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:elevation="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/middle_guideline"
-            app:layout_constraintTop_toBottomOf="@+id/toolbarContainer"
-             />
+            app:layout_constraintTop_toBottomOf="@+id/toolbarContainer" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/playerQueueSheet"
         style="@style/BottomSheetStyle"
         android:layout_width="match_parent"
-        android:layout_gravity="end"
-        app:layout_anchorGravity="end"
         android:layout_height="match_parent"
-        app:shapeAppearanceOverlay="@style/TopCornerCardView"
+        android:layout_gravity="end"
         app:behavior_hideable="false"
         app:cardElevation="24dp"
+        app:layout_anchorGravity="end"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        app:shapeAppearanceOverlay="@style/TopCornerCardView"
         tools:peekHeight="0dp">
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clickable="false"
@@ -137,7 +135,7 @@
                 android:layout_height="match_parent"
                 android:overScrollMode="@integer/overScrollMode"
                 tools:listitem="@layout/item_list" />
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
     </com.google.android.material.card.MaterialCardView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -8,7 +8,7 @@
     android:clickable="true"
     android:focusable="true">
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -51,8 +51,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_weight="0"
-                app:navigationIcon="@drawable/ic_keyboard_arrow_down" />
-    </LinearLayout>
+            app:navigationIcon="@drawable/ic_keyboard_arrow_down" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <include layout="@layout/v_shadow_statusbar_toolbar" />
 </FrameLayout>
