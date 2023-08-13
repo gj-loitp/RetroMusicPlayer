@@ -18,7 +18,7 @@
         app:srcCompat="@drawable/ic_more_vert"
         tools:tint="@color/md_black_1000" />
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/titleContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
             tools:text="@tools:sample/lorem/random"
             tools:textColor="@color/md_black_1000" />
 
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/songFavourite"
@@ -78,7 +78,6 @@
         app:layout_constraintTop_toTopOf="@+id/titleContainer"
         app:srcCompat="@drawable/ic_favorite_border"
         tools:tint="@color/md_black_1000" />
-
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/songCurrentProgress"
@@ -97,10 +96,10 @@
 
     <com.google.android.material.slider.Slider
         android:id="@+id/progressSlider"
+        style="@style/Widget.Retro.Slider"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        style="@style/Widget.Retro.Slider"
         app:layout_constraintEnd_toStartOf="@id/songTotalTime"
         app:layout_constraintStart_toEndOf="@id/songCurrentProgress"
         app:layout_constraintTop_toBottomOf="@id/titleContainer"
@@ -121,7 +120,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/progressSlider"
         tools:text="@tools:sample/date/hhmmss" />
-
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/previousButton"

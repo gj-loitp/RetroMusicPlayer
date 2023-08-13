@@ -30,7 +30,7 @@ import code.roy.retromusic.util.color.MediaNotificationProcessor
 import code.roy.appthemehelper.util.ColorUtil
 import code.roy.appthemehelper.util.VersionUtils
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.FragmentFullPlayerControlsBinding
+import code.roy.retromusic.databinding.FFullPlayerControlsBinding
 import code.roy.retromusic.db.PlaylistEntity
 import code.roy.retromusic.db.toSongEntity
 import code.roy.retromusic.extensions.applyColor
@@ -59,11 +59,11 @@ import org.koin.androidx.viewmodel.ext.android.activityViewModel
  */
 
 class FullPlaybackControlsFragment :
-    AbsPlayerControlsFragment(R.layout.fragment_full_player_controls),
+    AbsPlayerControlsFragment(R.layout.f_full_player_controls),
     PopupMenu.OnMenuItemClickListener {
 
     private val libraryViewModel: LibraryViewModel by activityViewModel()
-    private var _binding: code.roy.retromusic.databinding.FragmentFullPlayerControlsBinding? = null
+    private var _binding: code.roy.retromusic.databinding.FFullPlayerControlsBinding? = null
     private val binding get() = _binding!!
 
     override val progressSlider: Slider
@@ -89,7 +89,7 @@ class FullPlaybackControlsFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentFullPlayerControlsBinding.bind(view)
+        _binding = FFullPlayerControlsBinding.bind(view)
 
         setUpMusicControllers()
         binding.songTotalTime.setTextColor(Color.WHITE)

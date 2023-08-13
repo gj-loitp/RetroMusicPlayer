@@ -42,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            tools:layout="@layout/fragment_gradient_controls" />
+            tools:layout="@layout/f_gradient_controls" />
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/playerToolbar"

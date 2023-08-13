@@ -27,7 +27,7 @@ import code.roy.monkey.retromusic.extensions.setUpMediaRouteButton
 import code.roy.appthemehelper.common.ATHToolbarActivity.getToolbarBackgroundColor
 import code.roy.appthemehelper.ThemeStore
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.FragmentLibraryBinding
+import code.roy.retromusic.databinding.FLibraryBinding
 import code.roy.retromusic.dialogs.CreatePlaylistDialog
 import code.roy.retromusic.dialogs.ImportPlaylistDialog
 import code.roy.retromusic.extensions.whichFragment
@@ -35,14 +35,14 @@ import code.roy.retromusic.fragments.base.AbsMainActivityFragment
 import code.roy.retromusic.model.CategoryInfo
 import code.roy.retromusic.util.PreferenceUtil
 
-class LibraryFragment : AbsMainActivityFragment(R.layout.fragment_library) {
+class LibraryFragment : AbsMainActivityFragment(R.layout.f_library) {
 
-    private var _binding: FragmentLibraryBinding? = null
+    private var _binding: FLibraryBinding? = null
     private val binding get() = _binding!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentLibraryBinding.bind(view)
+        _binding = FLibraryBinding.bind(view)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

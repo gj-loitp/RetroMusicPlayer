@@ -14,7 +14,9 @@
         android:layout_height="match_parent"
         android:paddingBottom="48dp">
 
-        <include android:id="@+id/status_bar_layout" layout="@layout/v_status_bar" />
+        <include
+            android:id="@+id/status_bar_layout"
+            layout="@layout/v_status_bar" />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/playerAlbumCoverFragment"
@@ -40,7 +42,7 @@
 
         <include
             android:id="@+id/playbackControlsFragment"
-            layout="@layout/fragment_gradient_controls"
+            layout="@layout/f_gradient_controls"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constrainedHeight="true"
@@ -54,11 +56,11 @@
             android:name="code.roy.retromusic.fragments.player.CoverLyricsFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginBottom="16dp"
             android:elevation="20dp"
             app:layout_constraintBottom_toBottomOf="@+id/playerAlbumCoverFragment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginBottom="16dp"
             tools:layout="@layout/fragment_cover_lyrics" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -72,7 +74,7 @@
         app:gestureInsetBottomIgnored="true"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -146,7 +148,7 @@
                 tools:ignore="MissingPrefix"
                 tools:tint="@color/md_black_1000" />
 
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

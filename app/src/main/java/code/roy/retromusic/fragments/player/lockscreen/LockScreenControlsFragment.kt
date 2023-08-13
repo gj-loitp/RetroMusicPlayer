@@ -19,13 +19,12 @@ import android.view.View
 import android.view.animation.DecelerateInterpolator
 import android.widget.ImageButton
 import android.widget.TextView
-import code.roy.appthemehelper.ThemeStore.Companion.textColorSecondary
 import code.roy.retromusic.util.color.MediaNotificationProcessor
 import code.roy.appthemehelper.util.ATHUtil
 import code.roy.appthemehelper.util.ColorUtil
 import code.roy.appthemehelper.util.MaterialValueHelper
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.FragmentLockScreenPlaybackControlsBinding
+import code.roy.retromusic.databinding.FLockScreenPlaybackControlsBinding
 import code.roy.retromusic.extensions.applyColor
 import code.roy.retromusic.extensions.ripAlpha
 import code.roy.retromusic.extensions.textColorSecondary
@@ -39,9 +38,9 @@ import com.google.android.material.slider.Slider
  * @author Hemanth S (h4h13).
  */
 class LockScreenControlsFragment :
-    AbsPlayerControlsFragment(R.layout.fragment_lock_screen_playback_controls) {
+    AbsPlayerControlsFragment(R.layout.f_lock_screen_playback_controls) {
 
-    private var _binding: FragmentLockScreenPlaybackControlsBinding? = null
+    private var _binding: FLockScreenPlaybackControlsBinding? = null
     private val binding get() = _binding!!
 
     override val progressSlider: Slider
@@ -67,7 +66,7 @@ class LockScreenControlsFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentLockScreenPlaybackControlsBinding.bind(view)
+        _binding = FLockScreenPlaybackControlsBinding.bind(view)
         setUpPlayPauseFab()
         binding.title.isSelected = true
     }

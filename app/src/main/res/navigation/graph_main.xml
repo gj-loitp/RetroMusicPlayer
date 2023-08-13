@@ -58,7 +58,7 @@
         android:id="@+id/libraryFragment"
         android:name="code.roy.retromusic.fragments.library.LibraryFragment"
         android:label=""
-        tools:layout="@layout/fragment_library" />
+        tools:layout="@layout/f_library" />
 
     <fragment
         android:id="@+id/detailListFragment"
@@ -107,7 +107,7 @@
     <fragment
         android:id="@+id/action_folder"
         android:name="code.roy.retromusic.fragments.folder.FoldersFragment"
-        tools:layout="@layout/fragment_folder" />
+        tools:layout="@layout/f_folder" />
 
     <fragment
         android:id="@+id/action_home"

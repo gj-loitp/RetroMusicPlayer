@@ -60,7 +60,7 @@
                 android:name="code.roy.retromusic.fragments.player.lockscreen.LockScreenControlsFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:layout="@layout/fragment_lock_screen_playback_controls" />
+                tools:layout="@layout/f_lock_screen_playback_controls" />
         </LinearLayout>
 
         <com.google.android.material.textview.MaterialTextView

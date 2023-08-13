@@ -25,7 +25,7 @@ import code.roy.appthemehelper.util.ATHUtil
 import code.roy.appthemehelper.util.ColorUtil
 import code.roy.appthemehelper.util.MaterialValueHelper
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.FragmentFlatPlayerPlaybackControlsBinding
+import code.roy.retromusic.databinding.FFlatPlayerPlaybackControlsBinding
 import code.roy.retromusic.extensions.accentColor
 import code.roy.retromusic.extensions.applyColor
 import code.roy.retromusic.extensions.getSongInfo
@@ -41,10 +41,10 @@ import code.roy.retromusic.helper.PlayPauseButtonOnClickHandler
 import code.roy.retromusic.util.PreferenceUtil
 
 class FlatPlaybackControlsFragment :
-    AbsPlayerControlsFragment(R.layout.fragment_flat_player_playback_controls),
+    AbsPlayerControlsFragment(R.layout.f_flat_player_playback_controls),
     MusicProgressViewUpdateHelper.Callback {
 
-    private var _binding: code.roy.retromusic.databinding.FragmentFlatPlayerPlaybackControlsBinding? = null
+    private var _binding: code.roy.retromusic.databinding.FFlatPlayerPlaybackControlsBinding? = null
     private val binding get() = _binding!!
 
     override val seekBar: SeekBar
@@ -70,7 +70,7 @@ class FlatPlaybackControlsFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentFlatPlayerPlaybackControlsBinding.bind(view)
+        _binding = FFlatPlayerPlaybackControlsBinding.bind(view)
         binding.playPauseButton.setOnClickListener(PlayPauseButtonOnClickHandler())
         binding.title.isSelected = true
         binding.text.isSelected = true

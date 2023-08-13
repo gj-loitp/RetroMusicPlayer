@@ -95,7 +95,7 @@
         app:layout_constraintTop_toBottomOf="@+id/songInfo"
         tools:text="@tools:sample/full_names" />
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/titleContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -128,8 +128,7 @@
             android:textAllCaps="true"
             android:textStyle="bold"
             tools:text="@tools:sample/full_names" />
-    </LinearLayout>
-
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <RelativeLayout
         android:id="@+id/playerMediaControllerContainer"
@@ -157,7 +156,7 @@
             tools:ignore="MissingPrefix"
             tools:src="@drawable/ic_pause" />
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -183,7 +182,7 @@
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/ic_shuffle"
                 tools:ignore="MissingPrefix" />
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
     </RelativeLayout>
 

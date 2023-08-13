@@ -19,7 +19,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.Toolbar
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.FragmentHomePlayerBinding
+import code.roy.retromusic.databinding.FHomePlayerBinding
 import code.roy.retromusic.extensions.colorControlNormal
 import code.roy.retromusic.fragments.base.AbsPlayerFragment
 import code.roy.retromusic.helper.MusicPlayerRemote
@@ -28,12 +28,12 @@ import code.roy.retromusic.model.Song
 import code.roy.retromusic.util.MusicUtil
 import code.roy.retromusic.util.color.MediaNotificationProcessor
 
-class HomePlayerFragment : AbsPlayerFragment(R.layout.fragment_home_player),
+class HomePlayerFragment : AbsPlayerFragment(R.layout.f_home_player),
     MusicProgressViewUpdateHelper.Callback {
     private var lastColor: Int = 0
     private lateinit var progressViewUpdateHelper: MusicProgressViewUpdateHelper
 
-    private var _binding: FragmentHomePlayerBinding? = null
+    private var _binding: FHomePlayerBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +43,7 @@ class HomePlayerFragment : AbsPlayerFragment(R.layout.fragment_home_player),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentHomePlayerBinding.bind(view)
+        _binding = FHomePlayerBinding.bind(view)
         setUpPlayerToolbar()
     }
 

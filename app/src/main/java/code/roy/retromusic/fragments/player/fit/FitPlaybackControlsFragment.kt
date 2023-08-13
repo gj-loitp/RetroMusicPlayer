@@ -24,7 +24,7 @@ import code.roy.retromusic.util.color.MediaNotificationProcessor
 import code.roy.appthemehelper.util.ColorUtil
 import code.roy.appthemehelper.util.MaterialValueHelper
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.FragmentFitPlaybackControlsBinding
+import code.roy.retromusic.databinding.FFitPlaybackControlsBinding
 import code.roy.retromusic.extensions.accentColor
 import code.roy.retromusic.extensions.colorBackground
 import code.roy.retromusic.extensions.getSongInfo
@@ -38,9 +38,9 @@ import code.roy.retromusic.helper.MusicPlayerRemote
 import code.roy.retromusic.util.PreferenceUtil
 
 class FitPlaybackControlsFragment :
-    AbsPlayerControlsFragment(R.layout.fragment_fit_playback_controls) {
+    AbsPlayerControlsFragment(R.layout.f_fit_playback_controls) {
 
-    private var _binding: FragmentFitPlaybackControlsBinding? = null
+    private var _binding: FFitPlaybackControlsBinding? = null
     private val binding get() = _binding!!
 
     override val seekBar: SeekBar
@@ -66,7 +66,7 @@ class FitPlaybackControlsFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentFitPlaybackControlsBinding.bind(view)
+        _binding = FFitPlaybackControlsBinding.bind(view)
         setUpPlayPauseFab()
 
         binding.title.isSelected = true

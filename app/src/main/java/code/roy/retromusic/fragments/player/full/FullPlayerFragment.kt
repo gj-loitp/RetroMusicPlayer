@@ -22,7 +22,7 @@ import android.view.View
 import androidx.appcompat.widget.Toolbar
 import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.FragmentFullBinding
+import code.roy.retromusic.databinding.FFullBinding
 import code.roy.retromusic.extensions.drawAboveSystemBars
 import code.roy.retromusic.extensions.hide
 import code.roy.retromusic.extensions.show
@@ -38,8 +38,8 @@ import code.roy.retromusic.model.Song
 import code.roy.retromusic.util.color.MediaNotificationProcessor
 import com.bumptech.glide.Glide
 
-class FullPlayerFragment : AbsPlayerFragment(R.layout.fragment_full) {
-    private var _binding: FragmentFullBinding? = null
+class FullPlayerFragment : AbsPlayerFragment(R.layout.f_full) {
+    private var _binding: FFullBinding? = null
     private val binding get() = _binding!!
 
     override fun playerToolbar(): Toolbar {
@@ -59,7 +59,7 @@ class FullPlayerFragment : AbsPlayerFragment(R.layout.fragment_full) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentFullBinding.bind(view)
+        _binding = FFullBinding.bind(view)
 
         setUpSubFragments()
         setUpPlayerToolbar()

@@ -32,7 +32,7 @@
     <fragment
         android:id="@+id/action_folder"
         android:name="code.roy.retromusic.fragments.folder.FoldersFragment"
-        tools:layout="@layout/fragment_folder" />
+        tools:layout="@layout/f_folder" />
 
     <fragment
         android:id="@+id/action_home"

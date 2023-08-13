@@ -41,7 +41,7 @@ import code.roy.retromusic.adapter.SongFileAdapter
 import code.roy.retromusic.adapter.Storage
 import code.roy.retromusic.adapter.StorageAdapter
 import code.roy.retromusic.adapter.StorageClickListener
-import code.roy.retromusic.databinding.FragmentFolderBinding
+import code.roy.retromusic.databinding.FFolderBinding
 import code.roy.retromusic.extensions.dip
 import code.roy.retromusic.extensions.showToast
 import code.roy.retromusic.extensions.textColorPrimary
@@ -73,10 +73,10 @@ import java.io.IOException
 import java.lang.ref.WeakReference
 import java.util.*
 
-class FoldersFragment : AbsMainActivityFragment(R.layout.fragment_folder),
+class FoldersFragment : AbsMainActivityFragment(R.layout.f_folder),
     IMainActivityFragmentCallbacks, SelectionCallback, ICallbacks,
     LoaderManager.LoaderCallbacks<List<File>>, StorageClickListener, IScrollHelper {
-    private var _binding: FragmentFolderBinding? = null
+    private var _binding: FFolderBinding? = null
     private val binding get() = _binding!!
 
     val toolbar: Toolbar get() = binding.appBarLayout.toolbar
@@ -96,7 +96,7 @@ class FoldersFragment : AbsMainActivityFragment(R.layout.fragment_folder),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentFolderBinding.bind(view)
+        _binding = FFolderBinding.bind(view)
         mainActivity.addMusicServiceEventListener(libraryViewModel)
         mainActivity.setSupportActionBar(toolbar)
         mainActivity.supportActionBar?.title = null

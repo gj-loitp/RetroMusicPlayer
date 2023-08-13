@@ -42,8 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/playerAlbumCoverFragment"
-        tools:layout="@layout/fragment_flat_player_playback_controls" />
-
+        tools:layout="@layout/f_flat_player_playback_controls" />
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/playerToolbar"

@@ -38,7 +38,7 @@ import code.roy.appthemehelper.util.ColorUtil
 import code.roy.appthemehelper.util.VersionUtils
 import code.roy.retromusic.R
 import code.roy.retromusic.adapter.song.PlayingQueueAdapter
-import code.roy.retromusic.databinding.FragmentGradientPlayerBinding
+import code.roy.retromusic.databinding.FGradientPlayerBinding
 import code.roy.retromusic.extensions.applyColor
 import code.roy.retromusic.extensions.drawAboveSystemBars
 import code.roy.retromusic.extensions.getBottomInsets
@@ -71,7 +71,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class GradientPlayerFragment : AbsPlayerFragment(R.layout.fragment_gradient_player),
+class GradientPlayerFragment : AbsPlayerFragment(R.layout.f_gradient_player),
     MusicProgressViewUpdateHelper.Callback,
     View.OnLayoutChangeListener, PopupMenu.OnMenuItemClickListener {
     private var lastColor: Int = 0
@@ -87,7 +87,7 @@ class GradientPlayerFragment : AbsPlayerFragment(R.layout.fragment_gradient_play
     private lateinit var linearLayoutManager: LinearLayoutManager
     private var navBarHeight = 0
 
-    private var _binding: FragmentGradientPlayerBinding? = null
+    private var _binding: FGradientPlayerBinding? = null
     private val binding get() = _binding!!
 
     private val bottomSheetCallbackList = object : BottomSheetCallback() {
@@ -164,7 +164,7 @@ class GradientPlayerFragment : AbsPlayerFragment(R.layout.fragment_gradient_play
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentGradientPlayerBinding.bind(view)
+        _binding = FGradientPlayerBinding.bind(view)
         hideVolumeIfAvailable()
         setUpMusicControllers()
         setupPanel()
