@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:background="?attr/colorSurface" />
 
-    <include layout="@layout/shadow_statusbar_toolbar" />
+    <include layout="@layout/v_shadow_statusbar_toolbar" />
 
     <View
         android:id="@+id/colorGradientBackground"
@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <include layout="@layout/status_bar" />
+            <include layout="@layout/v_status_bar" />
         </FrameLayout>
 
         <LinearLayout

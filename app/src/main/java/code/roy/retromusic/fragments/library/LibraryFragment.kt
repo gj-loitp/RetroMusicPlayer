@@ -25,7 +25,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import code.roy.monkey.retromusic.extensions.setUpMediaRouteButton
 import code.roy.appthemehelper.common.ATHToolbarActivity.getToolbarBackgroundColor
-import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.roy.appthemehelper.ThemeStore
 import code.roy.retromusic.R
 import code.roy.retromusic.databinding.FragmentLibraryBinding
@@ -73,7 +72,7 @@ class LibraryFragment : AbsMainActivityFragment(R.layout.fragment_library) {
         val navHostFragment = whichFragment<NavHostFragment>(R.id.fragment_container)
         val navController = navHostFragment.navController
         val navInflater = navController.navInflater
-        val navGraph = navInflater.inflate(R.navigation.library_graph)
+        val navGraph = navInflater.inflate(R.navigation.graph_library)
 
         val categoryInfo: CategoryInfo = PreferenceUtil.libraryCategory.first { it.visible }
         if (categoryInfo.visible) {

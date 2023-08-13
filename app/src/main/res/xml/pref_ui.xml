@@ -2,7 +2,7 @@
 <androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <code.roy.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory
-        android:layout="@layout/preference_category_title"
+        android:layout="@layout/pref_category_title"
         app:title="@string/home">
 
         <code.roy.appthemehelper.common.prefs.supportv7.ATEListPreference
@@ -50,7 +50,7 @@
     </code.roy.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory>
 
     <code.roy.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory
-        android:layout="@layout/preference_category_title"
+        android:layout="@layout/pref_category_title"
         android:title="@string/pref_header_library">
 
         <code.roy.retromusic.preferences.LibraryPreference
@@ -89,7 +89,7 @@
     </code.roy.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory>
 
     <code.roy.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory
-        android:layout="@layout/preference_category_title"
+        android:layout="@layout/pref_category_title"
         android:title="@string/window">
 
         <code.roy.appthemehelper.common.prefs.supportv7.ATESwitchPreference
@@ -102,7 +102,7 @@
     </code.roy.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory>
 
     <code.roy.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory
-        android:layout="@layout/preference_category_title"
+        android:layout="@layout/pref_category_title"
         android:title="@string/pref_header_lockscreen">
 
         <code.roy.appthemehelper.common.prefs.supportv7.ATESwitchPreference

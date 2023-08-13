@@ -10,7 +10,7 @@ import androidx.core.graphics.BlendModeCompat.SRC_IN
 import androidx.fragment.app.DialogFragment
 import code.roy.appthemehelper.common.prefs.supportv7.ATEDialogPreference
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.PreferenceDialogAudioFadeBinding
+import code.roy.retromusic.databinding.PrefDialogAudioFadeBinding
 import code.roy.retromusic.extensions.addAccentColor
 import code.roy.retromusic.extensions.colorButtons
 import code.roy.retromusic.extensions.colorControlNormal
@@ -36,7 +36,7 @@ class DurationPreference @JvmOverloads constructor(
 class DurationPreferenceDialog : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val binding = PreferenceDialogAudioFadeBinding.inflate(layoutInflater)
+        val binding = PrefDialogAudioFadeBinding.inflate(layoutInflater)
 
         binding.slider.apply {
             addAccentColor()

@@ -17,7 +17,7 @@
         android:title="@string/pref_title_whitelist" />
 
     <code.roy.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory
-        android:layout="@layout/preference_category_title"
+        android:layout="@layout/pref_category_title"
         android:title="@string/pref_header_playlists">
 
         <code.roy.appthemehelper.common.prefs.supportv7.ATEListPreference
@@ -33,7 +33,7 @@
 
     </code.roy.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory>
     <code.roy.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory
-        android:layout="@layout/preference_category_title"
+        android:layout="@layout/pref_category_title"
         android:title="@string/pref_header_advanced">
 
         <code.roy.appthemehelper.common.prefs.supportv7.ATESeekBarPreference

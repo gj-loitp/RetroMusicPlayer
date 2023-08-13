@@ -2,7 +2,7 @@
 <androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <code.roy.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory
-        android:layout="@layout/preference_category_title"
+        android:layout="@layout/pref_category_title"
         android:title="@string/pref_header_general">
 
         <code.roy.appthemehelper.common.prefs.supportv7.ATEListPreference
@@ -39,7 +39,7 @@
 
     <code.roy.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory
         android:key="category_color"
-        android:layout="@layout/preference_category_title"
+        android:layout="@layout/pref_category_title"
         android:title="@string/colors">
 
         <code.roy.appthemehelper.common.prefs.supportv7.ATESwitchPreference

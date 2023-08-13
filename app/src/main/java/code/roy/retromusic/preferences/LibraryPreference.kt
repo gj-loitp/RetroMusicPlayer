@@ -25,7 +25,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import code.roy.appthemehelper.common.prefs.supportv7.ATEDialogPreference
 import code.roy.retromusic.R
 import code.roy.retromusic.adapter.CategoryInfoAdapter
-import code.roy.retromusic.databinding.PreferenceDialogLibraryCategoriesBinding
+import code.roy.retromusic.databinding.PrefDialogLibraryCategoriesBinding
 import code.roy.retromusic.extensions.colorButtons
 import code.roy.retromusic.extensions.colorControlNormal
 import code.roy.retromusic.extensions.materialDialog
@@ -51,7 +51,7 @@ class LibraryPreference @JvmOverloads constructor(
 class LibraryPreferenceDialog : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val binding = PreferenceDialogLibraryCategoriesBinding.inflate(layoutInflater)
+        val binding = PrefDialogLibraryCategoriesBinding.inflate(layoutInflater)
 
         val categoryAdapter = CategoryInfoAdapter()
         binding.recyclerView.apply {

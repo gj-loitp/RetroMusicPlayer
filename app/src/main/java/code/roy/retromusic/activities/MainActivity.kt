@@ -63,7 +63,7 @@ class MainActivity : AbsCastActivity() {
     private fun setupNavigationController() {
         val navController = findNavController(R.id.fragment_container)
         val navInflater = navController.navInflater
-        val navGraph = navInflater.inflate(R.navigation.main_graph)
+        val navGraph = navInflater.inflate(R.navigation.graph_main)
 
         val categoryInfo: CategoryInfo = PreferenceUtil.libraryCategory.first { it.visible }
         if (categoryInfo.visible) {

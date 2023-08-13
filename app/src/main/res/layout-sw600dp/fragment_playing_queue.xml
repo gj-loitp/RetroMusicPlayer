@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <include layout="@layout/status_bar" />
+        <include layout="@layout/v_status_bar" />
     </FrameLayout>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

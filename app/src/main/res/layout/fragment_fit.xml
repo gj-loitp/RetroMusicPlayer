@@ -54,5 +54,5 @@
                 app:navigationIcon="@drawable/ic_keyboard_arrow_down" />
     </LinearLayout>
 
-    <include layout="@layout/shadow_statusbar_toolbar" />
+    <include layout="@layout/v_shadow_statusbar_toolbar" />
 </FrameLayout>

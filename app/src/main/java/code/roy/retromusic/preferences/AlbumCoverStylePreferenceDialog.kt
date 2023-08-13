@@ -31,8 +31,8 @@ import code.roy.appthemehelper.common.prefs.supportv7.ATEDialogPreference
 import code.roy.retromusic.App
 import code.roy.retromusic.R
 import code.roy.retromusic.fragments.AlbumCoverStyle.*
-import code.roy.retromusic.databinding.PreferenceDialogNowPlayingScreenBinding
-import code.roy.retromusic.databinding.PreferenceNowPlayingScreenItemBinding
+import code.roy.retromusic.databinding.PrefDialogNowPlayingScreenBinding
+import code.roy.retromusic.databinding.PrefNowPlayingScreenItemBinding
 import code.roy.retromusic.extensions.colorButtons
 import code.roy.retromusic.extensions.colorControlNormal
 import code.roy.retromusic.extensions.hide
@@ -51,7 +51,7 @@ class AlbumCoverStylePreference @JvmOverloads constructor(
     defStyleRes: Int = -1
 ) : ATEDialogPreference(context, attrs, defStyleAttr, defStyleRes) {
 
-    private val mLayoutRes = R.layout.preference_dialog_now_playing_screen
+    private val mLayoutRes = R.layout.pref_dialog_now_playing_screen
 
     override fun getDialogLayoutResource(): Int {
         return mLayoutRes
@@ -72,7 +72,7 @@ class AlbumCoverStylePreferenceDialog : DialogFragment(),
     private var viewPagerPosition: Int = 0
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val binding = PreferenceDialogNowPlayingScreenBinding.inflate(layoutInflater)
+        val binding = PrefDialogNowPlayingScreenBinding.inflate(layoutInflater)
         binding.nowPlayingScreenViewPager.apply {
             adapter = AlbumCoverStyleAdapter(requireContext())
             addOnPageChangeListener(this@AlbumCoverStylePreferenceDialog)
@@ -113,7 +113,7 @@ class AlbumCoverStylePreferenceDialog : DialogFragment(),
             val albumCoverStyle = values()[position]
 
             val inflater = LayoutInflater.from(context)
-            val binding = PreferenceNowPlayingScreenItemBinding.inflate(inflater, collection, true)
+            val binding = PrefNowPlayingScreenItemBinding.inflate(inflater, collection, true)
 
             Glide.with(context).load(albumCoverStyle.drawableResId).into(binding.image)
             binding.title.setText(albumCoverStyle.titleRes)

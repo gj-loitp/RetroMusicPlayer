@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:paddingBottom="48dp">
 
-        <include android:id="@+id/status_bar_layout" layout="@layout/status_bar" />
+        <include android:id="@+id/status_bar_layout" layout="@layout/v_status_bar" />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/playerAlbumCoverFragment"

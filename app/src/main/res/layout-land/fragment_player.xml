@@ -21,7 +21,7 @@
         app:snowflakeSpeedMin="2"
         app:snowflakesNum="75" />
 
-    <include layout="@layout/shadow_statusbar_toolbar" />
+    <include layout="@layout/v_shadow_statusbar_toolbar" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <include layout="@layout/status_bar" />
+            <include layout="@layout/v_status_bar" />
         </FrameLayout>
 
         <LinearLayout

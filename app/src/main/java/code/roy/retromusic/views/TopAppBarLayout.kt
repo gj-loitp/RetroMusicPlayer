@@ -6,7 +6,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.core.view.updateLayoutParams
 import code.roy.retromusic.databinding.CollapsingAppbarLayoutBinding
-import code.roy.retromusic.databinding.SimpleAppbarLayoutBinding
+import code.roy.retromusic.databinding.LayoutSimpleAppbarBinding
 import code.roy.retromusic.util.PreferenceUtil
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.AppBarLayout.LayoutParams.SCROLL_FLAG_NO_SCROLL
@@ -19,7 +19,7 @@ class TopAppBarLayout @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = -1,
 ) : AppBarLayout(context, attrs, defStyleAttr) {
-    private var simpleAppbarBinding: SimpleAppbarLayoutBinding? = null
+    private var simpleAppbarBinding: LayoutSimpleAppbarBinding? = null
     private var collapsingAppbarBinding: CollapsingAppbarLayoutBinding? = null
 
     val mode: AppBarMode = PreferenceUtil.appBarMode
@@ -36,7 +36,7 @@ class TopAppBarLayout @JvmOverloads constructor(
 
         } else {
             simpleAppbarBinding =
-                SimpleAppbarLayoutBinding.inflate(LayoutInflater.from(context), this, true)
+                LayoutSimpleAppbarBinding.inflate(LayoutInflater.from(context), this, true)
             simpleAppbarBinding?.root?.applyInsetter {
                 type(navigationBars = true) {
                     padding(horizontal = true)

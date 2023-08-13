@@ -34,7 +34,7 @@
         android:progressDrawable="@drawable/progress_drawable_vertical"
         android:secondaryProgress="100" />
 
-    <include layout="@layout/status_bar" />
+    <include layout="@layout/v_status_bar" />
 
     <code.roy.retromusic.views.VerticalTextView
         android:id="@+id/playerSongTotalTime"

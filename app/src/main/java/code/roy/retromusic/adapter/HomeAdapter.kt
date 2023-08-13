@@ -58,7 +58,7 @@ class HomeAdapter(private val activity: AppCompatActivity) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layout =
-            LayoutInflater.from(activity).inflate(R.layout.section_recycler_view, parent, false)
+            LayoutInflater.from(activity).inflate(R.layout.v_section_recycler_view, parent, false)
         return when (viewType) {
             RECENT_ARTISTS, TOP_ARTISTS -> ArtistViewHolder(layout)
             FAVOURITES -> PlaylistViewHolder(layout)

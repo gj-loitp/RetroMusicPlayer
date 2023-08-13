@@ -13,7 +13,7 @@
         android:background="?attr/colorSurface"
         app:defaultNavHost="true"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-        app:navGraph="@navigation/settings_graph" />
+        app:navGraph="@navigation/graph_settings" />
 
     <code.roy.retromusic.views.TopAppBarLayout
         android:id="@+id/appBarLayout"

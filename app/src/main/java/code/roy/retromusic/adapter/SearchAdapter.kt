@@ -71,7 +71,7 @@ class SearchAdapter(
         return when (viewType) {
             HEADER -> ViewHolder(
                 LayoutInflater.from(activity).inflate(
-                    R.layout.sub_header,
+                    R.layout.v_sub_header,
                     parent,
                     false
                 ), viewType

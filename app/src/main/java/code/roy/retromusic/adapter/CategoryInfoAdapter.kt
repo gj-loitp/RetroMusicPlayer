@@ -25,7 +25,7 @@ import code.roy.retromusic.util.SwipeAndDragHelper
 import code.roy.retromusic.util.SwipeAndDragHelper.ActionCompletionContract
 import code.roy.appthemehelper.ThemeStore.Companion.accentColor
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.PreferenceDialogLibraryCategoriesListitemBinding
+import code.roy.retromusic.databinding.PrefDialogLibraryCategoriesListitemBinding
 import code.roy.retromusic.extensions.showToast
 import code.roy.retromusic.model.CategoryInfo
 import code.roy.retromusic.util.PreferenceUtil
@@ -74,7 +74,7 @@ class CategoryInfoAdapter : RecyclerView.Adapter<CategoryInfoAdapter.ViewHolder>
         parent: ViewGroup, viewType: Int
     ): ViewHolder {
         return ViewHolder(
-            PreferenceDialogLibraryCategoriesListitemBinding.inflate(
+            PrefDialogLibraryCategoriesListitemBinding.inflate(
                 LayoutInflater.from(
                     parent.context
                 ), parent, false
@@ -100,7 +100,7 @@ class CategoryInfoAdapter : RecyclerView.Adapter<CategoryInfoAdapter.ViewHolder>
         return true
     }
 
-    class ViewHolder(val binding: PreferenceDialogLibraryCategoriesListitemBinding) :
+    class ViewHolder(val binding: PrefDialogLibraryCategoriesListitemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {

@@ -17,7 +17,7 @@ import code.roy.appthemehelper.common.prefs.supportv7.ATEDialogPreference
 import code.roy.monkey.retromusic.extensions.goToProVersion
 import code.roy.retromusic.App
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.PreferenceNowPlayingScreenItemBinding
+import code.roy.retromusic.databinding.PrefNowPlayingScreenItemBinding
 import code.roy.retromusic.extensions.colorButtons
 import code.roy.retromusic.extensions.colorControlNormal
 import code.roy.retromusic.extensions.hide
@@ -37,7 +37,7 @@ class NowPlayingScreenPreference @JvmOverloads constructor(
     defStyleRes: Int = -1,
 ) : ATEDialogPreference(context, attrs, defStyleAttr, defStyleRes) {
 
-    private val mLayoutRes = R.layout.preference_dialog_now_playing_screen
+    private val mLayoutRes = R.layout.pref_dialog_now_playing_screen
 
     override fun getDialogLayoutResource(): Int {
         return mLayoutRes
@@ -67,7 +67,7 @@ class NowPlayingScreenPreferenceDialog : DialogFragment(), ViewPager.OnPageChang
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val view = layoutInflater
-            .inflate(R.layout.preference_dialog_now_playing_screen, null)
+            .inflate(R.layout.pref_dialog_now_playing_screen, null)
         val viewPager = view.findViewById<ViewPager>(R.id.now_playing_screen_view_pager)
             ?: throw IllegalStateException("Dialog view must contain a ViewPager with id 'now_playing_screen_view_pager'")
         viewPager.adapter = NowPlayingScreenAdapter(requireContext())
@@ -106,7 +106,7 @@ private class NowPlayingScreenAdapter(private val context: Context) : PagerAdapt
         val nowPlayingScreen = values()[position]
 
         val inflater = LayoutInflater.from(context)
-        val binding = PreferenceNowPlayingScreenItemBinding.inflate(inflater, collection, true)
+        val binding = PrefNowPlayingScreenItemBinding.inflate(inflater, collection, true)
         Glide.with(context).load(nowPlayingScreen.drawableResId).into(binding.image)
         binding.title.setText(nowPlayingScreen.titleRes)
         if (isNowPlayingThemes(nowPlayingScreen)) {

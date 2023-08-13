@@ -8,9 +8,9 @@
     android:clickable="true"
     android:focusable="true">
 
-    <include layout="@layout/shadow_statusbar_toolbar" />
+    <include layout="@layout/v_shadow_statusbar_toolbar" />
 
-    <include layout="@layout/status_bar" />
+    <include layout="@layout/v_status_bar" />
 
     <LinearLayout
         android:id="@+id/titleContainer"
