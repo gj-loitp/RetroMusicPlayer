@@ -12,7 +12,7 @@
     <code.roy.appthemehelper.common.prefs.supportv7.ATESwitchPreference
         android:defaultValue="false"
         android:key="whitelist_music"
-        android:layout="@layout/list_item_view_switch"
+        android:layout="@layout/v_list_item_view_switch"
         android:summary="@string/pref_summary_whitelist"
         android:title="@string/pref_title_whitelist" />
 
@@ -39,7 +39,7 @@
         <code.roy.appthemehelper.common.prefs.supportv7.ATESeekBarPreference
             android:defaultValue="30"
             android:key="filter_song"
-            android:layout="@layout/list_item_view_seekbar"
+            android:layout="@layout/v_list_item_view_seekbar"
             android:max="60"
             android:summary="@string/pref_filter_song_summary"
             android:title="@string/pref_filter_song_title"
@@ -49,7 +49,7 @@
         <code.roy.appthemehelper.common.prefs.supportv7.ATESwitchPreference
             android:defaultValue="false"
             android:key="pause_on_zero_volume"
-            android:layout="@layout/list_item_view_switch"
+            android:layout="@layout/v_list_item_view_switch"
             android:summary="@string/pref_keep_pause_on_zero_volume_summary"
             android:title="@string/pref_keep_pause_on_zero_volume_title"
             app:icon="@drawable/ic_pause" />
@@ -57,7 +57,7 @@
         <code.roy.appthemehelper.common.prefs.supportv7.ATESwitchPreference
             android:defaultValue="false"
             android:key="keep_screen_on"
-            android:layout="@layout/list_item_view_switch"
+            android:layout="@layout/v_list_item_view_switch"
             android:summary="@string/pref_keep_screen_on_summary"
             android:title="@string/pref_keep_screen_on_title"
             app:icon="@drawable/ic_settings_brightness" />

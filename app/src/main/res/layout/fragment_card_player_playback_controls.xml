@@ -49,7 +49,7 @@
 
     <include
         android:id="@+id/media_button"
-        layout="@layout/media_button" />
+        layout="@layout/v_media_button" />
 
     <FrameLayout
         android:id="@+id/volumeFragmentContainer"

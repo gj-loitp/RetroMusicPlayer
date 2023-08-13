@@ -102,7 +102,7 @@ class SavePlaylistDialog : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return materialDialog(R.string.save_playlist_title)
-            .setView(R.layout.loading)
+            .setView(R.layout.v_loading)
             .create().colorButtons()
     }
 }

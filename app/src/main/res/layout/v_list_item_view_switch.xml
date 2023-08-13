@@ -1,18 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright (c) 2019 Hemanth Savarala.
-  ~
-  ~ Licensed under the GNU General Public License v3
-  ~
-  ~ This is free software: you can redistribute it and/or modify it under
-  ~ the terms of the GNU General Public License as published by
-  ~  the Free Software Foundation either version 3 of the License, or (at your option) any later version.
-  ~
-  ~ This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
-  ~ without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  ~ See the GNU General Public License for more details.
-  -->
-
-
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -28,7 +14,6 @@
     app:layout_constraintStart_toStartOf="parent"
     tools:ignore="PrivateResource">
 
-
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@android:id/icon"
         android:layout_width="wrap_content"
@@ -42,9 +27,11 @@
         android:id="@android:id/title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:paddingStart="0dp"
+        android:paddingEnd="16dp"
         android:textAppearance="@style/TextViewSubtitle1"
         app:layout_constrainedWidth="true"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@android:id/checkbox"
         app:layout_constraintStart_toStartOf="@+id/guideline_front_margin"
         app:layout_constraintTop_toTopOf="parent"
         tools:maxLines="@string/grid_size_1"
@@ -55,10 +42,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="16dp"
         android:textAppearance="@style/TextViewNormal"
         android:textColor="?android:attr/textColorSecondary"
         app:layout_constrainedWidth="true"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@android:id/checkbox"
         app:layout_constraintStart_toStartOf="@+id/guideline_front_margin"
         app:layout_constraintTop_toBottomOf="@android:id/title"
         tools:maxLines="2"
@@ -67,37 +56,19 @@
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_front_margin"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="@dimen/list_pref_guideline_begin" />
 
-    <SeekBar
-        android:id="@+id/seekbar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@null"
-        android:clickable="false"
-        android:focusable="false"
-        android:maxHeight="2dp"
-        android:paddingStart="0dp"
-        android:paddingEnd="0dp"
-        android:progressDrawable="@drawable/color_progress_seek"
-        android:thumbOffset="2dp"
-        app:layout_constraintEnd_toStartOf="@+id/seekbar_value"
-        app:layout_constraintStart_toStartOf="@+id/guideline_front_margin"
-        app:layout_constraintTop_toBottomOf="@android:id/summary" />
-
-    <TextView
-        android:id="@+id/seekbar_value"
+    <code.roy.appthemehelper.common.views.ATESwitch
+        android:id="@android:id/checkbox"
+        style="@style/Widget.Material3.CompoundButton.MaterialSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
-        android:textAppearance="@style/TextViewSubtitle1"
+        android:clickable="false"
+        android:focusable="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/seekbar"
-        tools:text="20" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:showText="false" />
 </androidx.constraintlayout.widget.ConstraintLayout>

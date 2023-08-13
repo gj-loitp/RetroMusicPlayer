@@ -18,21 +18,21 @@
 
         <code.roy.appthemehelper.common.prefs.supportv7.ATESwitchPreference
             android:key="black_theme"
-            android:layout="@layout/list_item_view_switch_no_title"
+            android:layout="@layout/v_list_item_view_switch_no_title"
             android:title="@string/black_theme_name" />
 
         <code.roy.appthemehelper.common.prefs.supportv7.ATESwitchPreference
             android:defaultValue="@bool/md3_enabled"
             android:disableDependentsState="true"
             android:key="material_you"
-            android:layout="@layout/list_item_view_switch_no_title"
+            android:layout="@layout/v_list_item_view_switch_no_title"
             android:title="@string/pref_title_md3"
             app:isPreferenceVisible="@bool/md3_available" />
 
         <code.roy.appthemehelper.common.prefs.supportv7.ATESwitchPreference
             android:defaultValue="false"
             android:key="custom_font"
-            android:layout="@layout/list_item_view_switch_no_title"
+            android:layout="@layout/v_list_item_view_switch_no_title"
             android:title="@string/pref_title_custom_font" />
 
     </code.roy.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory>
@@ -45,7 +45,7 @@
         <code.roy.appthemehelper.common.prefs.supportv7.ATESwitchPreference
             android:defaultValue="false"
             android:key="wallpaper_accent"
-            android:layout="@layout/list_item_view_switch"
+            android:layout="@layout/v_list_item_view_switch"
             android:summary="@string/pref_summary_wallpaper_accent"
             android:title="@string/pref_title_wallpaper_accent" />
 
@@ -62,14 +62,14 @@
             android:defaultValue="false"
             android:dependency="material_you"
             android:key="desaturated_color"
-            android:layout="@layout/list_item_view_switch"
+            android:layout="@layout/v_list_item_view_switch"
             android:summary="@string/pref_summary_desaturated_color"
             android:title="@string/pref_title_desaturated_color" />
 
         <code.roy.appthemehelper.common.prefs.supportv7.ATESwitchPreference
             android:defaultValue="false"
             android:key="adaptive_color_app"
-            android:layout="@layout/list_item_view_switch"
+            android:layout="@layout/v_list_item_view_switch"
             android:summary="@string/pref_summary_colored_app"
             android:title="@string/pref_title_colored_app" />
 
@@ -77,7 +77,7 @@
             android:defaultValue="false"
             android:dependency="material_you"
             android:key="should_color_app_shortcuts"
-            android:layout="@layout/list_item_view_switch"
+            android:layout="@layout/v_list_item_view_switch"
             android:summary="@string/pref_summary_colored_app_shortcuts"
             android:title="@string/pref_title_app_shortcuts" />
     </code.roy.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory>

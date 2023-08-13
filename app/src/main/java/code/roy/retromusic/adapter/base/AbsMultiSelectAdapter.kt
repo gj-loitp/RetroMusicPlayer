@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import code.roy.appthemehelper.util.VersionUtils
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.NumberRollViewBinding
+import code.roy.retromusic.databinding.VNumberRollViewBinding
 import code.roy.retromusic.views.NumberRollView
 
 abstract class AbsMultiSelectAdapter<V : RecyclerView.ViewHolder?, I>(
@@ -99,7 +99,7 @@ abstract class AbsMultiSelectAdapter<V : RecyclerView.ViewHolder?, I>(
     private fun updateCab() {
         if (actionMode == null) {
             actionMode = activity.startActionMode(this)?.apply {
-                customView = NumberRollViewBinding.inflate(activity.layoutInflater).root
+                customView = VNumberRollViewBinding.inflate(activity.layoutInflater).root
             }
             activity.onBackPressedDispatcher.addCallback(onBackPressedCallback)
         }

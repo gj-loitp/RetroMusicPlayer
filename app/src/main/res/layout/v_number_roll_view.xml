@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!-- Copyright 2016 The Chromium Authors. All rights reserved.
-     Use of this source code is governed by a BSD-style license that can be
-     found in the LICENSE file. -->
+<?xml version="1.0" encoding="utf-8"?>
 <code.roy.retromusic.views.NumberRollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/selection_mode_number"
     android:layout_width="wrap_content"
@@ -8,7 +6,7 @@
     android:focusable="true"
     android:focusableInTouchMode="true">
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,7 +14,7 @@
         android:singleLine="true"
         android:textAppearance="@style/TextAppearance.Material3.ActionBar.Title" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/down"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
