@@ -14,16 +14,18 @@ class HomeImageLayout @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = -1,
-    defStyleRes: Int = -1
+    defStyleRes: Int = -1,
 ) : FrameLayout(context, attrs, defStyleAttr, defStyleRes) {
     private var userImageBinding: VLayoutUserImageBinding? = null
     private var bannerImageBinding: LayoutBannerImageBinding? = null
 
     init {
         if (isInEditMode || PreferenceUtil.isHomeBanner) {
-            bannerImageBinding = LayoutBannerImageBinding.inflate(LayoutInflater.from(context), this, true)
+            bannerImageBinding =
+                LayoutBannerImageBinding.inflate(LayoutInflater.from(context), this, true)
         } else {
-            userImageBinding = VLayoutUserImageBinding.inflate(LayoutInflater.from(context), this, true)
+            userImageBinding =
+                VLayoutUserImageBinding.inflate(LayoutInflater.from(context), this, true)
         }
     }
 
@@ -41,7 +43,7 @@ class HomeImageLayout @JvmOverloads constructor(
             null
         }
 
-    val titleWelcome : TextView
+    val titleWelcome: TextView
         get() = if (PreferenceUtil.isHomeBanner) {
             bannerImageBinding!!.titleWelcome
         } else {

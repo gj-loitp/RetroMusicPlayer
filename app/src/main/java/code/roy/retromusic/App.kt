@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic
 
 import android.app.Application
@@ -60,8 +46,11 @@ class App : Application() {
 
         // Set Default values for now playing preferences
         // This will reduce startup time for now playing settings fragment as Preference listener of AbsSlidingMusicPanelActivity won't be called
-        PreferenceManager.setDefaultValues(this,
-            R.xml.pref_now_playing_screen, false)
+        PreferenceManager.setDefaultValues(
+            /* context = */ this,
+            /* resId = */ R.xml.pref_now_playing_screen,
+            /* readAgain = */ false
+        )
     }
 
     override fun onTerminate() {

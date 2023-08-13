@@ -16,7 +16,7 @@ class PermissionItem @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = -1,
-    defStyleRes: Int = -1
+    defStyleRes: Int = -1,
 ) : FrameLayout(context, attrs, defStyleAttr, defStyleRes) {
     private var binding: VItemPermissionBinding
     val checkImage get() = binding.checkImage

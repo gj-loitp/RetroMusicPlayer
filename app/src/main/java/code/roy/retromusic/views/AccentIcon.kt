@@ -9,7 +9,7 @@ import code.roy.appthemehelper.ThemeStore
 class AccentIcon @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = -1
+    defStyleAttr: Int = -1,
 ) : AppCompatImageView(context, attrs, defStyleAttr) {
     init {
         imageTintList = ColorStateList.valueOf(ThemeStore.accentColor(context))

@@ -1,24 +1,10 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic
 
 import android.provider.BaseColumns
 import android.provider.MediaStore
 
 object Constants {
-    const val PRO_VERSION_PRODUCT_ID = "pro_version"
+//    const val PRO_VERSION_PRODUCT_ID = "pro_version"
     const val RATE_ON_GOOGLE_PLAY = ""
     const val TRANSLATE = "https://crowdin.com/project/retromusicplayer"
     const val WEBSITE = "https://retromusic.app"
@@ -31,7 +17,7 @@ object Constants {
     const val APP_TWITTER_LINK = "https://twitter.com/retromusicapp"
     const val FAQ_LINK = "https://github.com/RetroMusicPlayer/RetroMusicPlayer/blob/master/FAQ.md"
     const val PINTEREST = "https://in.pinterest.com/retromusicapp/"
-    const val AUDIO_SCROBBLER_URL = "https://ws.audioscrobbler.com/2.0/"
+//    const val AUDIO_SCROBBLER_URL = "https://ws.audioscrobbler.com/2.0/"
 
     const val IS_MUSIC =
         MediaStore.Audio.AudioColumns.IS_MUSIC + "=1" + " AND " + MediaStore.Audio.AudioColumns.TITLE + " != ''"
