@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2019 Hemanth Savarala.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by
- *  the Free Software Foundation either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- */
-
 package code.roy.retromusic.transform
 
 import android.view.View
@@ -26,6 +12,7 @@ class DepthTransformation : ViewPager.PageTransformer {
                     // This page is way off-screen to the left.
                     alpha = 0f
                 }
+
                 position <= 0 -> { // [-1,0]
                     // Use the default slide transition when moving to the left page
                     alpha = 1f
@@ -33,6 +20,7 @@ class DepthTransformation : ViewPager.PageTransformer {
                     scaleX = 1f
                     scaleY = 1f
                 }
+
                 position <= 1 -> { // (0,1]
                     // Fade the page out.
                     alpha = 1 - position
@@ -45,6 +33,7 @@ class DepthTransformation : ViewPager.PageTransformer {
                     scaleX = scaleFactor
                     scaleY = scaleFactor
                 }
+
                 else -> { // (1,+Infinity]
                     // This page is way off-screen to the right.
                     alpha = 0f
