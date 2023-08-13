@@ -8,7 +8,7 @@
     app:cardCornerRadius="8dp"
     app:cardUseCompatPadding="true">
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="8dp"
@@ -34,5 +34,5 @@
             android:textAppearance="@style/TextViewBody1"
             tools:text="@tools:sample/lorem/random" />
 
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </com.google.android.material.card.MaterialCardView>

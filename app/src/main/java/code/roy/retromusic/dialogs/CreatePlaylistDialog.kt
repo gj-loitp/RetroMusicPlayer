@@ -21,7 +21,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import code.roy.retromusic.EXTRA_SONG
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.DialogPlaylistBinding
+import code.roy.retromusic.databinding.DlgPlaylistBinding
 import code.roy.retromusic.extensions.colorButtons
 import code.roy.retromusic.extensions.extra
 import code.roy.retromusic.extensions.materialDialog
@@ -32,7 +32,7 @@ import com.google.android.material.textfield.TextInputLayout
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class CreatePlaylistDialog : DialogFragment() {
-    private var _binding: code.roy.retromusic.databinding.DialogPlaylistBinding? = null
+    private var _binding: code.roy.retromusic.databinding.DlgPlaylistBinding? = null
     private val binding get() = _binding!!
     private val libraryViewModel by activityViewModel<LibraryViewModel>()
 
@@ -52,7 +52,7 @@ class CreatePlaylistDialog : DialogFragment() {
 
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        _binding = DialogPlaylistBinding.inflate(layoutInflater)
+        _binding = DlgPlaylistBinding.inflate(layoutInflater)
 
         val songs: List<Song> = extra<List<Song>>(EXTRA_SONG).value ?: emptyList()
         val playlistView: TextInputEditText = binding.actionNewPlaylist

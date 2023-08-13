@@ -35,7 +35,7 @@ import code.roy.retromusic.util.PreferenceUtil
 
 class AppWidgetText : BaseAppWidget() {
     override fun defaultAppWidget(context: Context, appWidgetIds: IntArray) {
-        val appWidgetView = RemoteViews(context.packageName, R.layout.app_widget_text)
+        val appWidgetView = RemoteViews(context.packageName, R.layout.v_app_widget_text)
 
 
         appWidgetView.setImageViewBitmap(
@@ -109,7 +109,7 @@ class AppWidgetText : BaseAppWidget() {
     }
 
     override fun performUpdate(service: MusicService, appWidgetIds: IntArray?) {
-        val appWidgetView = RemoteViews(service.packageName, R.layout.app_widget_text)
+        val appWidgetView = RemoteViews(service.packageName, R.layout.v_app_widget_text)
 
         val isPlaying = service.isPlaying
         val song = service.currentSong

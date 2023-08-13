@@ -25,7 +25,7 @@ import androidx.core.text.parseAsHtml
 import androidx.fragment.app.DialogFragment
 import code.roy.retromusic.EXTRA_SONG
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.DialogFileDetailsBinding
+import code.roy.retromusic.databinding.DlgFileDetailsBinding
 import code.roy.retromusic.extensions.colorButtons
 import code.roy.retromusic.extensions.materialDialog
 import code.roy.retromusic.model.Song
@@ -37,7 +37,7 @@ class SongDetailDialog : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val context: Context = requireContext()
-        val binding = DialogFileDetailsBinding.inflate(layoutInflater)
+        val binding = DlgFileDetailsBinding.inflate(layoutInflater)
 
         val song = BundleCompat.getParcelable(requireArguments(), EXTRA_SONG, Song::class.java)
         with(binding) {

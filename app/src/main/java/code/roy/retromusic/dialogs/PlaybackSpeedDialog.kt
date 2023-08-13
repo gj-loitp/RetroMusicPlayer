@@ -4,7 +4,7 @@ import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.DialogPlaybackSpeedBinding
+import code.roy.retromusic.databinding.DlgPlaybackSpeedBinding
 import code.roy.retromusic.extensions.accent
 import code.roy.retromusic.extensions.colorButtons
 import code.roy.retromusic.extensions.materialDialog
@@ -14,7 +14,7 @@ import com.google.android.material.slider.Slider
 class PlaybackSpeedDialog : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val binding = DialogPlaybackSpeedBinding.inflate(layoutInflater)
+        val binding = DlgPlaybackSpeedBinding.inflate(layoutInflater)
         binding.playbackSpeedSlider.accent()
         binding.playbackPitchSlider.accent()
         binding.playbackSpeedSlider.addOnChangeListener(Slider.OnChangeListener { _, value, _ ->

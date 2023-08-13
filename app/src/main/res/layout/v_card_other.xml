@@ -28,7 +28,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <code.roy.retromusic.views.ListItemView
             android:id="@+id/changelog"
             android:layout_width="0dp"

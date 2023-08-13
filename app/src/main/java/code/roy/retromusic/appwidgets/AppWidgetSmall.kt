@@ -28,7 +28,6 @@ import code.roy.appthemehelper.util.VersionUtils
 import code.roy.retromusic.R
 import code.roy.retromusic.activities.MainActivity
 import code.roy.retromusic.appwidgets.base.BaseAppWidget
-import code.roy.retromusic.appwidgets.base.BaseAppWidget.Companion.createRoundedBitmap
 import code.roy.retromusic.extensions.getTintedDrawable
 import code.roy.retromusic.glide.RetroGlideExtension
 import code.roy.retromusic.glide.RetroGlideExtension.asBitmapPalette
@@ -52,7 +51,7 @@ class AppWidgetSmall : BaseAppWidget() {
      * actions if service not running.
      */
     override fun defaultAppWidget(context: Context, appWidgetIds: IntArray) {
-        val appWidgetView = RemoteViews(context.packageName, R.layout.app_widget_small)
+        val appWidgetView = RemoteViews(context.packageName, R.layout.v_app_widget_small)
 
         appWidgetView.setViewVisibility(R.id.media_titles, View.INVISIBLE)
         appWidgetView.setImageViewResource(R.id.image, R.drawable.default_audio_art)
@@ -88,7 +87,7 @@ class AppWidgetSmall : BaseAppWidget() {
      * Update all active widget instances by pushing changes
      */
     override fun performUpdate(service: MusicService, appWidgetIds: IntArray?) {
-        val appWidgetView = RemoteViews(service.packageName, R.layout.app_widget_small)
+        val appWidgetView = RemoteViews(service.packageName, R.layout.v_app_widget_small)
 
         val isPlaying = service.isPlaying
         val song = service.currentSong

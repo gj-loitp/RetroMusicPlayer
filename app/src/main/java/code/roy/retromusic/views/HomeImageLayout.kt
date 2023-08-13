@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
-import code.roy.retromusic.databinding.BannerImageLayoutBinding
+import code.roy.retromusic.databinding.LayoutBannerImageBinding
 import code.roy.retromusic.databinding.VLayoutUserImageBinding
 import code.roy.retromusic.util.PreferenceUtil
 
@@ -17,11 +17,11 @@ class HomeImageLayout @JvmOverloads constructor(
     defStyleRes: Int = -1
 ) : FrameLayout(context, attrs, defStyleAttr, defStyleRes) {
     private var userImageBinding: VLayoutUserImageBinding? = null
-    private var bannerImageBinding: BannerImageLayoutBinding? = null
+    private var bannerImageBinding: LayoutBannerImageBinding? = null
 
     init {
         if (isInEditMode || PreferenceUtil.isHomeBanner) {
-            bannerImageBinding = BannerImageLayoutBinding.inflate(LayoutInflater.from(context), this, true)
+            bannerImageBinding = LayoutBannerImageBinding.inflate(LayoutInflater.from(context), this, true)
         } else {
             userImageBinding = VLayoutUserImageBinding.inflate(LayoutInflater.from(context), this, true)
         }

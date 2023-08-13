@@ -60,7 +60,7 @@
 
             <include
                 android:id="@+id/card_device_info"
-                layout="@layout/bug_report_card_device_info"
+                layout="@layout/v_bug_report_card_device_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

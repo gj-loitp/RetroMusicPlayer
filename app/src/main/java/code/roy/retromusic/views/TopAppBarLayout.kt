@@ -5,7 +5,7 @@ import android.content.res.Configuration
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.core.view.updateLayoutParams
-import code.roy.retromusic.databinding.CollapsingAppbarLayoutBinding
+import code.roy.retromusic.databinding.LayoutCollapsingAppbarBinding
 import code.roy.retromusic.databinding.LayoutSimpleAppbarBinding
 import code.roy.retromusic.util.PreferenceUtil
 import com.google.android.material.appbar.AppBarLayout
@@ -20,14 +20,14 @@ class TopAppBarLayout @JvmOverloads constructor(
     defStyleAttr: Int = -1,
 ) : AppBarLayout(context, attrs, defStyleAttr) {
     private var simpleAppbarBinding: LayoutSimpleAppbarBinding? = null
-    private var collapsingAppbarBinding: CollapsingAppbarLayoutBinding? = null
+    private var collapsingAppbarBinding: LayoutCollapsingAppbarBinding? = null
 
     val mode: AppBarMode = PreferenceUtil.appBarMode
 
     init {
         if (mode == AppBarMode.COLLAPSING) {
             collapsingAppbarBinding =
-                CollapsingAppbarLayoutBinding.inflate(LayoutInflater.from(context), this, true)
+                LayoutCollapsingAppbarBinding.inflate(LayoutInflater.from(context), this, true)
             val isLandscape =
                 context.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
             if (isLandscape) {

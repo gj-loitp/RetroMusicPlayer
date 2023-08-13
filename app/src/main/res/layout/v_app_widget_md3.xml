@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content"
     android:layout_width="match_parent"
@@ -10,7 +10,7 @@
     android:theme="@style/Theme.AppWidget"
     tools:ignore="ContentDescription">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image"
         android:layout_width="@dimen/app_widget_md3_image_size"
         android:layout_height="@dimen/app_widget_md3_image_size"
@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/media_actions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
             android:paddingEnd="8dp"
             android:paddingBottom="8dp">
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/button_prev"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -45,7 +45,7 @@
                 tools:src="@drawable/ic_skip_previous"
                 tools:tint="@color/ate_secondary_text_dark" />
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/button_toggle_play_pause"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -54,7 +54,7 @@
                 tools:src="@drawable/ic_play_arrow_white_32dp"
                 tools:tint="@color/ate_secondary_text_dark" />
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/button_next"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -63,9 +63,9 @@
                 tools:src="@drawable/ic_skip_next"
                 tools:tint="@color/ate_secondary_text_dark" />
 
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/media_titles"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
             android:paddingTop="4dp"
             android:paddingEnd="8dp">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -86,7 +86,7 @@
                 android:textColor="?android:attr/textColorPrimary"
                 tools:text="Title" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -96,6 +96,6 @@
                 android:textAppearance="@style/TextViewNormal"
                 android:textColor="?android:attr/textColorSecondary"
                 tools:text="Text" />
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
     </RelativeLayout>
-</LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

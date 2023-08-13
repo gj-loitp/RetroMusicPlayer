@@ -47,7 +47,7 @@ class RenamePlaylistDialog : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val playlistEntity = extraNotNull<PlaylistEntity>(EXTRA_PLAYLIST_ID).value
-        val layout = layoutInflater.inflate(R.layout.dialog_playlist, null)
+        val layout = layoutInflater.inflate(R.layout.dlg_playlist, null)
         val inputEditText: TextInputEditText = layout.findViewById(R.id.actionNewPlaylist)
         val nameContainer: TextInputLayout = layout.findViewById(R.id.actionNewPlaylistContainer)
         nameContainer.accentColor()

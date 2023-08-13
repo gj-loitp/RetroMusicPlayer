@@ -70,7 +70,7 @@ public class BreadCrumbLayout extends HorizontalScrollView implements View.OnCli
 
   public void addCrumb(@NonNull Crumb crumb, boolean refreshLayout) {
     LinearLayout view =
-        (LinearLayout) LayoutInflater.from(getContext()).inflate(R.layout.bread_crumb, this, false);
+        (LinearLayout) LayoutInflater.from(getContext()).inflate(R.layout.v_bread_crumb, this, false);
     view.setTag(mCrumbs.size());
     view.setOnClickListener(this);
 

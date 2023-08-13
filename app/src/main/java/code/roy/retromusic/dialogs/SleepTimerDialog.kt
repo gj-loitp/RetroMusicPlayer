@@ -32,7 +32,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import code.roy.appthemehelper.util.VersionUtils
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.DialogSleepTimerBinding
+import code.roy.retromusic.databinding.DlgSleepTimerBinding
 import code.roy.retromusic.extensions.addAccentColor
 import code.roy.retromusic.extensions.materialDialog
 import code.roy.retromusic.helper.MusicPlayerRemote
@@ -48,7 +48,7 @@ class SleepTimerDialog : DialogFragment() {
     private lateinit var timerUpdater: TimerUpdater
     private lateinit var dialog: AlertDialog
 
-    private var _binding: DialogSleepTimerBinding? = null
+    private var _binding: DlgSleepTimerBinding? = null
     private val binding get() = _binding!!
 
     private val shouldFinishLastSong: CheckBox get() = binding.shouldFinishLastSong
@@ -57,7 +57,7 @@ class SleepTimerDialog : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         timerUpdater = TimerUpdater()
-        _binding = DialogSleepTimerBinding.inflate(layoutInflater)
+        _binding = DlgSleepTimerBinding.inflate(layoutInflater)
 
         val finishMusic = PreferenceUtil.isSleepTimerFinishMusic
         shouldFinishLastSong.apply {
