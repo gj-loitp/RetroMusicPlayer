@@ -187,7 +187,7 @@ class AlbumDetailsFragment : AbsMainActivityFragment(R.layout.fragment_album_det
         simpleSongAdapter = SimpleSongAdapter(
             requireActivity() as AppCompatActivity,
             ArrayList(),
-            R.layout.item_song
+            R.layout.v_item_song
         )
         binding.fragmentAlbumContent.recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())

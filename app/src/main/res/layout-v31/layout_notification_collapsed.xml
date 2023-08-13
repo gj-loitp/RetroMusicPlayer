@@ -13,7 +13,7 @@
         android:layout_alignBottom="@+id/content"
         android:layout_alignParentEnd="true">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/largeIcon"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -24,7 +24,7 @@
 
     </RelativeLayout>
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
         android:paddingEnd="12dp"
         android:paddingBottom="8dp">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
             android:textStyle="bold"
             tools:text="@tools:sample/lorem/random" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -56,9 +56,9 @@
             android:textAppearance="@style/Theme.RetroMusic.Notification.Title"
             tools:text="@tools:sample/lorem/random" />
 
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/actions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
         android:layout_marginEnd="48dp"
         android:orientation="horizontal">
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/action_prev"
             android:layout_width="38dp"
             android:layout_height="38dp"
@@ -78,7 +78,7 @@
             android:src="@drawable/ic_skip_previous"
             tools:tint="?colorOnPrimary" />
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/action_play_pause"
             android:layout_width="38dp"
             android:layout_height="38dp"
@@ -87,7 +87,7 @@
             android:src="@drawable/ic_pause"
             tools:tint="?colorOnPrimary" />
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/action_next"
             android:layout_width="38dp"
             android:layout_height="38dp"
@@ -96,5 +96,5 @@
             android:src="@drawable/ic_skip_next"
             tools:tint="?colorOnPrimary" />
 
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </RelativeLayout>

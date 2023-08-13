@@ -38,7 +38,6 @@
                 tools:ignore="ContentDescription"
                 tools:visibility="visible" />
 
-
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/imageContainer"
                 android:layout_width="wrap_content"

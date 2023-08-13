@@ -10,9 +10,6 @@ import android.view.View
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.PopupMenu
-import androidx.core.app.ActivityCompat.postponeEnterTransition
-import androidx.core.app.ActivityCompat.startPostponedEnterTransition
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.os.bundleOf
 import androidx.core.text.parseAsHtml
 import androidx.core.view.doOnPreDraw
@@ -41,7 +38,6 @@ import code.roy.retromusic.glide.RetroGlideExtension.artistImageOptions
 import code.roy.retromusic.glide.RetroGlideExtension.asBitmapPalette
 import code.roy.retromusic.glide.SingleColorTarget
 import code.roy.retromusic.helper.MusicPlayerRemote
-import code.roy.retromusic.network.Result.*
 import code.roy.retromusic.helper.SortOrder
 import code.roy.retromusic.interfaces.IAlbumClickListener
 import code.roy.retromusic.model.Artist
@@ -131,7 +127,7 @@ abstract class AbsArtistDetailsFragment : AbsMainActivityFragment(R.layout.fragm
             layoutManager = GridLayoutManager(this.context, 1, GridLayoutManager.HORIZONTAL, false)
             adapter = albumAdapter
         }
-        songAdapter = SimpleSongAdapter(requireActivity(), ArrayList(), R.layout.item_song)
+        songAdapter = SimpleSongAdapter(requireActivity(), ArrayList(), R.layout.v_item_song)
         binding.fragmentArtistContent.recyclerView.apply {
             itemAnimator = DefaultItemAnimator()
             layoutManager = LinearLayoutManager(this.context)

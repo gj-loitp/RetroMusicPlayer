@@ -9,7 +9,7 @@ import androidx.core.content.withStyledAttributes
 import code.roy.appthemehelper.ThemeStore
 import code.roy.appthemehelper.util.ColorUtil
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.ItemPermissionBinding
+import code.roy.retromusic.databinding.VItemPermissionBinding
 import code.roy.retromusic.extensions.accentOutlineColor
 
 class PermissionItem @JvmOverloads constructor(
@@ -18,11 +18,11 @@ class PermissionItem @JvmOverloads constructor(
     defStyleAttr: Int = -1,
     defStyleRes: Int = -1
 ) : FrameLayout(context, attrs, defStyleAttr, defStyleRes) {
-    private var binding: ItemPermissionBinding
+    private var binding: VItemPermissionBinding
     val checkImage get() = binding.checkImage
 
     init {
-        binding = ItemPermissionBinding.inflate(LayoutInflater.from(context), this, true)
+        binding = VItemPermissionBinding.inflate(LayoutInflater.from(context), this, true)
 
         context.withStyledAttributes(attrs, R.styleable.PermissionItem, 0, 0) {
             binding.title.text = getText(R.styleable.PermissionItem_permissionTitle)

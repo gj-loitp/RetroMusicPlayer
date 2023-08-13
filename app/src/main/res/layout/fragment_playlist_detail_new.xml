@@ -112,7 +112,7 @@
         android:paddingBottom="@dimen/mini_player_height"
         android:scrollbars="none"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-        tools:listitem="@layout/item_song" />
+        tools:listitem="@layout/v_item_song" />
 
     <LinearLayout
         android:id="@android:id/empty"

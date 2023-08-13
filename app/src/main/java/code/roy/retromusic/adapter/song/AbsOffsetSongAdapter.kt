@@ -32,7 +32,7 @@ abstract class AbsOffsetSongAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongAdapter.ViewHolder {
         if (viewType == OFFSET_ITEM) {
             val view = LayoutInflater.from(activity)
-                .inflate(R.layout.item_list_quick_actions, parent, false)
+                .inflate(R.layout.v_item_list_quick_actions, parent, false)
             return createViewHolder(view)
         }
         return super.onCreateViewHolder(parent, viewType)

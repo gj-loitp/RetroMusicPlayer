@@ -31,7 +31,7 @@
 
         <include
             android:id="@+id/suggestions"
-            layout="@layout/item_suggestions" />
+            layout="@layout/v_item_suggestions" />
 
         <code.roy.retromusic.views.insets.InsetsRecyclerView
             android:id="@+id/recyclerView"

@@ -17,7 +17,7 @@ class StorageAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.item_storage,
+                R.layout.v_item_storage,
                 parent,
                 false
             )

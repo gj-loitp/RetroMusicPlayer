@@ -34,7 +34,6 @@
             tools:text="@tools:sample/date/hhmm" />
     </FrameLayout>
 
-
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/title"
         android:layout_width="0dp"

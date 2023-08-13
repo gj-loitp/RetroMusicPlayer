@@ -74,7 +74,6 @@
                     tools:visibility="visible" />
             </FrameLayout>
 
-
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/title"
                 android:layout_width="0dp"
