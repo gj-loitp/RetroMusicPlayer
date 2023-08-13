@@ -2,8 +2,6 @@
 <resources>
     <bool name="md3_available">false</bool>
     <bool name="md3_enabled">false</bool>
-
     <bool name="allowBackup">true</bool>
-
     <bool name="isMarshmallow">false</bool>
 </resources>
