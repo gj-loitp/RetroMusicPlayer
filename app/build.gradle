@@ -6,7 +6,6 @@ apply plugin: 'com.google.devtools.ksp'
 
 android {
     compileSdk 33
-//    namespace "code.name.monkey.retromusic"
     namespace "code.roy.retromusic"
 
     defaultConfig {

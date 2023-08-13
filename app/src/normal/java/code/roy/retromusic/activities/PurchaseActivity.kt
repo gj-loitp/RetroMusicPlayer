@@ -1,21 +1,21 @@
-package code.name.monkey.retromusic.activities
+package code.roy.retromusic.activities
 
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
-import code.name.monkey.appthemehelper.util.MaterialUtil
-import code.name.monkey.retromusic.App
-import code.name.monkey.retromusic.BuildConfig
-import code.name.monkey.retromusic.Constants
-import code.name.monkey.retromusic.R
-import code.name.monkey.retromusic.activities.base.AbsThemeActivity
-import code.name.monkey.retromusic.databinding.ActivityProVersionBinding
-import code.name.monkey.retromusic.extensions.accentColor
-import code.name.monkey.retromusic.extensions.setLightStatusBar
-import code.name.monkey.retromusic.extensions.setStatusBarColor
-import code.name.monkey.retromusic.extensions.showToast
+import code.roy.appthemehelper.util.MaterialUtil
+import code.roy.retromusic.App
+import code.roy.retromusic.BuildConfig
+import code.roy.retromusic.Constants
+import code.roy.retromusic.R
+import code.roy.retromusic.activities.base.AbsThemeActivity
+import code.roy.retromusic.databinding.ActivityProVersionBinding
+import code.roy.retromusic.extensions.accentColor
+import code.roy.retromusic.extensions.setLightStatusBar
+import code.roy.retromusic.extensions.setStatusBarColor
+import code.roy.retromusic.extensions.showToast
 import com.anjlab.android.iab.v3.BillingProcessor
 import com.anjlab.android.iab.v3.PurchaseInfo
 
