@@ -6,7 +6,6 @@ import fi.iki.elonen.NanoHTTPD
 import fi.iki.elonen.NanoHTTPD.Response.Status
 import java.io.*
 
-
 const val SERVER_PORT = 9090
 
 class RetroWebServer(val context: Context) : NanoHTTPD(SERVER_PORT) {
@@ -42,7 +41,7 @@ class RetroWebServer(val context: Context) : NanoHTTPD(SERVER_PORT) {
 
     private fun serveFile(
         header: MutableMap<String, String>, file: File,
-        mime: String
+        mime: String,
     ): Response {
         var res: Response
         try {

@@ -10,7 +10,6 @@ import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import org.koin.android.ext.android.inject
 
-
 abstract class AbsCastActivity : AbsSlidingMusicPanelActivity() {
 
     private var mCastSession: CastSession? = null
