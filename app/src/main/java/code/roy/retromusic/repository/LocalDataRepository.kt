@@ -10,7 +10,7 @@ interface LocalDataRepository {
 }
 
 class RealLocalDataRepository(
-    private val context: Context
+    private val context: Context,
 ) : LocalDataRepository {
 
     override fun contributors(): List<Contributor> {

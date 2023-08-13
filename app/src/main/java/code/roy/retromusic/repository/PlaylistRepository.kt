@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2019 Hemanth Savarala.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by
- *  the Free Software Foundation either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- */
-
 package code.roy.retromusic.repository
 
 import android.content.ContentResolver
@@ -29,9 +15,6 @@ import code.roy.retromusic.model.Playlist
 import code.roy.retromusic.model.PlaylistSong
 import code.roy.retromusic.model.Song
 
-/**
- * Created by hemanths on 16/08/17.
- */
 interface PlaylistRepository {
     fun playlist(cursor: Cursor?): Playlist
 
@@ -51,9 +34,10 @@ interface PlaylistRepository {
 
     fun playlistSongs(playlistId: Long): List<Song>
 }
+
 @Suppress("Deprecation")
 class RealPlaylistRepository(
-    private val contentResolver: ContentResolver
+    private val contentResolver: ContentResolver,
 ) : PlaylistRepository {
 
     override fun playlist(cursor: Cursor?): Playlist {
@@ -67,24 +51,34 @@ class RealPlaylistRepository(
     }
 
     override fun playlist(playlistName: String): Playlist {
-        return playlist(makePlaylistCursor(PlaylistsColumns.NAME + "=?", arrayOf(playlistName)))
+        return playlist(
+            makePlaylistCursor(
+                selection = PlaylistsColumns.NAME + "=?",
+                values = arrayOf(playlistName)
+            )
+        )
     }
 
     override fun playlist(playlistId: Long): Playlist {
         return playlist(
             makePlaylistCursor(
-                BaseColumns._ID + "=?",
-                arrayOf(playlistId.toString())
+                selection = BaseColumns._ID + "=?",
+                values = arrayOf(playlistId.toString())
             )
         )
     }
 
     override fun searchPlaylist(query: String): List<Playlist> {
-        return playlists(makePlaylistCursor(PlaylistsColumns.NAME + "=?", arrayOf(query)))
+        return playlists(
+            makePlaylistCursor(
+                selection = PlaylistsColumns.NAME + "=?",
+                values = arrayOf(query)
+            )
+        )
     }
 
     override fun playlists(): List<Playlist> {
-        return playlists(makePlaylistCursor(null, null))
+        return playlists(makePlaylistCursor(selection = null, values = null))
     }
 
     override fun playlists(cursor: Cursor?): List<Playlist> {
@@ -101,8 +95,8 @@ class RealPlaylistRepository(
     override fun favoritePlaylist(playlistName: String): List<Playlist> {
         return playlists(
             makePlaylistCursor(
-                PlaylistsColumns.NAME + "=?",
-                arrayOf(playlistName)
+                selection = PlaylistsColumns.NAME + "=?",
+                values = arrayOf(playlistName)
             )
         )
     }
@@ -117,7 +111,7 @@ class RealPlaylistRepository(
     }
 
     private fun getPlaylistFromCursorImpl(
-        cursor: Cursor
+        cursor: Cursor,
     ): Playlist {
         val id = cursor.getLong(0)
         val name = cursor.getString(1)
@@ -158,37 +152,37 @@ class RealPlaylistRepository(
         val composer = cursor.getStringOrNull(AudioColumns.COMPOSER)
         val albumArtist = cursor.getStringOrNull("album_artist")
         return PlaylistSong(
-            id,
-            title,
-            trackNumber,
-            year,
-            duration,
-            data,
-            dateModified,
-            albumId,
-            albumName,
-            artistId,
-            artistName,
-            playlistId,
-            idInPlaylist,
-            composer ?: "",
-            albumArtist
+            id = id,
+            title = title,
+            trackNumber = trackNumber,
+            year = year,
+            duration = duration,
+            data = data,
+            dateModified = dateModified,
+            albumId = albumId,
+            albumName = albumName,
+            artistId = artistId,
+            artistName = artistName,
+            playlistId = playlistId,
+            idInPlayList = idInPlaylist,
+            composer = composer ?: "",
+            albumArtist = albumArtist
         )
     }
 
     private fun makePlaylistCursor(
         selection: String?,
-        values: Array<String>?
+        values: Array<String>?,
     ): Cursor? {
         return contentResolver.query(
-            EXTERNAL_CONTENT_URI,
-            arrayOf(
+            /* uri = */ EXTERNAL_CONTENT_URI,
+            /* projection = */ arrayOf(
                 BaseColumns._ID, /* 0 */
                 PlaylistsColumns.NAME /* 1 */
             ),
-            selection,
-            values,
-            DEFAULT_SORT_ORDER
+            /* selection = */ selection,
+            /* selectionArgs = */ values,
+            /* sortOrder = */ DEFAULT_SORT_ORDER
         )
     }
 

@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2019 Hemanth Savarala.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by
- *  the Free Software Foundation either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- */
-
 package code.roy.retromusic.repository
 
 import android.content.Context
@@ -25,11 +11,6 @@ import code.roy.retromusic.model.Song
 import code.roy.retromusic.providers.HistoryStore
 import code.roy.retromusic.providers.SongPlayCountStore
 import code.roy.retromusic.util.PreferenceUtil
-
-
-/**
- * Created by hemanths on 16/08/17.
- */
 
 interface TopPlayedRepository {
     fun recentlyPlayedTracks(): List<Song>
@@ -47,7 +28,7 @@ class RealTopPlayedRepository(
     private val context: Context,
     private val songRepository: RealSongRepository,
     private val albumRepository: RealAlbumRepository,
-    private val artistRepository: RealArtistRepository
+    private val artistRepository: RealArtistRepository,
 ) : TopPlayedRepository {
 
     override fun recentlyPlayedTracks(): List<Song> {
@@ -63,8 +44,9 @@ class RealTopPlayedRepository(
             addAll(
                 songRepository.songs(
                     songRepository.makeSongCursor(
-                        null, null,
-                        MediaStore.Audio.Media.DATE_ADDED + " ASC"
+                        selection = null,
+                        selectionValues = null,
+                        sortOrder = MediaStore.Audio.Media.DATE_ADDED + " ASC"
                     )
                 )
             )
@@ -81,7 +63,7 @@ class RealTopPlayedRepository(
     }
 
     override fun topAlbums(): List<Album> {
-        return albumRepository.splitIntoAlbums(topTracks(), sorted = false)
+        return albumRepository.splitIntoAlbums(songs = topTracks(), sorted = false)
     }
 
     override fun topArtists(): List<Artist> {
@@ -108,8 +90,8 @@ class RealTopPlayedRepository(
         val songs = HistoryStore.getInstance(context).queryRecentIds()
         songs.use {
             return makeSortedCursor(
-                it,
-                it.getColumnIndex(HistoryStore.RecentStoreColumns.ID)
+                cursor = it,
+                idColumn = it.getColumnIndex(HistoryStore.RecentStoreColumns.ID)
             )
         }
     }
@@ -121,14 +103,14 @@ class RealTopPlayedRepository(
 
         cursor.use { songs ->
             return makeSortedCursor(
-                songs,
-                songs.getColumnIndex(SongPlayCountStore.SongPlayCountColumns.ID)
+                cursor = songs,
+                idColumn = songs.getColumnIndex(SongPlayCountStore.SongPlayCountColumns.ID)
             )
         }
     }
 
     private fun makeSortedCursor(
-        cursor: Cursor?, idColumn: Int
+        cursor: Cursor?, idColumn: Int,
     ): SortedLongCursor? {
 
         if (cursor != null && cursor.moveToFirst()) {
@@ -159,9 +141,9 @@ class RealTopPlayedRepository(
             if (songCursor != null) {
                 // now return the wrapped TopTracksCursor to handle sorting given order
                 return SortedLongCursor(
-                    songCursor,
-                    order,
-                    BaseColumns._ID
+                    /* cursor = */ songCursor,
+                    /* order = */ order,
+                    /* columnName = */ BaseColumns._ID
                 )
             }
         }
@@ -192,7 +174,7 @@ class RealTopPlayedRepository(
 
     private fun makeRecentTracksCursorAndClearUpDatabaseImpl(
         ignoreCutoffTime: Boolean,
-        reverseOrder: Boolean
+        reverseOrder: Boolean,
     ): SortedLongCursor? {
         val retCursor = makeRecentTracksCursorImpl(ignoreCutoffTime, reverseOrder)
         // clean up the databases with any ids not found
@@ -210,7 +192,7 @@ class RealTopPlayedRepository(
 
     private fun makeRecentTracksCursorImpl(
         ignoreCutoffTime: Boolean,
-        reverseOrder: Boolean
+        reverseOrder: Boolean,
     ): SortedLongCursor? {
         val cutoff =
             (if (ignoreCutoffTime) 0 else PreferenceUtil.getRecentlyPlayedCutoffTimeMillis()).toLong()
@@ -218,8 +200,8 @@ class RealTopPlayedRepository(
             HistoryStore.getInstance(context).queryRecentIds(cutoff * if (reverseOrder) -1 else 1)
         return songs.use {
             makeSortedCursor(
-                it,
-                it.getColumnIndex(HistoryStore.RecentStoreColumns.ID)
+                cursor = it,
+                idColumn = it.getColumnIndex(HistoryStore.RecentStoreColumns.ID)
             )
         }
     }

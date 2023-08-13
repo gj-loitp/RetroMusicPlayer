@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2019 Hemanth Savarala.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by
- *  the Free Software Foundation either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- */
-
 package code.roy.retromusic.repository
 
 import android.content.Context
@@ -30,7 +16,11 @@ class RealSearchRepository(
     private val roomRepository: RoomRepository,
     private val genreRepository: GenreRepository,
 ) {
-    suspend fun searchAll(context: Context, query: String?, filter: Filter): MutableList<Any> {
+    suspend fun searchAll(
+        context: Context,
+        query: String?,
+        filter: Filter,
+    ): MutableList<Any> {
         val results = mutableListOf<Any>()
         if (query.isNullOrEmpty()) return results
         query.let { searchString ->
@@ -96,7 +86,8 @@ class RealSearchRepository(
             val playlist: List<PlaylistWithSongs> =
                 if (filter == Filter.PLAYLISTS || filter == Filter.NO_FILTER) {
                     roomRepository.playlistWithSongs().filter { playlist ->
-                        playlist.playlistEntity.playlistName.lowercase().contains(searchString.lowercase())
+                        playlist.playlistEntity.playlistName.lowercase()
+                            .contains(searchString.lowercase())
                     }
                 } else {
                     emptyList()

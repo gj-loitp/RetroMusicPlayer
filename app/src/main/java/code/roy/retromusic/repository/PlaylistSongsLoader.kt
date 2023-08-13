@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2019 Hemanth Savarala.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by
- *  the Free Software Foundation either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- */
-
 package code.roy.retromusic.repository
 
 import android.content.Context
@@ -27,9 +13,6 @@ import code.roy.retromusic.extensions.getStringOrNull
 import code.roy.retromusic.model.PlaylistSong
 import code.roy.retromusic.model.Song
 
-/**
- * Created by hemanths on 16/08/17.
- */
 @Suppress("Deprecation")
 object PlaylistSongsLoader {
 
@@ -38,16 +21,16 @@ object PlaylistSongsLoader {
         val songs = mutableListOf<Song>()
         val cursor =
             makePlaylistSongCursor(
-                context,
-                playlistId
+                context = context,
+                playlistId = playlistId
             )
 
         if (cursor != null && cursor.moveToFirst()) {
             do {
                 songs.add(
                     getPlaylistSongFromCursorImpl(
-                        cursor,
-                        playlistId
+                        cursor = cursor,
+                        playlistId = playlistId
                     )
                 )
             } while (cursor.moveToNext())
@@ -73,28 +56,29 @@ object PlaylistSongsLoader {
         val composer = cursor.getStringOrNull(AudioColumns.COMPOSER)
         val albumArtist = cursor.getStringOrNull("album_artist")
         return PlaylistSong(
-            id,
-            title,
-            trackNumber,
-            year,
-            duration,
-            data,
-            dateModified,
-            albumId,
-            albumName,
-            artistId,
-            artistName,
-            playlistId,
-            idInPlaylist,
-            composer,
-            albumArtist
+            id = id,
+            title = title,
+            trackNumber = trackNumber,
+            year = year,
+            duration = duration,
+            data = data,
+            dateModified = dateModified,
+            albumId = albumId,
+            albumName = albumName,
+            artistId = artistId,
+            artistName = artistName,
+            playlistId = playlistId,
+            idInPlayList = idInPlaylist,
+            composer = composer,
+            albumArtist = albumArtist
         )
     }
 
     private fun makePlaylistSongCursor(context: Context, playlistId: Long): Cursor? {
         try {
             return context.contentResolver.query(
-                Members.getContentUri("external", playlistId),
+                /* uri = */ Members.getContentUri("external", playlistId),
+                /* projection = */
                 arrayOf(
                     Members.AUDIO_ID, // 0
                     AudioColumns.TITLE, // 1
@@ -110,9 +94,13 @@ object PlaylistSongsLoader {
                     Members._ID,//11
                     AudioColumns.COMPOSER,//12
                     "album_artist"//13
-                ), IS_MUSIC, null, Members.DEFAULT_SORT_ORDER
+                ), /* selection = */
+                IS_MUSIC, /* selectionArgs = */
+                null, /* sortOrder = */
+                Members.DEFAULT_SORT_ORDER
             )
         } catch (e: SecurityException) {
+            e.printStackTrace()
             return null
         }
     }

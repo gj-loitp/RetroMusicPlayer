@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2019 Hemanth Savarala.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by
- *  the Free Software Foundation either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- */
-
 package code.roy.retromusic.repository
 
 import android.content.Context
@@ -335,38 +321,46 @@ class RealRepository(
 
     override suspend fun genresHome(): Home {
         val genres = genreRepository.genres().shuffled()
-        return Home(genres, GENRES, R.string.genres)
+        return Home(arrayList = genres, homeSection = GENRES, titleRes = R.string.genres)
     }
 
     override suspend fun playlists(): Home {
         val playlist = playlistRepository.playlists()
-        return Home(playlist, PLAYLISTS, R.string.playlists)
+        return Home(arrayList = playlist, homeSection = PLAYLISTS, titleRes = R.string.playlists)
     }
 
     override suspend fun recentArtistsHome(): Home {
         val artists = lastAddedRepository.recentArtists().take(5)
-        return Home(artists, RECENT_ARTISTS, R.string.recent_artists)
+        return Home(
+            arrayList = artists,
+            homeSection = RECENT_ARTISTS,
+            titleRes = R.string.recent_artists
+        )
     }
 
     override suspend fun recentAlbumsHome(): Home {
         val albums = lastAddedRepository.recentAlbums().take(5)
-        return Home(albums, RECENT_ALBUMS, R.string.recent_albums)
+        return Home(
+            arrayList = albums,
+            homeSection = RECENT_ALBUMS,
+            titleRes = R.string.recent_albums
+        )
     }
 
     override suspend fun topAlbumsHome(): Home {
         val albums = topPlayedRepository.topAlbums().take(5)
-        return Home(albums, TOP_ALBUMS, R.string.top_albums)
+        return Home(arrayList = albums, homeSection = TOP_ALBUMS, titleRes = R.string.top_albums)
     }
 
     override suspend fun topArtistsHome(): Home {
         val artists = topPlayedRepository.topArtists().take(5)
-        return Home(artists, TOP_ARTISTS, R.string.top_artists)
+        return Home(arrayList = artists, homeSection = TOP_ARTISTS, titleRes = R.string.top_artists)
     }
 
     override suspend fun favoritePlaylistHome(): Home {
         val songs = favoritePlaylistSongs().map {
             it.toSong()
         }
-        return Home(songs, FAVOURITES, R.string.favorites)
+        return Home(arrayList = songs, homeSection = FAVOURITES, titleRes = R.string.favorites)
     }
 }

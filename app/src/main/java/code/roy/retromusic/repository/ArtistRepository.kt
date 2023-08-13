@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2019 Hemanth Savarala.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by
- *  the Free Software Foundation either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- */
-
 package code.roy.retromusic.repository
 
 import android.provider.MediaStore.Audio.AudioColumns
@@ -38,7 +24,7 @@ interface ArtistRepository {
 
 class RealArtistRepository(
     private val songRepository: RealSongRepository,
-    private val albumRepository: RealAlbumRepository
+    private val albumRepository: RealAlbumRepository,
 ) : ArtistRepository {
 
     private fun getSongLoaderSortOrder(): String {
@@ -52,9 +38,9 @@ class RealArtistRepository(
             // Get Various Artists
             val songs = songRepository.songs(
                 songRepository.makeSongCursor(
-                    null,
-                    null,
-                    getSongLoaderSortOrder()
+                    selection = null,
+                    selectionValues = null,
+                    sortOrder = getSongLoaderSortOrder()
                 )
             )
             val albums = albumRepository.splitIntoAlbums(songs)
@@ -64,9 +50,9 @@ class RealArtistRepository(
 
         val songs = songRepository.songs(
             songRepository.makeSongCursor(
-                AudioColumns.ARTIST_ID + "=?",
-                arrayOf(artistId.toString()),
-                getSongLoaderSortOrder()
+                selection = AudioColumns.ARTIST_ID + "=?",
+                selectionValues = arrayOf(artistId.toString()),
+                sortOrder = getSongLoaderSortOrder()
             )
         )
         return Artist(artistId, albumRepository.splitIntoAlbums(songs))
@@ -77,9 +63,9 @@ class RealArtistRepository(
             // Get Various Artists
             val songs = songRepository.songs(
                 songRepository.makeSongCursor(
-                    null,
-                    null,
-                    getSongLoaderSortOrder()
+                    selection = null,
+                    selectionValues = null,
+                    sortOrder = getSongLoaderSortOrder()
                 )
             )
             val albums = albumRepository.splitIntoAlbums(songs)
@@ -89,9 +75,9 @@ class RealArtistRepository(
 
         val songs = songRepository.songs(
             songRepository.makeSongCursor(
-                "album_artist" + "=?",
-                arrayOf(artistName),
-                getSongLoaderSortOrder()
+                selection = "album_artist" + "=?",
+                selectionValues = arrayOf(artistName),
+                sortOrder = getSongLoaderSortOrder()
             )
         )
         return Artist(artistName, albumRepository.splitIntoAlbums(songs), true)
@@ -100,8 +86,8 @@ class RealArtistRepository(
     override fun artists(): List<Artist> {
         val songs = songRepository.songs(
             songRepository.makeSongCursor(
-                null, null,
-                getSongLoaderSortOrder()
+                selection = null, selectionValues = null,
+                sortOrder = getSongLoaderSortOrder()
             )
         )
         val artists = splitIntoArtists(albumRepository.splitIntoAlbums(songs))
@@ -111,9 +97,9 @@ class RealArtistRepository(
     override fun albumArtists(): List<Artist> {
         val songs = songRepository.songs(
             songRepository.makeSongCursor(
-                null,
-                null,
-                "lower($ALBUM_ARTIST)" +
+                selection = null,
+                selectionValues = null,
+                sortOrder = "lower($ALBUM_ARTIST)" +
                         if (PreferenceUtil.artistSortOrder == SortOrder.ArtistSortOrder.ARTIST_A_Z) "" else " DESC"
             )
         )
@@ -124,9 +110,9 @@ class RealArtistRepository(
     override fun albumArtists(query: String): List<Artist> {
         val songs = songRepository.songs(
             songRepository.makeSongCursor(
-                "album_artist" + " LIKE ?",
-                arrayOf("%$query%"),
-                getSongLoaderSortOrder()
+                selection = "album_artist" + " LIKE ?",
+                selectionValues = arrayOf("%$query%"),
+                sortOrder = getSongLoaderSortOrder()
             )
         )
         val artists = splitIntoAlbumArtists(albumRepository.splitIntoAlbums(songs))
@@ -136,9 +122,9 @@ class RealArtistRepository(
     override fun artists(query: String): List<Artist> {
         val songs = songRepository.songs(
             songRepository.makeSongCursor(
-                AudioColumns.ARTIST + " LIKE ?",
-                arrayOf("%$query%"),
-                getSongLoaderSortOrder()
+                selection = AudioColumns.ARTIST + " LIKE ?",
+                selectionValues = arrayOf("%$query%"),
+                sortOrder = getSongLoaderSortOrder()
             )
         )
         val artists = splitIntoArtists(albumRepository.splitIntoAlbums(songs))
@@ -165,7 +151,6 @@ class RealArtistRepository(
             }
     }
 
-
     fun splitIntoArtists(albums: List<Album>): List<Artist> {
         return albums.groupBy { it.artistId }
             .map { Artist(it.key, it.value) }
@@ -177,9 +162,11 @@ class RealArtistRepository(
             SortOrder.ArtistSortOrder.ARTIST_A_Z -> {
                 artists.sortedWith { a1, a2 -> collator.compare(a1.name, a2.name) }
             }
+
             SortOrder.ArtistSortOrder.ARTIST_Z_A -> {
                 artists.sortedWith { a1, a2 -> collator.compare(a2.name, a1.name) }
             }
+
             else -> artists
         }
     }
