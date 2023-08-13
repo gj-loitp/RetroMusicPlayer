@@ -1,19 +1,4 @@
-/*
- * Copyright (c) 2019 Hemanth Savarala.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by
- *  the Free Software Foundation either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- */
-
 package code.roy.retromusic.util
-
 
 import android.Manifest.permission.BIND_NOTIFICATION_LISTENER_SERVICE
 import android.Manifest.permission.MEDIA_CONTENT_CONTROL
@@ -49,8 +34,8 @@ import java.util.*
  * For more information, see res/xml/allowed_media_browser_callers.xml.
  */
 class PackageValidator(
-        context: Context,
-        @XmlRes xmlResId: Int
+    context: Context,
+    @XmlRes xmlResId: Int,
 ) {
     private val context: Context
     private val packageManager: PackageManager
@@ -99,7 +84,7 @@ class PackageValidator(
 
         // Build the caller info for the rest of the checks here.
         val callerPackageInfo = buildCallerInfo(callingPackage)
-                ?: throw IllegalStateException("Caller wasn't found in the system?")
+            ?: throw IllegalStateException("Caller wasn't found in the system?")
 
         // Verify that things aren't ... broken. (This test should always pass.)
         if (callerPackageInfo.uid != callingUid) {
@@ -155,7 +140,10 @@ class PackageValidator(
      */
     private fun logUnknownCaller(callerPackageInfo: CallerPackageInfo) {
         if (BuildConfig.DEBUG && callerPackageInfo.signature != null) {
-            Log.i(TAG, "PackageValidator call" + callerPackageInfo.name + callerPackageInfo.packageName + callerPackageInfo.signature)
+            Log.i(
+                TAG,
+                "PackageValidator call" + callerPackageInfo.name + callerPackageInfo.packageName + callerPackageInfo.signature
+            )
         }
     }
 
@@ -193,8 +181,10 @@ class PackageValidator(
     @Suppress("Deprecation")
     @SuppressLint("PackageManagerGetSignatures")
     private fun getPackageInfo(callingPackage: String): PackageInfo? =
-            packageManager.getPackageInfo(callingPackage,
-                    PackageManager.GET_SIGNATURES or PackageManager.GET_PERMISSIONS)
+        packageManager.getPackageInfo(
+            callingPackage,
+            PackageManager.GET_SIGNATURES or PackageManager.GET_PERMISSIONS
+        )
 
     /**
      * Gets the signature of a given package's [PackageInfo].
@@ -291,9 +281,9 @@ class PackageValidator(
      * Finds the Android platform signing key signature. This key is never null.
      */
     private fun getSystemSignature(): String =
-            getPackageInfo(ANDROID_PLATFORM)?.let { platformInfo ->
-                getSignature(platformInfo)
-            } ?: throw IllegalStateException("Platform signature not found")
+        getPackageInfo(ANDROID_PLATFORM)?.let { platformInfo ->
+            getSignature(platformInfo)
+        } ?: throw IllegalStateException("Platform signature not found")
 
     /**
      * Creates a SHA-256 signature given a Base64 encoded certificate.
@@ -325,12 +315,12 @@ class PackageValidator(
     private data class KnownCallerInfo(
         val name: String,
         val packageName: String,
-        val signatures: MutableSet<KnownSignature>
+        val signatures: MutableSet<KnownSignature>,
     )
 
     private data class KnownSignature(
         val signature: String,
-        val release: Boolean
+        val release: Boolean,
     )
 
     /**
@@ -342,7 +332,7 @@ class PackageValidator(
         val packageName: String,
         val uid: Int,
         val signature: String?,
-        val permissions: Set<String>
+        val permissions: Set<String>,
     )
 }
 

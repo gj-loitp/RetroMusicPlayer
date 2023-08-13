@@ -7,7 +7,6 @@ import android.util.Log
 import java.io.File
 import java.io.IOException
 
-
 object FileUtils {
     fun copyFileToUri(context: Context, fromFile: File, toUri: Uri) {
         context.contentResolver.openOutputStream(toUri)
@@ -29,7 +28,7 @@ object FileUtils {
         directoryName: String,
         fileName: String,
         body: String,
-        fileType: String
+        fileType: String,
     ): File {
         val root = createDirectory(context, directoryName)
         val filePath = "$root/$fileName$fileType"
@@ -65,12 +64,11 @@ object FileUtils {
         return file
     }
 }
-@Suppress("Deprecation")
+
 fun getExternalStorageDirectory(): File {
     return Environment.getExternalStorageDirectory()
 }
 
-@Suppress("Deprecation")
 fun getExternalStoragePublicDirectory(type: String): File {
     return Environment.getExternalStoragePublicDirectory(type)
 }

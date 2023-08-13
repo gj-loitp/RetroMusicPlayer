@@ -1,16 +1,3 @@
-/*
- * Copyright (c) 2019 Hemanth Savarala.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by
- *  the Free Software Foundation either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- */
 package code.roy.retromusic.util
 
 import android.util.Log
@@ -20,15 +7,12 @@ import org.jaudiotagger.audio.AudioFileIO
 import org.jaudiotagger.tag.FieldKey
 import java.io.*
 
-/**
- * Created by hefuyi on 2016/11/8.
- */
 object LyricUtil {
     private val lrcRootPath =
         getExternalStorageDirectory().toString() + "/RetroMusic/lyrics/"
     private const val TAG = "LyricUtil"
     fun writeLrcToLoc(
-        title: String, artist: String, lrcContext: String
+        title: String, artist: String, lrcContext: String,
     ): File? {
         var writer: FileWriter? = null
         return try {
@@ -150,9 +134,11 @@ object LyricUtil {
             isLrcOriginalFileExist(song.data) -> {
                 getLocalLyricOriginalFile(song.data)
             }
+
             isLrcFileExist(song.title, song.artistName) -> {
                 getLocalLyricFile(song.title, song.artistName)
             }
+
             else -> {
                 null
             }

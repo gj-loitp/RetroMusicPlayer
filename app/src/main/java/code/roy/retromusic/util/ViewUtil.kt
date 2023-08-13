@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2019 Hemanth Savarala.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by
- *  the Free Software Foundation either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- */
-
 package code.roy.retromusic.util
 
 import android.content.res.ColorStateList
@@ -37,14 +23,7 @@ object ViewUtil {
         if (thumbTint) {
             progressSlider.thumbTintList = ColorStateList.valueOf(newColor)
         }
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP_MR1) {
-            val layerDrawable = progressSlider.progressDrawable as LayerDrawable
-            val progressDrawable = layerDrawable.findDrawableByLayerId(android.R.id.progress)
-            progressDrawable.colorFilter =
-                BlendModeColorFilterCompat.createBlendModeColorFilterCompat(newColor, SRC_IN)
-        } else {
-            progressSlider.progressTintList = ColorStateList.valueOf(newColor)
-        }
+        progressSlider.progressTintList = ColorStateList.valueOf(newColor)
     }
 
 
