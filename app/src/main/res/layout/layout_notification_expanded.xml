@@ -12,7 +12,7 @@
         android:layout_alignBottom="@+id/content"
         android:layout_alignParentEnd="true">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/largeIcon"
             android:layout_width="@dimen/notification_big_image_size"
             android:layout_height="@dimen/notification_big_image_size"
@@ -22,7 +22,7 @@
 
     </RelativeLayout>
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,14 +32,14 @@
         android:paddingTop="8dp"
         android:paddingEnd="144dp">
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/smallIcon"
                 android:layout_width="12dp"
                 android:layout_height="12dp"
@@ -47,7 +47,7 @@
                 tools:src="@drawable/ic_notification"
                 tools:tint="@color/md_black_1000" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/appName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -58,9 +58,9 @@
                 android:textSize="12sp"
                 tools:text="@string/app_name" />
 
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
             android:textStyle="bold"
             tools:text="@tools:sample/lorem/random" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -85,14 +85,14 @@
             android:textAppearance="@style/Theme.RetroMusic.Notification.Title"
             tools:text="@tools:sample/lorem/random" />
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:paddingStart="8dp"
             android:paddingEnd="0dp">
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/action_prev"
                 android:layout_width="42dp"
                 android:layout_height="42dp"
@@ -101,7 +101,7 @@
                 tools:src="@drawable/ic_skip_previous"
                 tools:tint="?colorOnPrimary" />
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/action_play_pause"
                 android:layout_width="42dp"
                 android:layout_height="42dp"
@@ -110,7 +110,7 @@
                 tools:src="@drawable/ic_pause_white_48dp"
                 tools:tint="?colorOnPrimary" />
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/action_next"
                 android:layout_width="42dp"
                 android:layout_height="42dp"
@@ -119,7 +119,7 @@
                 tools:src="@drawable/ic_skip_next"
                 tools:tint="?colorOnPrimary" />
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/action_quit"
                 android:layout_width="42dp"
                 android:layout_height="42dp"
@@ -127,6 +127,6 @@
                 android:scaleType="centerInside"
                 tools:src="@drawable/ic_close"
                 tools:tint="?colorOnPrimary" />
-        </LinearLayout>
-    </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </RelativeLayout>

@@ -20,7 +20,7 @@ import android.view.LayoutInflater
 import android.widget.FrameLayout
 import androidx.core.content.withStyledAttributes
 import code.roy.retromusic.R
-import code.roy.retromusic.databinding.ListItemViewNoCardBinding
+import code.roy.retromusic.databinding.VListItemViewNoCardBinding
 import code.roy.retromusic.extensions.hide
 import code.roy.retromusic.extensions.show
 
@@ -34,7 +34,7 @@ class ListItemView @JvmOverloads constructor(
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
     private var binding =
-        ListItemViewNoCardBinding.inflate(LayoutInflater.from(context), this, true)
+        VListItemViewNoCardBinding.inflate(LayoutInflater.from(context), this, true)
 
     init {
         context.withStyledAttributes(attrs, R.styleable.ListItemView) {

@@ -4,7 +4,7 @@
 
     <code.roy.retromusic.preferences.NowPlayingScreenPreference
         android:key="now_playing_screen_id"
-        android:layout="@layout/list_item_view"
+        android:layout="@layout/v_list_item_view"
         android:title="@string/pref_title_now_playing_screen_appearance"
         app:icon="@drawable/ic_play_circle_filled" />
 
@@ -26,7 +26,7 @@
         android:entries="@array/pref_lyrics_type_entries"
         android:entryValues="@array/pref_lyrics_type_values"
         android:key="lyrics_type"
-        android:layout="@layout/list_item_view"
+        android:layout="@layout/v_list_item_view"
         android:title="@string/pref_title_lyrics_type" />
 
     <code.roy.appthemehelper.common.prefs.supportv7.ATESwitchPreference
@@ -55,7 +55,7 @@
 
         <code.roy.retromusic.preferences.AlbumCoverStylePreference
             android:key="album_cover_style_id"
-            android:layout="@layout/list_item_view"
+            android:layout="@layout/v_list_item_view"
             android:title="@string/pref_title_album_cover_style"
             app:icon="@drawable/ic_image" />
 
@@ -64,7 +64,7 @@
             android:entries="@array/pref_album_cover_transform_entries"
             android:entryValues="@array/pref_album_cover_transform_values"
             android:key="album_cover_transform"
-            android:layout="@layout/list_item_view"
+            android:layout="@layout/v_list_item_view"
             android:title="@string/pref_title_album_cover_transform" />
 
         <code.roy.appthemehelper.common.prefs.supportv7.ATESwitchPreference

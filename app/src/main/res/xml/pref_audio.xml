@@ -5,7 +5,7 @@
     <code.roy.retromusic.preferences.DurationPreference
         android:defaultValue="0"
         android:key="audio_fade_duration"
-        android:layout="@layout/list_item_view"
+        android:layout="@layout/v_list_item_view"
         android:summary="@string/pref_summary_audio_fade"
         android:title="@string/pref_title_audio_fade" />
 

@@ -15,6 +15,6 @@
         android:entries="@array/pref_auto_download_images_titles"
         android:entryValues="@array/pref_auto_download_images_values"
         android:key="auto_download_images_policy"
-        android:layout="@layout/list_item_view"
+        android:layout="@layout/v_list_item_view"
         android:title="@string/pref_title_auto_download_artist_images" />
 </androidx.preference.PreferenceScreen>
