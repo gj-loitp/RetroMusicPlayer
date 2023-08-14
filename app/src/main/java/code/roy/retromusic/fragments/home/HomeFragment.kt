@@ -27,8 +27,6 @@ import androidx.core.view.updateLayoutParams
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import code.roy.appthemehelper.common.ATHToolbarActivity
-import code.roy.appthemehelper.util.ToolbarContentTintHelper
 import code.roy.monkey.retromusic.extensions.setUpMediaRouteButton
 import code.roy.appthemehelper.util.ColorUtil
 import code.roy.retromusic.EXTRA_PLAYLIST_TYPE
@@ -50,7 +48,7 @@ import code.roy.retromusic.glide.RetroGlideExtension.profileBannerOptions
 import code.roy.retromusic.glide.RetroGlideExtension.songCoverOptions
 import code.roy.retromusic.glide.RetroGlideExtension.userProfileOptions
 import code.roy.retromusic.helper.MusicPlayerRemote
-import code.roy.retromusic.interfaces.IScrollHelper
+import code.roy.retromusic.itf.IScrollHelper
 import code.roy.retromusic.model.Song
 import code.roy.retromusic.util.PreferenceUtil
 import code.roy.retromusic.util.PreferenceUtil.userName

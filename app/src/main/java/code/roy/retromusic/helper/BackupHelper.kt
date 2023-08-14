@@ -44,7 +44,11 @@ object BackupHelper : KoinComponent {
         File(context.filesDir, PLAYLISTS_PATH).deleteRecursively()
     }
 
-    private suspend fun zipAll(context: Context, zipItems: List<ZipItem>, backupFile: File) =
+    private suspend fun zipAll(
+        context: Context,
+        zipItems: List<ZipItem>,
+        backupFile: File,
+    ) =
         withContext(Dispatchers.IO) {
             runCatching {
                 backupFile.outputStream().buffered().zipOutputStream().use { out ->
@@ -126,8 +130,9 @@ object BackupHelper : KoinComponent {
             if (it.exists()) {
                 zipItemList.add(
                     ZipItem(
-                        it.absolutePath,
-                        CUSTOM_ARTISTS_PATH.child("prefs").child("custom_artist_image.xml")
+                        filePath = it.absolutePath,
+                        zipPath = CUSTOM_ARTISTS_PATH.child("prefs")
+                            .child("custom_artist_image.xml")
                     )
                 )
             }
@@ -168,14 +173,19 @@ object BackupHelper : KoinComponent {
 
     private fun restoreImages(context: Context, zipIn: ZipInputStream, zipEntry: ZipEntry) {
         val file = File(
-            context.filesDir.path, zipEntry.getFileName()
+            /* parent = */ context.filesDir.path,
+            /* child = */ zipEntry.getFileName()
         )
         file.outputStream().buffered().use { bos ->
             zipIn.copyTo(bos)
         }
     }
 
-    private fun restorePreferences(context: Context, zipIn: ZipInputStream, zipEntry: ZipEntry) {
+    private fun restorePreferences(
+        context: Context,
+        zipIn: ZipInputStream,
+        zipEntry: ZipEntry,
+    ) {
         val file = File(
             context.filesDir.parent!! + File.separator + "shared_prefs" + File.separator + zipEntry.getFileName()
         )
@@ -222,14 +232,15 @@ object BackupHelper : KoinComponent {
         zipIn: ZipInputStream,
         zipEntry: ZipEntry,
     ) {
-        val parentFolder = File(context.filesDir, "custom_artist_images")
+        val parentFolder =
+            File(/* parent = */ context.filesDir, /* child = */ "custom_artist_images")
 
         if (!parentFolder.exists()) {
             parentFolder.mkdirs()
         }
         val file = File(
-            parentFolder,
-            zipEntry.getFileName()
+            /* parent = */ parentFolder,
+            /* child = */ zipEntry.getFileName()
         )
         file.outputStream().buffered()
             .use { bos ->

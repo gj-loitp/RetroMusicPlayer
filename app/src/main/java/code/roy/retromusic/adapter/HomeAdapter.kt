@@ -39,8 +39,8 @@ import code.roy.retromusic.adapter.album.AlbumAdapter
 import code.roy.retromusic.adapter.artist.ArtistAdapter
 import code.roy.retromusic.adapter.song.SongAdapter
 import code.roy.retromusic.fragments.home.HomeFragment
-import code.roy.retromusic.interfaces.IAlbumClickListener
-import code.roy.retromusic.interfaces.IArtistClickListener
+import code.roy.retromusic.itf.IAlbumClickListener
+import code.roy.retromusic.itf.IArtistClickListener
 import code.roy.retromusic.model.Album
 import code.roy.retromusic.model.Artist
 import code.roy.retromusic.model.Home

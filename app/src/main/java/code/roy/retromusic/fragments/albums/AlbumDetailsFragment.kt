@@ -62,7 +62,7 @@ import code.roy.retromusic.helper.SortOrder.AlbumSongSortOrder.Companion.SONG_A_
 import code.roy.retromusic.helper.SortOrder.AlbumSongSortOrder.Companion.SONG_DURATION
 import code.roy.retromusic.helper.SortOrder.AlbumSongSortOrder.Companion.SONG_TRACK_LIST
 import code.roy.retromusic.helper.SortOrder.AlbumSongSortOrder.Companion.SONG_Z_A
-import code.roy.retromusic.interfaces.IAlbumClickListener
+import code.roy.retromusic.itf.IAlbumClickListener
 import code.roy.retromusic.model.Album
 import code.roy.retromusic.model.Artist
 import code.roy.retromusic.network.Result

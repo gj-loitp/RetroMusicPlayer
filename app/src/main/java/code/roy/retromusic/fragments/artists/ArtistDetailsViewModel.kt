@@ -16,7 +16,7 @@ package code.roy.retromusic.fragments.artists
 
 import code.roy.retromusic.network.*
 import androidx.lifecycle.*
-import code.roy.retromusic.interfaces.IMusicServiceEventListener
+import code.roy.retromusic.itf.IMusicServiceEventListener
 import code.roy.retromusic.model.Artist
 import code.roy.retromusic.network.model.LastFmArtist
 import code.roy.retromusic.repository.RealRepository

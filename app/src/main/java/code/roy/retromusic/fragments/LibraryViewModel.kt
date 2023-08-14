@@ -32,7 +32,7 @@ import code.roy.retromusic.db.toSongEntity
 import code.roy.retromusic.extensions.showToast
 import code.roy.retromusic.fragments.search.Filter
 import code.roy.retromusic.helper.MusicPlayerRemote
-import code.roy.retromusic.interfaces.IMusicServiceEventListener
+import code.roy.retromusic.itf.IMusicServiceEventListener
 import code.roy.retromusic.model.Album
 import code.roy.retromusic.model.Artist
 import code.roy.retromusic.model.Contributor

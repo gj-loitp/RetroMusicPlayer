@@ -15,7 +15,7 @@
 package code.roy.retromusic.fragments.albums
 
 import androidx.lifecycle.*
-import code.roy.retromusic.interfaces.IMusicServiceEventListener
+import code.roy.retromusic.itf.IMusicServiceEventListener
 import code.roy.retromusic.model.Album
 import code.roy.retromusic.model.Artist
 import code.roy.retromusic.network.model.LastFmAlbum

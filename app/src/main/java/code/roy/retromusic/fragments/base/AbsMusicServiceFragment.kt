@@ -23,7 +23,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.navOptions
 import code.roy.retromusic.R
 import code.roy.retromusic.activities.base.AbsMusicServiceActivity
-import code.roy.retromusic.interfaces.IMusicServiceEventListener
+import code.roy.retromusic.itf.IMusicServiceEventListener
 
 /**
  * Created by hemanths on 18/08/17.

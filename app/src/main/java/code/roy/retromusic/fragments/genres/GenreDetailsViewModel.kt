@@ -18,7 +18,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import code.roy.retromusic.interfaces.IMusicServiceEventListener
+import code.roy.retromusic.itf.IMusicServiceEventListener
 import code.roy.retromusic.model.Genre
 import code.roy.retromusic.model.Song
 import code.roy.retromusic.repository.RealRepository

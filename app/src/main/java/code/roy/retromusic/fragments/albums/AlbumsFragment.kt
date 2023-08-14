@@ -29,7 +29,7 @@ import code.roy.retromusic.fragments.ReloadType
 import code.roy.retromusic.fragments.base.AbsRecyclerViewCustomGridSizeFragment
 import code.roy.retromusic.helper.MusicPlayerRemote
 import code.roy.retromusic.helper.SortOrder
-import code.roy.retromusic.interfaces.IAlbumClickListener
+import code.roy.retromusic.itf.IAlbumClickListener
 import code.roy.retromusic.service.MusicService
 import code.roy.retromusic.util.PreferenceUtil
 import code.roy.retromusic.util.RetroUtil

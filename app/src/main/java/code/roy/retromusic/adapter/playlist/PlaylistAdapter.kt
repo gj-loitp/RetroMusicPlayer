@@ -24,7 +24,6 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.core.view.isGone
 import androidx.core.view.setPadding
 import androidx.fragment.app.FragmentActivity
-import code.roy.appthemehelper.util.TintHelper
 import code.roy.appthemehelper.util.ATHUtil
 import code.roy.retromusic.R
 import code.roy.retromusic.adapter.base.AbsMultiSelectAdapter
@@ -38,7 +37,7 @@ import code.roy.retromusic.glide.playlistPreview.PlaylistPreview
 import code.roy.retromusic.helper.SortOrder
 import code.roy.retromusic.helper.menu.PlaylistMenuHelper
 import code.roy.retromusic.helper.menu.SongsMenuHelper
-import code.roy.retromusic.interfaces.IPlaylistClickListener
+import code.roy.retromusic.itf.IPlaylistClickListener
 import code.roy.retromusic.model.Song
 import code.roy.retromusic.util.MusicUtil
 import code.roy.retromusic.util.PreferenceUtil

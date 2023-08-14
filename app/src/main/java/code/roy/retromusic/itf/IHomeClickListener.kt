@@ -1,4 +1,4 @@
-package code.roy.retromusic.interfaces
+package code.roy.retromusic.itf
 
 import code.roy.retromusic.model.Album
 import code.roy.retromusic.model.Artist

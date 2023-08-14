@@ -63,7 +63,7 @@ import code.roy.retromusic.fragments.NowPlayingScreen
 import code.roy.retromusic.fragments.ReloadType
 import code.roy.retromusic.fragments.player.PlayerAlbumCoverFragment
 import code.roy.retromusic.helper.MusicPlayerRemote
-import code.roy.retromusic.interfaces.IPaletteColorHolder
+import code.roy.retromusic.itf.IPaletteColorHolder
 import code.roy.retromusic.model.Song
 import code.roy.retromusic.repository.RealRepository
 import code.roy.retromusic.service.MusicService

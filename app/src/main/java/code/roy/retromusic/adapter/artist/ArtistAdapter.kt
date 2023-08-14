@@ -32,8 +32,8 @@ import code.roy.retromusic.glide.RetroGlideExtension.artistImageOptions
 import code.roy.retromusic.glide.RetroGlideExtension.asBitmapPalette
 import code.roy.retromusic.glide.RetroMusicColoredTarget
 import code.roy.retromusic.helper.menu.SongsMenuHelper
-import code.roy.retromusic.interfaces.IAlbumArtistClickListener
-import code.roy.retromusic.interfaces.IArtistClickListener
+import code.roy.retromusic.itf.IAlbumArtistClickListener
+import code.roy.retromusic.itf.IArtistClickListener
 import code.roy.retromusic.model.Artist
 import code.roy.retromusic.model.Song
 import code.roy.retromusic.util.MusicUtil

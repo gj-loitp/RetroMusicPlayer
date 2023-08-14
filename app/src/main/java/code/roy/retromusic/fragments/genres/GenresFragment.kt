@@ -19,7 +19,6 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -30,7 +29,7 @@ import code.roy.retromusic.R
 import code.roy.retromusic.adapter.GenreAdapter
 import code.roy.retromusic.fragments.ReloadType
 import code.roy.retromusic.fragments.base.AbsRecyclerViewFragment
-import code.roy.retromusic.interfaces.IGenreClickListener
+import code.roy.retromusic.itf.IGenreClickListener
 import code.roy.retromusic.model.Genre
 import code.roy.retromusic.util.RetroUtil
 import com.google.android.material.transition.MaterialSharedAxis

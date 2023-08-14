@@ -27,7 +27,7 @@ import code.roy.retromusic.glide.RetroGlideExtension
 import code.roy.retromusic.glide.RetroGlideExtension.asBitmapPalette
 import code.roy.retromusic.glide.RetroGlideExtension.songCoverOptions
 import code.roy.retromusic.glide.RetroMusicColoredTarget
-import code.roy.retromusic.interfaces.IGenreClickListener
+import code.roy.retromusic.itf.IGenreClickListener
 import code.roy.retromusic.model.Genre
 import code.roy.retromusic.util.MusicUtil
 import code.roy.retromusic.util.color.MediaNotificationProcessor

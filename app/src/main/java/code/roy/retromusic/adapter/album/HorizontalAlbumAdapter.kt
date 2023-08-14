@@ -22,7 +22,7 @@ import code.roy.retromusic.glide.RetroGlideExtension.albumCoverOptions
 import code.roy.retromusic.glide.RetroGlideExtension.asBitmapPalette
 import code.roy.retromusic.glide.RetroMusicColoredTarget
 import code.roy.retromusic.helper.HorizontalAdapterHelper
-import code.roy.retromusic.interfaces.IAlbumClickListener
+import code.roy.retromusic.itf.IAlbumClickListener
 import code.roy.retromusic.model.Album
 import code.roy.retromusic.util.MusicUtil
 import code.roy.retromusic.util.color.MediaNotificationProcessor

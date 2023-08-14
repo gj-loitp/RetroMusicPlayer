@@ -46,8 +46,8 @@ import code.roy.retromusic.adapter.song.SongAdapter
 import code.roy.retromusic.databinding.FPlaylistDetailBinding
 import code.roy.retromusic.db.toSong
 import code.roy.retromusic.fragments.base.AbsMainActivityFragment
-import code.roy.retromusic.interfaces.IAlbumClickListener
-import code.roy.retromusic.interfaces.IArtistClickListener
+import code.roy.retromusic.itf.IAlbumClickListener
+import code.roy.retromusic.itf.IArtistClickListener
 import code.roy.retromusic.model.Album
 import code.roy.retromusic.model.Artist
 import code.roy.retromusic.util.RetroUtil

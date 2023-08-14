@@ -39,7 +39,7 @@ import code.roy.retromusic.glide.RetroGlideExtension.asBitmapPalette
 import code.roy.retromusic.glide.SingleColorTarget
 import code.roy.retromusic.helper.MusicPlayerRemote
 import code.roy.retromusic.helper.SortOrder
-import code.roy.retromusic.interfaces.IAlbumClickListener
+import code.roy.retromusic.itf.IAlbumClickListener
 import code.roy.retromusic.model.Artist
 import code.roy.retromusic.repository.RealRepository
 import code.roy.retromusic.util.CustomArtistImageUtil

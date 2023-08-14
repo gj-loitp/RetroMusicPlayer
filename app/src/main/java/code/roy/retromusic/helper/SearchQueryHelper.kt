@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.helper
 
 import android.app.SearchManager
@@ -41,8 +27,8 @@ object SearchQueryHelper : KoinComponent {
         if (artistName != null && albumName != null && titleName != null) {
             songs = songRepository.songs(
                 songRepository.makeSongCursor(
-                    ARTIST_SELECTION + AND + ALBUM_SELECTION + AND + TITLE_SELECTION,
-                    arrayOf(
+                    selection = ARTIST_SELECTION + AND + ALBUM_SELECTION + AND + TITLE_SELECTION,
+                    selectionValues = arrayOf(
                         artistName.lowercase(),
                         albumName.lowercase(),
                         titleName.lowercase()
@@ -56,8 +42,8 @@ object SearchQueryHelper : KoinComponent {
         if (artistName != null && titleName != null) {
             songs = songRepository.songs(
                 songRepository.makeSongCursor(
-                    ARTIST_SELECTION + AND + TITLE_SELECTION,
-                    arrayOf(
+                    selection = ARTIST_SELECTION + AND + TITLE_SELECTION,
+                    selectionValues = arrayOf(
                         artistName.lowercase(),
                         titleName.lowercase()
                     )
@@ -70,8 +56,8 @@ object SearchQueryHelper : KoinComponent {
         if (albumName != null && titleName != null) {
             songs = songRepository.songs(
                 songRepository.makeSongCursor(
-                    ALBUM_SELECTION + AND + TITLE_SELECTION,
-                    arrayOf(
+                    selection = ALBUM_SELECTION + AND + TITLE_SELECTION,
+                    selectionValues = arrayOf(
                         albumName.lowercase(),
                         titleName.lowercase()
                     )
@@ -84,8 +70,8 @@ object SearchQueryHelper : KoinComponent {
         if (artistName != null) {
             songs = songRepository.songs(
                 songRepository.makeSongCursor(
-                    ARTIST_SELECTION,
-                    arrayOf(artistName.lowercase())
+                    selection = ARTIST_SELECTION,
+                    selectionValues = arrayOf(artistName.lowercase())
                 )
             )
         }
@@ -95,8 +81,8 @@ object SearchQueryHelper : KoinComponent {
         if (albumName != null) {
             songs = songRepository.songs(
                 songRepository.makeSongCursor(
-                    ALBUM_SELECTION,
-                    arrayOf(albumName.lowercase())
+                    selection = ALBUM_SELECTION,
+                    selectionValues = arrayOf(albumName.lowercase())
                 )
             )
         }
@@ -106,8 +92,8 @@ object SearchQueryHelper : KoinComponent {
         if (titleName != null) {
             songs = songRepository.songs(
                 songRepository.makeSongCursor(
-                    TITLE_SELECTION,
-                    arrayOf(titleName.lowercase())
+                    selection = TITLE_SELECTION,
+                    selectionValues = arrayOf(titleName.lowercase())
                 )
             )
         }
@@ -116,8 +102,8 @@ object SearchQueryHelper : KoinComponent {
         }
         songs = songRepository.songs(
             songRepository.makeSongCursor(
-                ARTIST_SELECTION,
-                arrayOf(query.lowercase())
+                selection = ARTIST_SELECTION,
+                selectionValues = arrayOf(query.lowercase())
             )
         )
 
@@ -126,8 +112,8 @@ object SearchQueryHelper : KoinComponent {
         }
         songs = songRepository.songs(
             songRepository.makeSongCursor(
-                ALBUM_SELECTION,
-                arrayOf(query.lowercase())
+                selection = ALBUM_SELECTION,
+                selectionValues = arrayOf(query.lowercase())
             )
         )
         if (songs.isNotEmpty()) {
@@ -135,8 +121,8 @@ object SearchQueryHelper : KoinComponent {
         }
         songs = songRepository.songs(
             songRepository.makeSongCursor(
-                TITLE_SELECTION,
-                arrayOf(query.lowercase())
+                selection = TITLE_SELECTION,
+                selectionValues = arrayOf(query.lowercase())
             )
         )
         return songs.ifEmpty { ArrayList() }

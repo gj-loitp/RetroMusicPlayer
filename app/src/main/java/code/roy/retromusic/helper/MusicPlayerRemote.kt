@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.helper
 
 import android.annotation.SuppressLint
@@ -36,7 +22,6 @@ import org.koin.core.component.inject
 import java.io.File
 import java.util.*
 import kotlin.collections.set
-
 
 object MusicPlayerRemote : KoinComponent {
     val TAG: String = MusicPlayerRemote::class.java.simpleName
@@ -110,7 +95,10 @@ object MusicPlayerRemote : KoinComponent {
     val isServiceConnected: Boolean
         get() = musicService != null
 
-    fun bindToService(context: Context, callback: ServiceConnection): ServiceToken? {
+    fun bindToService(
+        context: Context,
+        callback: ServiceConnection,
+    ): ServiceToken? {
 
         val realActivity = (context as Activity).parent ?: context
         val contextWrapper = ContextWrapper(realActivity)
@@ -127,9 +115,9 @@ object MusicPlayerRemote : KoinComponent {
         val binder = ServiceBinder(callback)
 
         if (contextWrapper.bindService(
-                Intent().setClass(contextWrapper, MusicService::class.java),
-                binder,
-                Context.BIND_AUTO_CREATE
+                /* service = */ Intent().setClass(contextWrapper, MusicService::class.java),
+                /* conn = */ binder,
+                /* flags = */ Context.BIND_AUTO_CREATE
             )
         ) {
             mConnectionMap[contextWrapper] = binder
@@ -150,7 +138,10 @@ object MusicPlayerRemote : KoinComponent {
         }
     }
 
-    private fun getFilePathFromUri(context: Context, uri: Uri): String? {
+    private fun getFilePathFromUri(
+        context: Context,
+        uri: Uri,
+    ): String? {
         var cursor: Cursor? = null
         val column = "_data"
         val projection = arrayOf(column)
@@ -210,11 +201,15 @@ object MusicPlayerRemote : KoinComponent {
      * Async
      */
     @JvmStatic
-    fun openQueue(queue: List<Song>, startPosition: Int, startPlaying: Boolean) {
+    fun openQueue(
+        queue: List<Song>,
+        startPosition: Int,
+        startPlaying: Boolean,
+    ) {
         if (!tryToHandleOpenPlayingQueue(
-                queue,
-                startPosition,
-                startPlaying
+                queue = queue,
+                startPosition = startPosition,
+                startPlaying = startPlaying
             ) && musicService != null
         ) {
             musicService?.openQueue(queue, startPosition, startPlaying)
@@ -229,9 +224,9 @@ object MusicPlayerRemote : KoinComponent {
         }
 
         if (!tryToHandleOpenPlayingQueue(
-                queue,
-                startPosition,
-                startPlaying
+                queue = queue,
+                startPosition = startPosition,
+                startPlaying = startPlaying
             ) && musicService != null
         ) {
             openQueue(queue, startPosition, startPlaying)
@@ -298,7 +293,7 @@ object MusicPlayerRemote : KoinComponent {
             } else {
                 val queue = ArrayList<Song>()
                 queue.add(song)
-                openQueue(queue, 0, false)
+                openQueue(queue = queue, startPosition = 0, startPlaying = false)
             }
             musicService?.showToast(R.string.added_title_to_playing_queue)
             return true
@@ -312,7 +307,7 @@ object MusicPlayerRemote : KoinComponent {
             if (playingQueue.isNotEmpty()) {
                 musicService?.addSongs(position + 1, songs)
             } else {
-                openQueue(songs, 0, false)
+                openQueue(queue = songs, startPosition = 0, startPlaying = false)
             }
             val toast =
                 if (songs.size == 1) musicService!!.resources.getString(R.string.added_title_to_playing_queue) else musicService!!.resources.getString(
@@ -345,7 +340,7 @@ object MusicPlayerRemote : KoinComponent {
             if (playingQueue.isNotEmpty()) {
                 musicService?.addSongs(songs)
             } else {
-                openQueue(songs, 0, false)
+                openQueue(queue = songs, startPosition = 0, startPlaying = false)
             }
             val toast =
                 if (songs.size == 1) musicService!!.resources.getString(R.string.added_title_to_playing_queue) else musicService!!.resources.getString(
@@ -361,7 +356,7 @@ object MusicPlayerRemote : KoinComponent {
     @JvmStatic
     fun removeFromQueue(song: Song): Boolean {
         if (musicService != null) {
-            musicService!!.removeSong(song)
+            musicService?.removeSong(song)
             return true
         }
         return false
@@ -370,7 +365,7 @@ object MusicPlayerRemote : KoinComponent {
     @JvmStatic
     fun removeFromQueue(songs: List<Song>): Boolean {
         if (musicService != null) {
-            musicService!!.removeSongs(songs)
+            musicService?.removeSongs(songs)
             return true
         }
         return false
@@ -378,7 +373,7 @@ object MusicPlayerRemote : KoinComponent {
 
     fun removeFromQueue(position: Int): Boolean {
         if (musicService != null && position >= 0 && position < playingQueue.size) {
-            musicService!!.removeSong(position)
+            musicService?.removeSong(position)
             return true
         }
         return false
@@ -386,7 +381,7 @@ object MusicPlayerRemote : KoinComponent {
 
     fun moveSong(from: Int, to: Int): Boolean {
         if (musicService != null && from >= 0 && to >= 0 && from < playingQueue.size && to < playingQueue.size) {
-            musicService!!.moveSong(from, to)
+            musicService?.moveSong(from, to)
             return true
         }
         return false
@@ -394,7 +389,7 @@ object MusicPlayerRemote : KoinComponent {
 
     fun clearQueue(): Boolean {
         if (musicService != null) {
-            musicService!!.clearQueue()
+            musicService?.clearQueue()
             return true
         }
         return false
@@ -435,11 +430,14 @@ object MusicPlayerRemote : KoinComponent {
                     songFile = File(uri.path!!)
                 }
                 if (songFile != null) {
-                    songs = songRepository.songsByFilePath(songFile.absolutePath, true)
+                    songs = songRepository.songsByFilePath(
+                        filePath = songFile.absolutePath,
+                        ignoreBlacklist = true
+                    )
                 }
             }
             if (!songs.isNullOrEmpty()) {
-                openQueue(songs, 0, true)
+                openQueue(queue = songs, startPosition = 0, startPlaying = true)
             } else {
                 try {
                     context.showToast(R.string.unplayable_file)

@@ -28,7 +28,7 @@ import code.roy.retromusic.adapter.base.MediaEntryViewHolder
 import code.roy.retromusic.extensions.getTintedDrawable
 import code.roy.retromusic.glide.RetroGlideExtension
 import code.roy.retromusic.glide.audiocover.AudioFileCover
-import code.roy.retromusic.interfaces.ICallbacks
+import code.roy.retromusic.itf.ICallbacks
 import code.roy.retromusic.util.MusicUtil
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy

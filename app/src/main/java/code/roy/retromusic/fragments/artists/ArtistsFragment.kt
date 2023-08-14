@@ -30,8 +30,8 @@ import code.roy.retromusic.fragments.ReloadType
 import code.roy.retromusic.fragments.base.AbsRecyclerViewCustomGridSizeFragment
 import code.roy.retromusic.helper.MusicPlayerRemote
 import code.roy.retromusic.helper.SortOrder
-import code.roy.retromusic.interfaces.IAlbumArtistClickListener
-import code.roy.retromusic.interfaces.IArtistClickListener
+import code.roy.retromusic.itf.IAlbumArtistClickListener
+import code.roy.retromusic.itf.IArtistClickListener
 import code.roy.retromusic.service.MusicService
 import code.roy.retromusic.util.PreferenceUtil
 import code.roy.retromusic.util.RetroUtil

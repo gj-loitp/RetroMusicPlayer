@@ -31,7 +31,7 @@ import code.roy.retromusic.extensions.hideStatusBar
 import code.roy.retromusic.extensions.setTaskDescriptionColorAuto
 import code.roy.retromusic.helper.MusicPlayerRemote
 import code.roy.retromusic.helper.SearchQueryHelper.getSongs
-import code.roy.retromusic.interfaces.IScrollHelper
+import code.roy.retromusic.itf.IScrollHelper
 import code.roy.retromusic.model.CategoryInfo
 import code.roy.retromusic.model.Song
 import code.roy.retromusic.repository.PlaylistSongsLoader

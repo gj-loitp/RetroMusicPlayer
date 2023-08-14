@@ -50,9 +50,9 @@ import code.roy.retromusic.fragments.base.AbsMainActivityFragment
 import code.roy.retromusic.helper.MusicPlayerRemote.openQueue
 import code.roy.retromusic.helper.menu.SongMenuHelper
 import code.roy.retromusic.helper.menu.SongsMenuHelper
-import code.roy.retromusic.interfaces.ICallbacks
-import code.roy.retromusic.interfaces.IMainActivityFragmentCallbacks
-import code.roy.retromusic.interfaces.IScrollHelper
+import code.roy.retromusic.itf.ICallbacks
+import code.roy.retromusic.itf.IMainActivityFragmentCallbacks
+import code.roy.retromusic.itf.IScrollHelper
 import code.roy.retromusic.misc.UpdateToastMediaScannerCompletionListener
 import code.roy.retromusic.misc.WrappedAsyncTaskLoader
 import code.roy.retromusic.model.Song

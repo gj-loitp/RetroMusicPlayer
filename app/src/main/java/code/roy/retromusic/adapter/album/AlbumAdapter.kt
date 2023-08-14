@@ -30,7 +30,7 @@ import code.roy.retromusic.glide.RetroGlideExtension.asBitmapPalette
 import code.roy.retromusic.glide.RetroMusicColoredTarget
 import code.roy.retromusic.helper.SortOrder
 import code.roy.retromusic.helper.menu.SongsMenuHelper
-import code.roy.retromusic.interfaces.IAlbumClickListener
+import code.roy.retromusic.itf.IAlbumClickListener
 import code.roy.retromusic.model.Album
 import code.roy.retromusic.model.Song
 import code.roy.retromusic.util.MusicUtil

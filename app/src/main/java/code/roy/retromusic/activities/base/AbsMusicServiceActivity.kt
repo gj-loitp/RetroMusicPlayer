@@ -24,7 +24,7 @@ import code.roy.appthemehelper.util.VersionUtils
 import code.roy.retromusic.R
 import code.roy.retromusic.db.toPlayCount
 import code.roy.retromusic.helper.MusicPlayerRemote
-import code.roy.retromusic.interfaces.IMusicServiceEventListener
+import code.roy.retromusic.itf.IMusicServiceEventListener
 import code.roy.retromusic.repository.RealRepository
 import code.roy.retromusic.service.MusicService.Companion.FAVORITE_STATE_CHANGED
 import code.roy.retromusic.service.MusicService.Companion.MEDIA_STORE_CHANGED

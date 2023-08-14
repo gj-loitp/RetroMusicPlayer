@@ -33,7 +33,7 @@ import code.roy.retromusic.dialogs.CreatePlaylistDialog
 import code.roy.retromusic.dialogs.ImportPlaylistDialog
 import code.roy.retromusic.extensions.accentColor
 import code.roy.retromusic.extensions.dip
-import code.roy.retromusic.interfaces.IScrollHelper
+import code.roy.retromusic.itf.IScrollHelper
 import code.roy.retromusic.util.PreferenceUtil
 import com.google.android.material.transition.MaterialFadeThrough
 import me.zhanghai.android.fastscroll.FastScroller

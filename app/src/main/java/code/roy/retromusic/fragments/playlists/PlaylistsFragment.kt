@@ -28,7 +28,7 @@ import code.roy.retromusic.db.PlaylistWithSongs
 import code.roy.retromusic.fragments.ReloadType
 import code.roy.retromusic.fragments.base.AbsRecyclerViewCustomGridSizeFragment
 import code.roy.retromusic.helper.SortOrder
-import code.roy.retromusic.interfaces.IPlaylistClickListener
+import code.roy.retromusic.itf.IPlaylistClickListener
 import code.roy.retromusic.util.PreferenceUtil
 import code.roy.retromusic.util.RetroUtil
 import com.google.android.material.transition.MaterialSharedAxis
