@@ -1,16 +1,3 @@
-/*
- * Copyright (C) 2017 wangchenyan
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
- * except in compliance with the License. You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under the
- * License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied. See the License for the specific language governing
- * permissions and limitations under the License.
- */
 package code.roy.retromusic.lyrics
 
 import android.animation.ValueAnimator
@@ -130,15 +117,15 @@ class CoverLrcView @JvmOverloads constructor(
                 velocityY: Float,
             ): Boolean {
                 if (hasLrc()) {
-                    mScroller!!.fling(
-                        0,
-                        mOffset.toInt(),
-                        0,
-                        velocityY.toInt(),
-                        0,
-                        0,
-                        getOffset(mLrcEntryList.size - 1).toInt(),
-                        getOffset(0).toInt()
+                    mScroller?.fling(
+                        /* startX = */ 0,
+                        /* startY = */ mOffset.toInt(),
+                        /* velocityX = */ 0,
+                        /* velocityY = */ velocityY.toInt(),
+                        /* minX = */ 0,
+                        /* maxX = */ 0,
+                        /* minY = */ getOffset(mLrcEntryList.size - 1).toInt(),
+                        /* maxY = */ getOffset(0).toInt()
                     )
                     isFling = true
                     return true
@@ -178,15 +165,15 @@ class CoverLrcView @JvmOverloads constructor(
             R.styleable.LrcView_lrcTextSize, resources.getDimension(R.dimen.lrc_text_size)
         )
         mNormalTextSize = ta.getDimension(
-            R.styleable.LrcView_lrcNormalTextSize,
-            resources.getDimension(R.dimen.lrc_text_size)
+            /* index = */ R.styleable.LrcView_lrcNormalTextSize,
+            /* defValue = */ resources.getDimension(R.dimen.lrc_text_size)
         )
         if (mNormalTextSize == 0f) {
             mNormalTextSize = mCurrentTextSize
         }
         mDividerHeight = ta.getDimension(
-            R.styleable.LrcView_lrcDividerHeight,
-            resources.getDimension(R.dimen.lrc_divider_height)
+            /* index = */ R.styleable.LrcView_lrcDividerHeight,
+            /* defValue = */ resources.getDimension(R.dimen.lrc_divider_height)
         )
         val defDuration = resources.getInteger(R.integer.lrc_animation_duration)
         mAnimationDuration =
@@ -194,42 +181,42 @@ class CoverLrcView @JvmOverloads constructor(
         mAnimationDuration =
             if (mAnimationDuration < 0) defDuration.toLong() else mAnimationDuration
         mNormalTextColor = ta.getColor(
-            R.styleable.LrcView_lrcNormalTextColor,
-            ContextCompat.getColor(context, R.color.lrc_normal_text_color)
+            /* index = */ R.styleable.LrcView_lrcNormalTextColor,
+            /* defValue = */ ContextCompat.getColor(context, R.color.lrc_normal_text_color)
         )
         mCurrentTextColor = ta.getColor(
-            R.styleable.LrcView_lrcCurrentTextColor,
-            ContextCompat.getColor(context, R.color.lrc_current_text_color)
+            /* index = */ R.styleable.LrcView_lrcCurrentTextColor,
+            /* defValue = */ ContextCompat.getColor(context, R.color.lrc_current_text_color)
         )
         mTimelineTextColor = ta.getColor(
-            R.styleable.LrcView_lrcTimelineTextColor,
-            ContextCompat.getColor(context, R.color.lrc_timeline_text_color)
+            /* index = */ R.styleable.LrcView_lrcTimelineTextColor,
+            /* defValue = */ ContextCompat.getColor(context, R.color.lrc_timeline_text_color)
         )
         mDefaultLabel = ta.getString(R.styleable.LrcView_lrcLabel)
         mDefaultLabel =
             if (mDefaultLabel.isNullOrEmpty()) context.getString(R.string.empty) else mDefaultLabel
         mLrcPadding = ta.getDimension(R.styleable.LrcView_lrcPadding, 0f)
         mTimelineColor = ta.getColor(
-            R.styleable.LrcView_lrcTimelineColor,
-            ContextCompat.getColor(context, R.color.lrc_timeline_color)
+            /* index = */ R.styleable.LrcView_lrcTimelineColor,
+            /* defValue = */ ContextCompat.getColor(context, R.color.lrc_timeline_color)
         )
         val timelineHeight = ta.getDimension(
-            R.styleable.LrcView_lrcTimelineHeight,
-            resources.getDimension(R.dimen.lrc_timeline_height)
+            /* index = */ R.styleable.LrcView_lrcTimelineHeight,
+            /* defValue = */ resources.getDimension(R.dimen.lrc_timeline_height)
         )
         mPlayDrawable = ta.getDrawable(R.styleable.LrcView_lrcPlayDrawable)
         mPlayDrawable =
             if (mPlayDrawable == null) ContextCompat.getDrawable(
-                context,
-                R.drawable.ic_play_arrow
+                /* context = */ context,
+                /* id = */ R.drawable.ic_play_arrow
             ) else mPlayDrawable
         mTimeTextColor = ta.getColor(
-            R.styleable.LrcView_lrcTimeTextColor,
-            ContextCompat.getColor(context, R.color.lrc_time_text_color)
+            /* index = */ R.styleable.LrcView_lrcTimeTextColor,
+            /* defValue = */ ContextCompat.getColor(context, R.color.lrc_time_text_color)
         )
         val timeTextSize = ta.getDimension(
-            R.styleable.LrcView_lrcTimeTextSize,
-            resources.getDimension(R.dimen.lrc_time_text_size)
+            /* index = */ R.styleable.LrcView_lrcTimeTextSize,
+            /* defValue = */ resources.getDimension(R.dimen.lrc_time_text_size)
         )
         mTextGravity = ta.getInteger(R.styleable.LrcView_lrcTextGravity, LrcEntry.GRAVITY_CENTER)
         ta.recycle()
@@ -336,13 +323,19 @@ class CoverLrcView @JvmOverloads constructor(
         }
     }
 
-    override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
+    override fun onLayout(
+        changed: Boolean,
+        left: Int,
+        top: Int,
+        right: Int,
+        bottom: Int,
+    ) {
         super.onLayout(changed, left, top, right, bottom)
         if (changed) {
             initPlayDrawable()
             initEntryList()
             if (hasLrc()) {
-                smoothScrollTo(mCurrentLine, 0L)
+                smoothScrollTo(line = mCurrentLine, duration = 0L)
             }
         }
     }
@@ -355,13 +348,13 @@ class CoverLrcView @JvmOverloads constructor(
             mLrcPaint.color = mCurrentTextColor
             @Suppress("Deprecation")
             @SuppressLint("DrawAllocation") val staticLayout = StaticLayout(
-                mDefaultLabel,
-                mLrcPaint,
-                lrcWidth.toInt(),
-                Layout.Alignment.ALIGN_CENTER,
-                1f,
-                0f,
-                false
+                /* source = */ mDefaultLabel,
+                /* paint = */ mLrcPaint,
+                /* width = */ lrcWidth.toInt(),
+                /* align = */ Layout.Alignment.ALIGN_CENTER,
+                /* spacingmult = */ 1f,
+                /* spacingadd = */ 0f,
+                /* includepad = */ false
             )
             drawText(canvas, staticLayout, centerY.toFloat())
             return
@@ -429,11 +422,11 @@ class CoverLrcView @JvmOverloads constructor(
     }
 
     override fun computeScroll() {
-        if (mScroller!!.computeScrollOffset()) {
+        if (mScroller?.computeScrollOffset() == true) {
             mOffset = mScroller!!.currY.toFloat()
             invalidate()
         }
-        if (isFling && mScroller!!.isFinished) {
+        if (isFling && mScroller?.isFinished == true) {
             isFling = false
             if (hasLrc() && !isTouching) {
                 adjustCenter()
@@ -449,7 +442,7 @@ class CoverLrcView @JvmOverloads constructor(
     }
 
     private fun onLrcLoaded(entryList: List<LrcEntry>?) {
-        if (entryList != null && entryList.isNotEmpty()) {
+        if (!entryList.isNullOrEmpty()) {
             mLrcEntryList.addAll(entryList)
         }
         mLrcEntryList.sort()
@@ -477,7 +470,7 @@ class CoverLrcView @JvmOverloads constructor(
 
     fun reset() {
         endAnimation()
-        mScroller!!.forceFinished(true)
+        mScroller?.forceFinished(true)
         isShowTimeline = false
         isTouching = false
         isFling = false
@@ -507,8 +500,8 @@ class CoverLrcView @JvmOverloads constructor(
     }
 
     private fun endAnimation() {
-        if (mAnimator != null && mAnimator!!.isRunning) {
-            mAnimator!!.end()
+        if (mAnimator != null && mAnimator?.isRunning == true) {
+            mAnimator?.end()
         }
     }
 
