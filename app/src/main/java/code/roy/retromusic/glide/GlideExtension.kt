@@ -36,11 +36,9 @@ import com.bumptech.glide.request.transition.Transition
 import com.bumptech.glide.signature.MediaStoreSignature
 import java.io.File
 
-
 object RetroGlideExtension {
 
-    private const val DEFAULT_ARTIST_IMAGE =
-        R.drawable.default_artist_art
+    private const val DEFAULT_ARTIST_IMAGE = R.drawable.default_artist_art
     private const val DEFAULT_SONG_IMAGE: Int = R.drawable.default_audio_art
     private const val DEFAULT_ALBUM_IMAGE = R.drawable.default_album_art
     private const val DEFAULT_ERROR_IMAGE_BANNER = R.drawable.material_design_default
@@ -54,7 +52,10 @@ object RetroGlideExtension {
         return this.`as`(BitmapPaletteWrapper::class.java)
     }
 
-    private fun getSongModel(song: Song, ignoreMediaStore: Boolean): Any {
+    private fun getSongModel(
+        song: Song,
+        ignoreMediaStore: Boolean,
+    ): Any {
         return if (ignoreMediaStore) {
             AudioFileCover(song.data)
         } else {
@@ -63,29 +64,32 @@ object RetroGlideExtension {
     }
 
     fun getSongModel(song: Song): Any {
-        return getSongModel(song, PreferenceUtil.isIgnoreMediaStoreArtwork)
+        return getSongModel(
+            song = song,
+            ignoreMediaStore = PreferenceUtil.isIgnoreMediaStoreArtwork
+        )
     }
 
     fun getArtistModel(artist: Artist): Any {
         return getArtistModel(
-            artist,
-            getInstance(getContext()).hasCustomArtistImage(artist),
-            false
+            artist = artist,
+            hasCustomImage = getInstance(getContext()).hasCustomArtistImage(artist),
+            forceDownload = false
         )
     }
 
     fun getArtistModel(artist: Artist, forceDownload: Boolean): Any {
         return getArtistModel(
-            artist,
-            getInstance(getContext()).hasCustomArtistImage(artist),
-            forceDownload
+            artist = artist,
+            hasCustomImage = getInstance(getContext()).hasCustomArtistImage(artist),
+            forceDownload = forceDownload
         )
     }
 
     private fun getArtistModel(
         artist: Artist,
         hasCustomImage: Boolean,
-        forceDownload: Boolean
+        forceDownload: Boolean,
     ): Any {
         return if (!hasCustomImage) {
             ArtistImage(artist)
@@ -95,7 +99,7 @@ object RetroGlideExtension {
     }
 
     fun <T> RequestBuilder<T>.artistImageOptions(
-        artist: Artist
+        artist: Artist,
     ): RequestBuilder<T> {
         return diskCacheStrategy(DEFAULT_DISK_CACHE_STRATEGY_ARTIST)
             .priority(Priority.LOW)
@@ -106,7 +110,7 @@ object RetroGlideExtension {
     }
 
     fun <T> RequestBuilder<T>.songCoverOptions(
-        song: Song
+        song: Song,
     ): RequestBuilder<T> {
         return diskCacheStrategy(DEFAULT_DISK_CACHE_STRATEGY)
             .error(getDrawable(DEFAULT_SONG_IMAGE))
@@ -115,14 +119,14 @@ object RetroGlideExtension {
     }
 
     fun <T> RequestBuilder<T>.simpleSongCoverOptions(
-        song: Song
+        song: Song,
     ): RequestBuilder<T> {
         return diskCacheStrategy(DEFAULT_DISK_CACHE_STRATEGY)
             .signature(createSignature(song))
     }
 
     fun <T> RequestBuilder<T>.albumCoverOptions(
-        song: Song
+        song: Song,
     ): RequestBuilder<T> {
         return diskCacheStrategy(DEFAULT_DISK_CACHE_STRATEGY)
             .error(ContextCompat.getDrawable(getContext(), DEFAULT_ALBUM_IMAGE))
@@ -132,7 +136,7 @@ object RetroGlideExtension {
 
     fun <T> RequestBuilder<T>.userProfileOptions(
         file: File,
-        context: Context
+        context: Context,
     ): RequestBuilder<T> {
         return diskCacheStrategy(DEFAULT_DISK_CACHE_STRATEGY)
             .error(getErrorUserProfile(context))
@@ -140,7 +144,7 @@ object RetroGlideExtension {
     }
 
     fun <T> RequestBuilder<T>.profileBannerOptions(
-        file: File
+        file: File,
     ): RequestBuilder<T> {
         return diskCacheStrategy(DEFAULT_DISK_CACHE_STRATEGY)
             .placeholder(DEFAULT_ERROR_IMAGE_BANNER)
@@ -155,11 +159,19 @@ object RetroGlideExtension {
     }
 
     private fun createSignature(song: Song): Key {
-        return MediaStoreSignature("", song.dateModified, 0)
+        return MediaStoreSignature(
+            /* mimeType = */ "",
+            /* dateModified = */ song.dateModified,
+            /* orientation = */ 0
+        )
     }
 
     private fun createSignature(file: File): Key {
-        return MediaStoreSignature("", file.lastModified(), 0)
+        return MediaStoreSignature(
+            /* mimeType = */ "",
+            /* dateModified = */ file.lastModified(),
+            /* orientation = */ 0
+        )
     }
 
     private fun createSignature(artist: Artist): Key {
@@ -178,10 +190,10 @@ object RetroGlideExtension {
     }
 
     private fun getErrorUserProfile(context: Context): Drawable {
-        return code.roy.appthemehelper.util.TintHelper.createTintedDrawable(
-            context,
-            R.drawable.ic_account,
-            context.accentColor()
+        return TintHelper.createTintedDrawable(
+            /* context = */ context,
+            /* res = */ R.drawable.ic_account,
+            /* color = */ context.accentColor()
         )
     }
 
@@ -201,7 +213,7 @@ fun RequestBuilder<Drawable>.crossfadeListener(): RequestBuilder<Drawable> {
             e: GlideException?,
             model: Any?,
             target: Target<Drawable>?,
-            isFirstResource: Boolean
+            isFirstResource: Boolean,
         ): Boolean {
             return false
         }
@@ -211,7 +223,7 @@ fun RequestBuilder<Drawable>.crossfadeListener(): RequestBuilder<Drawable> {
             model: Any?,
             target: Target<Drawable>?,
             dataSource: DataSource?,
-            isFirstResource: Boolean
+            isFirstResource: Boolean,
         ): Boolean {
             return if (isFirstResource) {
                 false // thumbnail was not shown, do as usual

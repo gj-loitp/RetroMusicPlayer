@@ -30,7 +30,7 @@ import code.roy.retromusic.extensions.hide
 import code.roy.retromusic.glide.RetroGlideExtension
 import code.roy.retromusic.glide.RetroGlideExtension.artistImageOptions
 import code.roy.retromusic.glide.RetroGlideExtension.asBitmapPalette
-import code.roy.retromusic.glide.RetroMusicColoredTarget
+import code.roy.retromusic.glide.MusicColoredTarget
 import code.roy.retromusic.helper.menu.SongsMenuHelper
 import code.roy.retromusic.itf.IAlbumArtistClickListener
 import code.roy.retromusic.itf.IArtistClickListener
@@ -116,7 +116,7 @@ class ArtistAdapter(
             .artistImageOptions(artist)
             .load(RetroGlideExtension.getArtistModel(artist))
             .transition(RetroGlideExtension.getDefaultTransition())
-            .into(object : RetroMusicColoredTarget(holder.image!!) {
+            .into(object : MusicColoredTarget(holder.image!!) {
                 override fun onColorReady(colors: MediaNotificationProcessor) {
                     setColors(colors, holder)
                 }

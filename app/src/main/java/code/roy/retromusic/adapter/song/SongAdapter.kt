@@ -32,7 +32,7 @@ import code.roy.retromusic.adapter.base.MediaEntryViewHolder
 import code.roy.retromusic.glide.RetroGlideExtension
 import code.roy.retromusic.glide.RetroGlideExtension.asBitmapPalette
 import code.roy.retromusic.glide.RetroGlideExtension.songCoverOptions
-import code.roy.retromusic.glide.RetroMusicColoredTarget
+import code.roy.retromusic.glide.MusicColoredTarget
 import code.roy.retromusic.helper.MusicPlayerRemote
 import code.roy.retromusic.helper.SortOrder
 import code.roy.retromusic.helper.menu.SongMenuHelper
@@ -122,7 +122,7 @@ open class SongAdapter(
             .asBitmapPalette()
             .songCoverOptions(song)
             .load(RetroGlideExtension.getSongModel(song))
-            .into(object : RetroMusicColoredTarget(holder.image!!) {
+            .into(object : MusicColoredTarget(holder.image!!) {
                 override fun onColorReady(colors: MediaNotificationProcessor) {
                     setColors(colors, holder)
                 }

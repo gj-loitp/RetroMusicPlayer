@@ -32,7 +32,7 @@ import code.roy.retromusic.fragments.base.goToLyrics
 import code.roy.retromusic.glide.RetroGlideExtension
 import code.roy.retromusic.glide.RetroGlideExtension.asBitmapPalette
 import code.roy.retromusic.glide.RetroGlideExtension.songCoverOptions
-import code.roy.retromusic.glide.RetroMusicColoredTarget
+import code.roy.retromusic.glide.MusicColoredTarget
 import code.roy.retromusic.misc.CustomFragmentStatePagerAdapter
 import code.roy.retromusic.model.Song
 import code.roy.retromusic.util.MusicUtil
@@ -173,7 +173,7 @@ class AlbumCoverPagerAdapter(
                 //.checkIgnoreMediaStore()
                 .load(RetroGlideExtension.getSongModel(song))
                 .dontAnimate()
-                .into(object : RetroMusicColoredTarget(albumCover) {
+                .into(object : MusicColoredTarget(albumCover) {
                     override fun onColorReady(colors: MediaNotificationProcessor) {
                         setColor(colors)
                     }

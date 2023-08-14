@@ -17,9 +17,7 @@ package code.roy.retromusic.activities
 import android.app.KeyguardManager
 import android.os.Bundle
 import android.view.WindowManager
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.content.getSystemService
-import androidx.core.view.ViewCompat.animate
 import code.roy.appthemehelper.util.VersionUtils
 import code.roy.retromusic.R
 import code.roy.retromusic.activities.base.AbsMusicServiceActivity
@@ -31,7 +29,7 @@ import code.roy.retromusic.fragments.player.lockscreen.LockScreenControlsFragmen
 import code.roy.retromusic.glide.RetroGlideExtension
 import code.roy.retromusic.glide.RetroGlideExtension.asBitmapPalette
 import code.roy.retromusic.glide.RetroGlideExtension.songCoverOptions
-import code.roy.retromusic.glide.RetroMusicColoredTarget
+import code.roy.retromusic.glide.MusicColoredTarget
 import code.roy.retromusic.helper.MusicPlayerRemote
 import code.roy.retromusic.util.color.MediaNotificationProcessor
 import com.bumptech.glide.Glide
@@ -114,7 +112,7 @@ class LockScreenActivity : AbsMusicServiceActivity() {
             .songCoverOptions(song)
             .load(RetroGlideExtension.getSongModel(song))
             .dontAnimate()
-            .into(object : RetroMusicColoredTarget(binding.image) {
+            .into(object : MusicColoredTarget(binding.image) {
                 override fun onColorReady(colors: MediaNotificationProcessor) {
                     fragment?.setColor(colors)
                 }

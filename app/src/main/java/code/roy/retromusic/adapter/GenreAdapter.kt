@@ -26,7 +26,7 @@ import code.roy.retromusic.databinding.VItemGenreBinding
 import code.roy.retromusic.glide.RetroGlideExtension
 import code.roy.retromusic.glide.RetroGlideExtension.asBitmapPalette
 import code.roy.retromusic.glide.RetroGlideExtension.songCoverOptions
-import code.roy.retromusic.glide.RetroMusicColoredTarget
+import code.roy.retromusic.glide.MusicColoredTarget
 import code.roy.retromusic.itf.IGenreClickListener
 import code.roy.retromusic.model.Genre
 import code.roy.retromusic.util.MusicUtil
@@ -74,7 +74,7 @@ class GenreAdapter(
             .asBitmapPalette()
             .songCoverOptions(genreSong)
             .load(RetroGlideExtension.getSongModel(genreSong))
-            .into(object : RetroMusicColoredTarget(holder.binding.image) {
+            .into(object : MusicColoredTarget(holder.binding.image) {
                 override fun onColorReady(colors: MediaNotificationProcessor) {
                     setColors(holder, colors)
                 }

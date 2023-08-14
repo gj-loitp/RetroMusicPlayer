@@ -34,7 +34,7 @@ import code.roy.retromusic.extensions.setStatusBarColor
 import code.roy.retromusic.glide.RetroGlideExtension
 import code.roy.retromusic.glide.RetroGlideExtension.asBitmapPalette
 import code.roy.retromusic.glide.RetroGlideExtension.songCoverOptions
-import code.roy.retromusic.glide.RetroMusicColoredTarget
+import code.roy.retromusic.glide.MusicColoredTarget
 import code.roy.retromusic.model.Song
 import code.roy.retromusic.util.Share
 import com.bumptech.glide.Glide
@@ -74,7 +74,7 @@ class ShareInstagramStory : AbsThemeActivity() {
                 .asBitmapPalette()
                 .songCoverOptions(songFinal)
                 .load(RetroGlideExtension.getSongModel(songFinal))
-                .into(object : RetroMusicColoredTarget(binding.image) {
+                .into(object : MusicColoredTarget(binding.image) {
                     override fun onColorReady(colors: MediaNotificationProcessor) {
                         setColors(colors.backgroundColor)
                     }
