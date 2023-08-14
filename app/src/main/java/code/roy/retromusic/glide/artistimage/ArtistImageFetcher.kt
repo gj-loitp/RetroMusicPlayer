@@ -19,12 +19,11 @@ import java.io.FileNotFoundException
 import java.io.IOException
 import java.io.InputStream
 
-
 class ArtistImageFetcher(
     private val context: Context,
     private val deezerService: DeezerService,
     val model: ArtistImage,
-    private val okhttp: OkHttpClient
+    private val okhttp: OkHttpClient,
 ) : DataFetcher<InputStream> {
 
     private var streamFetcher: OkHttpStreamFetcher? = null
@@ -49,7 +48,7 @@ class ArtistImageFetcher(
                 response?.enqueue(object : Callback<DeezerResponse> {
                     override fun onResponse(
                         call: Call<DeezerResponse>,
-                        response: Response<DeezerResponse>
+                        response: Response<DeezerResponse>,
                     ) {
                         if (!response.isSuccessful) {
                             throw IOException("Request failed with code: " + response.code())
@@ -90,12 +89,13 @@ class ArtistImageFetcher(
     }
 
     private fun getFallbackAlbumImage(): InputStream? {
-        model.artist.safeGetFirstAlbum().id.let { id->
+        model.artist.safeGetFirstAlbum().id.let { id ->
             return if (id != -1L) {
-                val imageUri = MusicUtil.getMediaStoreAlbumCoverUri(model.artist.safeGetFirstAlbum().id)
+                val imageUri =
+                    MusicUtil.getMediaStoreAlbumCoverUri(model.artist.safeGetFirstAlbum().id)
                 try {
                     context.contentResolver.openInputStream(imageUri)
-                } catch (e: FileNotFoundException){
+                } catch (e: FileNotFoundException) {
                     null
                 } catch (e: UnsupportedOperationException) {
                     null

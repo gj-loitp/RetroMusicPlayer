@@ -26,7 +26,7 @@ class AudioFileCoverLoader : ModelLoader<AudioFileCover, InputStream> {
         audioFileCover: AudioFileCover,
         width: Int,
         height: Int,
-        options: Options
+        options: Options,
     ): LoadData<InputStream> {
         return LoadData(ObjectKey(audioFileCover.filePath), AudioFileCoverFetcher(audioFileCover))
     }

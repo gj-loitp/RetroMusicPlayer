@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments
 
 import android.animation.ValueAnimator
@@ -198,7 +184,10 @@ class LibraryViewModel(
         }
     }
 
-    fun renameRoomPlaylist(playListId: Long, name: String) = viewModelScope.launch(IO) {
+    fun renameRoomPlaylist(
+        playListId: Long,
+        name: String,
+    ) = viewModelScope.launch(IO) {
         repository.renameRoomPlaylist(playListId, name)
     }
 
@@ -339,7 +328,11 @@ class LibraryViewModel(
         searchResults.value = emptyList()
     }
 
-    fun addToPlaylist(context: Context, playlistName: String, songs: List<Song>) {
+    fun addToPlaylist(
+        context: Context,
+        playlistName: String,
+        songs: List<Song>,
+    ) {
         viewModelScope.launch(IO) {
             val playlists = checkPlaylistExists(playlistName)
             if (playlists.isEmpty()) {
@@ -347,9 +340,12 @@ class LibraryViewModel(
                     createPlaylist(PlaylistEntity(playlistName = playlistName))
                 insertSongs(songs.map { it.toSongEntity(playlistId) })
                 withContext(Main) {
-                    context.showToast(context.getString(
-                        R.string.playlist_created_sucessfully,
-                        playlistName))
+                    context.showToast(
+                        context.getString(
+                            R.string.playlist_created_sucessfully,
+                            playlistName
+                        )
+                    )
                 }
             } else {
                 val playlist = playlists.firstOrNull()
@@ -365,12 +361,17 @@ class LibraryViewModel(
                     context.getString(
                         R.string.added_song_count_to_playlist,
                         songs.size,
-                        playlistName))
+                        playlistName
+                    )
+                )
             }
         }
     }
 
-    fun setFabMargin(context: Context, bottomMargin: Int) {
+    fun setFabMargin(
+        context: Context,
+        bottomMargin: Int,
+    ) {
         val currentValue = DensityUtil.dip2px(context, 16F) +
                 bottomMargin
         ValueAnimator.ofInt(fabMargin.value!!, currentValue).apply {

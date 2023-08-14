@@ -50,6 +50,7 @@ class MusicSeekSkipTouchListener(val activity: FragmentActivity, val next: Boole
                     }
                 }
             }
+
             MotionEvent.ACTION_UP -> {
                 job?.cancel()
                 val endX = event.x
@@ -64,6 +65,7 @@ class MusicSeekSkipTouchListener(val activity: FragmentActivity, val next: Boole
 
                 wasSeeking = false
             }
+
             MotionEvent.ACTION_CANCEL -> {
                 job?.cancel()
             }
@@ -71,7 +73,12 @@ class MusicSeekSkipTouchListener(val activity: FragmentActivity, val next: Boole
         return false
     }
 
-    private fun isAClick(startX: Float, endX: Float, startY: Float, endY: Float): Boolean {
+    private fun isAClick(
+        startX: Float,
+        endX: Float,
+        startY: Float,
+        endY: Float,
+    ): Boolean {
         val differenceX = abs(startX - endX)
         val differenceY = abs(startY - endY)
         return !(differenceX > scaledTouchSlop || differenceY > scaledTouchSlop)

@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.glide.artistimage
 
 import android.content.Context
@@ -31,18 +17,23 @@ import java.util.concurrent.TimeUnit
 class ArtistImageLoader(
     val context: Context,
     private val deezerService: DeezerService,
-    private val okhttp: OkHttpClient
+    private val okhttp: OkHttpClient,
 ) : ModelLoader<ArtistImage, InputStream> {
 
     override fun buildLoadData(
         model: ArtistImage,
         width: Int,
         height: Int,
-        options: Options
+        options: Options,
     ): LoadData<InputStream> {
         return LoadData(
-            ObjectKey(model.artist.name),
-            ArtistImageFetcher(context, deezerService, model, okhttp)
+            /* sourceKey = */ ObjectKey(model.artist.name),
+            /* fetcher = */ ArtistImageFetcher(
+                context = context,
+                deezerService = deezerService,
+                model = model,
+                okhttp = okhttp
+            )
         )
     }
 
@@ -52,7 +43,7 @@ class ArtistImageLoader(
 }
 
 class Factory(
-    val context: Context
+    val context: Context,
 ) : ModelLoaderFactory<ArtistImage, InputStream> {
 
     private var deezerService = DeezerService.invoke(
@@ -78,9 +69,9 @@ class Factory(
 
     override fun build(multiFactory: MultiModelLoaderFactory): ModelLoader<ArtistImage, InputStream> {
         return ArtistImageLoader(
-            context,
-            deezerService,
-            okHttp
+            context = context,
+            deezerService = deezerService,
+            okhttp = okHttp
         )
     }
 
