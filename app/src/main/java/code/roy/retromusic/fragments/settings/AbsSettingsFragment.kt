@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.settings
 
 import android.graphics.Color
@@ -40,18 +26,17 @@ import code.roy.retromusic.preferences.NowPlayingScreenPreference
 import code.roy.retromusic.preferences.NowPlayingScreenPreferenceDialog
 import dev.chrisbanes.insetter.applyInsetter
 
-/**
- * @author Hemanth S (h4h13).
- */
-
-abstract class AbsSettingsFragment : code.roy.appthemehelper.common.prefs.supportv7.ATEPreferenceFragmentCompat() {
+abstract class AbsSettingsFragment : ATEPreferenceFragmentCompat() {
 
     internal fun showProToastAndNavigate(message: String) {
         showToast(getString(R.string.message_pro_feature, message))
         requireContext().goToProVersion()
     }
 
-    internal fun setSummary(preference: Preference, value: Any?) {
+    internal fun setSummary(
+        preference: Preference,
+        value: Any?,
+    ) {
         val stringValue = value.toString()
         if (preference is ListPreference) {
             val index = preference.findIndexOfValue(stringValue)
@@ -73,7 +58,10 @@ abstract class AbsSettingsFragment : code.roy.appthemehelper.common.prefs.suppor
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
         super.onViewCreated(view, savedInstanceState)
         setDivider(ColorDrawable(Color.TRANSPARENT))
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
@@ -93,24 +81,29 @@ abstract class AbsSettingsFragment : code.roy.appthemehelper.common.prefs.suppor
         when (preference) {
             is LibraryPreference -> {
                 val fragment = LibraryPreferenceDialog.newInstance()
-                fragment.show(childFragmentManager, preference.key)
+                fragment.show(/* manager = */ childFragmentManager, /* tag = */ preference.key)
             }
+
             is NowPlayingScreenPreference -> {
                 val fragment = NowPlayingScreenPreferenceDialog.newInstance()
-                fragment.show(childFragmentManager, preference.key)
+                fragment.show(/* manager = */ childFragmentManager, /* tag = */ preference.key)
             }
+
             is AlbumCoverStylePreference -> {
                 val fragment = AlbumCoverStylePreferenceDialog.newInstance()
-                fragment.show(childFragmentManager, preference.key)
+                fragment.show(/* manager = */ childFragmentManager, /* tag = */ preference.key)
             }
+
             is BlacklistPreference -> {
                 val fragment = BlacklistPreferenceDialog.newInstance()
-                fragment.show(childFragmentManager, preference.key)
+                fragment.show(/* manager = */ childFragmentManager, /* tag = */ preference.key)
             }
+
             is DurationPreference -> {
                 val fragment = DurationPreferenceDialog.newInstance()
-                fragment.show(childFragmentManager, preference.key)
+                fragment.show(/* manager = */ childFragmentManager, /* tag = */ preference.key)
             }
+
             else -> super.onDisplayPreferenceDialog(preference)
         }
     }

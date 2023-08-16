@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.settings
 
 import android.annotation.SuppressLint
@@ -43,10 +29,6 @@ import code.roy.retromusic.fragments.NowPlayingScreen
 import code.roy.retromusic.util.PreferenceUtil
 import com.afollestad.materialdialogs.color.colorChooser
 import com.google.android.material.color.DynamicColors
-
-/**
- * @author Hemanth S (h4h13).
- */
 
 class ThemeSettingsFragment : AbsSettingsFragment() {
     @SuppressLint("CheckResult")
@@ -93,7 +75,7 @@ class ThemeSettingsFragment : AbsSettingsFragment() {
             }
             ThemeStore.markChanged(requireContext())
             if (VersionUtils.hasNougatMR()) {
-                requireActivity().setTheme(PreferenceUtil.themeResFromPrefValue("black"))
+                requireActivity().setTheme(/* resid = */ PreferenceUtil.themeResFromPrefValue("black"))
                 DynamicShortcutManager(requireContext()).updateDynamicShortcuts()
             }
             restartActivity()
@@ -104,7 +86,7 @@ class ThemeSettingsFragment : AbsSettingsFragment() {
         desaturatedColor?.setOnPreferenceChangeListener { _, value ->
             val desaturated = value as Boolean
             ThemeStore.prefs(requireContext()).edit {
-                putBoolean("desaturated_color", desaturated)
+                putBoolean(/* p0 = */ "desaturated_color", /* p1 = */ desaturated)
             }
             PreferenceUtil.isDesaturatedColor = desaturated
             restartActivity()
@@ -144,7 +126,11 @@ class ThemeSettingsFragment : AbsSettingsFragment() {
 
         val adaptiveColor: ATESwitchPreference? = findPreference(ADAPTIVE_COLOR_APP)
         adaptiveColor?.isEnabled =
-            PreferenceUtil.nowPlayingScreen in listOf(NowPlayingScreen.Normal, NowPlayingScreen.Material, NowPlayingScreen.Flat)
+            PreferenceUtil.nowPlayingScreen in listOf(
+                NowPlayingScreen.Normal,
+                NowPlayingScreen.Material,
+                NowPlayingScreen.Flat
+            )
     }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {

@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.search
 
 import android.app.Activity.RESULT_OK
@@ -48,7 +34,6 @@ import kotlinx.coroutines.Job
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import java.util.*
 
-
 class SearchFragment : AbsMainActivityFragment(R.layout.f_search),
     ChipGroup.OnCheckedStateChangeListener {
     companion object {
@@ -65,6 +50,7 @@ class SearchFragment : AbsMainActivityFragment(R.layout.f_search),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         enterTransition = MaterialFadeThrough().addTarget(view)
         reenterTransition = MaterialFadeThrough().addTarget(view)
         _binding = FSearchBinding.bind(view)
@@ -170,7 +156,11 @@ class SearchFragment : AbsMainActivityFragment(R.layout.f_search),
             layoutManager = LinearLayoutManager(requireContext())
             adapter = searchAdapter
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                override fun onScrolled(
+                    recyclerView: RecyclerView,
+                    dx: Int,
+                    dy: Int,
+                ) {
                     super.onScrolled(recyclerView, dx, dy)
                     if (dy > 0) {
                         binding.keyboardPopup.shrink()
@@ -189,7 +179,7 @@ class SearchFragment : AbsMainActivityFragment(R.layout.f_search),
         binding.clearText.isVisible = query.isNotEmpty()
         val filter = getFilter()
         job?.cancel()
-        job = libraryViewModel.search(query, filter)
+        job = libraryViewModel.search(query = query, filter = filter)
     }
 
     private fun getFilter(): Filter {
@@ -253,11 +243,18 @@ class SearchFragment : AbsMainActivityFragment(R.layout.f_search),
         }
     }
 
-    override fun onCheckedChanged(group: ChipGroup, checkedIds: MutableList<Int>) {
+    override fun onCheckedChanged(
+        group: ChipGroup,
+        checkedIds: MutableList<Int>,
+    ) {
         search(binding.searchView.text.toString())
     }
 
-    override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {}
+    override fun onCreateMenu(
+        menu: Menu,
+        menuInflater: MenuInflater,
+    ) {
+    }
 
     override fun onMenuItemSelected(menuItem: MenuItem) = false
 }

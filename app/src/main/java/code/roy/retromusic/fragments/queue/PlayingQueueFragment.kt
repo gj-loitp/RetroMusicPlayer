@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.queue
 
 import android.content.res.ColorStateList
@@ -55,12 +41,15 @@ class PlayingQueueFragment : AbsMusicServiceFragment(R.layout.fragment_playing_q
     private fun getUpNextAndQueueTime(): String {
         val duration = MusicPlayerRemote.getQueueDurationMillis(MusicPlayerRemote.position)
         return MusicUtil.buildInfoString(
-            resources.getString(R.string.up_next),
-            MusicUtil.getReadableDurationString(duration)
+            string1 = resources.getString(R.string.up_next),
+            string2 = MusicUtil.getReadableDurationString(duration)
         )
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentPlayingQueueBinding.bind(view)
 
@@ -80,16 +69,17 @@ class PlayingQueueFragment : AbsMusicServiceFragment(R.layout.fragment_playing_q
         recyclerViewSwipeManager = RecyclerViewSwipeManager()
 
         playingQueueAdapter = PlayingQueueAdapter(
-            requireActivity(),
-            MusicPlayerRemote.playingQueue.toMutableList(),
-            MusicPlayerRemote.position,
-            R.layout.item_queue
+            activity = requireActivity(),
+            dataSet = MusicPlayerRemote.playingQueue.toMutableList(),
+            current = MusicPlayerRemote.position,
+            itemLayoutRes = R.layout.item_queue
         )
         wrappedAdapter = recyclerViewDragDropManager?.createWrappedAdapter(playingQueueAdapter!!)
-        wrappedAdapter = wrappedAdapter?.let { recyclerViewSwipeManager?.createWrappedAdapter(it) }
+        wrappedAdapter = wrappedAdapter?.let {
+            recyclerViewSwipeManager?.createWrappedAdapter(it)
+        }
 
         linearLayoutManager = LinearLayoutManager(requireContext())
-
 
         binding.recyclerView.apply {
             layoutManager = linearLayoutManager
@@ -99,7 +89,10 @@ class PlayingQueueFragment : AbsMusicServiceFragment(R.layout.fragment_playing_q
             recyclerViewDragDropManager?.attachRecyclerView(this)
             recyclerViewSwipeManager?.attachRecyclerView(this)
         }
-        linearLayoutManager.scrollToPositionWithOffset(MusicPlayerRemote.position + 1, 0)
+        linearLayoutManager.scrollToPositionWithOffset(
+            /* position = */ MusicPlayerRemote.position + 1,
+            /* offset = */ 0
+        )
 
         binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -147,24 +140,28 @@ class PlayingQueueFragment : AbsMusicServiceFragment(R.layout.fragment_playing_q
     }
 
     private fun updateQueue() {
-        playingQueueAdapter?.swapDataSet(MusicPlayerRemote.playingQueue, MusicPlayerRemote.position)
+        playingQueueAdapter?.swapDataSet(
+            dataSet = MusicPlayerRemote.playingQueue,
+            position = MusicPlayerRemote.position
+        )
     }
 
     private fun resetToCurrentPosition() {
         binding.recyclerView.stopScroll()
-        linearLayoutManager.scrollToPositionWithOffset(MusicPlayerRemote.position + 1, 0)
+        linearLayoutManager.scrollToPositionWithOffset(
+            /* position = */ MusicPlayerRemote.position + 1,
+            /* offset = */ 0
+        )
     }
 
     override fun onPause() {
-        if (recyclerViewDragDropManager != null) {
-            recyclerViewDragDropManager!!.cancelDrag()
-        }
+        recyclerViewDragDropManager?.cancelDrag()
         super.onPause()
     }
 
     override fun onDestroy() {
         if (recyclerViewDragDropManager != null) {
-            recyclerViewDragDropManager!!.release()
+            recyclerViewDragDropManager?.release()
             recyclerViewDragDropManager = null
         }
         if (recyclerViewSwipeManager != null) {
@@ -187,8 +184,8 @@ class PlayingQueueFragment : AbsMusicServiceFragment(R.layout.fragment_playing_q
         binding.clearQueue.backgroundTintList = ColorStateList.valueOf(accentColor())
         ColorStateList.valueOf(
             MaterialValueHelper.getPrimaryTextColor(
-                requireContext(),
-                ColorUtil.isColorLight(accentColor())
+                context = requireContext(),
+                dark = ColorUtil.isColorLight(accentColor())
             )
         ).apply {
             binding.clearQueue.setTextColor(this)
@@ -206,4 +203,3 @@ class PlayingQueueFragment : AbsMusicServiceFragment(R.layout.fragment_playing_q
         }
     }
 }
-
