@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.player.blur
 
 import android.graphics.Color
@@ -65,6 +51,7 @@ class BlurPlaybackControlsFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         _binding = FBlurPlayerPlaybackControlsBinding.bind(view)
         setUpPlayPauseFab()
         binding.title.isSelected = true
@@ -116,8 +103,10 @@ class BlurPlaybackControlsFragment :
 
     override fun setColor(color: MediaNotificationProcessor) {
         lastPlaybackControlsColor = Color.WHITE
-        lastDisabledPlaybackControlsColor =
-            ContextCompat.getColor(requireContext(), code.roy.appthemehelper.R.color.md_grey_500)
+        lastDisabledPlaybackControlsColor = ContextCompat.getColor(
+            /* context = */ requireContext(),
+            /* id = */ code.roy.appthemehelper.R.color.md_grey_500
+        )
 
         binding.title.setTextColor(lastPlaybackControlsColor)
 
@@ -138,11 +127,15 @@ class BlurPlaybackControlsFragment :
 
     private fun setFabColor(i: Int) {
         code.roy.appthemehelper.util.TintHelper.setTintAuto(
-            binding.playPauseButton,
-            MaterialValueHelper.getPrimaryTextColor(context, ColorUtil.isColorLight(i)),
-            false
+            /* view = */ binding.playPauseButton,
+            /* color = */ MaterialValueHelper.getPrimaryTextColor(context, ColorUtil.isColorLight(i)),
+            /* background = */ false
         )
-        code.roy.appthemehelper.util.TintHelper.setTintAuto(binding.playPauseButton, i, true)
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(
+            /* view = */ binding.playPauseButton,
+            /* color = */ i,
+            /* background = */ true
+        )
     }
 
     private fun setUpPlayPauseFab() {

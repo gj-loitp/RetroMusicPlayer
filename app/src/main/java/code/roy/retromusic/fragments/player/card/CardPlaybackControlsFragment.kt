@@ -67,6 +67,7 @@ class CardPlaybackControlsFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         _binding = FCardPlayerPlaybackControlsBinding.bind(view)
         setUpPlayPauseFab()
         binding.title.isSelected = true
@@ -119,13 +120,19 @@ class CardPlaybackControlsFragment :
     override fun setColor(color: MediaNotificationProcessor) {
         if (!ATHUtil.isWindowBackgroundDark(requireContext())
         ) {
-            lastPlaybackControlsColor = MaterialValueHelper.getSecondaryTextColor(activity, true)
+            lastPlaybackControlsColor = MaterialValueHelper.getSecondaryTextColor(
+                context = activity,
+                dark = true
+            )
             lastDisabledPlaybackControlsColor =
-                MaterialValueHelper.getSecondaryDisabledTextColor(activity, true)
+                MaterialValueHelper.getSecondaryDisabledTextColor(context = activity, dark = true)
         } else {
-            lastPlaybackControlsColor = MaterialValueHelper.getPrimaryTextColor(activity, false)
+            lastPlaybackControlsColor = MaterialValueHelper.getPrimaryTextColor(
+                context = activity,
+                dark = false
+            )
             lastDisabledPlaybackControlsColor =
-                MaterialValueHelper.getPrimaryDisabledTextColor(activity, false)
+                MaterialValueHelper.getPrimaryDisabledTextColor(context = activity, dark = false)
         }
 
         updateRepeatState()
@@ -141,11 +148,15 @@ class CardPlaybackControlsFragment :
         }
         binding.image.setColorFilter(colorFinal, PorterDuff.Mode.SRC_IN)
         code.roy.appthemehelper.util.TintHelper.setTintAuto(
-            binding.mediaButton.playPauseButton,
-            MaterialValueHelper.getPrimaryTextColor(context, ColorUtil.isColorLight(colorFinal)),
-            false
+            /* view = */ binding.mediaButton.playPauseButton,
+            /* color = */ MaterialValueHelper.getPrimaryTextColor(context, ColorUtil.isColorLight(colorFinal)),
+            /* background = */ false
         )
-        code.roy.appthemehelper.util.TintHelper.setTintAuto(binding.mediaButton.playPauseButton, colorFinal, true)
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(
+            /* view = */ binding.mediaButton.playPauseButton,
+            /* color = */ colorFinal,
+            /* background = */ true
+        )
 
         volumeFragment?.setTintable(colorFinal)
     }

@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.player.circle
 
 import android.animation.ObjectAnimator
@@ -61,10 +47,6 @@ import com.bumptech.glide.RequestBuilder
 import com.google.android.material.slider.Slider
 import me.tankery.lib.circularseekbar.CircularSeekBar
 
-/**
- * Created by hemanths on 2020-01-06.
- */
-
 class CirclePlayerFragment : AbsPlayerFragment(R.layout.fragment_circle_player),
     MusicProgressViewUpdateHelper.Callback,
     OnAudioVolumeChangedListener,
@@ -110,9 +92,9 @@ class CirclePlayerFragment : AbsPlayerFragment(R.layout.fragment_circle_player),
             setNavigationOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
             setOnMenuItemClickListener(this@CirclePlayerFragment)
             code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
-                this,
-                colorControlNormal(),
-                requireActivity()
+                /* toolbarView = */ this,
+                /* toolbarIconsColor = */ colorControlNormal(),
+                /* activity = */ requireActivity()
             )
         }
     }
@@ -120,14 +102,17 @@ class CirclePlayerFragment : AbsPlayerFragment(R.layout.fragment_circle_player),
     private fun setupViews() {
         setUpProgressSlider()
         binding.volumeSeekBar.circleProgressColor = accentColor()
-        binding.volumeSeekBar.circleColor = ColorUtil.withAlpha(accentColor(), 0.25f)
+        binding.volumeSeekBar.circleColor = ColorUtil.withAlpha(
+            baseColor = accentColor(),
+            alpha = 0.25f
+        )
         setUpPlayPauseFab()
         setUpPrevNext()
         setUpPlayerToolbar()
         binding.albumCoverOverlay.background = ColorDrawable(
             MaterialValueHelper.getPrimaryTextColor(
-                requireContext(),
-                accentColor().isColorLight
+                context = requireContext(),
+                dark = accentColor().isColorLight
             )
         )
     }
@@ -135,11 +120,16 @@ class CirclePlayerFragment : AbsPlayerFragment(R.layout.fragment_circle_player),
     @SuppressLint("ClickableViewAccessibility")
     private fun setUpPrevNext() {
         updatePrevNextColor()
-        binding.nextButton.setOnTouchListener(MusicSeekSkipTouchListener(requireActivity(), true))
+        binding.nextButton.setOnTouchListener(
+            MusicSeekSkipTouchListener(
+                activity = requireActivity(),
+                next = true
+            )
+        )
         binding.previousButton.setOnTouchListener(
             MusicSeekSkipTouchListener(
-                requireActivity(),
-                false
+                activity = requireActivity(),
+                next = false
             )
         )
     }
@@ -152,15 +142,19 @@ class CirclePlayerFragment : AbsPlayerFragment(R.layout.fragment_circle_player),
 
     private fun setUpPlayPauseFab() {
         code.roy.appthemehelper.util.TintHelper.setTintAuto(
-            binding.playPauseButton,
-            accentColor(),
-            false
+            /* view = */ binding.playPauseButton,
+            /* color = */ accentColor(),
+            /* background = */ false
         )
         binding.playPauseButton.setOnClickListener(PlayPauseButtonOnClickHandler())
     }
 
     private fun setupRotateAnimation() {
-        rotateAnimator = ObjectAnimator.ofFloat(binding.albumCover, View.ROTATION, 360F).apply {
+        rotateAnimator = ObjectAnimator.ofFloat(
+            /* target = */ binding.albumCover,
+            /* property = */ View.ROTATION,
+            /* ...values = */ 360F
+        ).apply {
             interpolator = LinearInterpolator()
             repeatCount = Animation.INFINITE
             duration = 10000
@@ -176,7 +170,7 @@ class CirclePlayerFragment : AbsPlayerFragment(R.layout.fragment_circle_player),
         if (audioVolumeObserver == null) {
             audioVolumeObserver = AudioVolumeObserver(requireActivity())
         }
-        audioVolumeObserver?.register(AudioManager.STREAM_MUSIC, this)
+        audioVolumeObserver?.register(audioStreamType = AudioManager.STREAM_MUSIC, listener = this)
 
         val audioManager = audioManager
         binding.volumeSeekBar.max =
@@ -285,7 +279,11 @@ class CirclePlayerFragment : AbsPlayerFragment(R.layout.fragment_circle_player),
         fromUser: Boolean,
     ) {
         val audioManager = audioManager
-        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, progress.toInt(), 0)
+        audioManager.setStreamVolume(
+            /* streamType = */ AudioManager.STREAM_MUSIC,
+            /* index = */ progress.toInt(),
+            /* flags = */ 0
+        )
     }
 
     override fun onStartTrackingTouch(seekBar: CircularSeekBar?) {
@@ -300,8 +298,8 @@ class CirclePlayerFragment : AbsPlayerFragment(R.layout.fragment_circle_player),
         progressSlider.addOnChangeListener(Slider.OnChangeListener { _, value, fromUser ->
             if (fromUser) {
                 onUpdateProgressViews(
-                    value.toInt(),
-                    MusicPlayerRemote.songDurationMillis
+                    progress = value.toInt(),
+                    total = MusicPlayerRemote.songDurationMillis
                 )
             }
         })

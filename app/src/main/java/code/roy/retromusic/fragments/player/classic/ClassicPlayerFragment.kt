@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.player.classic
 
 import android.animation.ObjectAnimator
@@ -71,7 +57,6 @@ import com.h6ah4i.android.widget.advrecyclerview.swipeable.RecyclerViewSwipeMana
 import com.h6ah4i.android.widget.advrecyclerview.touchguard.RecyclerViewTouchActionGuardManager
 import com.h6ah4i.android.widget.advrecyclerview.utils.WrapperAdapterUtils
 
-
 class ClassicPlayerFragment : AbsPlayerFragment(R.layout.fragment_classic_player),
     View.OnLayoutChangeListener,
     MusicProgressViewUpdateHelper.Callback {
@@ -96,10 +81,10 @@ class ClassicPlayerFragment : AbsPlayerFragment(R.layout.fragment_classic_player
         override fun onSlide(bottomSheet: View, slideOffset: Float) {
             mainActivity.getBottomSheetBehavior().isDraggable = false
             binding.playerQueueSheet.setContentPadding(
-                binding.playerQueueSheet.contentPaddingLeft,
-                (slideOffset * binding.statusBar.height).toInt(),
-                binding.playerQueueSheet.contentPaddingRight,
-                binding.playerQueueSheet.contentPaddingBottom
+                /* left = */ binding.playerQueueSheet.contentPaddingLeft,
+                /* top = */ (slideOffset * binding.statusBar.height).toInt(),
+                /* right = */ binding.playerQueueSheet.contentPaddingRight,
+                /* bottom = */ binding.playerQueueSheet.contentPaddingBottom
             )
 
             shapeDrawable.interpolation = 1 - slideOffset
@@ -108,7 +93,8 @@ class ClassicPlayerFragment : AbsPlayerFragment(R.layout.fragment_classic_player
         override fun onStateChanged(bottomSheet: View, newState: Int) {
             when (newState) {
                 BottomSheetBehavior.STATE_EXPANDED,
-                BottomSheetBehavior.STATE_DRAGGING -> {
+                BottomSheetBehavior.STATE_DRAGGING,
+                -> {
                     mainActivity.getBottomSheetBehavior().isDraggable = false
                 }
 
@@ -151,9 +137,9 @@ class ClassicPlayerFragment : AbsPlayerFragment(R.layout.fragment_classic_player
 
         shapeDrawable = MaterialShapeDrawable(
             ShapeAppearanceModel.builder(
-                requireContext(),
-                R.style.ClassicThemeOverLay,
-                0
+                /* context = */ requireContext(),
+                /* shapeAppearanceResId = */ R.style.ClassicThemeOverLay,
+                /* shapeAppearanceOverlayResId = */ 0
             ).build()
         )
         shapeDrawable.fillColor =
@@ -167,9 +153,9 @@ class ClassicPlayerFragment : AbsPlayerFragment(R.layout.fragment_classic_player
         }
 
         code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
-            binding.playerToolbar,
-            Color.WHITE,
-            requireActivity()
+            /* toolbarView = */ binding.playerToolbar,
+            /* toolbarIconsColor = */ Color.WHITE,
+            /* activity = */ requireActivity()
         )
         binding.title.setOnClickListener {
             goToAlbum(requireActivity())
@@ -181,9 +167,9 @@ class ClassicPlayerFragment : AbsPlayerFragment(R.layout.fragment_classic_player
             override fun handleOnBackPressed() {
                 if (getQueuePanel().state == BottomSheetBehavior.STATE_EXPANDED) {
                     getQueuePanel().state = BottomSheetBehavior.STATE_COLLAPSED
-                }
-                else{
-                    mainActivity.getBottomSheetBehavior().state=BottomSheetBehavior.STATE_COLLAPSED
+                } else {
+                    mainActivity.getBottomSheetBehavior().state =
+                        BottomSheetBehavior.STATE_COLLAPSED
                 }
             }
         })
@@ -201,7 +187,10 @@ class ClassicPlayerFragment : AbsPlayerFragment(R.layout.fragment_classic_player
     private fun hideVolumeIfAvailable() {
         if (PreferenceUtil.isVolumeVisibilityMode) {
             childFragmentManager.commit {
-                replace(R.id.volumeFragmentContainer, VolumeFragment.newInstance())
+                replace(
+                    /* containerViewId = */ R.id.volumeFragmentContainer,
+                    /* fragment = */ VolumeFragment.newInstance()
+                )
             }
             childFragmentManager.executePendingTransactions()
             volumeFragment =
@@ -302,7 +291,10 @@ class ClassicPlayerFragment : AbsPlayerFragment(R.layout.fragment_classic_player
         libraryViewModel.updateColor(color.backgroundColor)
 
         lastPlaybackControlsColor = color.primaryTextColor
-        lastDisabledPlaybackControlsColor = ColorUtil.withAlpha(color.primaryTextColor, 0.3f)
+        lastDisabledPlaybackControlsColor = ColorUtil.withAlpha(
+            baseColor = color.primaryTextColor,
+            alpha = 0.3f
+        )
 
         binding.playerContainer.setBackgroundColor(color.backgroundColor)
         binding.playerControlsContainer.songInfo.setTextColor(color.primaryTextColor)
@@ -316,21 +308,21 @@ class ClassicPlayerFragment : AbsPlayerFragment(R.layout.fragment_classic_player
         }
 
         ViewUtil.setProgressDrawable(
-            binding.playerControlsContainer.progressSlider,
-            color.primaryTextColor,
-            true
+            progressSlider = binding.playerControlsContainer.progressSlider,
+            newColor = color.primaryTextColor,
+            thumbTint = true
         )
         volumeFragment?.setTintableColor(color.primaryTextColor)
 
         code.roy.appthemehelper.util.TintHelper.setTintAuto(
-            binding.playerControlsContainer.playPauseButton,
-            color.primaryTextColor,
-            true
+            /* view = */ binding.playerControlsContainer.playPauseButton,
+            /* color = */ color.primaryTextColor,
+            /* background = */ true
         )
         code.roy.appthemehelper.util.TintHelper.setTintAuto(
-            binding.playerControlsContainer.playPauseButton,
-            color.backgroundColor,
-            false
+            /* view = */ binding.playerControlsContainer.playPauseButton,
+            /* color = */ color.backgroundColor,
+            /* background = */ false
         )
 
         updateRepeatState()
@@ -338,9 +330,9 @@ class ClassicPlayerFragment : AbsPlayerFragment(R.layout.fragment_classic_player
         updatePrevNextColor()
 
         code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
-            binding.playerToolbar,
-            Color.WHITE,
-            requireActivity()
+            /* toolbarView = */ binding.playerToolbar,
+            /* toolbarIconsColor = */ Color.WHITE,
+            /* activity = */ requireActivity()
         )
     }
 
@@ -359,9 +351,9 @@ class ClassicPlayerFragment : AbsPlayerFragment(R.layout.fragment_classic_player
         binding.playerControlsContainer.progressSlider.max = total
 
         val animator = ObjectAnimator.ofInt(
-            binding.playerControlsContainer.progressSlider,
-            "progress",
-            progress
+            /* target = */ binding.playerControlsContainer.progressSlider,
+            /* propertyName = */ "progress",
+            /* ...values = */ progress
         )
         animator.duration = AbsPlayerControlsFragment.SLIDER_ANIMATION_TIME
         animator.interpolator = LinearInterpolator()
@@ -379,13 +371,19 @@ class ClassicPlayerFragment : AbsPlayerFragment(R.layout.fragment_classic_player
     }
 
     private fun updateQueue() {
-        playingQueueAdapter?.swapDataSet(MusicPlayerRemote.playingQueue, MusicPlayerRemote.position)
+        playingQueueAdapter?.swapDataSet(
+            dataSet = MusicPlayerRemote.playingQueue,
+            position = MusicPlayerRemote.position
+        )
         resetToCurrentPosition()
     }
 
     private fun resetToCurrentPosition() {
         binding.recyclerView.stopScroll()
-        linearLayoutManager.scrollToPositionWithOffset(MusicPlayerRemote.position + 1, 0)
+        linearLayoutManager.scrollToPositionWithOffset(
+            /* position = */ MusicPlayerRemote.position + 1,
+            /* offset = */ 0
+        )
     }
 
     private fun getQueuePanel(): BottomSheetBehavior<MaterialCardView> {
@@ -435,18 +433,18 @@ class ClassicPlayerFragment : AbsPlayerFragment(R.layout.fragment_classic_player
         binding.playerToolbar.setOnMenuItemClickListener(this)
 
         code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
-            binding.playerToolbar,
-            Color.WHITE,
-            requireActivity()
+            /* toolbarView = */ binding.playerToolbar,
+            /* toolbarIconsColor = */ Color.WHITE,
+            /* activity = */ requireActivity()
         )
     }
 
     private fun setupRecyclerView() {
         playingQueueAdapter = PlayingQueueAdapter(
-            requireActivity() as AppCompatActivity,
-            MusicPlayerRemote.playingQueue.toMutableList(),
-            MusicPlayerRemote.position,
-            R.layout.item_queue
+            activity = requireActivity() as AppCompatActivity,
+            dataSet = MusicPlayerRemote.playingQueue.toMutableList(),
+            current = MusicPlayerRemote.position,
+            itemLayoutRes = R.layout.item_queue
         )
         linearLayoutManager = LinearLayoutManager(requireContext())
         recyclerViewTouchActionGuardManager = RecyclerViewTouchActionGuardManager()
@@ -466,7 +464,10 @@ class ClassicPlayerFragment : AbsPlayerFragment(R.layout.fragment_classic_player
         recyclerViewDragDropManager?.attachRecyclerView(binding.recyclerView)
         recyclerViewSwipeManager?.attachRecyclerView(binding.recyclerView)
 
-        linearLayoutManager.scrollToPositionWithOffset(MusicPlayerRemote.position + 1, 0)
+        linearLayoutManager.scrollToPositionWithOffset(
+            /* position = */ MusicPlayerRemote.position + 1,
+            /* offset = */ 0
+        )
     }
 
     private fun setUpProgressSlider() {
@@ -476,8 +477,8 @@ class ClassicPlayerFragment : AbsPlayerFragment(R.layout.fragment_classic_player
                 if (fromUser) {
                     MusicPlayerRemote.seekTo(progress)
                     onUpdateProgressViews(
-                        MusicPlayerRemote.songProgressMillis,
-                        MusicPlayerRemote.songDurationMillis
+                        progress = MusicPlayerRemote.songProgressMillis,
+                        total = MusicPlayerRemote.songDurationMillis
                     )
                 }
             }
@@ -511,14 +512,14 @@ class ClassicPlayerFragment : AbsPlayerFragment(R.layout.fragment_classic_player
         updatePrevNextColor()
         binding.playerControlsContainer.nextButton.setOnTouchListener(
             MusicSeekSkipTouchListener(
-                requireActivity(),
-                true
+                activity = requireActivity(),
+                next = true
             )
         )
         binding.playerControlsContainer.previousButton.setOnTouchListener(
             MusicSeekSkipTouchListener(
-                requireActivity(),
-                false
+                activity = requireActivity(),
+                next = false
             )
         )
     }
@@ -535,15 +536,17 @@ class ClassicPlayerFragment : AbsPlayerFragment(R.layout.fragment_classic_player
     }
 
     private fun setUpShuffleButton() {
-        binding.playerControlsContainer.shuffleButton.setOnClickListener { MusicPlayerRemote.toggleShuffleMode() }
+        binding.playerControlsContainer.shuffleButton.setOnClickListener {
+            MusicPlayerRemote.toggleShuffleMode()
+        }
     }
 
     fun updateShuffleState() {
         when (MusicPlayerRemote.shuffleMode) {
             MusicService.SHUFFLE_MODE_SHUFFLE ->
                 binding.playerControlsContainer.shuffleButton.setColorFilter(
-                    lastPlaybackControlsColor,
-                    PorterDuff.Mode.SRC_IN
+                    /* color = */ lastPlaybackControlsColor,
+                    /* mode = */ PorterDuff.Mode.SRC_IN
                 )
 
             else -> binding.playerControlsContainer.shuffleButton.setColorFilter(
@@ -554,7 +557,9 @@ class ClassicPlayerFragment : AbsPlayerFragment(R.layout.fragment_classic_player
     }
 
     private fun setUpRepeatButton() {
-        binding.playerControlsContainer.repeatButton.setOnClickListener { MusicPlayerRemote.cycleRepeatMode() }
+        binding.playerControlsContainer.repeatButton.setOnClickListener {
+            MusicPlayerRemote.cycleRepeatMode()
+        }
     }
 
     fun updateRepeatState() {
@@ -562,24 +567,24 @@ class ClassicPlayerFragment : AbsPlayerFragment(R.layout.fragment_classic_player
             MusicService.REPEAT_MODE_NONE -> {
                 binding.playerControlsContainer.repeatButton.setImageResource(R.drawable.ic_repeat)
                 binding.playerControlsContainer.repeatButton.setColorFilter(
-                    lastDisabledPlaybackControlsColor,
-                    PorterDuff.Mode.SRC_IN
+                    /* color = */ lastDisabledPlaybackControlsColor,
+                    /* mode = */ PorterDuff.Mode.SRC_IN
                 )
             }
 
             MusicService.REPEAT_MODE_ALL -> {
                 binding.playerControlsContainer.repeatButton.setImageResource(R.drawable.ic_repeat)
                 binding.playerControlsContainer.repeatButton.setColorFilter(
-                    lastPlaybackControlsColor,
-                    PorterDuff.Mode.SRC_IN
+                    /* color = */ lastPlaybackControlsColor,
+                    /* mode = */ PorterDuff.Mode.SRC_IN
                 )
             }
 
             MusicService.REPEAT_MODE_THIS -> {
                 binding.playerControlsContainer.repeatButton.setImageResource(R.drawable.ic_repeat_one)
                 binding.playerControlsContainer.repeatButton.setColorFilter(
-                    lastPlaybackControlsColor,
-                    PorterDuff.Mode.SRC_IN
+                    /* color = */ lastPlaybackControlsColor,
+                    /* mode = */ PorterDuff.Mode.SRC_IN
                 )
             }
         }
@@ -594,7 +599,7 @@ class ClassicPlayerFragment : AbsPlayerFragment(R.layout.fragment_classic_player
         oldLeft: Int,
         oldTop: Int,
         oldRight: Int,
-        oldBottom: Int
+        oldBottom: Int,
     ) {
 
         // Check if the device is in landscape mode

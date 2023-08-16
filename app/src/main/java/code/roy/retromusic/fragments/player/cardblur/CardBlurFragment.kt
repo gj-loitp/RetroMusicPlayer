@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.player.cardblur
 
 import android.content.SharedPreferences
@@ -71,7 +57,11 @@ class CardBlurFragment : AbsPlayerFragment(R.layout.f_card_blur_player),
         playbackControlsFragment.setColor(color)
         lastColor = color.backgroundColor
         libraryViewModel.updateColor(color.backgroundColor)
-        code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(binding.playerToolbar, Color.WHITE, activity)
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
+            /* toolbarView = */ binding.playerToolbar,
+            /* toolbarIconsColor = */ Color.WHITE,
+            /* activity = */ activity
+        )
 
         binding.title.setTextColor(Color.WHITE)
         binding.text.setTextColor(Color.WHITE)
@@ -110,7 +100,11 @@ class CardBlurFragment : AbsPlayerFragment(R.layout.f_card_blur_player),
             setNavigationOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
             setTitleTextColor(Color.WHITE)
             setSubtitleTextColor(Color.WHITE)
-            code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(binding.playerToolbar, Color.WHITE, activity)
+            code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
+                /* toolbarView = */ binding.playerToolbar,
+                /* toolbarIconsColor = */ Color.WHITE,
+                /* activity = */ activity
+            )
             setOnMenuItemClickListener(this@CardBlurFragment)
         }
     }
@@ -170,7 +164,10 @@ class CardBlurFragment : AbsPlayerFragment(R.layout.f_card_blur_player),
         _binding = null
     }
 
-    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+    override fun onSharedPreferenceChanged(
+        sharedPreferences: SharedPreferences?,
+        key: String?,
+    ) {
         if (key == NEW_BLUR_AMOUNT) {
             updateBlur()
         }

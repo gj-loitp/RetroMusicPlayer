@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.player.fit
 
 import android.os.Bundle
@@ -119,13 +105,19 @@ class FitPlaybackControlsFragment :
     override fun setColor(color: MediaNotificationProcessor) {
         if (ColorUtil.isColorLight(colorBackground())) {
             lastPlaybackControlsColor =
-                MaterialValueHelper.getSecondaryTextColor(requireContext(), true)
+                MaterialValueHelper.getSecondaryTextColor(context = requireContext(), dark = true)
             lastDisabledPlaybackControlsColor =
-                MaterialValueHelper.getSecondaryDisabledTextColor(requireContext(), true)
+                MaterialValueHelper.getSecondaryDisabledTextColor(
+                    context = requireContext(),
+                    dark = true
+                )
         } else {
-            lastPlaybackControlsColor = MaterialValueHelper.getPrimaryTextColor(activity, false)
+            lastPlaybackControlsColor = MaterialValueHelper.getPrimaryTextColor(
+                context = activity,
+                dark = false
+            )
             lastDisabledPlaybackControlsColor =
-                MaterialValueHelper.getPrimaryDisabledTextColor(activity, false)
+                MaterialValueHelper.getPrimaryDisabledTextColor(context = activity, dark = false)
         }
 
         val colorFinal = if (PreferenceUtil.isAdaptiveColor) {
@@ -144,11 +136,17 @@ class FitPlaybackControlsFragment :
 
     private fun setFabColor(i: Int) {
         code.roy.appthemehelper.util.TintHelper.setTintAuto(
-            binding.playPauseButton,
+            /* view = */ binding.playPauseButton,
+            /* color = */
             MaterialValueHelper.getPrimaryTextColor(context, ColorUtil.isColorLight(i)),
+            /* background = */
             false
         )
-        code.roy.appthemehelper.util.TintHelper.setTintAuto(binding.playPauseButton, i, true)
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(
+            /* view = */ binding.playPauseButton,
+            /* color = */ i,
+            /* background = */ true
+        )
     }
 
     private fun setUpPlayPauseFab() {

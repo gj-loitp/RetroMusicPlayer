@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.player.color
 
 import android.animation.Animator
@@ -119,8 +105,16 @@ class ColorPlaybackControlsFragment :
     }
 
     override fun setColor(color: MediaNotificationProcessor) {
-        code.roy.appthemehelper.util.TintHelper.setTintAuto(binding.playPauseButton, color.primaryTextColor, true)
-        code.roy.appthemehelper.util.TintHelper.setTintAuto(binding.playPauseButton, color.backgroundColor, false)
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(
+            /* view = */ binding.playPauseButton,
+            /* color = */ color.primaryTextColor,
+            /* background = */ true
+        )
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(
+            /* view = */ binding.playPauseButton,
+            /* color = */ color.backgroundColor,
+            /* background = */ false
+        )
         binding.progressSlider.applyColor(color.primaryTextColor)
 
         binding.title.setTextColor(color.primaryTextColor)
@@ -131,7 +125,10 @@ class ColorPlaybackControlsFragment :
         volumeFragment?.setTintableColor(color.primaryTextColor)
 
         lastPlaybackControlsColor = color.secondaryTextColor
-        lastDisabledPlaybackControlsColor = ColorUtil.withAlpha(color.secondaryTextColor, 0.25f)
+        lastDisabledPlaybackControlsColor = ColorUtil.withAlpha(
+            baseColor = color.secondaryTextColor,
+            alpha = 0.25f
+        )
 
         updateRepeatState()
         updateShuffleState()
@@ -139,8 +136,16 @@ class ColorPlaybackControlsFragment :
     }
 
     private fun setUpPlayPauseFab() {
-        code.roy.appthemehelper.util.TintHelper.setTintAuto(binding.playPauseButton, Color.WHITE, true)
-        code.roy.appthemehelper.util.TintHelper.setTintAuto(binding.playPauseButton, Color.BLACK, false)
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(
+            /* view = */ binding.playPauseButton,
+            /* color = */ Color.WHITE,
+            /* background = */ true
+        )
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(
+            /* view = */ binding.playPauseButton,
+            /* color = */ Color.BLACK,
+            /* background = */ false
+        )
         binding.playPauseButton.setOnClickListener {
             if (MusicPlayerRemote.isPlaying) {
                 MusicPlayerRemote.pauseSong()
@@ -186,8 +191,11 @@ class ColorPlaybackControlsFragment :
         val startRadius =
             binding.playPauseButton.measuredWidth.coerceAtMost(binding.playPauseButton.measuredHeight)
         return ViewAnimationUtils.createCircularReveal(
-            view, x, y, startRadius.toFloat(),
-            endRadius
+            /* view = */ view,
+            /* centerX = */ x,
+            /* centerY = */ y,
+            /* startRadius = */ startRadius.toFloat(),
+            /* endRadius = */ endRadius
         ).apply {
             duration = 300
             interpolator = AccelerateInterpolator()
