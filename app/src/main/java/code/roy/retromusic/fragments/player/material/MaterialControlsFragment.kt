@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.player.material
 
 import android.graphics.PorterDuff
@@ -39,9 +25,6 @@ import code.roy.retromusic.helper.PlayPauseButtonOnClickHandler
 import code.roy.retromusic.util.PreferenceUtil
 import com.google.android.material.slider.Slider
 
-/**
- * @author Hemanth S (h4h13).
- */
 class MaterialControlsFragment :
     AbsPlayerControlsFragment(R.layout.f_material_playback_controls) {
 
@@ -72,6 +55,7 @@ class MaterialControlsFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         _binding = FMaterialPlaybackControlsBinding.bind(view)
         setUpPlayPauseFab()
         binding.title.isSelected = true
@@ -122,16 +106,22 @@ class MaterialControlsFragment :
     }
 
     override fun setColor(color: MediaNotificationProcessor) {
-        if (ATHUtil.isWindowBackgroundDark(requireContext())) {
+        if (ATHUtil.isWindowBackgroundDark(context = requireContext())) {
             lastPlaybackControlsColor =
-                MaterialValueHelper.getPrimaryTextColor(requireContext(), false)
+                MaterialValueHelper.getPrimaryTextColor(context = requireContext(), dark = false)
             lastDisabledPlaybackControlsColor =
-                MaterialValueHelper.getPrimaryDisabledTextColor(requireContext(), false)
+                MaterialValueHelper.getPrimaryDisabledTextColor(
+                    context = requireContext(),
+                    dark = false
+                )
         } else {
             lastPlaybackControlsColor =
-                MaterialValueHelper.getSecondaryTextColor(requireContext(), true)
+                MaterialValueHelper.getSecondaryTextColor(context = requireContext(), dark = true)
             lastDisabledPlaybackControlsColor =
-                MaterialValueHelper.getSecondaryDisabledTextColor(requireContext(), true)
+                MaterialValueHelper.getSecondaryDisabledTextColor(
+                    context = requireContext(),
+                    dark = true
+                )
         }
         updateRepeatState()
         updateShuffleState()
@@ -154,7 +144,10 @@ class MaterialControlsFragment :
     }
 
     private fun updatePlayPauseColor() {
-        binding.playPauseButton.setColorFilter(lastPlaybackControlsColor, PorterDuff.Mode.SRC_IN)
+        binding.playPauseButton.setColorFilter(
+            /* color = */ lastPlaybackControlsColor,
+            /* mode = */ PorterDuff.Mode.SRC_IN
+        )
     }
 
     private fun setUpPlayPauseFab() {
@@ -165,15 +158,15 @@ class MaterialControlsFragment :
         if (MusicPlayerRemote.isPlaying) {
             binding.playPauseButton.setImageDrawable(
                 ContextCompat.getDrawable(
-                    requireContext(),
-                    R.drawable.ic_pause_outline
+                    /* context = */ requireContext(),
+                    /* id = */ R.drawable.ic_pause_outline
                 )
             )
         } else if (!MusicPlayerRemote.isPlaying) {
             binding.playPauseButton.setImageDrawable(
                 ContextCompat.getDrawable(
-                    requireContext(),
-                    R.drawable.ic_play_arrow_outline
+                    /* context = */ requireContext(),
+                    /* id = */ R.drawable.ic_play_arrow_outline
                 )
             )
         }

@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.player.flat
 
 import android.os.Bundle
@@ -44,7 +30,7 @@ class FlatPlaybackControlsFragment :
     AbsPlayerControlsFragment(R.layout.f_flat_player_playback_controls),
     MusicProgressViewUpdateHelper.Callback {
 
-    private var _binding: code.roy.retromusic.databinding.FFlatPlayerPlaybackControlsBinding? = null
+    private var _binding: FFlatPlayerPlaybackControlsBinding? = null
     private val binding get() = _binding!!
 
     override val seekBar: SeekBar
@@ -101,14 +87,20 @@ class FlatPlaybackControlsFragment :
     override fun setColor(color: MediaNotificationProcessor) {
         if (ATHUtil.isWindowBackgroundDark(requireContext())) {
             lastPlaybackControlsColor =
-                MaterialValueHelper.getSecondaryTextColor(requireContext(), false)
+                MaterialValueHelper.getSecondaryTextColor(context = requireContext(), dark = false)
             lastDisabledPlaybackControlsColor =
-                MaterialValueHelper.getSecondaryDisabledTextColor(requireContext(), false)
+                MaterialValueHelper.getSecondaryDisabledTextColor(
+                    context = requireContext(),
+                    dark = false
+                )
         } else {
             lastPlaybackControlsColor =
-                MaterialValueHelper.getPrimaryTextColor(requireContext(), true)
+                MaterialValueHelper.getPrimaryTextColor(context = requireContext(), dark = true)
             lastDisabledPlaybackControlsColor =
-                MaterialValueHelper.getPrimaryDisabledTextColor(requireContext(), true)
+                MaterialValueHelper.getPrimaryDisabledTextColor(
+                    context = requireContext(),
+                    dark = true
+                )
         }
 
         val colorFinal = if (PreferenceUtil.isAdaptiveColor) {
@@ -129,10 +121,21 @@ class FlatPlaybackControlsFragment :
         val darkColor = ColorUtil.darkenColor(color)
         val colorPrimary = MaterialValueHelper.getPrimaryTextColor(context, isDark)
         val colorSecondary =
-            MaterialValueHelper.getSecondaryTextColor(context, ColorUtil.isColorLight(darkColor))
+            MaterialValueHelper.getSecondaryTextColor(
+                context = context,
+                dark = ColorUtil.isColorLight(darkColor)
+            )
 
-        code.roy.appthemehelper.util.TintHelper.setTintAuto(binding.playPauseButton, colorPrimary, false)
-        code.roy.appthemehelper.util.TintHelper.setTintAuto(binding.playPauseButton, color, true)
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(
+            /* view = */ binding.playPauseButton,
+            /* color = */ colorPrimary,
+            /* background = */ false
+        )
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(
+            /* view = */ binding.playPauseButton,
+            /* color = */ color,
+            /* background = */ true
+        )
 
         binding.title.setBackgroundColor(color)
         binding.title.setTextColor(colorPrimary)

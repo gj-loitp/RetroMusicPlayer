@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.player.normal
 
 import android.animation.ArgbEvaluator
@@ -54,7 +40,6 @@ class PlayerFragment : AbsPlayerFragment(R.layout.fragment_player),
     private var _binding: FragmentPlayerBinding? = null
     private val binding get() = _binding!!
 
-
     private fun colorize(i: Int) {
         if (valueAnimator != null) {
             valueAnimator?.cancel()
@@ -68,11 +53,11 @@ class PlayerFragment : AbsPlayerFragment(R.layout.fragment_player),
         valueAnimator?.addUpdateListener { animation ->
             if (isAdded) {
                 val drawable = DrawableGradient(
-                    GradientDrawable.Orientation.TOP_BOTTOM,
-                    intArrayOf(
+                    /* orientations = */ GradientDrawable.Orientation.TOP_BOTTOM,
+                    /* colors = */ intArrayOf(
                         animation.animatedValue as Int,
                         surfaceColor()
-                    ), 0
+                    ), /* shape = */ 0
                 )
                 binding.colorGradientBackground.background = drawable
             }
@@ -96,9 +81,9 @@ class PlayerFragment : AbsPlayerFragment(R.layout.fragment_player),
         libraryViewModel.updateColor(color.backgroundColor)
 
         ToolbarContentTintHelper.colorizeToolbar(
-            binding.playerToolbar,
-            colorControlNormal(),
-            requireActivity()
+            /* toolbarView = */ binding.playerToolbar,
+            /* toolbarIconsColor = */ colorControlNormal(),
+            /* activity = */ requireActivity()
         )
 
         if (PreferenceUtil.isAdaptiveColor) {
@@ -156,7 +141,10 @@ class PlayerFragment : AbsPlayerFragment(R.layout.fragment_player),
         )
     }
 
-    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+    override fun onSharedPreferenceChanged(
+        sharedPreferences: SharedPreferences?,
+        key: String?,
+    ) {
         if (key == SNOWFALL) {
             startOrStopSnow(PreferenceUtil.isSnowFalling)
         }

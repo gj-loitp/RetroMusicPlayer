@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.player.lockscreen
 
 import android.os.Bundle
@@ -34,9 +20,6 @@ import code.roy.retromusic.helper.PlayPauseButtonOnClickHandler
 import code.roy.retromusic.util.PreferenceUtil
 import com.google.android.material.slider.Slider
 
-/**
- * @author Hemanth S (h4h13).
- */
 class LockScreenControlsFragment :
     AbsPlayerControlsFragment(R.layout.f_lock_screen_playback_controls) {
 
@@ -66,6 +49,7 @@ class LockScreenControlsFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         _binding = FLockScreenPlaybackControlsBinding.bind(view)
         setUpPlayPauseFab()
         binding.title.isSelected = true
@@ -74,7 +58,7 @@ class LockScreenControlsFragment :
     private fun updateSong() {
         val song = MusicPlayerRemote.currentSong
         binding.title.text = song.title
-        binding.text.text = String.format("%s - %s", song.artistName, song.albumName)
+        binding.text.text = String.format(format = "%s - %s", song.artistName, song.albumName)
     }
 
     override fun onServiceConnected() {
@@ -104,17 +88,17 @@ class LockScreenControlsFragment :
     override fun setColor(color: MediaNotificationProcessor) {
         val context = context ?: return
 
-        val colorBg = ATHUtil.resolveColor(context, android.R.attr.colorBackground)
+        val colorBg = ATHUtil.resolveColor(context = context, attr = android.R.attr.colorBackground)
         if (ColorUtil.isColorLight(colorBg)) {
             lastPlaybackControlsColor =
-                MaterialValueHelper.getSecondaryTextColor(context, true)
+                MaterialValueHelper.getSecondaryTextColor(context = context, dark = true)
             lastDisabledPlaybackControlsColor =
-                MaterialValueHelper.getSecondaryDisabledTextColor(context, true)
+                MaterialValueHelper.getSecondaryDisabledTextColor(context = context, dark = true)
         } else {
             lastPlaybackControlsColor =
-                MaterialValueHelper.getPrimaryTextColor(context, false)
+                MaterialValueHelper.getPrimaryTextColor(context = context, dark = false)
             lastDisabledPlaybackControlsColor =
-                MaterialValueHelper.getPrimaryDisabledTextColor(context, false)
+                MaterialValueHelper.getPrimaryDisabledTextColor(context = context, dark = false)
         }
 
         val colorFinal = if (PreferenceUtil.isAdaptiveColor) {
@@ -134,11 +118,15 @@ class LockScreenControlsFragment :
         binding.text.setTextColor(colorFinal)
 
         code.roy.appthemehelper.util.TintHelper.setTintAuto(
-            binding.playPauseButton,
-            MaterialValueHelper.getPrimaryTextColor(context, isDark),
-            false
+            /* view = */ binding.playPauseButton,
+            /* color = */ MaterialValueHelper.getPrimaryTextColor(context, isDark),
+            /* background = */ false
         )
-        code.roy.appthemehelper.util.TintHelper.setTintAuto(binding.playPauseButton, colorFinal, true)
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(
+            /* view = */ binding.playPauseButton,
+            /* color = */ colorFinal,
+            /* background = */ true
+        )
     }
 
     private fun setUpPlayPauseFab() {

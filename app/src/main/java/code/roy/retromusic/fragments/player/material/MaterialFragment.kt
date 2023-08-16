@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.player.material
 
 import android.animation.ArgbEvaluator
@@ -37,9 +23,6 @@ import code.roy.retromusic.util.ViewUtil
 import code.roy.retromusic.util.color.MediaNotificationProcessor
 import code.roy.retromusic.views.DrawableGradient
 
-/**
- * @author Hemanth S (h4h13).
- */
 class MaterialFragment : AbsPlayerFragment(R.layout.fragment_material) {
 
     override fun playerToolbar(): Toolbar {
@@ -71,11 +54,11 @@ class MaterialFragment : AbsPlayerFragment(R.layout.fragment_material) {
         valueAnimator?.addUpdateListener { animation ->
             if (isAdded) {
                 val drawable = DrawableGradient(
-                    GradientDrawable.Orientation.TOP_BOTTOM,
-                    intArrayOf(
+                    /* orientations = */ GradientDrawable.Orientation.TOP_BOTTOM,
+                    /* colors = */ intArrayOf(
                         animation.animatedValue as Int,
                         surfaceColor()
-                    ), 0
+                    ), /* shape = */ 0
                 )
                 binding.colorGradientBackground.background = drawable
             }
@@ -100,9 +83,9 @@ class MaterialFragment : AbsPlayerFragment(R.layout.fragment_material) {
         libraryViewModel.updateColor(color.backgroundColor)
 
         ToolbarContentTintHelper.colorizeToolbar(
-            binding.playerToolbar,
-            colorControlNormal(),
-            requireActivity()
+            /* toolbarView = */ binding.playerToolbar,
+            /* toolbarIconsColor = */ colorControlNormal(),
+            /* activity = */ requireActivity()
         )
 
         if (PreferenceUtil.isAdaptiveColor) {
@@ -123,6 +106,7 @@ class MaterialFragment : AbsPlayerFragment(R.layout.fragment_material) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         _binding = FragmentMaterialBinding.bind(view)
         setUpSubFragments()
         setUpPlayerToolbar()
@@ -142,9 +126,9 @@ class MaterialFragment : AbsPlayerFragment(R.layout.fragment_material) {
             setNavigationOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
             setOnMenuItemClickListener(this@MaterialFragment)
             ToolbarContentTintHelper.colorizeToolbar(
-                this,
-                colorControlNormal(),
-                requireActivity()
+                /* toolbarView = */ this,
+                /* toolbarIconsColor = */ colorControlNormal(),
+                /* activity = */ requireActivity()
             )
         }
     }

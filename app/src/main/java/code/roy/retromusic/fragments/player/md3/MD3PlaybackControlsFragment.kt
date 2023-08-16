@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.player.md3
 
 import android.os.Bundle
@@ -69,6 +55,7 @@ class MD3PlaybackControlsFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         _binding = FMd3PlayerPlaybackControlsBinding.bind(view)
         setUpMusicControllers()
         binding.playPauseButton.setOnClickListener {
@@ -89,17 +76,26 @@ class MD3PlaybackControlsFragment :
     }
 
     override fun setColor(color: MediaNotificationProcessor) {
-        val colorBg = ATHUtil.resolveColor(requireContext(), android.R.attr.colorBackground)
+        val colorBg = ATHUtil.resolveColor(
+            context = requireContext(),
+            attr = android.R.attr.colorBackground
+        )
         if (ColorUtil.isColorLight(colorBg)) {
             lastPlaybackControlsColor =
-                MaterialValueHelper.getSecondaryTextColor(requireContext(), true)
+                MaterialValueHelper.getSecondaryTextColor(context = requireContext(), dark = true)
             lastDisabledPlaybackControlsColor =
-                MaterialValueHelper.getSecondaryDisabledTextColor(requireContext(), true)
+                MaterialValueHelper.getSecondaryDisabledTextColor(
+                    context = requireContext(),
+                    dark = true
+                )
         } else {
             lastPlaybackControlsColor =
-                MaterialValueHelper.getPrimaryTextColor(requireContext(), false)
+                MaterialValueHelper.getPrimaryTextColor(context = requireContext(), dark = false)
             lastDisabledPlaybackControlsColor =
-                MaterialValueHelper.getPrimaryDisabledTextColor(requireContext(), false)
+                MaterialValueHelper.getPrimaryDisabledTextColor(
+                    context = requireContext(),
+                    dark = false
+                )
         }
 
         val colorFinal = accentColor().ripAlpha()
@@ -107,8 +103,8 @@ class MD3PlaybackControlsFragment :
         code.roy.appthemehelper.util.TintHelper.setTintAuto(
             binding.playPauseButton,
             MaterialValueHelper.getPrimaryTextColor(
-                requireContext(),
-                ColorUtil.isColorLight(colorFinal)
+                context = requireContext(),
+                dark = ColorUtil.isColorLight(colorFinal)
             ),
             false
         )

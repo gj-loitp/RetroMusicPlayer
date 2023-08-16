@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.player.gradient
 
 import android.annotation.SuppressLint
@@ -164,6 +150,7 @@ class GradientPlayerFragment : AbsPlayerFragment(R.layout.f_gradient_player),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         _binding = FGradientPlayerBinding.bind(view)
         hideVolumeIfAvailable()
         setUpMusicControllers()
@@ -187,8 +174,8 @@ class GradientPlayerFragment : AbsPlayerFragment(R.layout.f_gradient_player),
         }
         binding.playbackControlsFragment.root.drawAboveSystemBars()
         requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            onBackPressedCallback
+            /* owner = */ viewLifecycleOwner,
+            /* onBackPressedCallback = */ onBackPressedCallback
         )
     }
 
@@ -247,31 +234,34 @@ class GradientPlayerFragment : AbsPlayerFragment(R.layout.f_gradient_player),
         binding.playbackControlsFragment.title.setTextColor(lastPlaybackControlsColor)
         binding.playbackControlsFragment.text.setTextColor(lastDisabledPlaybackControlsColor)
         binding.playbackControlsFragment.playPauseButton.setColorFilter(
-            lastPlaybackControlsColor,
-            PorterDuff.Mode.SRC_IN
+            /* color = */ lastPlaybackControlsColor,
+            /* mode = */ PorterDuff.Mode.SRC_IN
         )
         binding.playbackControlsFragment.nextButton.setColorFilter(
-            lastPlaybackControlsColor,
-            PorterDuff.Mode.SRC_IN
+            /* color = */ lastPlaybackControlsColor,
+            /* mode = */ PorterDuff.Mode.SRC_IN
         )
         binding.playbackControlsFragment.previousButton.setColorFilter(
-            lastPlaybackControlsColor,
-            PorterDuff.Mode.SRC_IN
+            /* color = */ lastPlaybackControlsColor,
+            /* mode = */ PorterDuff.Mode.SRC_IN
         )
         binding.playbackControlsFragment.songFavourite.setColorFilter(
-            lastPlaybackControlsColor,
-            PorterDuff.Mode.SRC_IN
+            /* color = */ lastPlaybackControlsColor,
+            /* mode = */ PorterDuff.Mode.SRC_IN
         )
-        binding.queueIcon.setColorFilter(lastPlaybackControlsColor, PorterDuff.Mode.SRC_IN)
+        binding.queueIcon.setColorFilter(
+            /* color = */ lastPlaybackControlsColor,
+            /* mode = */ PorterDuff.Mode.SRC_IN
+        )
         binding.playbackControlsFragment.playerMenu.setColorFilter(
-            lastPlaybackControlsColor,
-            PorterDuff.Mode.SRC_IN
+            /* color = */ lastPlaybackControlsColor,
+            /* mode = */ PorterDuff.Mode.SRC_IN
         )
         binding.playbackControlsFragment.songCurrentProgress.setTextColor(
-            lastDisabledPlaybackControlsColor
+            /* color = */ lastDisabledPlaybackControlsColor
         )
         binding.playbackControlsFragment.songTotalTime.setTextColor(
-            lastDisabledPlaybackControlsColor
+            /* color = */ lastDisabledPlaybackControlsColor
         )
         binding.nextSong.setTextColor(lastPlaybackControlsColor)
         binding.playbackControlsFragment.songInfo.setTextColor(lastDisabledPlaybackControlsColor)
@@ -315,7 +305,10 @@ class GradientPlayerFragment : AbsPlayerFragment(R.layout.f_gradient_player),
     private fun hideVolumeIfAvailable() {
         if (PreferenceUtil.isVolumeVisibilityMode) {
             childFragmentManager.commit {
-                replace(R.id.volumeFragmentContainer, VolumeFragment.newInstance())
+                replace(
+                    /* containerViewId = */ R.id.volumeFragmentContainer,
+                    /* fragment = */ VolumeFragment.newInstance()
+                )
             }
             childFragmentManager.executePendingTransactions()
             volumeFragment =
@@ -402,23 +395,23 @@ class GradientPlayerFragment : AbsPlayerFragment(R.layout.f_gradient_player),
         updatePrevNextColor()
         binding.playbackControlsFragment.nextButton.setOnTouchListener(
             MusicSeekSkipTouchListener(
-                requireActivity(),
-                true
+                activity = requireActivity(),
+                next = true
             )
         )
         binding.playbackControlsFragment.previousButton.setOnTouchListener(
-            MusicSeekSkipTouchListener(requireActivity(), false)
+            MusicSeekSkipTouchListener(activity = requireActivity(), next = false)
         )
     }
 
     private fun updatePrevNextColor() {
         binding.playbackControlsFragment.nextButton.setColorFilter(
-            lastPlaybackControlsColor,
-            PorterDuff.Mode.SRC_IN
+            /* color = */ lastPlaybackControlsColor,
+            /* mode = */ PorterDuff.Mode.SRC_IN
         )
         binding.playbackControlsFragment.previousButton.setColorFilter(
-            lastPlaybackControlsColor,
-            PorterDuff.Mode.SRC_IN
+            /* color = */ lastPlaybackControlsColor,
+            /* mode = */ PorterDuff.Mode.SRC_IN
         )
     }
 
@@ -430,13 +423,13 @@ class GradientPlayerFragment : AbsPlayerFragment(R.layout.f_gradient_player),
         when (MusicPlayerRemote.shuffleMode) {
             MusicService.SHUFFLE_MODE_SHUFFLE ->
                 binding.shuffleButton.setColorFilter(
-                    lastPlaybackControlsColor,
-                    PorterDuff.Mode.SRC_IN
+                    /* color = */ lastPlaybackControlsColor,
+                    /* mode = */ PorterDuff.Mode.SRC_IN
                 )
 
             else -> binding.shuffleButton.setColorFilter(
-                lastDisabledPlaybackControlsColor,
-                PorterDuff.Mode.SRC_IN
+                /* color = */ lastDisabledPlaybackControlsColor,
+                /* mode = */ PorterDuff.Mode.SRC_IN
             )
         }
     }
@@ -450,24 +443,24 @@ class GradientPlayerFragment : AbsPlayerFragment(R.layout.f_gradient_player),
             MusicService.REPEAT_MODE_NONE -> {
                 binding.repeatButton.setImageResource(R.drawable.ic_repeat)
                 binding.repeatButton.setColorFilter(
-                    lastDisabledPlaybackControlsColor,
-                    PorterDuff.Mode.SRC_IN
+                    /* color = */ lastDisabledPlaybackControlsColor,
+                    /* mode = */ PorterDuff.Mode.SRC_IN
                 )
             }
 
             MusicService.REPEAT_MODE_ALL -> {
                 binding.repeatButton.setImageResource(R.drawable.ic_repeat)
                 binding.repeatButton.setColorFilter(
-                    lastPlaybackControlsColor,
-                    PorterDuff.Mode.SRC_IN
+                    /* color = */ lastPlaybackControlsColor,
+                    /* mode = */ PorterDuff.Mode.SRC_IN
                 )
             }
 
             MusicService.REPEAT_MODE_THIS -> {
                 binding.repeatButton.setImageResource(R.drawable.ic_repeat_one)
                 binding.repeatButton.setColorFilter(
-                    lastPlaybackControlsColor,
-                    PorterDuff.Mode.SRC_IN
+                    /* color = */ lastPlaybackControlsColor,
+                    /* mode = */ PorterDuff.Mode.SRC_IN
                 )
             }
         }
@@ -530,7 +523,10 @@ class GradientPlayerFragment : AbsPlayerFragment(R.layout.f_gradient_player),
             recyclerViewSwipeManager?.attachRecyclerView(this)
         }
 
-        linearLayoutManager.scrollToPositionWithOffset(MusicPlayerRemote.position + 1, 0)
+        linearLayoutManager.scrollToPositionWithOffset(
+            /* position = */ MusicPlayerRemote.position + 1,
+            /* offset = */ 0
+        )
     }
 
     override fun onDestroyView() {
@@ -556,13 +552,19 @@ class GradientPlayerFragment : AbsPlayerFragment(R.layout.f_gradient_player),
     }
 
     private fun updateQueue() {
-        playingQueueAdapter?.swapDataSet(MusicPlayerRemote.playingQueue, MusicPlayerRemote.position)
+        playingQueueAdapter?.swapDataSet(
+            dataSet = MusicPlayerRemote.playingQueue,
+            position = MusicPlayerRemote.position
+        )
         resetToCurrentPosition()
     }
 
     private fun resetToCurrentPosition() {
         binding.recyclerView.stopScroll()
-        linearLayoutManager.scrollToPositionWithOffset(MusicPlayerRemote.position + 1, 0)
+        linearLayoutManager.scrollToPositionWithOffset(
+            /* position = */ MusicPlayerRemote.position + 1,
+            /* offset = */ 0
+        )
     }
 
     private fun setUpProgressSlider() {
@@ -570,8 +572,8 @@ class GradientPlayerFragment : AbsPlayerFragment(R.layout.f_gradient_player),
         progressSlider.addOnChangeListener(Slider.OnChangeListener { _, value, fromUser ->
             if (fromUser) {
                 onUpdateProgressViews(
-                    value.toInt(),
-                    MusicPlayerRemote.songDurationMillis
+                    progress = value.toInt(),
+                    total = MusicPlayerRemote.songDurationMillis
                 )
             }
         })

@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.player.home
 
 import android.graphics.Color
@@ -38,11 +24,13 @@ class HomePlayerFragment : AbsPlayerFragment(R.layout.f_home_player),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         progressViewUpdateHelper = MusicProgressViewUpdateHelper(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         _binding = FHomePlayerBinding.bind(view)
         setUpPlayerToolbar()
     }
@@ -94,9 +82,9 @@ class HomePlayerFragment : AbsPlayerFragment(R.layout.f_home_player),
         lastColor = color.backgroundColor
         libraryViewModel.updateColor(color.backgroundColor)
         code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
-            binding.playerToolbar,
-            Color.WHITE,
-            requireActivity()
+            /* toolbarView = */ binding.playerToolbar,
+            /* toolbarIconsColor = */ Color.WHITE,
+            /* activity = */ requireActivity()
         )
     }
 
@@ -121,9 +109,9 @@ class HomePlayerFragment : AbsPlayerFragment(R.layout.f_home_player),
         binding.playerToolbar.setOnMenuItemClickListener(this)
 
         code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
-            binding.playerToolbar,
-            colorControlNormal(),
-            requireActivity()
+            /* toolbarView = */ binding.playerToolbar,
+            /* toolbarIconsColor = */ colorControlNormal(),
+            /* activity = */ requireActivity()
         )
     }
 
