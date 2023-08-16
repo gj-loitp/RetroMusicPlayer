@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.other
 
 import android.graphics.Color
@@ -55,7 +41,6 @@ import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialSharedAxis
 
-
 class DetailListFragment : AbsMainActivityFragment(R.layout.f_playlist_detail),
     IArtistClickListener, IAlbumClickListener {
     private val args by navArgs<DetailListFragmentArgs>()
@@ -75,6 +60,7 @@ class DetailListFragment : AbsMainActivityFragment(R.layout.f_playlist_detail),
                 enterTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
                 returnTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
             }
+
             else -> {
                 enterTransition = MaterialSharedAxis(MaterialSharedAxis.Y, true)
                 returnTransition = MaterialSharedAxis(MaterialSharedAxis.Y, false)
@@ -90,15 +76,16 @@ class DetailListFragment : AbsMainActivityFragment(R.layout.f_playlist_detail),
         mainActivity.setSupportActionBar(binding.toolbar)
         binding.progressIndicator.hide()
         when (args.type) {
-            TOP_ARTISTS -> loadArtists(R.string.top_artists, TOP_ARTISTS)
-            RECENT_ARTISTS -> loadArtists(R.string.recent_artists, RECENT_ARTISTS)
-            TOP_ALBUMS -> loadAlbums(R.string.top_albums, TOP_ALBUMS)
-            RECENT_ALBUMS -> loadAlbums(R.string.recent_albums, RECENT_ALBUMS)
+            TOP_ARTISTS -> loadArtists(title = R.string.top_artists, type = TOP_ARTISTS)
+            RECENT_ARTISTS -> loadArtists(title = R.string.recent_artists, type = RECENT_ARTISTS)
+            TOP_ALBUMS -> loadAlbums(title = R.string.top_albums, type = TOP_ALBUMS)
+            RECENT_ALBUMS -> loadAlbums(title = R.string.recent_albums, type = RECENT_ALBUMS)
             FAVOURITES -> loadFavorite()
             HISTORY_PLAYLIST -> {
                 loadHistory()
                 showClearHistoryOption = true // Reference to onCreateOptionsMenu
             }
+
             LAST_ADDED_PLAYLIST -> lastAddedSongs()
             TOP_PLAYED_PLAYLIST -> topPlayed()
         }
@@ -110,9 +97,9 @@ class DetailListFragment : AbsMainActivityFragment(R.layout.f_playlist_detail),
     private fun lastAddedSongs() {
         binding.toolbar.setTitle(R.string.last_added)
         val songAdapter = ShuffleButtonSongAdapter(
-            requireActivity(),
-            mutableListOf(),
-            R.layout.item_list
+            activity = requireActivity(),
+            dataSet = mutableListOf(),
+            itemLayoutRes = R.layout.item_list
         )
         binding.recyclerView.apply {
             adapter = songAdapter
@@ -127,9 +114,9 @@ class DetailListFragment : AbsMainActivityFragment(R.layout.f_playlist_detail),
     private fun topPlayed() {
         binding.toolbar.setTitle(R.string.my_top_tracks)
         val songAdapter = ShuffleButtonSongAdapter(
-            requireActivity(),
-            mutableListOf(),
-            R.layout.item_list
+            activity = requireActivity(),
+            dataSet = mutableListOf(),
+            itemLayoutRes = R.layout.item_list
         )
         binding.recyclerView.apply {
             adapter = songAdapter
@@ -144,9 +131,9 @@ class DetailListFragment : AbsMainActivityFragment(R.layout.f_playlist_detail),
         binding.toolbar.setTitle(R.string.history)
 
         val songAdapter = ShuffleButtonSongAdapter(
-            requireActivity(),
-            mutableListOf(),
-            R.layout.item_list
+            activity = requireActivity(),
+            dataSet = mutableListOf(),
+            itemLayoutRes = R.layout.item_list
         )
         binding.recyclerView.apply {
             adapter = songAdapter
@@ -163,9 +150,9 @@ class DetailListFragment : AbsMainActivityFragment(R.layout.f_playlist_detail),
     private fun loadFavorite() {
         binding.toolbar.setTitle(R.string.favorites)
         val songAdapter = SongAdapter(
-            requireActivity(),
-            mutableListOf(),
-            R.layout.item_list
+            activity = requireActivity(),
+            dataSet = mutableListOf(),
+            itemLayoutRes = R.layout.item_list
         )
         binding.recyclerView.apply {
             adapter = songAdapter
@@ -203,24 +190,31 @@ class DetailListFragment : AbsMainActivityFragment(R.layout.f_playlist_detail),
     }
 
     private fun artistAdapter(artists: List<Artist>): ArtistAdapter = ArtistAdapter(
-        requireActivity(),
-        artists,
-        R.layout.v_item_grid_circle,
-        this
+        activity = requireActivity(),
+        dataSet = artists,
+        itemLayoutRes = R.layout.v_item_grid_circle,
+        IArtistClickListener = this
     )
 
     private fun albumAdapter(albums: List<Album>): AlbumAdapter = AlbumAdapter(
-        requireActivity(),
-        albums,
-        R.layout.v_item_grid,
-        this
+        activity = requireActivity(),
+        dataSet = albums,
+        itemLayoutRes = R.layout.v_item_grid,
+        listener = this
     )
 
-    private fun linearLayoutManager(): LinearLayoutManager =
-        LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+    private fun linearLayoutManager(): LinearLayoutManager = LinearLayoutManager(
+        /* context = */ requireContext(),
+        /* orientation = */ LinearLayoutManager.VERTICAL,
+        /* reverseLayout = */ false
+    )
 
-    private fun gridLayoutManager(): GridLayoutManager =
-        GridLayoutManager(requireContext(), gridCount(), GridLayoutManager.VERTICAL, false)
+    private fun gridLayoutManager(): GridLayoutManager = GridLayoutManager(
+        /* context = */ requireContext(),
+        /* spanCount = */ gridCount(),
+        /* orientation = */ GridLayoutManager.VERTICAL,
+        /* reverseLayout = */ false
+    )
 
     private fun gridCount(): Int {
         if (RetroUtil.isTablet) {
@@ -232,19 +226,19 @@ class DetailListFragment : AbsMainActivityFragment(R.layout.f_playlist_detail),
 
     override fun onArtist(artistId: Long, view: View) {
         findNavController().navigate(
-            R.id.artistDetailsFragment,
-            bundleOf(EXTRA_ARTIST_ID to artistId),
-            null,
-            FragmentNavigatorExtras(view to artistId.toString())
+            resId = R.id.artistDetailsFragment,
+            args = bundleOf(EXTRA_ARTIST_ID to artistId),
+            navOptions = null,
+            navigatorExtras = FragmentNavigatorExtras(view to artistId.toString())
         )
     }
 
     override fun onAlbumClick(albumId: Long, view: View) {
         findNavController().navigate(
-            R.id.albumDetailsFragment,
-            bundleOf(EXTRA_ALBUM_ID to albumId),
-            null,
-            FragmentNavigatorExtras(
+            resId = R.id.albumDetailsFragment,
+            args = bundleOf(EXTRA_ALBUM_ID to albumId),
+            navOptions = null,
+            navigatorExtras = FragmentNavigatorExtras(
                 view to albumId.toString()
             )
         )
@@ -270,9 +264,9 @@ class DetailListFragment : AbsMainActivityFragment(R.layout.f_playlist_detail),
 
                     val snackBar =
                         Snackbar.make(
-                            binding.container,
-                            getString(R.string.history_cleared),
-                            Snackbar.LENGTH_LONG
+                            /* view = */ binding.container,
+                            /* text = */ getString(R.string.history_cleared),
+                            /* duration = */ Snackbar.LENGTH_LONG
                         )
                             .setAction(getString(R.string.history_undo_button)) {
                                 libraryViewModel.restoreHistory()

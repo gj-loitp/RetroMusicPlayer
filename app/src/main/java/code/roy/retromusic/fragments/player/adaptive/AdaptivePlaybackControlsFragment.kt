@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.player.adaptive
 
 import android.os.Bundle
@@ -105,18 +91,24 @@ class AdaptivePlaybackControlsFragment :
     override fun setColor(color: MediaNotificationProcessor) {
         if (ColorUtil.isColorLight(
                 ATHUtil.resolveColor(
-                    requireContext(),
-                    android.R.attr.windowBackground
+                    context = requireContext(),
+                    attr = android.R.attr.windowBackground
                 )
             )
         ) {
-            lastPlaybackControlsColor = MaterialValueHelper.getSecondaryTextColor(activity, true)
+            lastPlaybackControlsColor = MaterialValueHelper.getSecondaryTextColor(
+                context = activity,
+                dark = true
+            )
             lastDisabledPlaybackControlsColor =
-                MaterialValueHelper.getSecondaryDisabledTextColor(activity, true)
+                MaterialValueHelper.getSecondaryDisabledTextColor(context = activity, dark = true)
         } else {
-            lastPlaybackControlsColor = MaterialValueHelper.getPrimaryTextColor(activity, false)
+            lastPlaybackControlsColor = MaterialValueHelper.getPrimaryTextColor(
+                context = activity,
+                dark = false
+            )
             lastDisabledPlaybackControlsColor =
-                MaterialValueHelper.getPrimaryDisabledTextColor(activity, false)
+                MaterialValueHelper.getPrimaryDisabledTextColor(context = activity, dark = false)
         }
 
         updateRepeatState()
@@ -131,11 +123,18 @@ class AdaptivePlaybackControlsFragment :
         }.ripAlpha()
 
         code.roy.appthemehelper.util.TintHelper.setTintAuto(
-            binding.playPauseButton,
-            MaterialValueHelper.getPrimaryTextColor(context, ColorUtil.isColorLight(colorFinal)),
-            false
+            /* view = */ binding.playPauseButton,
+            /* color = */ MaterialValueHelper.getPrimaryTextColor(
+                context = context,
+                dark = ColorUtil.isColorLight(colorFinal)
+            ),
+            /* background = */ false
         )
-        code.roy.appthemehelper.util.TintHelper.setTintAuto(binding.playPauseButton, colorFinal, true)
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(
+            /* view = */ binding.playPauseButton,
+            /* color = */ colorFinal,
+            /* background = */ true
+        )
         binding.progressSlider.applyColor(colorFinal)
         volumeFragment?.setTintable(colorFinal)
     }

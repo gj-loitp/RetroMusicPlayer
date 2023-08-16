@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.other
 
 import android.annotation.SuppressLint
@@ -62,6 +48,7 @@ open class MiniPlayerFragment : AbsMusicServiceFragment(R.layout.f_mini_player),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         _binding = FMiniPlayerBinding.bind(view)
         view.setOnTouchListener(FlingPlayBackController(requireContext()))
         setUpMiniPlayer()
@@ -90,16 +77,23 @@ open class MiniPlayerFragment : AbsMusicServiceFragment(R.layout.f_mini_player),
     }
 
     private fun updateSongTitle() {
-
         val song = MusicPlayerRemote.currentSong
-
         val builder = SpannableStringBuilder()
-
         val title = song.title.toSpannable()
-        title.setSpan(ForegroundColorSpan(textColorPrimary()), 0, title.length, 0)
+        title.setSpan(
+            ForegroundColorSpan(/* color = */ textColorPrimary()),
+            0,
+            title.length,
+            0
+        )
 
         val text = song.artistName.toSpannable()
-        text.setSpan(ForegroundColorSpan(textColorSecondary()), 0, text.length, 0)
+        text.setSpan(
+            ForegroundColorSpan(/* color = */ textColorSecondary()),
+            0,
+            text.length,
+            0
+        )
 
         builder.append(title).append(" • ").append(text)
 
@@ -167,7 +161,7 @@ open class MiniPlayerFragment : AbsMusicServiceFragment(R.layout.f_mini_player),
                     e1: MotionEvent,
                     e2: MotionEvent,
                     velocityX: Float,
-                    velocityY: Float
+                    velocityY: Float,
                 ): Boolean {
                     if (abs(velocityX) > abs(velocityY)) {
                         if (velocityX < 0) {

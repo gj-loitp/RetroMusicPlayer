@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.other
 
 import android.app.Activity
@@ -60,7 +46,7 @@ import java.io.File
 
 class UserInfoFragment : Fragment() {
 
-    private var _binding: code.roy.retromusic.databinding.FragmentUserInfoBinding? = null
+    private var _binding: FragmentUserInfoBinding? = null
     private val binding get() = _binding!!
     private val libraryViewModel: LibraryViewModel by activityViewModel()
 
@@ -130,7 +116,7 @@ class UserInfoFragment : Fragment() {
                     }
                 }
             }
-            .setNegativeButton(R.string.action_cancel, null)
+            .setNegativeButton(/* textId = */ R.string.action_cancel, /* listener = */ null)
             .create()
             .show()
     }
@@ -201,7 +187,10 @@ class UserInfoFragment : Fragment() {
             }
         }
 
-    private fun saveImage(result: ActivityResult, doIfResultOk: (uri: Uri) -> Unit) {
+    private fun saveImage(
+        result: ActivityResult,
+        doIfResultOk: (uri: Uri) -> Unit,
+    ) {
         val resultCode = result.resultCode
         val data = result.data
         when (resultCode) {
@@ -256,7 +245,10 @@ class UserInfoFragment : Fragment() {
             val file = File(appDir, fileName)
             var successful: Boolean
             file.outputStream().buffered().use {
-                successful = ImageUtil.resizeBitmap(bitmap, 2048)
+                successful = ImageUtil.resizeBitmap(
+                    /* src = */ bitmap,
+                    /* maxForSmallerSize = */ 2048
+                )
                     .compress(Bitmap.CompressFormat.WEBP, 100, it)
             }
             if (successful) {
