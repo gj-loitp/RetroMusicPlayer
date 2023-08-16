@@ -1,19 +1,6 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.playlists
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.*
 import androidx.core.os.bundleOf
@@ -37,7 +24,10 @@ class PlaylistsFragment :
     AbsRecyclerViewCustomGridSizeFragment<PlaylistAdapter, GridLayoutManager>(),
     IPlaylistClickListener {
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
         super.onViewCreated(view, savedInstanceState)
         libraryViewModel.getPlaylists().observe(viewLifecycleOwner) {
             if (it.isNotEmpty())
@@ -57,20 +47,23 @@ class PlaylistsFragment :
         get() = false
 
     override fun createLayoutManager(): GridLayoutManager {
-        return GridLayoutManager(requireContext(), getGridSize())
+        return GridLayoutManager(/* context = */ requireContext(), /* spanCount = */ getGridSize())
     }
 
     override fun createAdapter(): PlaylistAdapter {
         val dataSet = if (adapter == null) mutableListOf() else adapter!!.dataSet
         return PlaylistAdapter(
-            requireActivity(),
-            dataSet,
-            itemLayoutRes(),
-            this
+            activity = requireActivity(),
+            dataSet = dataSet,
+            itemLayoutRes = itemLayoutRes(),
+            listener = this
         )
     }
 
-    override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
+    override fun onCreateMenu(
+        menu: Menu,
+        inflater: MenuInflater,
+    ) {
         super.onCreateMenu(menu, inflater)
         val gridSizeItem: MenuItem = menu.findItem(R.id.action_grid_size)
         if (RetroUtil.isLandscape) {
@@ -133,28 +126,28 @@ class PlaylistsFragment :
         val order: String? = getSortOrder()
         subMenu.clear()
         createId(
-            subMenu,
-            R.id.action_song_sort_order_asc,
-            R.string.sort_order_a_z,
-            order == SortOrder.PlaylistSortOrder.PLAYLIST_A_Z
+            menu = subMenu,
+            id = R.id.action_song_sort_order_asc,
+            title = R.string.sort_order_a_z,
+            checked = order == SortOrder.PlaylistSortOrder.PLAYLIST_A_Z
         )
         createId(
-            subMenu,
-            R.id.action_song_sort_order_desc,
-            R.string.sort_order_z_a,
-            order == SortOrder.PlaylistSortOrder.PLAYLIST_Z_A
+            menu = subMenu,
+            id = R.id.action_song_sort_order_desc,
+            title = R.string.sort_order_z_a,
+            checked = order == SortOrder.PlaylistSortOrder.PLAYLIST_Z_A
         )
         createId(
-            subMenu,
-            R.id.action_playlist_sort_order,
-            R.string.sort_order_num_songs,
-            order == SortOrder.PlaylistSortOrder.PLAYLIST_SONG_COUNT
+            menu = subMenu,
+            id = R.id.action_playlist_sort_order,
+            title = R.string.sort_order_num_songs,
+            checked = order == SortOrder.PlaylistSortOrder.PLAYLIST_SONG_COUNT
         )
         createId(
-            subMenu,
-            R.id.action_playlist_sort_order_desc,
-            R.string.sort_order_num_songs_desc,
-            order == SortOrder.PlaylistSortOrder.PLAYLIST_SONG_COUNT_DESC
+            menu = subMenu,
+            id = R.id.action_playlist_sort_order_desc,
+            title = R.string.sort_order_num_songs_desc,
+            checked = order == SortOrder.PlaylistSortOrder.PLAYLIST_SONG_COUNT_DESC
         )
         subMenu.setGroupCheckable(0, true, true)
     }
@@ -195,10 +188,16 @@ class PlaylistsFragment :
         return false
     }
 
-    private fun createId(menu: SubMenu, id: Int, title: Int, checked: Boolean) {
+    private fun createId(
+        menu: SubMenu,
+        id: Int,
+        title: Int,
+        checked: Boolean,
+    ) {
         menu.add(0, id, 0, title).isChecked = checked
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun setGridSize(gridSize: Int) {
         adapter?.notifyDataSetChanged()
     }
@@ -239,12 +238,15 @@ class PlaylistsFragment :
         //Save layout
     }
 
-    override fun onPlaylistClick(playlistWithSongs: PlaylistWithSongs, view: View) {
+    override fun onPlaylistClick(
+        playlistWithSongs: PlaylistWithSongs,
+        view: View,
+    ) {
         exitTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true).addTarget(requireView())
         reenterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false)
         findNavController().navigate(
-            R.id.playlistDetailsFragment,
-            bundleOf(EXTRA_PLAYLIST_ID to playlistWithSongs.playlistEntity.playListId)
+            resId = R.id.playlistDetailsFragment,
+            args = bundleOf(EXTRA_PLAYLIST_ID to playlistWithSongs.playlistEntity.playListId)
         )
     }
 }

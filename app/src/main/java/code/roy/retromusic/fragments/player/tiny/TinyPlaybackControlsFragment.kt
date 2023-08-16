@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.player.tiny
 
 import android.os.Bundle
@@ -40,13 +26,19 @@ class TinyPlaybackControlsFragment :
 
     override fun setColor(color: MediaNotificationProcessor) {
         lastPlaybackControlsColor = color.secondaryTextColor
-        lastDisabledPlaybackControlsColor = ColorUtil.withAlpha(color.secondaryTextColor, 0.25f)
+        lastDisabledPlaybackControlsColor = ColorUtil.withAlpha(
+            baseColor = color.secondaryTextColor,
+            alpha = 0.25f
+        )
 
         updateRepeatState()
         updateShuffleState()
     }
 
-    override fun onUpdateProgressViews(progress: Int, total: Int) {
+    override fun onUpdateProgressViews(
+        progress: Int,
+        total: Int,
+    ) {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

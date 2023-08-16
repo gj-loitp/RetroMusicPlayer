@@ -38,7 +38,6 @@ import com.h6ah4i.android.widget.advrecyclerview.draggable.RecyclerViewDragDropM
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-
 class PlaylistDetailsFragment : AbsMainActivityFragment(R.layout.f_playlist_detail_new) {
     private val arguments by navArgs<PlaylistDetailsFragmentArgs>()
     private val viewModel by viewModel<PlaylistDetailsViewModel> {
@@ -68,8 +67,6 @@ class PlaylistDetailsFragment : AbsMainActivityFragment(R.layout.f_playlist_deta
         returnTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false)
         mainActivity.setSupportActionBar(binding.toolbar)
         binding.toolbar.title = null
-//        binding.container.transitionName = playlist.playlistEntity.playlistName
-
         setUpRecyclerView()
         setupButtons()
         viewModel.getPlaylist().observe(viewLifecycleOwner) { playlistWithSongs ->
@@ -100,13 +97,20 @@ class PlaylistDetailsFragment : AbsMainActivityFragment(R.layout.f_playlist_deta
     private fun setupButtons() {
         binding.playButton.apply {
             setOnClickListener {
-                MusicPlayerRemote.openQueue(playlistSongAdapter.dataSet, 0, true)
+                MusicPlayerRemote.openQueue(
+                    queue = playlistSongAdapter.dataSet,
+                    startPosition = 0,
+                    startPlaying = true
+                )
             }
             accentColor()
         }
         binding.shuffleButton.apply {
             setOnClickListener {
-                MusicPlayerRemote.openAndShuffleQueue(playlistSongAdapter.dataSet, true)
+                MusicPlayerRemote.openAndShuffleQueue(
+                    queue = playlistSongAdapter.dataSet,
+                    startPlaying = true
+                )
             }
             elevatedAccentColor()
         }
@@ -114,10 +118,10 @@ class PlaylistDetailsFragment : AbsMainActivityFragment(R.layout.f_playlist_deta
 
     private fun setUpRecyclerView() {
         playlistSongAdapter = OrderablePlaylistSongAdapter(
-            arguments.extraPlaylistId,
-            requireActivity(),
-            ArrayList(),
-            R.layout.item_queue
+            playlistId = arguments.extraPlaylistId,
+            activity = requireActivity(),
+            dataSet = ArrayList(),
+            itemLayoutRes = R.layout.item_queue
         )
 
         val dragDropManager = RecyclerViewDragDropManager()
@@ -141,12 +145,19 @@ class PlaylistDetailsFragment : AbsMainActivityFragment(R.layout.f_playlist_deta
         })
     }
 
-    override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
+    override fun onCreateMenu(
+        menu: Menu,
+        inflater: MenuInflater,
+    ) {
         inflater.inflate(R.menu.menu_playlist_detail, menu)
     }
 
     override fun onMenuItemSelected(item: MenuItem): Boolean {
-        return PlaylistMenuHelper.handleMenuClick(requireActivity(), playlist, item)
+        return PlaylistMenuHelper.handleMenuClick(
+            activity = requireActivity(),
+            playlistWithSongs = playlist,
+            item = item
+        )
     }
 
     private fun checkIsEmpty() {

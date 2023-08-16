@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.player.tiny
 
 import android.animation.AnimatorSet
@@ -50,7 +36,7 @@ import kotlin.math.abs
 
 class TinyPlayerFragment : AbsPlayerFragment(R.layout.f_tiny_player),
     MusicProgressViewUpdateHelper.Callback {
-    private var _binding: code.roy.retromusic.databinding.FTinyPlayerBinding? = null
+    private var _binding: FTinyPlayerBinding? = null
     private val binding get() = _binding!!
 
     private var lastColor: Int = 0
@@ -87,9 +73,9 @@ class TinyPlayerFragment : AbsPlayerFragment(R.layout.f_tiny_player),
 
         Handler(Looper.myLooper()!!).post {
             ToolbarContentTintHelper.colorizeToolbar(
-                binding.playerToolbar,
-                color.secondaryTextColor,
-                requireActivity()
+                /* toolbarView = */ binding.playerToolbar,
+                /* toolbarIconsColor = */ color.secondaryTextColor,
+                /* activity = */ requireActivity()
             )
         }
     }
@@ -131,7 +117,10 @@ class TinyPlayerFragment : AbsPlayerFragment(R.layout.f_tiny_player),
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FTinyPlayerBinding.bind(view)
         binding.title.isSelected = true
@@ -197,7 +186,7 @@ class TinyPlayerFragment : AbsPlayerFragment(R.layout.f_tiny_player),
             animatorSet.start()
         }
         binding.playerSongTotalTime.text = String.format(
-            "%s/%s", MusicUtil.getReadableDurationString(total.toLong()),
+            format = "%s/%s", MusicUtil.getReadableDurationString(total.toLong()),
             MusicUtil.getReadableDurationString(progress.toLong())
         )
     }
@@ -227,7 +216,7 @@ class TinyPlayerFragment : AbsPlayerFragment(R.layout.f_tiny_player),
                     e1: MotionEvent,
                     e2: MotionEvent,
                     velocityX: Float,
-                    velocityY: Float
+                    velocityY: Float,
                 ): Boolean {
                     if (abs(velocityX) > abs(velocityY)) {
                         if (velocityX < 0) {
@@ -253,7 +242,8 @@ class TinyPlayerFragment : AbsPlayerFragment(R.layout.f_tiny_player),
                 }
 
                 MotionEvent.ACTION_UP,
-                MotionEvent.ACTION_CANCEL -> {
+                MotionEvent.ACTION_CANCEL,
+                -> {
                     progressViewUpdateHelper.start()
                     if (isDragEnabled) {
                         MusicPlayerRemote.seekTo(progress)

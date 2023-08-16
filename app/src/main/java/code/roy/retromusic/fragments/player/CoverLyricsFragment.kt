@@ -44,7 +44,11 @@ class CoverLyricsFragment : AbsMusicServiceFragment(R.layout.f_cover_lyrics),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FCoverLyricsBinding.bind(view)
-        progressViewUpdateHelper = MusicProgressViewUpdateHelper(this, 500, 1000)
+        progressViewUpdateHelper = MusicProgressViewUpdateHelper(
+            callback = this,
+            intervalPlaying = 500,
+            intervalPaused = 1000
+        )
         if (PreferenceUtil.showLyrics) {
             progressViewUpdateHelper?.start()
         }
@@ -69,7 +73,10 @@ class CoverLyricsFragment : AbsMusicServiceFragment(R.layout.f_cover_lyrics),
 
     }
 
-    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+    override fun onSharedPreferenceChanged(
+        sharedPreferences: SharedPreferences?,
+        key: String?,
+    ) {
         if (key == SHOW_LYRICS) {
             if (sharedPreferences?.getBoolean(key, false) == true) {
                 progressViewUpdateHelper?.start()
@@ -117,7 +124,10 @@ class CoverLyricsFragment : AbsMusicServiceFragment(R.layout.f_cover_lyrics),
         }
     }
 
-    override fun onUpdateProgressViews(progress: Int, total: Int) {
+    override fun onUpdateProgressViews(
+        progress: Int,
+        total: Int,
+    ) {
         if (_binding == null) return
 
         if (!isLyricsLayoutVisible()) {
@@ -163,7 +173,7 @@ class CoverLyricsFragment : AbsMusicServiceFragment(R.layout.f_cover_lyrics),
     }
 
     private fun isLyricsLayoutVisible(): Boolean {
-        return lyrics != null && lyrics!!.isSynchronized && lyrics!!.isValid
+        return lyrics != null && lyrics?.isSynchronized == true && lyrics?.isValid == true
     }
 
     private fun hideLyricsLayout() {
