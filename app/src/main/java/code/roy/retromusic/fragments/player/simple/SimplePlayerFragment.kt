@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.player.simple
 
 import android.os.Bundle
@@ -27,10 +13,6 @@ import code.roy.retromusic.fragments.player.PlayerAlbumCoverFragment
 import code.roy.retromusic.helper.MusicPlayerRemote
 import code.roy.retromusic.model.Song
 import code.roy.retromusic.util.color.MediaNotificationProcessor
-
-/**
- * @author Hemanth S (h4h13).
- */
 
 class SimplePlayerFragment : AbsPlayerFragment(R.layout.fragment_simple_player) {
 
@@ -49,6 +31,7 @@ class SimplePlayerFragment : AbsPlayerFragment(R.layout.fragment_simple_player) 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         _binding = FragmentSimplePlayerBinding.bind(view)
         setUpSubFragments()
         setUpPlayerToolbar()
@@ -77,9 +60,9 @@ class SimplePlayerFragment : AbsPlayerFragment(R.layout.fragment_simple_player) 
         libraryViewModel.updateColor(color.backgroundColor)
         controlsFragment.setColor(color)
         code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
-            binding.playerToolbar,
-            colorControlNormal(),
-            requireActivity()
+            /* toolbarView = */ binding.playerToolbar,
+            /* toolbarIconsColor = */ colorControlNormal(),
+            /* activity = */ requireActivity()
         )
     }
 
@@ -96,12 +79,14 @@ class SimplePlayerFragment : AbsPlayerFragment(R.layout.fragment_simple_player) 
 
     private fun setUpPlayerToolbar() {
         binding.playerToolbar.inflateMenu(R.menu.menu_player)
-        binding.playerToolbar.setNavigationOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
+        binding.playerToolbar.setNavigationOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
         binding.playerToolbar.setOnMenuItemClickListener(this)
         code.roy.appthemehelper.util.ToolbarContentTintHelper.colorizeToolbar(
-            binding.playerToolbar,
-            colorControlNormal(),
-            requireActivity()
+            /* toolbarView = */ binding.playerToolbar,
+            /* toolbarIconsColor = */ colorControlNormal(),
+            /* activity = */ requireActivity()
         )
     }
 

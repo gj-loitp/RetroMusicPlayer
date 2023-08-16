@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.player.peek
 
 import android.graphics.Color
@@ -32,10 +18,6 @@ import code.roy.retromusic.helper.PlayPauseButtonOnClickHandler
 import code.roy.retromusic.util.PreferenceUtil
 import code.roy.retromusic.util.color.MediaNotificationProcessor
 import com.google.android.material.slider.Slider
-
-/**
- * Created by hemanths on 2019-10-04.
- */
 
 class PeekPlayerControlFragment : AbsPlayerControlsFragment(R.layout.f_peek_control_player) {
 
@@ -65,7 +47,7 @@ class PeekPlayerControlFragment : AbsPlayerControlsFragment(R.layout.f_peek_cont
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FPeekControlPlayerBinding.bind(view)
@@ -77,28 +59,33 @@ class PeekPlayerControlFragment : AbsPlayerControlsFragment(R.layout.f_peek_cont
     override fun hide() {}
 
     override fun setColor(color: MediaNotificationProcessor) {
-        val controlsColor =
-            if (PreferenceUtil.isAdaptiveColor) {
-                color.primaryTextColor
-            } else {
-                accentColor()
-            }
+        val controlsColor = if (PreferenceUtil.isAdaptiveColor) {
+            color.primaryTextColor
+        } else {
+            accentColor()
+        }
         binding.progressSlider.applyColor(controlsColor)
         volumeFragment?.setTintableColor(controlsColor)
         binding.playPauseButton.setColorFilter(controlsColor, PorterDuff.Mode.SRC_IN)
         binding.nextButton.setColorFilter(controlsColor, PorterDuff.Mode.SRC_IN)
         binding.previousButton.setColorFilter(controlsColor, PorterDuff.Mode.SRC_IN)
 
-        if (!ATHUtil.isWindowBackgroundDark(requireContext())) {
+        if (!ATHUtil.isWindowBackgroundDark(context = requireContext())) {
             lastPlaybackControlsColor =
-                MaterialValueHelper.getSecondaryTextColor(requireContext(), true)
+                MaterialValueHelper.getSecondaryTextColor(context = requireContext(), dark = true)
             lastDisabledPlaybackControlsColor =
-                MaterialValueHelper.getSecondaryDisabledTextColor(requireContext(), true)
+                MaterialValueHelper.getSecondaryDisabledTextColor(
+                    context = requireContext(),
+                    dark = true
+                )
         } else {
             lastPlaybackControlsColor =
-                MaterialValueHelper.getPrimaryTextColor(requireContext(), false)
+                MaterialValueHelper.getPrimaryTextColor(context = requireContext(), dark = false)
             lastDisabledPlaybackControlsColor =
-                MaterialValueHelper.getPrimaryDisabledTextColor(requireContext(), false)
+                MaterialValueHelper.getPrimaryDisabledTextColor(
+                    context = requireContext(),
+                    dark = false
+                )
         }
         updateRepeatState()
         updateShuffleState()
@@ -113,8 +100,16 @@ class PeekPlayerControlFragment : AbsPlayerControlsFragment(R.layout.f_peek_cont
     }
 
     private fun setUpPlayPauseFab() {
-        code.roy.appthemehelper.util.TintHelper.setTintAuto(binding.playPauseButton, Color.WHITE, true)
-        code.roy.appthemehelper.util.TintHelper.setTintAuto(binding.playPauseButton, Color.BLACK, false)
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(
+            /* view = */ binding.playPauseButton,
+            /* color = */ Color.WHITE,
+            /* background = */ true
+        )
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(
+            /* view = */ binding.playPauseButton,
+            /* color = */ Color.BLACK,
+            /* background = */ false
+        )
         binding.playPauseButton.setOnClickListener(PlayPauseButtonOnClickHandler())
     }
 

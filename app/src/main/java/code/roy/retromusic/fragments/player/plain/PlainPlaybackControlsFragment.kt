@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.player.plain
 
 import android.os.Bundle
@@ -34,10 +20,6 @@ import code.roy.retromusic.fragments.base.AbsPlayerControlsFragment
 import code.roy.retromusic.helper.MusicPlayerRemote
 import code.roy.retromusic.util.PreferenceUtil
 import com.google.android.material.slider.Slider
-
-/**
- * @author Hemanth S (h4h13).
- */
 
 class PlainPlaybackControlsFragment :
     AbsPlayerControlsFragment(R.layout.f_plain_controls_fragment) {
@@ -101,6 +83,7 @@ class PlainPlaybackControlsFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         _binding = FPlainControlsFragmentBinding.bind(view)
         setUpPlayPauseFab()
     }
@@ -117,17 +100,21 @@ class PlainPlaybackControlsFragment :
     }
 
     override fun setColor(color: MediaNotificationProcessor) {
-        val colorBg = ATHUtil.resolveColor(requireContext(), android.R.attr.colorBackground)
+        val colorBg = ATHUtil.resolveColor(
+            context = requireContext(), attr = android.R.attr.colorBackground
+        )
         if (ColorUtil.isColorLight(colorBg)) {
             lastPlaybackControlsColor =
-                MaterialValueHelper.getSecondaryTextColor(requireContext(), true)
-            lastDisabledPlaybackControlsColor =
-                MaterialValueHelper.getSecondaryDisabledTextColor(requireContext(), true)
+                MaterialValueHelper.getSecondaryTextColor(context = requireContext(), dark = true)
+            lastDisabledPlaybackControlsColor = MaterialValueHelper.getSecondaryDisabledTextColor(
+                context = requireContext(), dark = true
+            )
         } else {
             lastPlaybackControlsColor =
-                MaterialValueHelper.getPrimaryTextColor(requireContext(), false)
-            lastDisabledPlaybackControlsColor =
-                MaterialValueHelper.getPrimaryDisabledTextColor(requireContext(), false)
+                MaterialValueHelper.getPrimaryTextColor(context = requireContext(), dark = false)
+            lastDisabledPlaybackControlsColor = MaterialValueHelper.getPrimaryDisabledTextColor(
+                context = requireContext(), dark = false
+            )
         }
 
         val colorFinal = if (PreferenceUtil.isAdaptiveColor) {
@@ -139,14 +126,14 @@ class PlainPlaybackControlsFragment :
         binding.progressSlider.applyColor(colorFinal)
 
         code.roy.appthemehelper.util.TintHelper.setTintAuto(
-            binding.playPauseButton,
-            MaterialValueHelper.getPrimaryTextColor(
-                requireContext(),
-                ColorUtil.isColorLight(colorFinal)
-            ),
-            false
+            binding.playPauseButton, MaterialValueHelper.getPrimaryTextColor(
+                context = requireContext(), dark = ColorUtil.isColorLight(colorFinal)
+            ), false
         )
-        code.roy.appthemehelper.util.TintHelper.setTintAuto(binding.playPauseButton, colorFinal, true)
+        code.roy.appthemehelper.util.TintHelper.setTintAuto(/* view = */ binding.playPauseButton,/* color = */
+            colorFinal,/* background = */
+            true
+        )
 
         updateRepeatState()
         updateShuffleState()
@@ -154,12 +141,8 @@ class PlainPlaybackControlsFragment :
     }
 
     public override fun show() {
-        binding.playPauseButton.animate()
-            .scaleX(1f)
-            .scaleY(1f)
-            .rotation(360f)
-            .setInterpolator(DecelerateInterpolator())
-            .start()
+        binding.playPauseButton.animate().scaleX(1f).scaleY(1f).rotation(360f)
+            .setInterpolator(DecelerateInterpolator()).start()
     }
 
     public override fun hide() {

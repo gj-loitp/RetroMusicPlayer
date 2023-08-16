@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.player.peek
 
 import android.os.Bundle
@@ -34,10 +20,6 @@ import code.roy.retromusic.helper.MusicPlayerRemote
 import code.roy.retromusic.util.PreferenceUtil
 import code.roy.retromusic.util.color.MediaNotificationProcessor
 
-/**
- * Created by hemanths on 2019-10-03.
- */
-
 class PeekPlayerFragment : AbsPlayerFragment(R.layout.f_peek_player) {
 
     private lateinit var controlsFragment: PeekPlayerControlFragment
@@ -48,6 +30,7 @@ class PeekPlayerFragment : AbsPlayerFragment(R.layout.f_peek_player) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         _binding = FPeekPlayerBinding.bind(view)
         setUpPlayerToolbar()
         setUpSubFragments()
@@ -76,9 +59,9 @@ class PeekPlayerFragment : AbsPlayerFragment(R.layout.f_peek_player) {
             setNavigationOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
             setOnMenuItemClickListener(this@PeekPlayerFragment)
             ToolbarContentTintHelper.colorizeToolbar(
-                this,
-                colorControlNormal(),
-                requireActivity()
+                /* toolbarView = */ this,
+                /* toolbarIconsColor = */ colorControlNormal(),
+                /* activity = */ requireActivity()
             )
         }
     }
