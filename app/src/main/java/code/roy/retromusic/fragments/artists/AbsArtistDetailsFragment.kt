@@ -102,10 +102,21 @@ abstract class AbsArtistDetailsFragment : AbsMainActivityFragment(R.layout.fragm
         setupRecyclerView()
 
         binding.fragmentArtistContent.playAction.apply {
-            setOnClickListener { MusicPlayerRemote.openQueue(artist.sortedSongs, 0, true) }
+            setOnClickListener {
+                MusicPlayerRemote.openQueue(
+                    queue = artist.sortedSongs,
+                    startPosition = 0,
+                    startPlaying = true
+                )
+            }
         }
         binding.fragmentArtistContent.shuffleAction.apply {
-            setOnClickListener { MusicPlayerRemote.openAndShuffleQueue(artist.songs, true) }
+            setOnClickListener {
+                MusicPlayerRemote.openAndShuffleQueue(
+                    queue = artist.songs,
+                    startPlaying = true
+                )
+            }
         }
 
         binding.fragmentArtistContent.biographyText.setOnClickListener {
@@ -124,10 +135,19 @@ abstract class AbsArtistDetailsFragment : AbsMainActivityFragment(R.layout.fragm
         albumAdapter = HorizontalAlbumAdapter(requireActivity(), ArrayList(), this)
         binding.fragmentArtistContent.albumRecyclerView.apply {
             itemAnimator = DefaultItemAnimator()
-            layoutManager = GridLayoutManager(this.context, 1, GridLayoutManager.HORIZONTAL, false)
+            layoutManager = GridLayoutManager(
+                /* context = */ this.context,
+                /* spanCount = */ 1,
+                /* orientation = */ GridLayoutManager.HORIZONTAL,
+                /* reverseLayout = */ false
+            )
             adapter = albumAdapter
         }
-        songAdapter = SimpleSongAdapter(requireActivity(), ArrayList(), R.layout.v_item_song)
+        songAdapter = SimpleSongAdapter(
+            context = requireActivity(),
+            songs = ArrayList(),
+            layoutRes = R.layout.v_item_song
+        )
         binding.fragmentArtistContent.recyclerView.apply {
             itemAnimator = DefaultItemAnimator()
             layoutManager = LinearLayoutManager(this.context)
@@ -147,8 +167,8 @@ abstract class AbsArtistDetailsFragment : AbsMainActivityFragment(R.layout.fragm
         }
         binding.artistTitle.text = artist.name
         binding.text.text = String.format(
-            "%s • %s",
-            MusicUtil.getArtistInfoString(requireContext(), artist),
+            format = "%s • %s",
+            MusicUtil.getArtistInfoString(context = requireContext(), artist = artist),
             MusicUtil.getReadableDurationString(MusicUtil.getTotalDuration(artist.songs))
         )
         val songText = resources.getQuantityString(
@@ -226,10 +246,10 @@ abstract class AbsArtistDetailsFragment : AbsMainActivityFragment(R.layout.fragm
 
     override fun onAlbumClick(albumId: Long, view: View) {
         findNavController().navigate(
-            R.id.albumDetailsFragment,
-            bundleOf(EXTRA_ALBUM_ID to albumId),
-            null,
-            FragmentNavigatorExtras(
+            resId = R.id.albumDetailsFragment,
+            args = bundleOf(EXTRA_ALBUM_ID to albumId),
+            navOptions = null,
+            navigatorExtras = FragmentNavigatorExtras(
                 view to albumId.toString()
             )
         )

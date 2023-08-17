@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.base
 
 import android.animation.ObjectAnimator
@@ -40,10 +26,6 @@ import code.roy.retromusic.util.MusicUtil
 import code.roy.retromusic.util.PreferenceUtil
 import code.roy.retromusic.util.color.MediaNotificationProcessor
 import com.google.android.material.slider.Slider
-
-/**
- * Created by hemanths on 24/09/17.
- */
 
 abstract class AbsPlayerControlsFragment(@LayoutRes layout: Int) : AbsMusicServiceFragment(layout),
     MusicProgressViewUpdateHelper.Callback {
@@ -83,7 +65,10 @@ abstract class AbsPlayerControlsFragment(@LayoutRes layout: Int) : AbsMusicServi
             progressSlider?.valueTo = total.toFloat()
 
             progressSlider?.value =
-                progress.toFloat().coerceIn(progressSlider?.valueFrom, progressSlider?.valueTo)
+                progress.toFloat().coerceIn(
+                    minimumValue = progressSlider?.valueFrom,
+                    maximumValue = progressSlider?.valueTo
+                )
         } else {
             seekBar?.max = total
 
@@ -118,7 +103,11 @@ abstract class AbsPlayerControlsFragment(@LayoutRes layout: Int) : AbsMusicServi
         })
 
         seekBar?.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+            override fun onProgressChanged(
+                seekBar: SeekBar?,
+                progress: Int,
+                fromUser: Boolean,
+            ) {
                 onProgressChange(progress, fromUser)
             }
 
@@ -134,7 +123,7 @@ abstract class AbsPlayerControlsFragment(@LayoutRes layout: Int) : AbsMusicServi
 
     private fun onProgressChange(value: Int, fromUser: Boolean) {
         if (fromUser) {
-            onUpdateProgressViews(value, MusicPlayerRemote.songDurationMillis)
+            onUpdateProgressViews(progress = value, total = MusicPlayerRemote.songDurationMillis)
         }
     }
 
@@ -213,8 +202,14 @@ abstract class AbsPlayerControlsFragment(@LayoutRes layout: Int) : AbsMusicServi
     }
 
     fun updatePrevNextColor() {
-        nextButton?.setColorFilter(lastPlaybackControlsColor, PorterDuff.Mode.SRC_IN)
-        previousButton?.setColorFilter(lastPlaybackControlsColor, PorterDuff.Mode.SRC_IN)
+        nextButton?.setColorFilter(
+            /* color = */ lastPlaybackControlsColor,
+            /* mode = */ PorterDuff.Mode.SRC_IN
+        )
+        previousButton?.setColorFilter(
+            /* color = */ lastPlaybackControlsColor,
+            /* mode = */ PorterDuff.Mode.SRC_IN
+        )
     }
 
     fun updateShuffleState() {
@@ -231,22 +226,24 @@ abstract class AbsPlayerControlsFragment(@LayoutRes layout: Int) : AbsMusicServi
             MusicService.REPEAT_MODE_NONE -> {
                 repeatButton.setImageResource(R.drawable.ic_repeat)
                 repeatButton.setColorFilter(
-                    lastDisabledPlaybackControlsColor,
-                    PorterDuff.Mode.SRC_IN
+                    /* color = */ lastDisabledPlaybackControlsColor,
+                    /* mode = */ PorterDuff.Mode.SRC_IN
                 )
             }
+
             MusicService.REPEAT_MODE_ALL -> {
                 repeatButton.setImageResource(R.drawable.ic_repeat)
                 repeatButton.setColorFilter(
-                    lastPlaybackControlsColor,
-                    PorterDuff.Mode.SRC_IN
+                    /* color = */ lastPlaybackControlsColor,
+                    /* mode = */ PorterDuff.Mode.SRC_IN
                 )
             }
+
             MusicService.REPEAT_MODE_THIS -> {
                 repeatButton.setImageResource(R.drawable.ic_repeat_one)
                 repeatButton.setColorFilter(
-                    lastPlaybackControlsColor,
-                    PorterDuff.Mode.SRC_IN
+                    /* color = */ lastPlaybackControlsColor,
+                    /* mode = */ PorterDuff.Mode.SRC_IN
                 )
             }
         }

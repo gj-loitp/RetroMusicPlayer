@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.base
 
 import android.annotation.SuppressLint
@@ -95,7 +81,10 @@ abstract class AbsPlayerFragment(@LayoutRes layout: Int) : AbsMusicServiceFragme
         val song = MusicPlayerRemote.currentSong
         when (item.itemId) {
             R.id.action_playback_speed -> {
-                PlaybackSpeedDialog.newInstance().show(childFragmentManager, "PLAYBACK_SETTINGS")
+                PlaybackSpeedDialog.newInstance().show(
+                    /* manager = */ childFragmentManager,
+                    /* tag = */ "PLAYBACK_SETTINGS"
+                )
                 return true
             }
 
@@ -111,7 +100,7 @@ abstract class AbsPlayerFragment(@LayoutRes layout: Int) : AbsMusicServiceFragme
             }
 
             R.id.action_go_to_lyrics -> {
-                goToLyrics(requireActivity())
+                goToLyrics(activity = requireActivity())
                 return true
             }
 
@@ -121,7 +110,10 @@ abstract class AbsPlayerFragment(@LayoutRes layout: Int) : AbsMusicServiceFragme
             }
 
             R.id.action_share -> {
-                SongShareDialog.create(song).show(childFragmentManager, "SHARE_SONG")
+                SongShareDialog.create(song).show(
+                    /* manager = */ childFragmentManager,
+                    /* tag = */ "SHARE_SONG"
+                )
                 return true
             }
 
@@ -131,7 +123,10 @@ abstract class AbsPlayerFragment(@LayoutRes layout: Int) : AbsMusicServiceFragme
             }
 
             R.id.action_delete_from_device -> {
-                DeleteSongsDialog.create(song).show(childFragmentManager, "DELETE_SONGS")
+                DeleteSongsDialog.create(song).show(
+                    /* manager = */ childFragmentManager,
+                    /* tag = */ "DELETE_SONGS"
+                )
                 return true
             }
 
@@ -140,7 +135,10 @@ abstract class AbsPlayerFragment(@LayoutRes layout: Int) : AbsMusicServiceFragme
                     val playlists = get<RealRepository>().fetchPlaylists()
                     withContext(Main) {
                         AddToPlaylistDialog.create(playlists, song)
-                            .show(childFragmentManager, "ADD_PLAYLIST")
+                            .show(
+                                /* manager = */ childFragmentManager,
+                                /* tag = */ "ADD_PLAYLIST"
+                            )
                     }
                 }
                 return true
@@ -153,7 +151,10 @@ abstract class AbsPlayerFragment(@LayoutRes layout: Int) : AbsMusicServiceFragme
 
             R.id.action_save_playing_queue -> {
                 CreatePlaylistDialog.create(ArrayList(MusicPlayerRemote.playingQueue))
-                    .show(childFragmentManager, "ADD_TO_PLAYLIST")
+                    .show(
+                        /* manager = */ childFragmentManager,
+                        /* tag = */ "ADD_TO_PLAYLIST"
+                    )
                 return true
             }
 
@@ -165,7 +166,10 @@ abstract class AbsPlayerFragment(@LayoutRes layout: Int) : AbsMusicServiceFragme
             }
 
             R.id.action_details -> {
-                SongDetailDialog.create(song).show(childFragmentManager, "SONG_DETAIL")
+                SongDetailDialog.create(song).show(
+                    /* manager = */ childFragmentManager,
+                    /* tag = */ "SONG_DETAIL"
+                )
                 return true
             }
 
@@ -174,8 +178,8 @@ abstract class AbsPlayerFragment(@LayoutRes layout: Int) : AbsMusicServiceFragme
                 mainActivity.setBottomNavVisibility(false)
                 mainActivity.collapsePanel()
                 requireActivity().findNavController(R.id.fragment_container).navigate(
-                    R.id.albumDetailsFragment,
-                    bundleOf(EXTRA_ALBUM_ID to song.albumId)
+                    resId = R.id.albumDetailsFragment,
+                    args = bundleOf(EXTRA_ALBUM_ID to song.albumId)
                 )
                 return true
             }
@@ -187,9 +191,9 @@ abstract class AbsPlayerFragment(@LayoutRes layout: Int) : AbsMusicServiceFragme
 
             R.id.now_playing -> {
                 requireActivity().findNavController(R.id.fragment_container).navigate(
-                    R.id.playing_queue_fragment,
-                    null,
-                    navOptions { launchSingleTop = true }
+                    resId = R.id.playing_queue_fragment,
+                    args = null,
+                    navOptions = navOptions { launchSingleTop = true }
                 )
                 mainActivity.collapsePanel()
                 return true
@@ -215,7 +219,7 @@ abstract class AbsPlayerFragment(@LayoutRes layout: Int) : AbsMusicServiceFragme
                     if (RingtoneManager.requiresDialog(this)) {
                         RingtoneManager.showDialog(this)
                     } else {
-                        RingtoneManager.setRingtone(this, song)
+                        RingtoneManager.setRingtone(context = this, song = song)
                     }
                 }
 
@@ -226,8 +230,8 @@ abstract class AbsPlayerFragment(@LayoutRes layout: Int) : AbsMusicServiceFragme
                 val retriever = MediaMetadataRetriever()
                 val trackUri =
                     ContentUris.withAppendedId(
-                        MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
-                        song.id
+                        /* contentUri = */ MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+                        /* id = */ song.id
                     )
                 retriever.setDataSource(activity, trackUri)
                 var genre: String? =
@@ -299,8 +303,8 @@ abstract class AbsPlayerFragment(@LayoutRes layout: Int) : AbsMusicServiceFragme
                     if (isFavorite) R.drawable.ic_favorite else R.drawable.ic_favorite_border
                 }
                 val drawable = requireContext().getTintedDrawable(
-                    icon,
-                    toolbarIconColor()
+                    id = icon,
+                    color = toolbarIconColor()
                 )
                 if (playerToolbar() != null) {
                     playerToolbar()?.menu?.findItem(R.id.action_toggle_favorite)?.apply {
@@ -366,9 +370,9 @@ abstract class AbsPlayerFragment(@LayoutRes layout: Int) : AbsMusicServiceFragme
         view?.setOnTouchListener(
             if (PreferenceUtil.swipeAnywhereToChangeSong) {
                 SwipeDetector(
-                    requireContext(),
-                    playerAlbumCoverFragment?.viewPager,
-                    requireView()
+                    context = requireContext(),
+                    viewPager = playerAlbumCoverFragment?.viewPager,
+                    view = requireView()
                 )
             } else null
         )
@@ -428,8 +432,8 @@ fun goToArtist(activity: Activity) {
         }
 
         findNavController(R.id.fragment_container).navigate(
-            R.id.artistDetailsFragment,
-            bundleOf(EXTRA_ARTIST_ID to song.artistId)
+            resId = R.id.artistDetailsFragment,
+            args = bundleOf(EXTRA_ARTIST_ID to song.artistId)
         )
     }
 }
@@ -463,9 +467,9 @@ fun goToLyrics(activity: Activity) {
         }
 
         findNavController(R.id.fragment_container).navigate(
-            R.id.lyrics_fragment,
-            null,
-            navOptions { launchSingleTop = true }
+            resId = R.id.lyrics_fragment,
+            args = null,
+            navOptions = navOptions { launchSingleTop = true }
         )
     }
 }

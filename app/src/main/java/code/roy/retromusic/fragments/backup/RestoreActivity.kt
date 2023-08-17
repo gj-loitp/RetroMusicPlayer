@@ -23,7 +23,6 @@ import com.google.android.material.color.DynamicColorsOptions
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-
 class RestoreActivity : AppCompatActivity() {
 
     lateinit var binding: ARestoreBinding
@@ -32,6 +31,7 @@ class RestoreActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         updateTheme()
         super.onCreate(savedInstanceState)
+
         binding = ARestoreBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setWidth()
@@ -68,8 +68,8 @@ class RestoreActivity : AppCompatActivity() {
         // Apply dynamic colors to activity if enabled
         if (PreferenceUtil.materialYou) {
             DynamicColors.applyToActivityIfAvailable(
-                this,
-                DynamicColorsOptions.Builder()
+                /* activity = */ this,
+                /* dynamicColorsOptions = */ DynamicColorsOptions.Builder()
                     .setThemeOverlay(com.google.android.material.R.style.ThemeOverlay_Material3_DynamicColors_DayNight)
                     .build()
             )
@@ -81,6 +81,7 @@ class RestoreActivity : AppCompatActivity() {
             ContentResolver.SCHEME_FILE -> {
                 return uri.lastPathSegment
             }
+
             ContentResolver.SCHEME_CONTENT -> {
                 val proj = arrayOf(MediaStore.Files.FileColumns.DISPLAY_NAME)
                 contentResolver.query(

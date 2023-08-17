@@ -1,19 +1,6 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.artists
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.*
 import androidx.core.os.bundleOf
@@ -40,6 +27,7 @@ class ArtistsFragment : AbsRecyclerViewCustomGridSizeFragment<ArtistAdapter, Gri
     IArtistClickListener, IAlbumArtistClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         libraryViewModel.getArtists().observe(viewLifecycleOwner) {
             if (it.isNotEmpty())
                 adapter?.swapDataSet(it)
@@ -79,11 +67,11 @@ class ArtistsFragment : AbsRecyclerViewCustomGridSizeFragment<ArtistAdapter, Gri
     override fun createAdapter(): ArtistAdapter {
         val dataSet = if (adapter == null) ArrayList() else adapter!!.dataSet
         return ArtistAdapter(
-            requireActivity(),
-            dataSet,
-            itemLayoutRes(),
-            this,
-            this
+            activity = requireActivity(),
+            dataSet = dataSet,
+            itemLayoutRes = itemLayoutRes(),
+            IArtistClickListener = this,
+            IAlbumArtistClickListener = this
         )
     }
 
@@ -103,6 +91,7 @@ class ArtistsFragment : AbsRecyclerViewCustomGridSizeFragment<ArtistAdapter, Gri
         PreferenceUtil.artistGridSizeLand = gridColumns
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun setGridSize(gridSize: Int) {
         layoutManager?.spanCount = gridSize
         adapter?.notifyDataSetChanged()
@@ -135,20 +124,20 @@ class ArtistsFragment : AbsRecyclerViewCustomGridSizeFragment<ArtistAdapter, Gri
 
     override fun onArtist(artistId: Long, view: View) {
         findNavController().navigate(
-            R.id.artistDetailsFragment,
-            bundleOf(EXTRA_ARTIST_ID to artistId),
-            null,
-            FragmentNavigatorExtras(view to artistId.toString())
+            resId = R.id.artistDetailsFragment,
+            args = bundleOf(EXTRA_ARTIST_ID to artistId),
+            navOptions = null,
+            navigatorExtras = FragmentNavigatorExtras(view to artistId.toString())
         )
         reenterTransition = null
     }
 
     override fun onAlbumArtist(artistName: String, view: View) {
         findNavController().navigate(
-            R.id.albumArtistDetailsFragment,
-            bundleOf(EXTRA_ARTIST_NAME to artistName),
-            null,
-            FragmentNavigatorExtras(view to artistName)
+            resId = R.id.albumArtistDetailsFragment,
+            args = bundleOf(EXTRA_ARTIST_NAME to artistName),
+            navOptions = null,
+            navigatorExtras = FragmentNavigatorExtras(view to artistName)
         )
         reenterTransition = null
     }
@@ -176,35 +165,37 @@ class ArtistsFragment : AbsRecyclerViewCustomGridSizeFragment<ArtistAdapter, Gri
     }
 
     private fun setUpSortOrderMenu(
-        sortOrderMenu: SubMenu
+        sortOrderMenu: SubMenu,
     ) {
         val currentSortOrder: String? = getSortOrder()
         sortOrderMenu.clear()
         sortOrderMenu.add(
-            0,
-            R.id.action_artist_sort_order_asc,
-            0,
-            R.string.sort_order_a_z
+            /* p0 = */ 0,
+            /* p1 = */ R.id.action_artist_sort_order_asc,
+            /* p2 = */ 0,
+            /* p3 = */ R.string.sort_order_a_z
         ).isChecked = currentSortOrder.equals(SortOrder.ArtistSortOrder.ARTIST_A_Z)
         sortOrderMenu.add(
-            0,
-            R.id.action_artist_sort_order_desc,
-            1,
-            R.string.sort_order_z_a
+            /* p0 = */ 0,
+            /* p1 = */ R.id.action_artist_sort_order_desc,
+            /* p2 = */ 1,
+            /* p3 = */ R.string.sort_order_z_a
         ).isChecked = currentSortOrder.equals(SortOrder.ArtistSortOrder.ARTIST_Z_A)
         sortOrderMenu.setGroupCheckable(0, true, true)
     }
 
     private fun setupLayoutMenu(
-        subMenu: SubMenu
+        subMenu: SubMenu,
     ) {
         when (itemLayoutRes()) {
             R.layout.v_item_card -> subMenu.findItem(R.id.action_layout_card).isChecked = true
             R.layout.v_item_grid -> subMenu.findItem(R.id.action_layout_normal).isChecked = true
             R.layout.v_item_card_color -> subMenu.findItem(R.id.action_layout_colored_card).isChecked =
                 true
+
             R.layout.v_item_grid_circle -> subMenu.findItem(R.id.action_layout_circular).isChecked =
                 true
+
             R.layout.v_image -> subMenu.findItem(R.id.action_layout_image).isChecked = true
             R.layout.v_item_image_gradient -> subMenu.findItem(R.id.action_layout_gradient_image).isChecked =
                 true
@@ -212,11 +203,12 @@ class ArtistsFragment : AbsRecyclerViewCustomGridSizeFragment<ArtistAdapter, Gri
     }
 
     private fun setUpGridSizeMenu(
-        gridSizeMenu: SubMenu
+        gridSizeMenu: SubMenu,
     ) {
         when (getGridSize()) {
             1 -> gridSizeMenu.findItem(R.id.action_grid_size_1).isChecked =
                 true
+
             2 -> gridSizeMenu.findItem(R.id.action_grid_size_2).isChecked = true
             3 -> gridSizeMenu.findItem(R.id.action_grid_size_3).isChecked = true
             4 -> gridSizeMenu.findItem(R.id.action_grid_size_4).isChecked = true
@@ -274,7 +266,7 @@ class ArtistsFragment : AbsRecyclerViewCustomGridSizeFragment<ArtistAdapter, Gri
     }
 
     private fun handleSortOrderMenuItem(
-        item: MenuItem
+        item: MenuItem,
     ): Boolean {
         val sortOrder: String = when (item.itemId) {
             R.id.action_artist_sort_order_asc -> SortOrder.ArtistSortOrder.ARTIST_A_Z
@@ -290,7 +282,7 @@ class ArtistsFragment : AbsRecyclerViewCustomGridSizeFragment<ArtistAdapter, Gri
     }
 
     private fun handleLayoutResType(
-        item: MenuItem
+        item: MenuItem,
     ): Boolean {
         val layoutRes = when (item.itemId) {
             R.id.action_layout_normal -> R.layout.v_item_grid
@@ -310,7 +302,7 @@ class ArtistsFragment : AbsRecyclerViewCustomGridSizeFragment<ArtistAdapter, Gri
     }
 
     private fun handleGridSizeMenuItem(
-        item: MenuItem
+        item: MenuItem,
     ): Boolean {
         val gridSize = when (item.itemId) {
             R.id.action_grid_size_1 -> 1

@@ -14,7 +14,6 @@ import java.io.File
 import java.io.InputStream
 import kotlin.system.exitProcess
 
-
 class BackupViewModel : ViewModel() {
     private val backupsMutableLiveData = MutableLiveData<List<File>>()
     val backupsLiveData: LiveData<List<File>> = backupsMutableLiveData
@@ -27,14 +26,22 @@ class BackupViewModel : ViewModel() {
         }
     }
 
-    suspend fun restoreBackup(activity: Activity, inputStream: InputStream?, contents: List<BackupContent>) {
-        BackupHelper.restoreBackup(activity, inputStream, contents)
+    suspend fun restoreBackup(
+        activity: Activity,
+        inputStream: InputStream?,
+        contents: List<BackupContent>,
+    ) {
+        BackupHelper.restoreBackup(
+            context = activity,
+            inputStream = inputStream,
+            contents = contents
+        )
         if (contents.contains(BackupContent.SETTINGS) or contents.contains(BackupContent.CUSTOM_ARTIST_IMAGES)) {
             // We have to restart App when Preferences i.e. Settings or Artist Images are to be restored
             withContext(Dispatchers.Main) {
                 val intent = Intent(
-                    activity,
-                    MainActivity::class.java
+                    /* packageContext = */ activity,
+                    /* cls = */ MainActivity::class.java
                 )
                 activity.startActivity(intent)
                 exitProcess(0)

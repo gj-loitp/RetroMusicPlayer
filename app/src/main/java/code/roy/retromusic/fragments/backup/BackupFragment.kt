@@ -39,6 +39,7 @@ class BackupFragment : Fragment(R.layout.f_backup), BackupAdapter.BackupClickedL
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FBackupBinding.bind(view)
+
         initAdapter()
         setupRecyclerview()
         backupViewModel.backupsLiveData.observe(viewLifecycleOwner) {
@@ -68,7 +69,11 @@ class BackupFragment : Fragment(R.layout.f_backup), BackupAdapter.BackupClickedL
     }
 
     private fun initAdapter() {
-        backupAdapter = BackupAdapter(requireActivity(), ArrayList(), this)
+        backupAdapter = BackupAdapter(
+            activity = requireActivity(),
+            dataSet = ArrayList(),
+            backupClickedListener = this
+        )
         backupAdapter?.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
             override fun onChanged() {
                 super.onChanged()
@@ -83,7 +88,7 @@ class BackupFragment : Fragment(R.layout.f_backup), BackupAdapter.BackupClickedL
         binding.backupRecyclerview.isVisible = !isEmpty
     }
 
-    fun setupRecyclerview() {
+    private fun setupRecyclerview() {
         binding.backupRecyclerview.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = backupAdapter
@@ -127,17 +132,21 @@ class BackupFragment : Fragment(R.layout.f_backup), BackupAdapter.BackupClickedL
                 backupViewModel.loadBackups()
                 return true
             }
+
             R.id.action_share -> {
-                Share.shareFile(requireContext(), file, "*/*")
+                Share.shareFile(context = requireContext(), file = file, mimeType = "*/*")
                 return true
             }
+
             R.id.action_rename -> {
                 materialDialog().show {
                     title(res = R.string.action_rename)
                     input(prefill = file.nameWithoutExtension) { _, text ->
                         // Text submitted with the action button
-                        val renamedFile =
-                            File(file.parent, "$text${BackupHelper.APPEND_EXTENSION}")
+                        val renamedFile = File(
+                            /* parent = */ file.parent,
+                            /* child = */ "$text${BackupHelper.APPEND_EXTENSION}"
+                        )
                         if (!renamedFile.exists()) {
                             file.renameTo(renamedFile)
                             backupViewModel.loadBackups()

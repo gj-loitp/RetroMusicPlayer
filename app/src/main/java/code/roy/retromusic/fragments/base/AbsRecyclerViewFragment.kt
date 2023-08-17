@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.base
 
 import code.roy.retromusic.util.ThemedFastScroller.create
@@ -51,6 +37,7 @@ abstract class AbsRecyclerViewFragment<A : RecyclerView.Adapter<*>, LM : Recycle
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         _binding = FMainRecyclerBinding.bind(view)
         postponeEnterTransition()
         view.doOnPreDraw { startPostponedEnterTransition() }
@@ -101,9 +88,9 @@ abstract class AbsRecyclerViewFragment<A : RecyclerView.Adapter<*>, LM : Recycle
     private fun setupToolbar() {
         toolbar.setNavigationOnClickListener {
             findNavController().navigate(
-                R.id.action_search,
-                null,
-                navOptions
+                resId = R.id.action_search,
+                args = null,
+                navOptions = navOptions
             )
         }
         val appName = resources.getString(titleRes)
@@ -160,7 +147,6 @@ abstract class AbsRecyclerViewFragment<A : RecyclerView.Adapter<*>, LM : Recycle
 
     protected abstract fun createLayoutManager(): LM
 
-    @NonNull
     protected abstract fun createAdapter(): A
 
     protected fun invalidateLayoutManager() {
@@ -185,37 +171,37 @@ abstract class AbsRecyclerViewFragment<A : RecyclerView.Adapter<*>, LM : Recycle
 
     override fun onPrepareMenu(menu: Menu) {
         code.roy.appthemehelper.util.ToolbarContentTintHelper.handleOnPrepareOptionsMenu(
-            requireActivity(),
-            toolbar
+            /* activity = */ requireActivity(),
+            /* toolbar = */ toolbar
         )
     }
 
     override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_main, menu)
         code.roy.appthemehelper.util.ToolbarContentTintHelper.handleOnCreateOptionsMenu(
-            requireContext(),
-            toolbar,
-            menu,
-            code.roy.appthemehelper.common.ATHToolbarActivity.getToolbarBackgroundColor(toolbar)
+            /* context = */ requireContext(),
+            /* toolbar = */ toolbar,
+            /* menu = */ menu,
+            /* toolbarColor = */ code.roy.appthemehelper.common.ATHToolbarActivity.getToolbarBackgroundColor(toolbar)
         )
     }
 
     override fun onMenuItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_settings -> findNavController().navigate(
-                R.id.settings_fragment,
-                null,
-                navOptions
+                resId = R.id.settings_fragment,
+                args = null,
+                navOptions = navOptions
             )
 
             R.id.action_import_playlist -> ImportPlaylistDialog().show(
-                childFragmentManager,
-                "ImportPlaylist"
+                /* manager = */ childFragmentManager,
+                /* tag = */ "ImportPlaylist"
             )
 
             R.id.action_add_to_playlist -> CreatePlaylistDialog.create(emptyList()).show(
-                childFragmentManager,
-                "ShowCreatePlaylistDialog"
+                /* manager = */ childFragmentManager,
+                /* tag = */ "ShowCreatePlaylistDialog"
             )
         }
         return false

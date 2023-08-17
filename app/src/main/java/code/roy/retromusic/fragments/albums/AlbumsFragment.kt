@@ -1,19 +1,6 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.albums
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.*
 import androidx.core.os.bundleOf
@@ -74,13 +61,14 @@ class AlbumsFragment : AbsRecyclerViewCustomGridSizeFragment<AlbumAdapter, GridL
     override fun createAdapter(): AlbumAdapter {
         val dataSet = if (adapter == null) ArrayList() else adapter!!.dataSet
         return AlbumAdapter(
-            requireActivity(),
-            dataSet,
-            itemLayoutRes(),
-            this
+            activity = requireActivity(),
+            dataSet = dataSet,
+            itemLayoutRes = itemLayoutRes(),
+            listener = this
         )
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun setGridSize(gridSize: Int) {
         layoutManager?.spanCount = gridSize
         adapter?.notifyDataSetChanged()
@@ -132,10 +120,10 @@ class AlbumsFragment : AbsRecyclerViewCustomGridSizeFragment<AlbumAdapter, GridL
 
     override fun onAlbumClick(albumId: Long, view: View) {
         findNavController().navigate(
-            R.id.albumDetailsFragment,
-            bundleOf(EXTRA_ALBUM_ID to albumId),
-            null,
-            FragmentNavigatorExtras(
+            resId = R.id.albumDetailsFragment,
+            args = bundleOf(EXTRA_ALBUM_ID to albumId),
+            navOptions = null,
+            navigatorExtras = FragmentNavigatorExtras(
                 view to albumId.toString()
             )
         )
@@ -162,38 +150,38 @@ class AlbumsFragment : AbsRecyclerViewCustomGridSizeFragment<AlbumAdapter, GridL
         val currentSortOrder: String? = getSortOrder()
         sortOrderMenu.clear()
         sortOrderMenu.add(
-            0,
-            R.id.action_album_sort_order_asc,
-            0,
-            R.string.sort_order_a_z
+            /* p0 = */ 0,
+            /* p1 = */ R.id.action_album_sort_order_asc,
+            /* p2 = */ 0,
+            /* p3 = */ R.string.sort_order_a_z
         ).isChecked =
             currentSortOrder.equals(SortOrder.AlbumSortOrder.ALBUM_A_Z)
         sortOrderMenu.add(
-            0,
-            R.id.action_album_sort_order_desc,
-            1,
-            R.string.sort_order_z_a
+            /* p0 = */ 0,
+            /* p1 = */ R.id.action_album_sort_order_desc,
+            /* p2 = */ 1,
+            /* p3 = */ R.string.sort_order_z_a
         ).isChecked =
             currentSortOrder.equals(SortOrder.AlbumSortOrder.ALBUM_Z_A)
         sortOrderMenu.add(
-            0,
-            R.id.action_album_sort_order_artist,
-            2,
-            R.string.sort_order_album_artist
+            /* p0 = */ 0,
+            /* p1 = */ R.id.action_album_sort_order_artist,
+            /* p2 = */ 2,
+            /* p3 = */ R.string.sort_order_album_artist
         ).isChecked =
             currentSortOrder.equals(SortOrder.AlbumSortOrder.ALBUM_ARTIST)
         sortOrderMenu.add(
-            0,
-            R.id.action_album_sort_order_year,
-            3,
-            R.string.sort_order_year
+            /* p0 = */ 0,
+            /* p1 = */ R.id.action_album_sort_order_year,
+            /* p2 = */ 3,
+            /* p3 = */ R.string.sort_order_year
         ).isChecked =
             currentSortOrder.equals(SortOrder.AlbumSortOrder.ALBUM_YEAR)
         sortOrderMenu.add(
-            0,
-            R.id.action_album_sort_order_num_songs,
-            4,
-            R.string.sort_order_num_songs
+            /* p0 = */ 0,
+            /* p1 = */ R.id.action_album_sort_order_num_songs,
+            /* p2 = */ 4,
+            /* p3 = */ R.string.sort_order_num_songs
         ).isChecked =
             currentSortOrder.equals(SortOrder.AlbumSortOrder.ALBUM_NUMBER_OF_SONGS)
 
