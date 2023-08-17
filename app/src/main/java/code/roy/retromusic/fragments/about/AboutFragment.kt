@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.about
 
 import android.content.pm.PackageManager
@@ -39,6 +25,7 @@ class AboutFragment : Fragment(R.layout.f_about), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         _binding = FAboutBinding.bind(view)
         binding.aboutContent.cardOther.version.setSummary(getAppVersion())
         setUpView()
@@ -59,13 +46,11 @@ class AboutFragment : Fragment(R.layout.f_about), View.OnClickListener {
         binding.aboutContent.cardRetroInfo.appShare.setOnClickListener(this)
         binding.aboutContent.cardRetroInfo.donateLink.setOnClickListener(this)
         binding.aboutContent.cardRetroInfo.bugReportLink.setOnClickListener(this)
-
         binding.aboutContent.cardSocial.telegramLink.setOnClickListener(this)
         binding.aboutContent.cardSocial.instagramLink.setOnClickListener(this)
         binding.aboutContent.cardSocial.twitterLink.setOnClickListener(this)
         binding.aboutContent.cardSocial.pinterestLink.setOnClickListener(this)
         binding.aboutContent.cardSocial.websiteLink.setOnClickListener(this)
-
         binding.aboutContent.cardOther.changelog.setOnClickListener(this)
         binding.aboutContent.cardOther.openSource.setOnClickListener(this)
     }

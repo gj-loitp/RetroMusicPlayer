@@ -105,9 +105,9 @@ fun FragmentActivity.setTaskDescriptionColor(color: Int) {
     if (VersionUtils.hasP()) {
         setTaskDescription(
             ActivityManager.TaskDescription(
-                title as String?,
-                -1,
-                colorFinal
+                /* label = */ title as String?,
+                /* iconRes = */ -1,
+                /* colorPrimary = */ colorFinal
             )
         )
     } else {
@@ -216,9 +216,7 @@ fun AppCompatActivity.setStatusBarColorPreMarshmallow(color: Int) {
     val statusBar = window.decorView.rootView.findViewById<View>(R.id.status_bar)
     if (statusBar != null) {
         statusBar.setBackgroundColor(
-            ColorUtil.darkenColor(
-                color
-            )
+            ColorUtil.darkenColor(color)
         )
     } else {
         window.statusBarColor = ColorUtil.darkenColor(color)

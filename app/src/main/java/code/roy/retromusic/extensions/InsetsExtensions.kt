@@ -8,6 +8,7 @@ fun WindowInsetsCompat?.getBottomInsets(): Int {
     return if (PreferenceUtil.isFullScreenMode) {
         return 0
     } else {
-        this?.getInsets(WindowInsetsCompat.Type.systemBars())?.bottom ?: RetroUtil.navigationBarHeight
+        this?.getInsets(WindowInsetsCompat.Type.systemBars())?.bottom
+            ?: RetroUtil.navigationBarHeight
     }
 }

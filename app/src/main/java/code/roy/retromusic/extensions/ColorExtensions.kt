@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.extensions
 
 import android.app.Dialog
@@ -52,7 +38,8 @@ fun Int.ripAlpha(): Int {
 fun Dialog.colorControlNormal() = resolveColor(android.R.attr.colorControlNormal)
 
 fun Toolbar.backgroundTintList() {
-    val surfaceColor = ATHUtil.resolveColor(context, com.google.android.material.R.attr.colorSurface, Color.BLACK)
+    val surfaceColor =
+        ATHUtil.resolveColor(context, com.google.android.material.R.attr.colorSurface, Color.BLACK)
     val colorStateList = ColorStateList.valueOf(surfaceColor)
     backgroundTintList = colorStateList
 }
@@ -61,13 +48,17 @@ fun Context.accentColor() = ThemeStore.accentColor(this)
 
 fun Fragment.accentColor() = ThemeStore.accentColor(requireContext())
 
-fun Context.surfaceColor() = resolveColor(com.google.android.material.R.attr.colorSurface, Color.WHITE)
+fun Context.surfaceColor() =
+    resolveColor(com.google.android.material.R.attr.colorSurface, Color.WHITE)
 
-fun Fragment.surfaceColor() = resolveColor(com.google.android.material.R.attr.colorSurface, Color.WHITE)
+fun Fragment.surfaceColor() =
+    resolveColor(com.google.android.material.R.attr.colorSurface, Color.WHITE)
 
-fun Context.surfaceColor(fallBackColor: Int) = resolveColor(com.google.android.material.R.attr.colorSurface, fallBackColor)
+fun Context.surfaceColor(fallBackColor: Int) =
+    resolveColor(com.google.android.material.R.attr.colorSurface, fallBackColor)
 
-fun Fragment.surfaceColor(fallBackColor: Int) = resolveColor(com.google.android.material.R.attr.colorSurface, fallBackColor)
+fun Fragment.surfaceColor(fallBackColor: Int) =
+    resolveColor(com.google.android.material.R.attr.colorSurface, fallBackColor)
 
 fun Context.textColorSecondary() = resolveColor(android.R.attr.textColorSecondary)
 
@@ -116,7 +107,8 @@ fun Slider.addAccentColor() {
     if (materialYou) return
     val accentColor = ThemeStore.accentColor(context)
     trackActiveTintList = accentColor.colorStateList
-    trackInactiveTintList = ColorUtil.withAlpha(accentColor, 0.5F).colorStateList
+    trackInactiveTintList =
+        ColorUtil.withAlpha(baseColor = accentColor, alpha = 0.5F).colorStateList
     thumbTintList = accentColor.colorStateList
 }
 
@@ -125,7 +117,8 @@ fun Slider.accent() {
     val accentColor = context.accentColor()
     thumbTintList = accentColor.colorStateList
     trackActiveTintList = accentColor.colorStateList
-    trackInactiveTintList = ColorUtil.withAlpha(accentColor, 0.1F).colorStateList
+    trackInactiveTintList =
+        ColorUtil.withAlpha(baseColor = accentColor, alpha = 0.1F).colorStateList
 }
 
 fun Button.accentTextColor() {
@@ -136,8 +129,9 @@ fun Button.accentTextColor() {
 fun MaterialButton.accentBackgroundColor() {
     if (materialYou) return
     backgroundTintList = ColorStateList(
-        arrayOf(intArrayOf(android.R.attr.state_enabled), intArrayOf()),
-            intArrayOf(context.accentColor(), context.accentColor().addAlpha(0.12f)))
+        /* states = */ arrayOf(intArrayOf(android.R.attr.state_enabled), intArrayOf()),
+        /* colors = */ intArrayOf(context.accentColor(), context.accentColor().addAlpha(0.12f))
+    )
 }
 
 fun MaterialButton.accentOutlineColor() {
@@ -177,7 +171,10 @@ fun Slider.applyColor(@ColorInt color: Int) {
 fun ExtendedFloatingActionButton.accentColor() {
     if (materialYou) return
     val color = ThemeStore.accentColor(context)
-    val textColor = MaterialValueHelper.getPrimaryTextColor(context, ColorUtil.isColorLight(color))
+    val textColor = MaterialValueHelper.getPrimaryTextColor(
+        context = context,
+        dark = ColorUtil.isColorLight(color)
+    )
     val colorStateList = ColorStateList.valueOf(color)
     val textColorStateList = ColorStateList.valueOf(textColor)
     backgroundTintList = colorStateList
@@ -188,7 +185,10 @@ fun ExtendedFloatingActionButton.accentColor() {
 fun FloatingActionButton.accentColor() {
     if (materialYou) return
     val color = ThemeStore.accentColor(context)
-    val textColor = MaterialValueHelper.getPrimaryTextColor(context, ColorUtil.isColorLight(color))
+    val textColor = MaterialValueHelper.getPrimaryTextColor(
+        context = context,
+        dark = ColorUtil.isColorLight(color)
+    )
     backgroundTintList = ColorStateList.valueOf(color)
     imageTintList = ColorStateList.valueOf(textColor)
 }
@@ -197,8 +197,8 @@ fun MaterialButton.applyColor(color: Int) {
     val backgroundColorStateList = ColorStateList.valueOf(color)
     val textColorColorStateList = ColorStateList.valueOf(
         MaterialValueHelper.getPrimaryTextColor(
-            context,
-            ColorUtil.isColorLight(color)
+            context = context,
+            dark = ColorUtil.isColorLight(color)
         )
     )
     backgroundTintList = backgroundColorStateList
@@ -276,18 +276,18 @@ fun Context.getColorCompat(@ColorRes colorRes: Int): Int {
 @ColorInt
 fun Context.darkAccentColor(): Int {
     return ColorUtils.blendARGB(
-        accentColor(),
-        surfaceColor(),
-        if (surfaceColor().isColorLight) 0.9f else 0.92f
+        /* color1 = */ accentColor(),
+        /* color2 = */ surfaceColor(),
+        /* ratio = */ if (surfaceColor().isColorLight) 0.9f else 0.92f
     )
 }
 
 @ColorInt
 fun Context.darkAccentColorVariant(): Int {
     return ColorUtils.blendARGB(
-        accentColor(),
-        surfaceColor(),
-        if (surfaceColor().isColorLight) 0.9f else 0.95f
+        /* color1 = */ accentColor(),
+        /* color2 = */ surfaceColor(),
+        /* ratio = */ if (surfaceColor().isColorLight) 0.9f else 0.95f
     )
 }
 

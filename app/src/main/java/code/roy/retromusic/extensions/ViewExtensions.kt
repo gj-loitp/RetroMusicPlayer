@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.extensions
 
 import android.animation.Animator
@@ -65,13 +51,16 @@ fun View.hidden() {
 
 fun EditText.appHandleColor(): EditText {
     if (PreferenceUtil.materialYou) return this
-    code.roy.appthemehelper.util.TintHelper.colorHandles(this, ThemeStore.accentColor(context))
+    TintHelper.colorHandles(this, ThemeStore.accentColor(context))
     return this
 }
 
 fun NavigationBarView.setItemColors(@ColorInt normalColor: Int, @ColorInt selectedColor: Int) {
     val csl = ColorStateList(
-        arrayOf(intArrayOf(-android.R.attr.state_checked), intArrayOf(android.R.attr.state_checked)),
+        arrayOf(
+            intArrayOf(-android.R.attr.state_checked),
+            intArrayOf(android.R.attr.state_checked)
+        ),
         intArrayOf(normalColor, selectedColor)
     )
     itemIconTintList = csl
@@ -108,8 +97,8 @@ fun NavigationBarView.show() {
     ValueAnimator.ofInt(parent.height, top).apply {
         duration = ANIM_DURATION
         interpolator = AnimationUtils.loadInterpolator(
-            context,
-            android.R.interpolator.accelerate_decelerate
+            /* context = */ context,
+            /* id = */ android.R.interpolator.accelerate_decelerate
         )
         addUpdateListener {
             val newTop = it.animatedValue as Int
@@ -149,8 +138,8 @@ fun NavigationBarView.hide() {
     ValueAnimator.ofInt(top, parent.height).apply {
         duration = ANIM_DURATION
         interpolator = AnimationUtils.loadInterpolator(
-            context,
-            android.R.interpolator.accelerate_decelerate
+            /* context = */ context,
+            /* id = */ android.R.interpolator.accelerate_decelerate
         )
         addUpdateListener {
             val newTop = it.animatedValue as Int

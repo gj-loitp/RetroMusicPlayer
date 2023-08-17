@@ -13,7 +13,7 @@ import java.io.OutputStream
 fun Fragment.createNewFile(
     mimeType: String,
     fileName: String,
-    write: (outputStream: OutputStream?, data: Uri?) -> Unit
+    write: (outputStream: OutputStream?, data: Uri?) -> Unit,
 ) {
     val intent = Intent(Intent.ACTION_CREATE_DOCUMENT)
     intent.addCategory(Intent.CATEGORY_OPENABLE)

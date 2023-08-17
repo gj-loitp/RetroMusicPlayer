@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.albums
 
 import android.app.ActivityOptions
@@ -105,6 +91,7 @@ class AlbumDetailsFragment : AbsMainActivityFragment(R.layout.fragment_album_det
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         sharedElementEnterTransition = MaterialContainerTransform().apply {
             drawingViewId = R.id.fragment_container
             scrimColor = Color.TRANSPARENT
@@ -140,29 +127,29 @@ class AlbumDetailsFragment : AbsMainActivityFragment(R.layout.fragment_album_det
             if (albumArtistExists) {
                 findActivityNavController(R.id.fragment_container)
                     .navigate(
-                        R.id.albumArtistDetailsFragment,
-                        bundleOf(EXTRA_ARTIST_NAME to album.albumArtist),
-                        null,
-                        FragmentNavigatorExtras(artistView to album.albumArtist.toString())
+                        resId = R.id.albumArtistDetailsFragment,
+                        args = bundleOf(EXTRA_ARTIST_NAME to album.albumArtist),
+                        navOptions = null,
+                        navigatorExtras = FragmentNavigatorExtras(artistView to album.albumArtist.toString())
                     )
             } else {
                 findActivityNavController(R.id.fragment_container)
                     .navigate(
-                        R.id.artistDetailsFragment,
-                        bundleOf(EXTRA_ARTIST_ID to album.artistId),
-                        null,
-                        FragmentNavigatorExtras(artistView to album.artistId.toString())
+                        resId = R.id.artistDetailsFragment,
+                        args = bundleOf(EXTRA_ARTIST_ID to album.artistId),
+                        navOptions = null,
+                        navigatorExtras = FragmentNavigatorExtras(artistView to album.artistId.toString())
                     )
             }
 
         }
         binding.fragmentAlbumContent.playAction.setOnClickListener {
-            MusicPlayerRemote.openQueue(album.songs, 0, true)
+            MusicPlayerRemote.openQueue(queue = album.songs, startPosition = 0, startPlaying = true)
         }
         binding.fragmentAlbumContent.shuffleAction.setOnClickListener {
             MusicPlayerRemote.openAndShuffleQueue(
-                album.songs,
-                true
+                queue = album.songs,
+                startPlaying = true
             )
         }
 
@@ -185,9 +172,9 @@ class AlbumDetailsFragment : AbsMainActivityFragment(R.layout.fragment_album_det
 
     private fun setupRecyclerView() {
         simpleSongAdapter = SimpleSongAdapter(
-            requireActivity() as AppCompatActivity,
-            ArrayList(),
-            R.layout.v_item_song
+            context = requireActivity() as AppCompatActivity,
+            songs = ArrayList(),
+            layoutRes = R.layout.v_item_song
         )
         binding.fragmentAlbumContent.recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -238,7 +225,6 @@ class AlbumDetailsFragment : AbsMainActivityFragment(R.layout.fragment_album_det
             }
         }
 
-
         detailsViewModel.getAlbumInfo(album).observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
@@ -265,10 +251,10 @@ class AlbumDetailsFragment : AbsMainActivityFragment(R.layout.fragment_album_det
         val albumAdapter =
             HorizontalAlbumAdapter(requireActivity() as AppCompatActivity, albums, this)
         binding.fragmentAlbumContent.moreRecyclerView.layoutManager = GridLayoutManager(
-            requireContext(),
-            1,
-            GridLayoutManager.HORIZONTAL,
-            false
+            /* context = */ requireContext(),
+            /* spanCount = */ 1,
+            /* orientation = */ GridLayoutManager.HORIZONTAL,
+            /* reverseLayout = */ false
         )
         binding.fragmentAlbumContent.moreRecyclerView.adapter = albumAdapter
     }
@@ -337,10 +323,10 @@ class AlbumDetailsFragment : AbsMainActivityFragment(R.layout.fragment_album_det
 
     override fun onAlbumClick(albumId: Long, view: View) {
         findNavController().navigate(
-            R.id.albumDetailsFragment,
-            bundleOf(EXTRA_ALBUM_ID to albumId),
-            null,
-            FragmentNavigatorExtras(
+            resId = R.id.albumDetailsFragment,
+            args = bundleOf(EXTRA_ALBUM_ID to albumId),
+            navOptions = null,
+            navigatorExtras = FragmentNavigatorExtras(
                 view to albumId.toString()
             )
         )
@@ -351,10 +337,10 @@ class AlbumDetailsFragment : AbsMainActivityFragment(R.layout.fragment_album_det
         val sortOrder = menu.findItem(R.id.action_sort_order)
         setUpSortOrderMenu(sortOrder.subMenu!!)
         code.roy.appthemehelper.util.ToolbarContentTintHelper.handleOnCreateOptionsMenu(
-            requireContext(),
-            binding.toolbar,
-            menu,
-            getToolbarBackgroundColor(binding.toolbar)
+            /* context = */ requireContext(),
+            /* toolbar = */ binding.toolbar,
+            /* menu = */ menu,
+            /* toolbarColor = */ getToolbarBackgroundColor(binding.toolbar)
         )
     }
 
@@ -397,8 +383,10 @@ class AlbumDetailsFragment : AbsMainActivityFragment(R.layout.fragment_album_det
                 val intent = Intent(requireContext(), AlbumTagEditorActivity::class.java)
                 intent.putExtra(AbsTagEditorActivity.EXTRA_ID, album.id)
                 val options = ActivityOptions.makeSceneTransitionAnimation(
-                    requireActivity(),
+                    /* activity = */ requireActivity(),
+                    /* sharedElement = */
                     binding.albumCoverContainer,
+                    /* sharedElementName = */
                     "${getString(R.string.transition_album_art)}_${album.id}"
                 )
                 startActivity(
