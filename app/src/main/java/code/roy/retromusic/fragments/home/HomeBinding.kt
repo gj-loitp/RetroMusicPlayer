@@ -1,7 +1,7 @@
 package code.roy.retromusic.fragments.home
 
 class HomeBinding(
-    homeBinding: code.roy.retromusic.databinding.FragmentHomeBinding
+    homeBinding: code.roy.retromusic.databinding.FragmentHomeBinding,
 ) {
     val root = homeBinding.root
     val container = homeBinding.container

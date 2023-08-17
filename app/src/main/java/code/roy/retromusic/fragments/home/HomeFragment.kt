@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.home
 
 import android.os.Bundle
@@ -64,6 +50,7 @@ class HomeFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val homeBinding = FragmentHomeBinding.bind(view)
         _binding = HomeBinding(homeBinding)
         mainActivity.setSupportActionBar(binding.toolbar)
@@ -112,7 +99,10 @@ class HomeFragment :
     private fun setupListeners() {
         binding.bannerImage?.setOnClickListener {
             findNavController().navigate(
-                R.id.user_info_fragment, null, null, FragmentNavigatorExtras(
+                resId = R.id.user_info_fragment,
+                args = null,
+                navOptions = null,
+                navigatorExtras = FragmentNavigatorExtras(
                     binding.userImage to "user_image"
                 )
             )
@@ -121,16 +111,16 @@ class HomeFragment :
 
         binding.lastAdded.setOnClickListener {
             findNavController().navigate(
-                R.id.detailListFragment,
-                bundleOf(EXTRA_PLAYLIST_TYPE to LAST_ADDED_PLAYLIST)
+                resId = R.id.detailListFragment,
+                args = bundleOf(EXTRA_PLAYLIST_TYPE to LAST_ADDED_PLAYLIST)
             )
             setSharedAxisYTransitions()
         }
 
         binding.topPlayed.setOnClickListener {
             findNavController().navigate(
-                R.id.detailListFragment,
-                bundleOf(EXTRA_PLAYLIST_TYPE to TOP_PLAYED_PLAYLIST)
+                resId = R.id.detailListFragment,
+                args = bundleOf(EXTRA_PLAYLIST_TYPE to TOP_PLAYED_PLAYLIST)
             )
             setSharedAxisYTransitions()
         }
@@ -141,30 +131,35 @@ class HomeFragment :
 
         binding.history.setOnClickListener {
             findNavController().navigate(
-                R.id.detailListFragment,
-                bundleOf(EXTRA_PLAYLIST_TYPE to HISTORY_PLAYLIST)
+                resId = R.id.detailListFragment,
+                args = bundleOf(EXTRA_PLAYLIST_TYPE to HISTORY_PLAYLIST)
             )
             setSharedAxisYTransitions()
         }
 
         binding.userImage.setOnClickListener {
             findNavController().navigate(
-                R.id.user_info_fragment, null, null, FragmentNavigatorExtras(
+                resId = R.id.user_info_fragment,
+                args = null,
+                navOptions = null,
+                navigatorExtras = FragmentNavigatorExtras(
                     binding.userImage to "user_image"
                 )
             )
         }
         // Reload suggestions
         binding.suggestions.refreshButton.setOnClickListener {
-            libraryViewModel.forceReload(
-                ReloadType.Suggestions
-            )
+            libraryViewModel.forceReload(ReloadType.Suggestions)
         }
     }
 
     private fun setupTitle() {
         binding.toolbar.setNavigationOnClickListener {
-            findNavController().navigate(R.id.action_search, null, navOptions)
+            findNavController().navigate(
+                resId = R.id.action_search,
+                args = null,
+                navOptions = navOptions
+            )
         }
         val hexColor = String.format("#%06X", 0xFFFFFF and accentColor())
         val appName = "Retro <font color=$hexColor>Music</font>".parseAsHtml()
@@ -206,9 +201,12 @@ class HomeFragment :
         menu.removeItem(R.id.action_sort_order)
         menu.findItem(R.id.action_settings).setShowAsAction(SHOW_AS_ACTION_IF_ROOM)
         code.roy.appthemehelper.util.ToolbarContentTintHelper.handleOnCreateOptionsMenu(
-            requireContext(),
+            /* context = */ requireContext(),
+            /* toolbar = */
             binding.toolbar,
+            /* menu = */
             menu,
+            /* toolbarColor = */
             code.roy.appthemehelper.common.ATHToolbarActivity.getToolbarBackgroundColor(binding.toolbar)
         )
         //Setting up cast button
@@ -259,7 +257,12 @@ class HomeFragment :
                 }
             }
         }
-        binding.suggestions.card6.setCardBackgroundColor(ColorUtil.withAlpha(color, 0.12f))
+        binding.suggestions.card6.setCardBackgroundColor(
+            ColorUtil.withAlpha(
+                baseColor = color,
+                alpha = 0.12f
+            )
+        )
         images.forEachIndexed { index, imageView ->
             imageView.setOnClickListener {
                 it.isClickable = false
@@ -289,19 +292,19 @@ class HomeFragment :
     override fun onMenuItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_settings -> findNavController().navigate(
-                R.id.settings_fragment,
-                null,
-                navOptions
+                resId = R.id.settings_fragment,
+                args = null,
+                navOptions = navOptions
             )
 
             R.id.action_import_playlist -> ImportPlaylistDialog().show(
-                childFragmentManager,
-                "ImportPlaylist"
+                /* manager = */ childFragmentManager,
+                /* tag = */ "ImportPlaylist"
             )
 
             R.id.action_add_to_playlist -> CreatePlaylistDialog.create(emptyList()).show(
-                childFragmentManager,
-                "ShowCreatePlaylistDialog"
+                /* manager = */ childFragmentManager,
+                /* tag = */ "ShowCreatePlaylistDialog"
             )
         }
         return false
@@ -309,7 +312,10 @@ class HomeFragment :
 
     override fun onPrepareMenu(menu: Menu) {
         super.onPrepareMenu(menu)
-        code.roy.appthemehelper.util.ToolbarContentTintHelper.handleOnPrepareOptionsMenu(requireActivity(), binding.toolbar)
+        code.roy.appthemehelper.util.ToolbarContentTintHelper.handleOnPrepareOptionsMenu(
+            /* activity = */ requireActivity(),
+            /* toolbar = */ binding.toolbar
+        )
     }
 
     override fun onResume() {

@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.genres
 
 import android.os.Bundle
@@ -50,8 +36,15 @@ class GenreDetailsFragment : AbsMainActivityFragment(R.layout.f_playlist_detail)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        enterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true).addTarget(view)
-        returnTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false)
+
+        enterTransition = MaterialSharedAxis(
+            /* axis = */ MaterialSharedAxis.Z,
+            /* forward = */ true
+        ).addTarget(view)
+        returnTransition = MaterialSharedAxis(
+            /* axis = */ MaterialSharedAxis.Z,
+            /* forward = */ false
+        )
         _binding = FPlaylistDetailBinding.bind(view)
         mainActivity.addMusicServiceEventListener(detailsViewModel)
         mainActivity.setSupportActionBar(binding.toolbar)
@@ -71,7 +64,11 @@ class GenreDetailsFragment : AbsMainActivityFragment(R.layout.f_playlist_detail)
     }
 
     private fun setupRecyclerView() {
-        songAdapter = SongAdapter(requireActivity(), ArrayList(), R.layout.item_list)
+        songAdapter = SongAdapter(
+            activity = requireActivity(),
+            dataSet = ArrayList(),
+            itemLayoutRes = R.layout.item_list
+        )
         binding.recyclerView.apply {
             itemAnimator = DefaultItemAnimator()
             layoutManager = LinearLayoutManager(requireContext())
@@ -103,7 +100,12 @@ class GenreDetailsFragment : AbsMainActivityFragment(R.layout.f_playlist_detail)
 
     private fun checkForPadding() {
         val height = dipToPix(52f).toInt()
-        binding.recyclerView.setPadding(0, 0, 0, height)
+        binding.recyclerView.setPadding(
+            /* left = */ 0,
+            /* top = */ 0,
+            /* right = */ 0,
+            /* bottom = */ height
+        )
     }
 
     override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
@@ -111,7 +113,11 @@ class GenreDetailsFragment : AbsMainActivityFragment(R.layout.f_playlist_detail)
     }
 
     override fun onMenuItemSelected(item: MenuItem): Boolean {
-        return GenreMenuHelper.handleMenuClick(requireActivity(), genre, item)
+        return GenreMenuHelper.handleMenuClick(
+            activity = requireActivity(),
+            genre = genre,
+            item = item
+        )
     }
 
     override fun onDestroyView() {

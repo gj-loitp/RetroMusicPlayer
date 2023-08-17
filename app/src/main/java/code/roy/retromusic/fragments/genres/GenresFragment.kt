@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.fragments.genres
 
 import android.os.Bundle
@@ -49,9 +35,9 @@ GenresFragment : AbsRecyclerViewFragment<GenreAdapter, LinearLayoutManager>(),
 
     override fun createLayoutManager(): LinearLayoutManager {
         return if (RetroUtil.isLandscape) {
-            GridLayoutManager(activity, 4)
+            GridLayoutManager(/* context = */ activity, /* spanCount = */ 4)
         } else {
-            GridLayoutManager(activity, 2)
+            GridLayoutManager(/* context = */ activity, /* spanCount = */ 2)
         }
     }
 
@@ -76,7 +62,6 @@ GenresFragment : AbsRecyclerViewFragment<GenreAdapter, LinearLayoutManager>(),
     }
 
 
-
     override val titleRes: Int
         get() = R.string.genres
 
@@ -97,11 +82,17 @@ GenresFragment : AbsRecyclerViewFragment<GenreAdapter, LinearLayoutManager>(),
     }
 
     override fun onClickGenre(genre: Genre, view: View) {
-        exitTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true).addTarget(requireView())
-        reenterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false)
+        exitTransition = MaterialSharedAxis(
+            /* axis = */ MaterialSharedAxis.Z,
+            /* forward = */ true
+        ).addTarget(requireView())
+        reenterTransition = MaterialSharedAxis(
+            /* axis = */ MaterialSharedAxis.Z,
+            /* forward = */ false
+        )
         findNavController().navigate(
-            R.id.genreDetailsFragment,
-            bundleOf(EXTRA_GENRE to genre)
+            resId = R.id.genreDetailsFragment,
+            args = bundleOf(EXTRA_GENRE to genre)
         )
     }
 }
