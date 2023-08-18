@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.dialogs
 
 import android.app.Dialog
@@ -60,15 +46,16 @@ class SavePlaylistDialog : DialogFragment() {
                     if (outputStream != null) {
                         lifecycleScope.launch(Dispatchers.IO) {
                             M3UWriter.writeIO(
-                                outputStream,
-                                playlistWithSongs
+                                outputStream = outputStream,
+                                playlistWithSongs = playlistWithSongs
                             )
                             withContext(Dispatchers.Main) {
                                 showToast(
-                                    requireContext().getString(
-                                        R.string.saved_playlist_to,
-                                        data?.lastPathSegment),
-                                    Toast.LENGTH_LONG
+                                    message = requireContext().getString(
+                                        /* resId = */ R.string.saved_playlist_to,
+                                        /* ...formatArgs = */ data?.lastPathSegment
+                                    ),
+                                    duration = Toast.LENGTH_LONG
                                 )
                                 dismiss()
                             }
@@ -84,15 +71,15 @@ class SavePlaylistDialog : DialogFragment() {
             lifecycleScope.launch(Dispatchers.IO) {
                 val file = PlaylistsUtil.savePlaylistWithSongs(playlistWithSongs)
                 MediaScannerConnection.scanFile(
-                    requireActivity(),
-                    arrayOf<String>(file.path),
-                    null
+                    /* context = */ requireActivity(),
+                    /* paths = */ arrayOf<String>(file.path),
+                    /* mimeTypes = */ null
                 ) { _, _ ->
                 }
                 withContext(Dispatchers.Main) {
                     showToast(
-                        getString(R.string.saved_playlist_to, file),
-                        Toast.LENGTH_LONG
+                        message = getString(R.string.saved_playlist_to, file),
+                        duration = Toast.LENGTH_LONG
                     )
                     dismiss()
                 }

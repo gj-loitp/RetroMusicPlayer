@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.dialogs
 
 import android.app.Dialog
@@ -39,83 +25,127 @@ class SongDetailDialog : DialogFragment() {
         val context: Context = requireContext()
         val binding = DlgFileDetailsBinding.inflate(layoutInflater)
 
-        val song = BundleCompat.getParcelable(requireArguments(), EXTRA_SONG, Song::class.java)
+        val song = BundleCompat.getParcelable(
+            /* in = */ requireArguments(),
+            /* key = */ EXTRA_SONG,
+            /* clazz = */ Song::class.java
+        )
         with(binding) {
-            fileName.text = makeTextWithTitle(context, R.string.label_file_name, "-")
-            filePath.text = makeTextWithTitle(context, R.string.label_file_path, "-")
-            fileSize.text = makeTextWithTitle(context, R.string.label_file_size, "-")
-            fileFormat.text = makeTextWithTitle(context, R.string.label_file_format, "-")
-            trackLength.text = makeTextWithTitle(context, R.string.label_track_length, "-")
-            bitrate.text = makeTextWithTitle(context, R.string.label_bit_rate, "-")
-            samplingRate.text = makeTextWithTitle(context, R.string.label_sampling_rate, "-")
+            fileName.text = makeTextWithTitle(
+                context = context,
+                titleResId = R.string.label_file_name,
+                text = "-"
+            )
+            filePath.text = makeTextWithTitle(
+                context = context,
+                titleResId = R.string.label_file_path,
+                text = "-"
+            )
+            fileSize.text = makeTextWithTitle(
+                context = context,
+                titleResId = R.string.label_file_size,
+                text = "-"
+            )
+            fileFormat.text = makeTextWithTitle(
+                context = context,
+                titleResId = R.string.label_file_format,
+                text = "-"
+            )
+            trackLength.text = makeTextWithTitle(
+                context = context,
+                titleResId = R.string.label_track_length,
+                text = "-"
+            )
+            bitrate.text = makeTextWithTitle(
+                context = context,
+                titleResId = R.string.label_bit_rate,
+                text = "-"
+            )
+            samplingRate.text = makeTextWithTitle(
+                context = context,
+                titleResId = R.string.label_sampling_rate,
+                text = "-"
+            )
         }
 
         if (song != null) {
             val songFile = File(song.data)
             if (songFile.exists()) {
                 binding.fileName.text =
-                    makeTextWithTitle(context, R.string.label_file_name, songFile.name)
+                    makeTextWithTitle(
+                        context = context,
+                        titleResId = R.string.label_file_name,
+                        text = songFile.name
+                    )
                 binding.filePath.text =
-                    makeTextWithTitle(context, R.string.label_file_path, songFile.absolutePath)
+                    makeTextWithTitle(
+                        context = context,
+                        titleResId = R.string.label_file_path,
+                        text = songFile.absolutePath
+                    )
 
                 binding.dateModified.text = makeTextWithTitle(
-                    context, R.string.label_last_modified,
-                    MusicUtil.getDateModifiedString(songFile.lastModified())
+                    context = context,
+                    titleResId = R.string.label_last_modified,
+                    text = MusicUtil.getDateModifiedString(songFile.lastModified())
                 )
 
-                binding.fileSize.text =
-                    makeTextWithTitle(
-                        context,
-                        R.string.label_file_size,
-                        getFileSizeString(songFile.length())
-                    )
+                binding.fileSize.text = makeTextWithTitle(
+                    context = context,
+                    titleResId = R.string.label_file_size,
+                    text = getFileSizeString(songFile.length())
+                )
                 try {
                     val audioFile = AudioFileIO.read(songFile)
                     val audioHeader = audioFile.audioHeader
 
                     binding.fileFormat.text =
-                        makeTextWithTitle(context, R.string.label_file_format, audioHeader.format)
+                        makeTextWithTitle(
+                            context = context,
+                            titleResId = R.string.label_file_format,
+                            text = audioHeader.format
+                        )
                     binding.trackLength.text = makeTextWithTitle(
-                        context,
-                        R.string.label_track_length,
-                        MusicUtil.getReadableDurationString((audioHeader.trackLength * 1000).toLong())
+                        context = context,
+                        titleResId = R.string.label_track_length,
+                        text = MusicUtil.getReadableDurationString((audioHeader.trackLength * 1000).toLong())
                     )
                     binding.bitrate.text = makeTextWithTitle(
-                        context,
-                        R.string.label_bit_rate,
-                        audioHeader.bitRate + " kb/s"
+                        context = context,
+                        titleResId = R.string.label_bit_rate,
+                        text = audioHeader.bitRate + " kb/s"
                     )
-                    binding.samplingRate.text =
-                        makeTextWithTitle(
-                            context,
-                            R.string.label_sampling_rate,
-                            audioHeader.sampleRate + " Hz"
-                        )
+                    binding.samplingRate.text = makeTextWithTitle(
+                        context = context,
+                        titleResId = R.string.label_sampling_rate,
+                        text = audioHeader.sampleRate + " Hz"
+                    )
                 } catch (e: Exception) {
                     Log.e(TAG, "error while reading the song file", e)
                     // fallback
                     binding.trackLength.text = makeTextWithTitle(
-                        context,
-                        R.string.label_track_length,
-                        MusicUtil.getReadableDurationString(song.duration)
+                        context = context,
+                        titleResId = R.string.label_track_length,
+                        text = MusicUtil.getReadableDurationString(song.duration)
                     )
                 }
             } else {
                 // fallback
                 binding.fileName.text =
-                    makeTextWithTitle(context, R.string.label_file_name, song.title)
+                    makeTextWithTitle(
+                        context = context,
+                        titleResId = R.string.label_file_name,
+                        text = song.title
+                    )
                 binding.trackLength.text = makeTextWithTitle(
-                    context,
-                    R.string.label_track_length,
-                    MusicUtil.getReadableDurationString(song.duration)
+                    context = context,
+                    titleResId = R.string.label_track_length,
+                    text = MusicUtil.getReadableDurationString(song.duration)
                 )
             }
         }
-        return materialDialog(R.string.action_details)
-            .setPositiveButton(android.R.string.ok, null)
-            .setView(binding.root)
-            .create()
-            .colorButtons()
+        return materialDialog(R.string.action_details).setPositiveButton(android.R.string.ok, null)
+            .setView(binding.root).create().colorButtons()
     }
 
     companion object {
@@ -130,9 +160,12 @@ class SongDetailDialog : DialogFragment() {
             }
         }
 
-        private fun makeTextWithTitle(context: Context, titleResId: Int, text: String?): Spanned {
-            return ("<b>" + context.resources.getString(titleResId) + ": " + "</b>" + text)
-                .parseAsHtml()
+        private fun makeTextWithTitle(
+            context: Context,
+            titleResId: Int,
+            text: String?,
+        ): Spanned {
+            return ("<b>" + context.resources.getString(titleResId) + ": " + "</b>" + text).parseAsHtml()
         }
 
         private fun getFileSizeString(sizeInBytes: Long): String {

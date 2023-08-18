@@ -30,14 +30,14 @@ class PlaybackSpeedDialog : DialogFragment() {
             .setNegativeButton(android.R.string.cancel, null)
             .setPositiveButton(R.string.save) { _, _ ->
                 updatePlaybackAndPitch(
-                    binding.playbackSpeedSlider.value,
-                    binding.playbackPitchSlider.value
+                    speed = binding.playbackSpeedSlider.value,
+                    pitch = binding.playbackPitchSlider.value
                 )
             }
             .setNeutralButton(R.string.reset_action) { _, _ ->
                 updatePlaybackAndPitch(
-                    1F,
-                    1F
+                    speed = 1F,
+                    pitch = 1F
                 )
             }
             .setView(binding.root)

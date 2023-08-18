@@ -1,16 +1,3 @@
-/*
- * Copyright (c) 2019 Hemanth Savarala.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by
- *  the Free Software Foundation either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- */
 package code.roy.retromusic.auto
 
 import android.content.Context
@@ -32,10 +19,6 @@ import code.roy.retromusic.repository.SongRepository
 import code.roy.retromusic.repository.TopPlayedRepository
 import java.lang.ref.WeakReference
 
-
-/**
- * Created by Beesham Sarendranauth (Beesham)
- */
 class AutoMusicProvider(
     private val mContext: Context,
     private val songsRepository: SongRepository,
@@ -43,7 +26,7 @@ class AutoMusicProvider(
     private val artistsRepository: ArtistRepository,
     private val genresRepository: GenreRepository,
     private val playlistsRepository: PlaylistRepository,
-    private val topPlayedRepository: TopPlayedRepository
+    private val topPlayedRepository: TopPlayedRepository,
 ) {
     private var mMusicService: WeakReference<MusicService>? = null
 
@@ -57,6 +40,7 @@ class AutoMusicProvider(
             AutoMediaIDHelper.MEDIA_ID_ROOT -> {
                 mediaItems.addAll(getRootChildren(resources))
             }
+
             AutoMediaIDHelper.MEDIA_ID_MUSICS_BY_PLAYLIST -> for (playlist in playlistsRepository.playlists()) {
                 mediaItems.add(
                     AutoMediaItem.with(mContext)
@@ -68,6 +52,7 @@ class AutoMusicProvider(
                         .build()
                 )
             }
+
             AutoMediaIDHelper.MEDIA_ID_MUSICS_BY_ALBUM -> for (album in albumsRepository.albums()) {
                 mediaItems.add(
                     AutoMediaItem.with(mContext)
@@ -79,6 +64,7 @@ class AutoMusicProvider(
                         .build()
                 )
             }
+
             AutoMediaIDHelper.MEDIA_ID_MUSICS_BY_ARTIST -> for (artist in artistsRepository.artists()) {
                 mediaItems.add(
                     AutoMediaItem.with(mContext)
@@ -88,6 +74,7 @@ class AutoMusicProvider(
                         .build()
                 )
             }
+
             AutoMediaIDHelper.MEDIA_ID_MUSICS_BY_ALBUM_ARTIST -> for (artist in artistsRepository.albumArtists()) {
                 mediaItems.add(
                     AutoMediaItem.with(mContext)
@@ -98,6 +85,7 @@ class AutoMusicProvider(
                         .build()
                 )
             }
+
             AutoMediaIDHelper.MEDIA_ID_MUSICS_BY_GENRE -> for (genre in genresRepository.genres()) {
                 mediaItems.add(
                     AutoMediaItem.with(mContext)
@@ -107,6 +95,7 @@ class AutoMusicProvider(
                         .build()
                 )
             }
+
             AutoMediaIDHelper.MEDIA_ID_MUSICS_BY_QUEUE ->
                 mMusicService?.get()?.playingQueue
                     ?.let {
@@ -122,6 +111,7 @@ class AutoMusicProvider(
                             )
                         }
                     }
+
             else -> {
                 getPlaylistChildren(mediaId, mediaItems)
             }
@@ -131,18 +121,21 @@ class AutoMusicProvider(
 
     private fun getPlaylistChildren(
         mediaId: String?,
-        mediaItems: MutableList<MediaBrowserCompat.MediaItem>
+        mediaItems: MutableList<MediaBrowserCompat.MediaItem>,
     ) {
         val songs = when (mediaId) {
             AutoMediaIDHelper.MEDIA_ID_MUSICS_BY_TOP_TRACKS -> {
                 topPlayedRepository.topTracks()
             }
+
             AutoMediaIDHelper.MEDIA_ID_MUSICS_BY_HISTORY -> {
                 topPlayedRepository.recentlyPlayedTracks()
             }
+
             AutoMediaIDHelper.MEDIA_ID_MUSICS_BY_SUGGESTIONS -> {
                 topPlayedRepository.notRecentlyPlayedTracks().take(8)
             }
+
             else -> {
                 emptyList()
             }
@@ -170,6 +163,7 @@ class AutoMusicProvider(
                                 .title(resources.getString(R.string.albums)).build()
                         )
                     }
+
                     CategoryInfo.Category.Artists -> {
                         if (PreferenceUtil.albumArtistsOnly) {
                             mediaItems.add(
@@ -189,6 +183,7 @@ class AutoMusicProvider(
                             )
                         }
                     }
+
                     CategoryInfo.Category.Genres -> {
                         mediaItems.add(
                             AutoMediaItem.with(mContext)
@@ -198,6 +193,7 @@ class AutoMusicProvider(
                                 .title(resources.getString(R.string.genres)).build()
                         )
                     }
+
                     CategoryInfo.Category.Playlists -> {
                         mediaItems.add(
                             AutoMediaItem.with(mContext)
@@ -207,6 +203,7 @@ class AutoMusicProvider(
                                 .title(resources.getString(R.string.playlists)).build()
                         )
                     }
+
                     else -> {
                     }
                 }
@@ -218,7 +215,12 @@ class AutoMusicProvider(
                 .path(AutoMediaIDHelper.MEDIA_ID_MUSICS_BY_SHUFFLE)
                 .icon(R.drawable.ic_shuffle)
                 .title(resources.getString(R.string.action_shuffle_all))
-                .subTitle(MusicUtil.getPlaylistInfoString(mContext, songsRepository.songs()))
+                .subTitle(
+                    MusicUtil.getPlaylistInfoString(
+                        context = mContext,
+                        songs = songsRepository.songs()
+                    )
+                )
                 .build()
         )
         mediaItems.add(
@@ -227,7 +229,12 @@ class AutoMusicProvider(
                 .path(AutoMediaIDHelper.MEDIA_ID_MUSICS_BY_QUEUE)
                 .icon(R.drawable.ic_queue_music)
                 .title(resources.getString(R.string.queue))
-                .subTitle(MusicUtil.getPlaylistInfoString(mContext, MusicPlayerRemote.playingQueue))
+                .subTitle(
+                    MusicUtil.getPlaylistInfoString(
+                        context = mContext,
+                        songs = MusicPlayerRemote.playingQueue
+                    )
+                )
                 .asBrowsable().build()
         )
         mediaItems.add(
@@ -238,8 +245,8 @@ class AutoMusicProvider(
                 .title(resources.getString(R.string.my_top_tracks))
                 .subTitle(
                     MusicUtil.getPlaylistInfoString(
-                        mContext,
-                        topPlayedRepository.topTracks()
+                        context = mContext,
+                        songs = topPlayedRepository.topTracks()
                     )
                 )
                 .asBrowsable().build()
@@ -252,8 +259,8 @@ class AutoMusicProvider(
                 .title(resources.getString(R.string.suggestion_songs))
                 .subTitle(
                     MusicUtil.getPlaylistInfoString(
-                        mContext,
-                        topPlayedRepository.notRecentlyPlayedTracks().takeIf {
+                        context = mContext,
+                        songs = topPlayedRepository.notRecentlyPlayedTracks().takeIf {
                             it.size > 9
                         } ?: emptyList()
                     )
@@ -268,8 +275,8 @@ class AutoMusicProvider(
                 .title(resources.getString(R.string.history))
                 .subTitle(
                     MusicUtil.getPlaylistInfoString(
-                        mContext,
-                        topPlayedRepository.recentlyPlayedTracks()
+                        context = mContext,
+                        songs = topPlayedRepository.recentlyPlayedTracks()
                     )
                 )
                 .asBrowsable().build()

@@ -8,7 +8,6 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.os.bundleOf
 
-
 internal object AutoMediaItem {
     fun with(context: Context): Builder {
         return Builder(context)
@@ -23,7 +22,12 @@ internal object AutoMediaItem {
         }
 
         fun path(path: String?, id: Long): Builder {
-            return path(AutoMediaIDHelper.createMediaID(id.toString(), path))
+            return path(
+                AutoMediaIDHelper.createMediaID(
+                    /* mediaID = */ id.toString(),
+                    /* ...categories = */ path
+                )
+            )
         }
 
         fun title(title: String): Builder {
@@ -43,11 +47,11 @@ internal object AutoMediaItem {
 
         fun icon(iconDrawableId: Int): Builder {
             mBuilder?.setIconBitmap(
-                    ResourcesCompat.getDrawable(
-                        mContext.resources,
-                        iconDrawableId,
-                        mContext.theme
-                    )?.toBitmap()
+                ResourcesCompat.getDrawable(
+                    /* res = */ mContext.resources,
+                    /* id = */ iconDrawableId,
+                    /* theme = */ mContext.theme
+                )?.toBitmap()
             )
             return this
         }
@@ -87,11 +91,14 @@ internal object AutoMediaItem {
         init {
             mBuilder = MediaDescriptionCompat.Builder()
         }
-        companion  object{
+
+        companion object {
             // Hints - see https://developer.android.com/training/cars/media#default-content-style
             const val CONTENT_STYLE_SUPPORTED = "android.media.browse.CONTENT_STYLE_SUPPORTED"
-            const val CONTENT_STYLE_BROWSABLE_HINT = "android.media.browse.CONTENT_STYLE_BROWSABLE_HINT"
-            const val CONTENT_STYLE_PLAYABLE_HINT = "android.media.browse.CONTENT_STYLE_PLAYABLE_HINT"
+            const val CONTENT_STYLE_BROWSABLE_HINT =
+                "android.media.browse.CONTENT_STYLE_BROWSABLE_HINT"
+            const val CONTENT_STYLE_PLAYABLE_HINT =
+                "android.media.browse.CONTENT_STYLE_PLAYABLE_HINT"
             const val CONTENT_STYLE_LIST_ITEM_HINT_VALUE = 1
             const val CONTENT_STYLE_GRID_ITEM_HINT_VALUE = 2
         }

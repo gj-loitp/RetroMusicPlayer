@@ -129,7 +129,10 @@ class BlacklistFolderChooserDialog : DialogFragment() {
     }
 
     interface FolderCallback {
-        fun onFolderSelection(context: Context, folder: File)
+        fun onFolderSelection(
+            context: Context,
+            folder: File,
+        )
     }
 
     companion object {
