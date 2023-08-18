@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.appwidgets
 
 import android.app.PendingIntent
@@ -51,43 +37,49 @@ class AppWidgetSmall : BaseAppWidget() {
      * actions if service not running.
      */
     override fun defaultAppWidget(context: Context, appWidgetIds: IntArray) {
-        val appWidgetView = RemoteViews(context.packageName, R.layout.v_app_widget_small)
+        val appWidgetView = RemoteViews(
+            /* packageName = */ context.packageName,
+            /* layoutId = */ R.layout.v_app_widget_small
+        )
 
         appWidgetView.setViewVisibility(R.id.media_titles, View.INVISIBLE)
         appWidgetView.setImageViewResource(R.id.image, R.drawable.default_audio_art)
         appWidgetView.setImageViewBitmap(
-            R.id.button_next,
-            context.getTintedDrawable(
+            /* viewId = */ R.id.button_next,
+            /* bitmap = */ context.getTintedDrawable(
                 R.drawable.ic_skip_next,
-                MaterialValueHelper.getSecondaryTextColor(context, true)
+                MaterialValueHelper.getSecondaryTextColor(context = context, dark = true)
             ).toBitmap()
         )
         appWidgetView.setImageViewBitmap(
             R.id.button_prev,
 
             context.getTintedDrawable(
-                R.drawable.ic_skip_previous,
-                MaterialValueHelper.getSecondaryTextColor(context, true)
+                id = R.drawable.ic_skip_previous,
+                color = MaterialValueHelper.getSecondaryTextColor(context = context, dark = true)
             ).toBitmap()
         )
         appWidgetView.setImageViewBitmap(
             R.id.button_toggle_play_pause,
 
             context.getTintedDrawable(
-                R.drawable.ic_play_arrow_white_32dp,
-                MaterialValueHelper.getSecondaryTextColor(context, true)
+                id = R.drawable.ic_play_arrow_white_32dp,
+                color = MaterialValueHelper.getSecondaryTextColor(context = context, dark = true)
             ).toBitmap()
         )
 
-        linkButtons(context, appWidgetView)
-        pushUpdate(context, appWidgetIds, appWidgetView)
+        linkButtons(context = context, views = appWidgetView)
+        pushUpdate(context = context, appWidgetIds = appWidgetIds, views = appWidgetView)
     }
 
     /**
      * Update all active widget instances by pushing changes
      */
     override fun performUpdate(service: MusicService, appWidgetIds: IntArray?) {
-        val appWidgetView = RemoteViews(service.packageName, R.layout.v_app_widget_small)
+        val appWidgetView = RemoteViews(
+            /* packageName = */ service.packageName,
+            /* layoutId = */ R.layout.v_app_widget_small
+        )
 
         val isPlaying = service.isPlaying
         val song = service.currentSong
@@ -137,9 +129,9 @@ class AppWidgetSmall : BaseAppWidget() {
                         val palette = resource.palette
                         update(
                             resource.bitmap, palette.getVibrantColor(
-                                palette.getMutedColor(
+                                /* defaultColor = */ palette.getMutedColor(
                                     MaterialValueHelper.getSecondaryTextColor(
-                                        service, true
+                                        context = service, dark = true
                                     )
                                 )
                             )
@@ -148,11 +140,17 @@ class AppWidgetSmall : BaseAppWidget() {
 
                     override fun onLoadFailed(errorDrawable: Drawable?) {
                         super.onLoadFailed(errorDrawable)
-                        update(null, MaterialValueHelper.getSecondaryTextColor(service, true))
+                        update(
+                            bitmap = null,
+                            color = MaterialValueHelper.getSecondaryTextColor(service, true)
+                        )
                     }
 
                     override fun onLoadCleared(placeholder: Drawable?) {
-                        update(null, MaterialValueHelper.getSecondaryTextColor(service, true))
+                        update(
+                            bitmap = null,
+                            color = MaterialValueHelper.getSecondaryTextColor(service, true)
+                        )
                     }
 
                     private fun update(bitmap: Bitmap?, color: Int) {
@@ -160,27 +158,39 @@ class AppWidgetSmall : BaseAppWidget() {
                         val playPauseRes = if (isPlaying) R.drawable.ic_pause
                         else R.drawable.ic_play_arrow_white_32dp
                         appWidgetView.setImageViewBitmap(
-                            R.id.button_toggle_play_pause,
-                            service.getTintedDrawable(playPauseRes, color).toBitmap()
+                            /* viewId = */ R.id.button_toggle_play_pause,
+                            /* bitmap = */ service.getTintedDrawable(playPauseRes, color).toBitmap()
                         )
 
                         // Set prev/next button drawables
                         appWidgetView.setImageViewBitmap(
-                            R.id.button_next,
+                            /* viewId = */ R.id.button_next,
+                            /* bitmap = */
                             service.getTintedDrawable(R.drawable.ic_skip_next, color).toBitmap()
                         )
                         appWidgetView.setImageViewBitmap(
-                            R.id.button_prev,
+                            /* viewId = */ R.id.button_prev,
+                            /* bitmap = */
                             service.getTintedDrawable(R.drawable.ic_skip_previous, color).toBitmap()
                         )
 
                         val image = getAlbumArtDrawable(service, bitmap)
                         val roundedBitmap = createRoundedBitmap(
-                            image, imageSize, imageSize, cardRadius, 0f, 0f, 0f
+                            drawable = image,
+                            width = imageSize,
+                            height = imageSize,
+                            tl = cardRadius,
+                            tr = 0f,
+                            bl = 0f,
+                            br = 0f
                         )
                         appWidgetView.setImageViewBitmap(R.id.image, roundedBitmap)
 
-                        pushUpdate(appContext, appWidgetIds, appWidgetView)
+                        pushUpdate(
+                            context = appContext,
+                            appWidgetIds = appWidgetIds,
+                            views = appWidgetView
+                        )
                     }
                 })
         }
@@ -202,7 +212,10 @@ class AppWidgetSmall : BaseAppWidget() {
         action.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
         var pendingIntent =
             PendingIntent.getActivity(
-                context, 0, action, if (VersionUtils.hasMarshmallow())
+                /* context = */ context,
+                /* requestCode = */ 0,
+                /* intent = */ action,
+                /* flags = */ if (VersionUtils.hasMarshmallow())
                     PendingIntent.FLAG_IMMUTABLE
                 else 0
             )
