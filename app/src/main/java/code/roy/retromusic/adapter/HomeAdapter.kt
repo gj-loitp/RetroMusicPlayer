@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.adapter
 
 import android.annotation.SuppressLint
@@ -78,52 +64,56 @@ class HomeAdapter(private val activity: AppCompatActivity) :
                 viewHolder.clickableArea.setOnClickListener {
                     it.findFragment<HomeFragment>().setSharedAxisXTransitions()
                     activity.findNavController(R.id.fragment_container).navigate(
-                        R.id.detailListFragment,
-                        bundleOf("type" to RECENT_ALBUMS)
+                        resId = R.id.detailListFragment,
+                        args = bundleOf("type" to RECENT_ALBUMS)
                     )
                 }
             }
+
             TOP_ALBUMS -> {
                 val viewHolder = holder as AlbumViewHolder
                 viewHolder.bindView(home)
                 viewHolder.clickableArea.setOnClickListener {
                     it.findFragment<HomeFragment>().setSharedAxisXTransitions()
                     activity.findNavController(R.id.fragment_container).navigate(
-                        R.id.detailListFragment,
-                        bundleOf("type" to TOP_ALBUMS)
+                        resId = R.id.detailListFragment,
+                        args = bundleOf("type" to TOP_ALBUMS)
                     )
                 }
             }
+
             RECENT_ARTISTS -> {
                 val viewHolder = holder as ArtistViewHolder
                 viewHolder.bindView(home)
                 viewHolder.clickableArea.setOnClickListener {
                     it.findFragment<HomeFragment>().setSharedAxisXTransitions()
                     activity.findNavController(R.id.fragment_container).navigate(
-                        R.id.detailListFragment,
-                        bundleOf("type" to RECENT_ARTISTS)
+                        resId = R.id.detailListFragment,
+                        args = bundleOf("type" to RECENT_ARTISTS)
                     )
                 }
             }
+
             TOP_ARTISTS -> {
                 val viewHolder = holder as ArtistViewHolder
                 viewHolder.bindView(home)
                 viewHolder.clickableArea.setOnClickListener {
                     it.findFragment<HomeFragment>().setSharedAxisXTransitions()
                     activity.findNavController(R.id.fragment_container).navigate(
-                        R.id.detailListFragment,
-                        bundleOf("type" to TOP_ARTISTS)
+                        resId = R.id.detailListFragment,
+                        args = bundleOf("type" to TOP_ARTISTS)
                     )
                 }
             }
+
             FAVOURITES -> {
                 val viewHolder = holder as PlaylistViewHolder
                 viewHolder.bindView(home)
                 viewHolder.clickableArea.setOnClickListener {
                     it.findFragment<HomeFragment>().setSharedAxisXTransitions()
                     activity.findNavController(R.id.fragment_container).navigate(
-                        R.id.detailListFragment,
-                        bundleOf("type" to FAVOURITES)
+                        resId = R.id.detailListFragment,
+                        args = bundleOf("type" to FAVOURITES)
                     )
                 }
             }
@@ -168,9 +158,9 @@ class HomeAdapter(private val activity: AppCompatActivity) :
             title.setText(home.titleRes)
             recyclerView.apply {
                 val songAdapter = SongAdapter(
-                    activity,
-                    home.arrayList as MutableList<Song>,
-                    R.layout.v_item_favourite_card
+                    activity = activity,
+                    dataSet = home.arrayList as MutableList<Song>,
+                    itemLayoutRes = R.layout.v_item_favourite_card
                 )
                 layoutManager = linearLayoutManager()
                 adapter = songAdapter
@@ -185,23 +175,40 @@ class HomeAdapter(private val activity: AppCompatActivity) :
     }
 
     private fun artistsAdapter(artists: List<Artist>) =
-        ArtistAdapter(activity, artists, PreferenceUtil.homeArtistGridStyle, this)
+        ArtistAdapter(
+            activity = activity,
+            dataSet = artists,
+            itemLayoutRes = PreferenceUtil.homeArtistGridStyle,
+            IArtistClickListener = this
+        )
 
     private fun albumAdapter(albums: List<Album>) =
-        AlbumAdapter(activity, albums, PreferenceUtil.homeAlbumGridStyle, this)
+        AlbumAdapter(
+            activity = activity,
+            dataSet = albums,
+            itemLayoutRes = PreferenceUtil.homeAlbumGridStyle,
+            listener = this
+        )
 
-    private fun gridLayoutManager() =
-        GridLayoutManager(activity, 1, GridLayoutManager.HORIZONTAL, false)
+    private fun gridLayoutManager() = GridLayoutManager(
+        /* context = */ activity,
+        /* spanCount = */ 1,
+        /* orientation = */ GridLayoutManager.HORIZONTAL,
+        /* reverseLayout = */ false
+    )
 
-    private fun linearLayoutManager() =
-        LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+    private fun linearLayoutManager() = LinearLayoutManager(
+        /* context = */ activity,
+        /* orientation = */ LinearLayoutManager.HORIZONTAL,
+        /* reverseLayout = */ false
+    )
 
     override fun onArtist(artistId: Long, view: View) {
         activity.findNavController(R.id.fragment_container).navigate(
-            R.id.artistDetailsFragment,
-            bundleOf(EXTRA_ARTIST_ID to artistId),
-            null,
-            FragmentNavigatorExtras(
+            resId = R.id.artistDetailsFragment,
+            args = bundleOf(EXTRA_ARTIST_ID to artistId),
+            navOptions = null,
+            navigatorExtras = FragmentNavigatorExtras(
                 view to artistId.toString()
             )
         )
@@ -209,10 +216,10 @@ class HomeAdapter(private val activity: AppCompatActivity) :
 
     override fun onAlbumClick(albumId: Long, view: View) {
         activity.findNavController(R.id.fragment_container).navigate(
-            R.id.albumDetailsFragment,
-            bundleOf(EXTRA_ALBUM_ID to albumId),
-            null,
-            FragmentNavigatorExtras(
+            resId = R.id.albumDetailsFragment,
+            args = bundleOf(EXTRA_ALBUM_ID to albumId),
+            navOptions = null,
+            navigatorExtras = FragmentNavigatorExtras(
                 view to albumId.toString()
             )
         )

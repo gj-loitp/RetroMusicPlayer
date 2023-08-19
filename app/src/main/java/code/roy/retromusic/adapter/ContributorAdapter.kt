@@ -1,19 +1,6 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,16 +21,16 @@ class ContributorAdapter(
         return if (viewType == HEADER) {
             ViewHolder(
                 LayoutInflater.from(parent.context).inflate(
-                    R.layout.v_item_contributor_header,
-                    parent,
-                    false
+                    /* resource = */ R.layout.v_item_contributor_header,
+                    /* root = */ parent,
+                    /* attachToRoot = */ false
                 )
             )
         } else ViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.v_item_contributor,
-                parent,
-                false
+                /* resource = */ R.layout.v_item_contributor,
+                /* root = */ parent,
+                /* attachToRoot = */ false
             )
         )
     }
@@ -73,6 +60,7 @@ class ContributorAdapter(
         return contributors.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun swapData(it: List<Contributor>) {
         contributors = it
         notifyDataSetChanged()

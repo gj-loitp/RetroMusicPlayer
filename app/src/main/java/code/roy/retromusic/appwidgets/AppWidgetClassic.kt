@@ -1,19 +1,6 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.appwidgets
 
+import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.content.ComponentName
 import android.content.Context
@@ -51,8 +38,12 @@ class AppWidgetClassic : BaseAppWidget() {
      * Initialize given widgets to default state, where we launch Music on default click and hide
      * actions if service not running.
      */
+    @SuppressLint("RemoteViewLayout")
     override fun defaultAppWidget(context: Context, appWidgetIds: IntArray) {
-        val appWidgetView = RemoteViews(context.packageName, R.layout.v_app_widget_classic)
+        val appWidgetView = RemoteViews(
+            /* packageName = */ context.packageName,
+            /* layoutId = */ R.layout.v_app_widget_classic
+        )
 
         appWidgetView.setViewVisibility(R.id.media_titles, View.INVISIBLE)
         appWidgetView.setImageViewResource(R.id.image, R.drawable.default_audio_art)
@@ -60,24 +51,24 @@ class AppWidgetClassic : BaseAppWidget() {
             R.id.button_next,
 
             context.getTintedDrawable(
-                R.drawable.ic_skip_next,
-                MaterialValueHelper.getSecondaryTextColor(context, true)
+                id = R.drawable.ic_skip_next,
+                color = MaterialValueHelper.getSecondaryTextColor(context, true)
             ).toBitmap()
         )
         appWidgetView.setImageViewBitmap(
             R.id.button_prev,
 
             context.getTintedDrawable(
-                R.drawable.ic_skip_previous,
-                MaterialValueHelper.getSecondaryTextColor(context, true)
+                id = R.drawable.ic_skip_previous,
+                color = MaterialValueHelper.getSecondaryTextColor(context, true)
             ).toBitmap()
         )
         appWidgetView.setImageViewBitmap(
             R.id.button_toggle_play_pause,
 
             context.getTintedDrawable(
-                R.drawable.ic_play_arrow_white_32dp,
-                MaterialValueHelper.getSecondaryTextColor(context, true)
+                id = R.drawable.ic_play_arrow_white_32dp,
+                color = MaterialValueHelper.getSecondaryTextColor(context, true)
             ).toBitmap()
         )
 
@@ -88,8 +79,12 @@ class AppWidgetClassic : BaseAppWidget() {
     /**
      * Update all active widget instances by pushing changes
      */
+    @SuppressLint("RemoteViewLayout")
     override fun performUpdate(service: MusicService, appWidgetIds: IntArray?) {
-        val appWidgetView = RemoteViews(service.packageName, R.layout.v_app_widget_classic)
+        val appWidgetView = RemoteViews(
+            /* packageName = */ service.packageName,
+            /* layoutId = */ R.layout.v_app_widget_classic
+        )
 
         val isPlaying = service.isPlaying
         val song = service.currentSong
@@ -133,12 +128,12 @@ class AppWidgetClassic : BaseAppWidget() {
                     ) {
                         val palette = resource.palette
                         update(
-                            resource.bitmap,
-                            palette.getVibrantColor(
-                                palette.getMutedColor(
+                            bitmap = resource.bitmap,
+                            color = palette.getVibrantColor(
+                                /* defaultColor = */ palette.getMutedColor(
                                     MaterialValueHelper.getSecondaryTextColor(
-                                        service,
-                                        true
+                                        context = service,
+                                        dark = true
                                     )
                                 )
                             )
@@ -147,7 +142,7 @@ class AppWidgetClassic : BaseAppWidget() {
 
                     override fun onLoadFailed(errorDrawable: Drawable?) {
                         super.onLoadFailed(errorDrawable)
-                        update(null, Color.WHITE)
+                        update(bitmap = null, color = Color.WHITE)
                     }
 
                     override fun onLoadCleared(placeholder: Drawable?) {}
@@ -159,8 +154,8 @@ class AppWidgetClassic : BaseAppWidget() {
                         appWidgetView.setImageViewBitmap(
                             R.id.button_toggle_play_pause,
                             service.getTintedDrawable(
-                                playPauseRes,
-                                color
+                                id = playPauseRes,
+                                color = color
                             ).toBitmap()
                         )
 
@@ -168,32 +163,36 @@ class AppWidgetClassic : BaseAppWidget() {
                         appWidgetView.setImageViewBitmap(
                             R.id.button_next,
                             service.getTintedDrawable(
-                                R.drawable.ic_skip_next,
-                                color
+                                id = R.drawable.ic_skip_next,
+                                color = color
                             ).toBitmap()
                         )
                         appWidgetView.setImageViewBitmap(
                             R.id.button_prev,
                             service.getTintedDrawable(
-                                R.drawable.ic_skip_previous,
-                                color
+                                id = R.drawable.ic_skip_previous,
+                                color = color
                             ).toBitmap()
                         )
 
                         val image = getAlbumArtDrawable(service, bitmap)
                         val roundedBitmap =
                             createRoundedBitmap(
-                                image,
-                                imageSize,
-                                imageSize,
-                                cardRadius,
-                                0F,
-                                cardRadius,
-                                0F
+                                drawable = image,
+                                width = imageSize,
+                                height = imageSize,
+                                tl = cardRadius,
+                                tr = 0F,
+                                bl = cardRadius,
+                                br = 0F
                             )
                         appWidgetView.setImageViewBitmap(R.id.image, roundedBitmap)
 
-                        pushUpdate(appContext, appWidgetIds, appWidgetView)
+                        pushUpdate(
+                            context = appContext,
+                            appWidgetIds = appWidgetIds,
+                            views = appWidgetView
+                        )
                     }
                 })
         }
@@ -209,12 +208,14 @@ class AppWidgetClassic : BaseAppWidget() {
                 PreferenceUtil.isExpandPanel
             )
 
-        val serviceName = ComponentName(context, MusicService::class.java)
+        val serviceName = ComponentName(/* pkg = */ context, /* cls = */ MusicService::class.java)
 
         // Home
         action.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
         var pendingIntent = PendingIntent.getActivity(
-            context, 0, action, if (VersionUtils.hasMarshmallow())
+            /* context = */ context,
+            /* requestCode = */ 0,
+            /* intent = */ action, /* flags = */ if (VersionUtils.hasMarshmallow())
                 PendingIntent.FLAG_IMMUTABLE
             else 0
         )
@@ -222,15 +223,27 @@ class AppWidgetClassic : BaseAppWidget() {
         views.setOnClickPendingIntent(R.id.media_titles, pendingIntent)
 
         // Previous track
-        pendingIntent = buildPendingIntent(context, ACTION_REWIND, serviceName)
+        pendingIntent = buildPendingIntent(
+            context = context,
+            action = ACTION_REWIND,
+            serviceName = serviceName
+        )
         views.setOnClickPendingIntent(R.id.button_prev, pendingIntent)
 
         // Play and pause
-        pendingIntent = buildPendingIntent(context, ACTION_TOGGLE_PAUSE, serviceName)
+        pendingIntent = buildPendingIntent(
+            context = context,
+            action = ACTION_TOGGLE_PAUSE,
+            serviceName = serviceName
+        )
         views.setOnClickPendingIntent(R.id.button_toggle_play_pause, pendingIntent)
 
         // Next track
-        pendingIntent = buildPendingIntent(context, ACTION_SKIP, serviceName)
+        pendingIntent = buildPendingIntent(
+            context = context,
+            action = ACTION_SKIP,
+            serviceName = serviceName
+        )
         views.setOnClickPendingIntent(R.id.button_next, pendingIntent)
     }
 

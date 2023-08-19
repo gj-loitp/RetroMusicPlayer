@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.adapter
 
 import android.annotation.SuppressLint
@@ -34,14 +20,10 @@ import code.roy.retromusic.util.color.MediaNotificationProcessor
 import com.bumptech.glide.Glide
 import java.util.*
 
-/**
- * @author Hemanth S (h4h13).
- */
-
 class GenreAdapter(
     private val activity: FragmentActivity,
     var dataSet: List<Genre>,
-    private val listener: IGenreClickListener
+    private val listener: IGenreClickListener,
 ) : RecyclerView.Adapter<GenreAdapter.ViewHolder>() {
 
     init {
@@ -60,7 +42,7 @@ class GenreAdapter(
         val genre = dataSet[position]
         holder.binding.title.text = genre.name
         holder.binding.text.text = String.format(
-            Locale.getDefault(),
+            locale = Locale.getDefault(),
             "%d %s",
             genre.songCount,
             if (genre.songCount > 1) activity.getString(R.string.songs) else activity.getString(R.string.song)

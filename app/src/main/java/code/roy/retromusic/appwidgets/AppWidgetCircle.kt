@@ -1,19 +1,6 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.appwidgets
 
+import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.content.ComponentName
 import android.content.Context
@@ -54,27 +41,37 @@ class AppWidgetCircle : BaseAppWidget() {
      * actions if service not running.
      */
     override fun defaultAppWidget(context: Context, appWidgetIds: IntArray) {
-        val appWidgetView = RemoteViews(context.packageName, R.layout.v_app_widget_circle)
+        val appWidgetView = RemoteViews(
+            /* packageName = */ context.packageName,
+            /* layoutId = */ R.layout.v_app_widget_circle
+        )
 
         appWidgetView.setImageViewResource(R.id.image, R.drawable.default_audio_art)
-        val secondaryColor = MaterialValueHelper.getSecondaryTextColor(context, true)
+        val secondaryColor = MaterialValueHelper.getSecondaryTextColor(
+            context = context,
+            dark = true
+        )
         appWidgetView.setImageViewBitmap(
-            R.id.button_toggle_play_pause,
-            context.getTintedDrawable(
-                R.drawable.ic_play_arrow,
-                secondaryColor
+            /* viewId = */ R.id.button_toggle_play_pause,
+            /* bitmap = */ context.getTintedDrawable(
+                id = R.drawable.ic_play_arrow,
+                color = secondaryColor
             ).toBitmap()
         )
 
-        linkButtons(context, appWidgetView)
-        pushUpdate(context, appWidgetIds, appWidgetView)
+        linkButtons(context = context, views = appWidgetView)
+        pushUpdate(context = context, appWidgetIds = appWidgetIds, views = appWidgetView)
     }
 
     /**
      * Update all active widget instances by pushing changes
      */
+    @SuppressLint("RemoteViewLayout")
     override fun performUpdate(service: MusicService, appWidgetIds: IntArray?) {
-        val appWidgetView = RemoteViews(service.packageName, R.layout.v_app_widget_circle)
+        val appWidgetView = RemoteViews(
+            /* packageName = */ service.packageName,
+            /* layoutId = */ R.layout.v_app_widget_circle
+        )
 
         val isPlaying = service.isPlaying
         val song = service.currentSong
@@ -83,10 +80,10 @@ class AppWidgetCircle : BaseAppWidget() {
         val playPauseRes =
             if (isPlaying) R.drawable.ic_pause else R.drawable.ic_play_arrow
         appWidgetView.setImageViewBitmap(
-            R.id.button_toggle_play_pause,
-            service.getTintedDrawable(
-                playPauseRes,
-                MaterialValueHelper.getSecondaryTextColor(service, true)
+            /* viewId = */ R.id.button_toggle_play_pause,
+            /* bitmap = */ service.getTintedDrawable(
+                id = playPauseRes,
+                color = MaterialValueHelper.getSecondaryTextColor(service, true)
             ).toBitmap()
         )
         val isFavorite = runBlocking(Dispatchers.IO) {
@@ -97,8 +94,8 @@ class AppWidgetCircle : BaseAppWidget() {
         appWidgetView.setImageViewBitmap(
             R.id.button_toggle_favorite,
             service.getTintedDrawable(
-                favoriteRes,
-                MaterialValueHelper.getSecondaryTextColor(service, true)
+                id = favoriteRes,
+                color = MaterialValueHelper.getSecondaryTextColor(service, true)
             ).toBitmap()
         )
 
@@ -127,10 +124,10 @@ class AppWidgetCircle : BaseAppWidget() {
                     ) {
                         val palette = resource.palette
                         update(
-                            resource.bitmap, palette.getVibrantColor(
+                            bitmap = resource.bitmap, color = palette.getVibrantColor(
                                 palette.getMutedColor(
-                                    MaterialValueHelper.getSecondaryTextColor(
-                                        service, true
+                                    /* defaultColor = */ MaterialValueHelper.getSecondaryTextColor(
+                                        context = service, dark = true
                                     )
                                 )
                             )
@@ -139,30 +136,40 @@ class AppWidgetCircle : BaseAppWidget() {
 
                     override fun onLoadFailed(errorDrawable: Drawable?) {
                         super.onLoadFailed(errorDrawable)
-                        update(null, MaterialValueHelper.getSecondaryTextColor(service, true))
+                        update(
+                            bitmap = null,
+                            color = MaterialValueHelper.getSecondaryTextColor(
+                                context = service,
+                                dark = true
+                            )
+                        )
                     }
 
                     private fun update(bitmap: Bitmap?, color: Int) {
                         // Set correct drawable for pause state
                         appWidgetView.setImageViewBitmap(
-                            R.id.button_toggle_play_pause,
-                            service.getTintedDrawable(
+                            /* viewId = */ R.id.button_toggle_play_pause,
+                            /* bitmap = */ service.getTintedDrawable(
                                 playPauseRes, color
                             ).toBitmap()
                         )
 
                         // Set favorite button drawables
                         appWidgetView.setImageViewBitmap(
-                            R.id.button_toggle_favorite,
-                            service.getTintedDrawable(
-                                favoriteRes, color
+                            /* viewId = */ R.id.button_toggle_favorite,
+                            /* bitmap = */ service.getTintedDrawable(
+                                id = favoriteRes, color = color
                             ).toBitmap()
                         )
                         if (bitmap != null) {
                             appWidgetView.setImageViewBitmap(R.id.image, bitmap)
                         }
 
-                        pushUpdate(service, appWidgetIds, appWidgetView)
+                        pushUpdate(
+                            context = service,
+                            appWidgetIds = appWidgetIds,
+                            views = appWidgetView
+                        )
                     }
 
                     override fun onLoadCleared(placeholder: Drawable?) {}
@@ -186,7 +193,9 @@ class AppWidgetCircle : BaseAppWidget() {
         action.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
         var pendingIntent =
             PendingIntent.getActivity(
-                context, 0, action, if (VersionUtils.hasMarshmallow())
+                /* context = */ context,
+                /* requestCode = */ 0,
+                /* intent = */ action, /* flags = */ if (VersionUtils.hasMarshmallow())
                     PendingIntent.FLAG_IMMUTABLE
                 else 0
             )

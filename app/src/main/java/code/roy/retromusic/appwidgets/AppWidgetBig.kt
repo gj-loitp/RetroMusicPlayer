@@ -1,19 +1,6 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.appwidgets
 
+import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.content.ComponentName
 import android.content.Context
@@ -48,47 +35,54 @@ class AppWidgetBig : BaseAppWidget() {
      * Initialize given widgets to default state, where we launch Music on default click and hide
      * actions if service not running.
      */
+    @SuppressLint("RemoteViewLayout")
     override fun defaultAppWidget(context: Context, appWidgetIds: IntArray) {
         val appWidgetView = RemoteViews(
-            context.packageName, R.layout.v_app_widget_big
+            /* packageName = */ context.packageName,
+            /* layoutId = */ R.layout.v_app_widget_big
         )
 
         appWidgetView.setViewVisibility(
-            R.id.media_titles,
-            View.INVISIBLE
+            /* viewId = */ R.id.media_titles,
+            /* visibility = */ View.INVISIBLE
         )
         appWidgetView.setImageViewResource(R.id.image, R.drawable.default_audio_art)
         appWidgetView.setImageViewBitmap(
             R.id.button_next, context.getTintedDrawable(
                 R.drawable.ic_skip_next,
-                MaterialValueHelper.getPrimaryTextColor(context, false)
+                MaterialValueHelper.getPrimaryTextColor(
+                    context = context,
+                    dark = false
+                )
             ).toBitmap()
         )
         appWidgetView.setImageViewBitmap(
             R.id.button_prev,
             context.getTintedDrawable(
                 R.drawable.ic_skip_previous,
-                MaterialValueHelper.getPrimaryTextColor(context, false)
+                MaterialValueHelper.getPrimaryTextColor(context = context, dark = false)
             ).toBitmap()
         )
         appWidgetView.setImageViewBitmap(
             R.id.button_toggle_play_pause,
             context.getTintedDrawable(
                 R.drawable.ic_play_arrow_white_32dp,
-                MaterialValueHelper.getPrimaryTextColor(context, false)
+                MaterialValueHelper.getPrimaryTextColor(context = context, dark = false)
             ).toBitmap()
         )
 
-        linkButtons(context, appWidgetView)
-        pushUpdate(context, appWidgetIds, appWidgetView)
+        linkButtons(context = context, views = appWidgetView)
+        pushUpdate(context = context, appWidgetIds = appWidgetIds, views = appWidgetView)
     }
 
     /**
      * Update all active widget instances by pushing changes
      */
+    @SuppressLint("RemoteViewLayout")
     override fun performUpdate(service: MusicService, appWidgetIds: IntArray?) {
         val appWidgetView = RemoteViews(
-            service.packageName, R.layout.v_app_widget_big
+            /* packageName = */ service.packageName,
+            /* layoutId = */ R.layout.v_app_widget_big
         )
 
         val isPlaying = service.isPlaying
@@ -97,18 +91,18 @@ class AppWidgetBig : BaseAppWidget() {
         // Set the titles and artwork
         if (song.title.isEmpty() && song.artistName.isEmpty()) {
             appWidgetView.setViewVisibility(
-                R.id.media_titles,
-                View.INVISIBLE
+                /* viewId = */ R.id.media_titles,
+                /* visibility = */ View.INVISIBLE
             )
         } else {
             appWidgetView.setViewVisibility(
-                R.id.media_titles,
-                View.VISIBLE
+                /* viewId = */ R.id.media_titles,
+                /* visibility = */ View.VISIBLE
             )
             appWidgetView.setTextViewText(R.id.title, song.title)
             appWidgetView.setTextViewText(
-                R.id.text,
-                getSongArtistAndAlbum(song)
+                /* viewId = */ R.id.text,
+                /* text = */ getSongArtistAndAlbum(song)
             )
         }
 
@@ -119,8 +113,8 @@ class AppWidgetBig : BaseAppWidget() {
         appWidgetView.setImageViewBitmap(
             R.id.button_toggle_play_pause,
             service.getTintedDrawable(
-                playPauseRes,
-                primaryColor
+                id = playPauseRes,
+                color = primaryColor
             ).toBitmap()
         )
 
@@ -128,15 +122,15 @@ class AppWidgetBig : BaseAppWidget() {
         appWidgetView.setImageViewBitmap(
             R.id.button_next,
             service.getTintedDrawable(
-                R.drawable.ic_skip_next,
-                primaryColor
+                id = R.drawable.ic_skip_next,
+                color = primaryColor
             ).toBitmap()
         )
         appWidgetView.setImageViewBitmap(
             R.id.button_prev,
             service.getTintedDrawable(
-                R.drawable.ic_skip_previous,
-                primaryColor
+                id = R.drawable.ic_skip_previous,
+                color = primaryColor
             ).toBitmap()
         )
 
@@ -165,7 +159,7 @@ class AppWidgetBig : BaseAppWidget() {
 
                     override fun onLoadFailed(errorDrawable: Drawable?) {
                         super.onLoadFailed(errorDrawable)
-                        update(null)
+                        update(bitmap = null)
                     }
 
                     override fun onLoadCleared(placeholder: Drawable?) {}
@@ -173,13 +167,17 @@ class AppWidgetBig : BaseAppWidget() {
                     private fun update(bitmap: Bitmap?) {
                         if (bitmap == null) {
                             appWidgetView.setImageViewResource(
-                                R.id.image,
-                                R.drawable.default_audio_art
+                                /* viewId = */ R.id.image,
+                                /* srcId = */ R.drawable.default_audio_art
                             )
                         } else {
                             appWidgetView.setImageViewBitmap(R.id.image, bitmap)
                         }
-                        pushUpdate(appContext, appWidgetIds, appWidgetView)
+                        pushUpdate(
+                            context = appContext,
+                            appWidgetIds = appWidgetIds,
+                            views = appWidgetView
+                        )
                     }
                 })
         }
