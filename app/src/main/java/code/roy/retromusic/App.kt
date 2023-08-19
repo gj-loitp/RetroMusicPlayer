@@ -15,7 +15,7 @@ import org.koin.core.context.startKoin
 
 class App : Application() {
 
-    lateinit var billingManager: BillingManager
+    private lateinit var billingManager: BillingManager
     private val wallpaperAccentManager = WallpaperAccentManager(this)
 
     override fun onCreate() {
@@ -67,7 +67,8 @@ class App : Application() {
         }
 
         fun isProVersion(): Boolean {
-            return BuildConfig.DEBUG || instance?.billingManager!!.isProVersion
+//            return BuildConfig.DEBUG || instance?.billingManager!!.isProVersion
+            return true
         }
     }
 }
