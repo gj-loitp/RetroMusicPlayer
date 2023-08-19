@@ -16,8 +16,6 @@ import org.koin.core.context.startKoin
 //TODO applovin
 //TODO firebase
 
-//TODO keystore
-
 //done
 //leak canary
 //proguard
@@ -28,6 +26,7 @@ import org.koin.core.context.startKoin
 //policy
 //ic_launcher
 //app_name
+//keystore
 
 class App : Application() {
 
