@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.activities.base
 
 import android.Manifest
@@ -58,6 +44,7 @@ abstract class AbsBaseActivity : AbsThemeActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         volumeControlStream = AudioManager.STREAM_MUSIC
         permissions = getPermissionsToRequest()
         hadPermissions = hasPermissions()
@@ -92,13 +79,19 @@ abstract class AbsBaseActivity : AbsThemeActivity() {
     }
 
     protected open fun requestPermissions() {
-        ActivityCompat.requestPermissions(this, permissions, PERMISSION_REQUEST)
+        ActivityCompat.requestPermissions(
+            /* activity = */ this,
+            /* permissions = */ permissions,
+            /* requestCode = */ PERMISSION_REQUEST
+        )
     }
 
     protected fun hasPermissions(): Boolean {
         for (permission in permissions) {
-            if (ActivityCompat.checkSelfPermission(this,
-                    permission) != PackageManager.PERMISSION_GRANTED
+            if (ActivityCompat.checkSelfPermission(
+                    /* context = */ this,
+                    /* permission = */ permission
+                ) != PackageManager.PERMISSION_GRANTED
             ) {
                 return false
             }
@@ -123,26 +116,26 @@ abstract class AbsBaseActivity : AbsThemeActivity() {
                     ) {
                         // User has deny from permission dialog
                         Snackbar.make(
-                            snackBarContainer,
-                            permissionDeniedMessage!!,
-                            Snackbar.LENGTH_SHORT
+                            /* view = */ snackBarContainer,
+                            /* text = */ permissionDeniedMessage!!,
+                            /* duration = */ Snackbar.LENGTH_SHORT
                         )
                             .setAction(R.string.action_grant) { requestPermissions() }
                             .setActionTextColor(accentColor()).show()
                     } else {
                         // User has deny permission and checked never show permission dialog so you can redirect to Application settings page
                         Snackbar.make(
-                            snackBarContainer,
-                            permissionDeniedMessage!!,
-                            Snackbar.LENGTH_INDEFINITE
+                            /* view = */ snackBarContainer,
+                            /* text = */ permissionDeniedMessage!!,
+                            /* duration = */ Snackbar.LENGTH_INDEFINITE
                         )
                             .setAction(R.string.action_settings) {
                                 val intent = Intent()
                                 intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
                                 val uri = Uri.fromParts(
-                                    "package",
-                                    this@AbsBaseActivity.packageName,
-                                    null
+                                    /* scheme = */ "package",
+                                    /* ssp = */ this@AbsBaseActivity.packageName,
+                                    /* fragment = */ null
                                 )
                                 intent.data = uri
                                 startActivity(intent)
@@ -157,19 +150,22 @@ abstract class AbsBaseActivity : AbsThemeActivity() {
             for (grantResult in grantResults) {
                 if (grantResult != PackageManager.PERMISSION_GRANTED) {
                     if (ActivityCompat.shouldShowRequestPermissionRationale(
-                            this@AbsBaseActivity, Manifest.permission.BLUETOOTH_CONNECT
+                            /* activity = */ this@AbsBaseActivity,
+                            /* permission = */ Manifest.permission.BLUETOOTH_CONNECT
                         )
                     ) {
                         // User has deny from permission dialog
                         Snackbar.make(
-                            snackBarContainer,
-                            R.string.permission_bluetooth_denied,
-                            Snackbar.LENGTH_SHORT
+                            /* view = */ snackBarContainer,
+                            /* resId = */ R.string.permission_bluetooth_denied,
+                            /* duration = */ Snackbar.LENGTH_SHORT
                         )
                             .setAction(R.string.action_grant) {
-                                ActivityCompat.requestPermissions(this,
-                                    arrayOf(Manifest.permission.BLUETOOTH_CONNECT),
-                                    BLUETOOTH_PERMISSION_REQUEST)
+                                ActivityCompat.requestPermissions(
+                                    /* activity = */ this,
+                                    /* permissions = */ arrayOf(Manifest.permission.BLUETOOTH_CONNECT),
+                                    /* requestCode = */ BLUETOOTH_PERMISSION_REQUEST
+                                )
                             }
                             .setActionTextColor(accentColor()).show()
                     }
@@ -193,8 +189,8 @@ abstract class AbsBaseActivity : AbsThemeActivity() {
                 if (!outRect.contains(event.rawX.toInt(), event.rawY.toInt())) {
                     v.clearFocus()
                     getSystemService<InputMethodManager>()?.hideSoftInputFromWindow(
-                        v.windowToken,
-                        0
+                        /* windowToken = */ v.windowToken,
+                        /* flags = */ 0
                     )
                 }
             }

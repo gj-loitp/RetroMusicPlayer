@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.activities.tageditor
 
 import android.annotation.SuppressLint
@@ -56,7 +42,6 @@ class SongTagEditorActivity : AbsTagEditorActivity<ActivitySongTagEditorBinding>
 
     override val bindingInflater: (LayoutInflater) -> ActivitySongTagEditorBinding =
         ActivitySongTagEditorBinding::inflate
-
 
     private val songRepository by inject<SongRepository>()
 
@@ -114,10 +99,10 @@ class SongTagEditorActivity : AbsTagEditorActivity<ActivitySongTagEditorBinding>
     override fun loadCurrentImage() {
         val bitmap = albumArt
         setImageBitmap(
-            bitmap,
-            RetroColorUtil.getColor(
-                RetroColorUtil.generatePalette(bitmap),
-                defaultFooterColor()
+            bitmap = bitmap,
+            bgColor = RetroColorUtil.getColor(
+                /* palette = */ RetroColorUtil.generatePalette(bitmap),
+                /* fallback = */ defaultFooterColor()
             )
         )
         deleteAlbumArt = false
@@ -129,8 +114,8 @@ class SongTagEditorActivity : AbsTagEditorActivity<ActivitySongTagEditorBinding>
 
     override fun deleteImage() {
         setImageBitmap(
-            BitmapFactory.decodeResource(resources, R.drawable.default_audio_art),
-            defaultFooterColor()
+            bitmap = BitmapFactory.decodeResource(resources, R.drawable.default_audio_art),
+            bgColor = defaultFooterColor()
         )
         deleteAlbumArt = true
         dataChanged()
@@ -140,9 +125,9 @@ class SongTagEditorActivity : AbsTagEditorActivity<ActivitySongTagEditorBinding>
         super.setColors(color)
         saveFab.backgroundTintList = ColorStateList.valueOf(color)
         ColorStateList.valueOf(
-            MaterialValueHelper.getPrimaryTextColor(
-                this,
-                color.isColorLight
+            /* color = */ MaterialValueHelper.getPrimaryTextColor(
+                context = this,
+                dark = color.isColorLight
             )
         ).also {
             saveFab.iconTint = it
@@ -163,7 +148,7 @@ class SongTagEditorActivity : AbsTagEditorActivity<ActivitySongTagEditorBinding>
         fieldKeyValueMap[FieldKey.ALBUM_ARTIST] = binding.albumArtistText.text.toString()
         fieldKeyValueMap[FieldKey.COMPOSER] = binding.songComposerText.text.toString()
         writeValuesToFiles(
-            fieldKeyValueMap, when {
+            fieldKeyValueMap = fieldKeyValueMap, artworkInfo = when {
                 deleteAlbumArt -> ArtworkInfo(id, null)
                 albumArtBitmap == null -> null
                 else -> ArtworkInfo(id, albumArtBitmap!!)
@@ -184,15 +169,15 @@ class SongTagEditorActivity : AbsTagEditorActivity<ActivitySongTagEditorBinding>
             .into(object : ImageViewTarget<BitmapPaletteWrapper>(binding.editorImage) {
                 override fun onResourceReady(
                     resource: BitmapPaletteWrapper,
-                    transition: Transition<in BitmapPaletteWrapper>?
+                    transition: Transition<in BitmapPaletteWrapper>?,
                 ) {
                     RetroColorUtil.getColor(resource.palette, Color.TRANSPARENT)
                     albumArtBitmap = resource.bitmap?.let { ImageUtil.resizeBitmap(it, 2048) }
                     setImageBitmap(
-                        albumArtBitmap,
-                        RetroColorUtil.getColor(
-                            resource.palette,
-                            defaultFooterColor()
+                        bitmap = albumArtBitmap,
+                        bgColor = RetroColorUtil.getColor(
+                            /* palette = */ resource.palette,
+                            /* fallback = */ defaultFooterColor()
                         )
                     )
                     deleteAlbumArt = false

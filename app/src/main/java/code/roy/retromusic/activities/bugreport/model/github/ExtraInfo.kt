@@ -1,5 +1,8 @@
 package code.roy.retromusic.activities.bugreport.model.github
 
+import androidx.annotation.Keep
+
+@Keep
 class ExtraInfo {
     private val extraInfo: MutableMap<String, String> = LinkedHashMap()
     fun put(key: String, value: String) {

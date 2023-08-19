@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.activities.base
 
 import android.animation.ArgbEvaluator
@@ -111,7 +97,6 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_SETTLIN
 import com.google.android.material.bottomsheet.BottomSheetBehavior.from
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 abstract class AbsSlidingMusicPanelActivity : AbsMusicServiceActivity(),
     SharedPreferences.OnSharedPreferenceChangeListener {
     companion object {
@@ -155,9 +140,9 @@ abstract class AbsSlidingMusicPanelActivity : AbsMusicServiceActivity(),
                 navigationBarColorAnimator?.cancel()
                 setNavigationBarColorPreOreo(
                     argbEvaluator.evaluate(
-                        slideOffset,
-                        surfaceColor(),
-                        navigationBarColor
+                        /* fraction = */ slideOffset,
+                        /* startValue = */ surfaceColor(),
+                        /* endValue = */ navigationBarColor
                     ) as Int
                 )
             }
@@ -202,6 +187,7 @@ abstract class AbsSlidingMusicPanelActivity : AbsMusicServiceActivity(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         if (!hasPermissions()) {
             startActivity(Intent(this, PermissionActivity::class.java))
             finish()
@@ -285,7 +271,12 @@ abstract class AbsSlidingMusicPanelActivity : AbsMusicServiceActivity(),
             }
 
             ADAPTIVE_COLOR_APP -> {
-                if (PreferenceUtil.nowPlayingScreen in listOf(NowPlayingScreen.Normal, NowPlayingScreen.Material, NowPlayingScreen.Flat)) {
+                if (PreferenceUtil.nowPlayingScreen in listOf(
+                        NowPlayingScreen.Normal,
+                        NowPlayingScreen.Material,
+                        NowPlayingScreen.Flat
+                    )
+                ) {
                     chooseFragmentForTheme()
                     onServiceConnected()
                 }
@@ -524,8 +515,8 @@ abstract class AbsSlidingMusicPanelActivity : AbsMusicServiceActivity(),
             bottomSheetBehavior.peekHeight = -windowInsets.getBottomInsets()
             bottomSheetBehavior.state = STATE_COLLAPSED
             libraryViewModel.setFabMargin(
-                this,
-                if (isBottomNavVisible) dip(R.dimen.bottom_nav_height) else 0
+                context = this,
+                bottomMargin = if (isBottomNavVisible) dip(R.dimen.bottom_nav_height) else 0
             )
         } else {
             if (MusicPlayerRemote.playingQueue.isNotEmpty()) {

@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.activities.bugreport
 
 import android.content.ClipData
@@ -38,6 +24,7 @@ open class BugReportActivity : AbsThemeActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ABugReportBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setTaskDescriptionColorAuto()
@@ -56,9 +43,15 @@ open class BugReportActivity : AbsThemeActivity() {
         ToolbarContentTintHelper.colorBackButton(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        binding.cardDeviceInfo.airTextDeviceInfo.setOnClickListener { copyDeviceInfoToClipBoard() }
+        binding.cardDeviceInfo.airTextDeviceInfo.setOnClickListener {
+            copyDeviceInfoToClipBoard()
+        }
 
-        TintHelper.setTintAuto(binding.sendFab, accentColor, true)
+        TintHelper.setTintAuto(
+            /* view = */ binding.sendFab,
+            /* color = */ accentColor,
+            /* background = */ true
+        )
         binding.sendFab.setOnClickListener { reportIssue() }
     }
 

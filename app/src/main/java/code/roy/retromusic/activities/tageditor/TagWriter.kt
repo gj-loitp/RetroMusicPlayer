@@ -34,17 +34,18 @@ class TagWriter {
 
         suspend fun scan(context: Context, toBeScanned: List<String?>?) {
             if (toBeScanned.isNullOrEmpty()) {
-                Log.i("scan", "scan: Empty")
+//                Log.i("scan", "scan: Empty")
                 context.showToast("Scan file from folder")
                 return
             }
             MediaScannerConnection.scanFile(
-                context,
-                toBeScanned.toTypedArray(),
-                null,
-                withContext(Dispatchers.Main) {
+                /* context = */ context,
+                /* paths = */ toBeScanned.toTypedArray(),
+                /* mimeTypes = */ null,
+                /* callback = */ withContext(Dispatchers.Main) {
                     if (context is Activity) UpdateToastMediaScannerCompletionListener(
-                        context, toBeScanned
+                        /* activity = */ context,
+                        /* toBeScanned = */ toBeScanned
                     ) else null
                 }
             )
@@ -58,9 +59,9 @@ class TagWriter {
                     try {
                         albumArtFile = createAlbumArtFile(context).canonicalFile
                         info.artworkInfo.artwork.compress(
-                            Bitmap.CompressFormat.JPEG,
-                            100,
-                            albumArtFile.outputStream()
+                            /* format = */ Bitmap.CompressFormat.JPEG,
+                            /* quality = */ 100,
+                            /* stream = */ albumArtFile.outputStream()
                         )
                         artwork = AndroidArtwork.createArtworkFromFile(albumArtFile)
                     } catch (e: IOException) {
@@ -131,9 +132,9 @@ class TagWriter {
                     try {
                         albumArtFile = createAlbumArtFile(context).canonicalFile
                         info.artworkInfo.artwork.compress(
-                            Bitmap.CompressFormat.JPEG,
-                            100,
-                            albumArtFile.outputStream()
+                            /* format = */ Bitmap.CompressFormat.JPEG,
+                            /* quality = */ 100,
+                            /* stream = */ albumArtFile.outputStream()
                         )
                         artwork = AndroidArtwork.createArtworkFromFile(albumArtFile)
                     } catch (e: IOException) {

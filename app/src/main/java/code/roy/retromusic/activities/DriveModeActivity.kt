@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.activities
 
 import android.content.Intent
@@ -42,11 +28,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.koin.android.ext.android.inject
 
-
-/**
- * Created by hemanths on 2020-02-02.
- */
-
 class DriveModeActivity : AbsMusicServiceActivity(), MusicProgressViewUpdateHelper.Callback {
 
     private lateinit var binding: ActivityDriveModeBinding
@@ -57,6 +38,7 @@ class DriveModeActivity : AbsMusicServiceActivity(), MusicProgressViewUpdateHelp
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityDriveModeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setUpMusicControllers()
@@ -100,8 +82,7 @@ class DriveModeActivity : AbsMusicServiceActivity(), MusicProgressViewUpdateHelp
 
     private fun updateFavorite() {
         lifecycleScope.launch(Dispatchers.IO) {
-            val isFavorite: Boolean =
-                repository.isSongFavorite(MusicPlayerRemote.currentSong.id)
+            val isFavorite: Boolean = repository.isSongFavorite(MusicPlayerRemote.currentSong.id)
             withContext(Dispatchers.Main) {
                 binding.songFavourite.setImageResource(if (isFavorite) R.drawable.ic_favorite else R.drawable.ic_favorite_border)
             }
@@ -113,8 +94,8 @@ class DriveModeActivity : AbsMusicServiceActivity(), MusicProgressViewUpdateHelp
             if (fromUser) {
                 MusicPlayerRemote.seekTo(progress.toInt())
                 onUpdateProgressViews(
-                    MusicPlayerRemote.songProgressMillis,
-                    MusicPlayerRemote.songDurationMillis
+                    progress = MusicPlayerRemote.songProgressMillis,
+                    total = MusicPlayerRemote.songDurationMillis
                 )
             }
         }
@@ -131,16 +112,24 @@ class DriveModeActivity : AbsMusicServiceActivity(), MusicProgressViewUpdateHelp
     }
 
     private fun setUpPrevNext() {
-        binding.nextButton.setOnClickListener { MusicPlayerRemote.playNextSong() }
-        binding.previousButton.setOnClickListener { MusicPlayerRemote.back() }
+        binding.nextButton.setOnClickListener {
+            MusicPlayerRemote.playNextSong()
+        }
+        binding.previousButton.setOnClickListener {
+            MusicPlayerRemote.back()
+        }
     }
 
     private fun setUpShuffleButton() {
-        binding.shuffleButton.setOnClickListener { MusicPlayerRemote.toggleShuffleMode() }
+        binding.shuffleButton.setOnClickListener {
+            MusicPlayerRemote.toggleShuffleMode()
+        }
     }
 
     private fun setUpRepeatButton() {
-        binding.repeatButton.setOnClickListener { MusicPlayerRemote.cycleRepeatMode() }
+        binding.repeatButton.setOnClickListener {
+            MusicPlayerRemote.cycleRepeatMode()
+        }
     }
 
     private fun setUpPlayPauseFab() {
@@ -182,13 +171,11 @@ class DriveModeActivity : AbsMusicServiceActivity(), MusicProgressViewUpdateHelp
     fun updateShuffleState() {
         when (MusicPlayerRemote.shuffleMode) {
             MusicService.SHUFFLE_MODE_SHUFFLE -> binding.shuffleButton.setColorFilter(
-                lastPlaybackControlsColor,
-                PorterDuff.Mode.SRC_IN
+                lastPlaybackControlsColor, PorterDuff.Mode.SRC_IN
             )
 
             else -> binding.shuffleButton.setColorFilter(
-                lastDisabledPlaybackControlsColor,
-                PorterDuff.Mode.SRC_IN
+                lastDisabledPlaybackControlsColor, PorterDuff.Mode.SRC_IN
             )
         }
     }
@@ -198,24 +185,24 @@ class DriveModeActivity : AbsMusicServiceActivity(), MusicProgressViewUpdateHelp
             MusicService.REPEAT_MODE_NONE -> {
                 binding.repeatButton.setImageResource(R.drawable.ic_repeat)
                 binding.repeatButton.setColorFilter(
-                    lastDisabledPlaybackControlsColor,
-                    PorterDuff.Mode.SRC_IN
+                    /* color = */ lastDisabledPlaybackControlsColor,
+                    /* mode = */ PorterDuff.Mode.SRC_IN
                 )
             }
 
             MusicService.REPEAT_MODE_ALL -> {
                 binding.repeatButton.setImageResource(R.drawable.ic_repeat)
                 binding.repeatButton.setColorFilter(
-                    lastPlaybackControlsColor,
-                    PorterDuff.Mode.SRC_IN
+                    /* color = */ lastPlaybackControlsColor,
+                    /* mode = */ PorterDuff.Mode.SRC_IN
                 )
             }
 
             MusicService.REPEAT_MODE_THIS -> {
                 binding.repeatButton.setImageResource(R.drawable.ic_repeat_one)
                 binding.repeatButton.setColorFilter(
-                    lastPlaybackControlsColor,
-                    PorterDuff.Mode.SRC_IN
+                    /* color = */ lastPlaybackControlsColor,
+                    /* mode = */ PorterDuff.Mode.SRC_IN
                 )
             }
         }
@@ -238,11 +225,8 @@ class DriveModeActivity : AbsMusicServiceActivity(), MusicProgressViewUpdateHelp
         binding.songTitle.text = song.title
         binding.songText.text = song.artistName
 
-        Glide.with(this)
-            .load(RetroGlideExtension.getSongModel(song))
-            .songCoverOptions(song)
-            .transform(BlurTransformation.Builder(this).build())
-            .into(binding.image)
+        Glide.with(this).load(RetroGlideExtension.getSongModel(song)).songCoverOptions(song)
+            .transform(BlurTransformation.Builder(this).build()).into(binding.image)
     }
 
     override fun onUpdateProgressViews(progress: Int, total: Int) {

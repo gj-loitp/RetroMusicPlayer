@@ -18,6 +18,7 @@ class ErrorActivity : AppCompatActivity() {
     private val reportPrefix = "bug_report-"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(cat.ereza.customactivityoncrash.R.layout.customactivityoncrash_default_error_activity)
 
         val restartButton =
@@ -31,8 +32,8 @@ class ErrorActivity : AppCompatActivity() {
         restartButton.setText(cat.ereza.customactivityoncrash.R.string.customactivityoncrash_error_activity_restart_app)
         restartButton.setOnClickListener {
             CustomActivityOnCrash.restartApplication(
-                this@ErrorActivity,
-                config
+                /* activity = */ this@ErrorActivity,
+                /* config = */ config
             )
         }
         val moreInfoButton =
@@ -43,8 +44,8 @@ class ErrorActivity : AppCompatActivity() {
                 .setTitle(cat.ereza.customactivityoncrash.R.string.customactivityoncrash_error_activity_error_details_title)
                 .setMessage(
                     CustomActivityOnCrash.getAllErrorDetailsFromIntent(
-                        this@ErrorActivity,
-                        intent
+                        /* context = */ this@ErrorActivity,
+                        /* intent = */ intent
                     )
                 )
                 .setPositiveButton(
@@ -57,14 +58,14 @@ class ErrorActivity : AppCompatActivity() {
 
                     val bugReport = createFile(
                         context = this,
-                        "Bug Report",
-                        "$reportPrefix${dayFormat.format(Date())}",
-                        CustomActivityOnCrash.getAllErrorDetailsFromIntent(
+                        directoryName = "Bug Report",
+                        fileName = "$reportPrefix${dayFormat.format(Date())}",
+                        body = CustomActivityOnCrash.getAllErrorDetailsFromIntent(
                             this@ErrorActivity,
                             intent
-                        ), ".txt"
+                        ), fileType = ".txt"
                     )
-                    shareFile(this, bugReport, "text/*")
+                    shareFile(context = this, file = bugReport, mimeType = "text/*")
                 }
                 .show()
         }

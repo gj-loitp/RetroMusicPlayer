@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.activities.base
 
 import android.Manifest
@@ -41,7 +27,6 @@ import org.koin.android.ext.android.inject
 import java.lang.ref.WeakReference
 
 abstract class AbsMusicServiceActivity : AbsBaseActivity(), IMusicServiceEventListener {
-
     private val mMusicServiceEventListeners = ArrayList<IMusicServiceEventListener>()
     private val repository: RealRepository by inject()
     private var serviceToken: MusicPlayerRemote.ServiceToken? = null
@@ -50,6 +35,7 @@ abstract class AbsMusicServiceActivity : AbsBaseActivity(), IMusicServiceEventLi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         serviceToken = MusicPlayerRemote.bindToService(this, object : ServiceConnection {
             override fun onServiceConnected(name: ComponentName, service: IBinder) {
                 this@AbsMusicServiceActivity.onServiceConnected()
@@ -97,7 +83,12 @@ abstract class AbsMusicServiceActivity : AbsBaseActivity(), IMusicServiceEventLi
             filter.addAction(MEDIA_STORE_CHANGED)
             filter.addAction(FAVORITE_STATE_CHANGED)
 
-            ContextCompat.registerReceiver(this, musicStateReceiver, filter, ContextCompat.RECEIVER_NOT_EXPORTED)
+            ContextCompat.registerReceiver(
+                /* context = */ this,
+                /* receiver = */ musicStateReceiver,
+                /* filter = */ filter,
+                /* flags = */ ContextCompat.RECEIVER_NOT_EXPORTED
+            )
             receiverRegistered = true
         }
 

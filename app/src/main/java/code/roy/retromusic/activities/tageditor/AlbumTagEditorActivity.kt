@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.activities.tageditor
 
 import android.app.Activity
@@ -111,9 +97,9 @@ class AlbumTagEditorActivity : AbsTagEditorActivity<ActivityAlbumTagEditorBindin
     override fun loadCurrentImage() {
         val bitmap = albumArt
         setImageBitmap(
-            bitmap,
-            getColor(
-                generatePalette(bitmap),
+            bitmap = bitmap,
+            bgColor = getColor(
+                generatePalette(/* bitmap = */ bitmap),
                 defaultFooterColor()
             )
         )
@@ -125,13 +111,16 @@ class AlbumTagEditorActivity : AbsTagEditorActivity<ActivityAlbumTagEditorBindin
     }
 
     override fun searchImageOnWeb() {
-        searchWebFor(binding.albumText.text.toString(), binding.albumArtistText.text.toString())
+        searchWebFor(
+            binding.albumText.text.toString(),
+            binding.albumArtistText.text.toString()
+        )
     }
 
     override fun deleteImage() {
         setImageBitmap(
-            BitmapFactory.decodeResource(resources, R.drawable.default_audio_art),
-            defaultFooterColor()
+            bitmap = BitmapFactory.decodeResource(resources, R.drawable.default_audio_art),
+            bgColor = defaultFooterColor()
         )
         deleteAlbumArt = true
         dataChanged()
@@ -145,13 +134,15 @@ class AlbumTagEditorActivity : AbsTagEditorActivity<ActivityAlbumTagEditorBindin
             .into(object : ImageViewTarget<BitmapPaletteWrapper>(binding.editorImage) {
                 override fun onResourceReady(
                     resource: BitmapPaletteWrapper,
-                    transition: Transition<in BitmapPaletteWrapper>?
+                    transition: Transition<in BitmapPaletteWrapper>?,
                 ) {
                     getColor(resource.palette, Color.TRANSPARENT)
-                    albumArtBitmap = resource.bitmap?.let { ImageUtil.resizeBitmap(it, 2048) }
+                    albumArtBitmap = resource.bitmap?.let {
+                        ImageUtil.resizeBitmap(it, 2048)
+                    }
                     setImageBitmap(
-                        albumArtBitmap,
-                        getColor(
+                        bitmap = albumArtBitmap,
+                        bgColor = getColor(
                             resource.palette,
                             defaultFooterColor()
                         )
@@ -163,7 +154,7 @@ class AlbumTagEditorActivity : AbsTagEditorActivity<ActivityAlbumTagEditorBindin
 
                 override fun onLoadFailed(errorDrawable: Drawable?) {
                     super.onLoadFailed(errorDrawable)
-                    showToast(R.string.error_load_failed, Toast.LENGTH_LONG)
+                    showToast(stringRes = R.string.error_load_failed, duration = Toast.LENGTH_LONG)
                 }
 
                 override fun setResource(resource: BitmapPaletteWrapper?) {}
@@ -203,9 +194,9 @@ class AlbumTagEditorActivity : AbsTagEditorActivity<ActivityAlbumTagEditorBindin
         saveFab.backgroundTintList = ColorStateList.valueOf(color)
         saveFab.backgroundTintList = ColorStateList.valueOf(color)
         ColorStateList.valueOf(
-            MaterialValueHelper.getPrimaryTextColor(
-                this,
-                color.isColorLight
+            /* color = */ MaterialValueHelper.getPrimaryTextColor(
+                context = this,
+                dark = color.isColorLight
             )
         ).also {
             saveFab.iconTint = it

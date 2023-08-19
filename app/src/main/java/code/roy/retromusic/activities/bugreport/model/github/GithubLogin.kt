@@ -1,7 +1,9 @@
 package code.roy.retromusic.activities.bugreport.model.github
 
 import android.text.TextUtils
+import androidx.annotation.Keep
 
+@Keep
 class GithubLogin {
     val apiToken: String?
     val password: String?
