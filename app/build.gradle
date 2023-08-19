@@ -13,36 +13,35 @@ android {
         targetSdk 33
         vectorDrawables.useSupportLibrary = true
         applicationId namespace
-        versionCode 20230807
-        versionName '2023.08.07'
+        versionCode 20230819
+        versionName '2023.08.19'
 
         buildConfigField("String", "GOOGLE_PLAY_LICENSING_KEY", "\"${getProperty(getProperties('../public.properties'), 'GOOGLE_PLAY_LICENSE_KEY')}\"")
     }
-    def signingProperties = getProperties('retro.properties')
-    def releaseSigning
-    if (signingProperties != null) {
-        releaseSigning = signingConfigs.create("release") {
-            storeFile file(getProperty(signingProperties, 'storeFile'))
-            keyAlias getProperty(signingProperties, 'keyAlias')
-            storePassword getProperty(signingProperties, 'storePassword')
-            keyPassword getProperty(signingProperties, 'keyPassword')
-        }
-    } else {
-        releaseSigning = signingConfigs.debug
-    }
-    buildTypes {
-        release {
-//            shrinkResources true
-//            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.debug
-        }
-        debug {
-            signingConfig releaseSigning
-            applicationIdSuffix '.debug'
-            versionNameSuffix ' DEBUG'
-        }
-    }
+
+//    def signingProperties = getProperties('retro.properties')
+//    def releaseSigning
+//    if (signingProperties != null) {
+//        releaseSigning = signingConfigs.create("release") {
+//            storeFile file(getProperty(signingProperties, 'storeFile'))
+//            keyAlias getProperty(signingProperties, 'keyAlias')
+//            storePassword getProperty(signingProperties, 'storePassword')
+//            keyPassword getProperty(signingProperties, 'keyPassword')
+//        }
+//    } else {
+//        releaseSigning = signingConfigs.debug
+//    }
+//    buildTypes {
+//        release {
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//            signingConfig signingConfigs.debug
+//        }
+//        debug {
+//            signingConfig releaseSigning
+//            applicationIdSuffix '.debug'
+//            versionNameSuffix ' DEBUG'
+//        }
+//    }
 //    flavorDimensions = ["version"]
 //    productFlavors {
 //        normal {
@@ -78,6 +77,68 @@ android {
     }
     configurations.configureEach {
         resolutionStrategy.force 'com.google.code.findbugs:jsr305:1.3.9'
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("keystore.jks")
+            storePassword KS_PW
+            keyAlias KS_ALIAS
+            keyPassword KS_PW
+        }
+    }
+
+    buildTypes {
+        release {
+            debuggable false
+            minifyEnabled true
+            //used android.enableR8=true in gradle.properties
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+//            applicationIdSuffix ".release"
+        }
+        debug {
+            minifyEnabled false
+            //used android.enableR8=true in gradle.properties
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            applicationIdSuffix ".debug"
+        }
+    }
+
+    android.applicationVariants.configureEach { variant ->
+        variant.outputs.configureEach {
+            outputFileName = defaultConfig.applicationId + buildType.name + "_" + defaultConfig.versionName + "_" + defaultConfig.versionCode + ".apk"
+        }
+    }
+
+    flavorDimensions "type"
+//    flavorDimensions ["type"]
+    productFlavors {
+
+        dev {
+//            applicationId = "code.roy.retromusic.dev"
+            dimension "type"
+            buildConfigField("String", "FLAVOR_buildEnv", '"dev"')
+
+//            resValue("string", "SDK_KEY", "e75FnQfS9XTTqM1Kne69U7PW_MBgAnGQTFvtwVVui6kRPKs5L7ws9twr5IQWwVfzPKZ5pF2IfDa7lguMgGlCyt")
+//            resValue("string", "BANNER", "")
+//            resValue("string", "INTER", "")
+//            resValue("string", "EnableAdInter", "true")
+//            resValue("string", "EnableAdBanner", "true")
+        }
+
+        production {
+//            applicationId = "code.roy.retromusic.prod"
+            dimension "type"
+            buildConfigField("String", "FLAVOR_buildEnv", '"prod"')
+
+//            resValue("string", "SDK_KEY", "e75FnQfS9XTTqM1Kne69U7PW_MBgAnGQTFvtwVVui6kRPKs5L7ws9twr5IQWwVfzPKZ5pF2IfDa7lguMgGlCyt")
+//            resValue("string", "BANNER", "")
+//            resValue("string", "INTER", "")
+//            resValue("string", "EnableAdInter", "true")
+//            resValue("string", "EnableAdBanner", "true")
+        }
+
     }
 }
 
