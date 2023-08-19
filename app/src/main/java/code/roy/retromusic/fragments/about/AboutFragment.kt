@@ -12,6 +12,7 @@ import code.roy.retromusic.Constants
 import code.roy.retromusic.R
 import code.roy.retromusic.adapter.ContributorAdapter
 import code.roy.retromusic.databinding.FAboutBinding
+import code.roy.retromusic.ext.rateApp
 import code.roy.retromusic.extensions.openUrl
 import code.roy.retromusic.fragments.LibraryViewModel
 import code.roy.retromusic.util.NavigationUtil
@@ -63,12 +64,16 @@ class AboutFragment : Fragment(R.layout.f_about), View.OnClickListener {
             R.id.appGithub -> openUrl(Constants.GITHUB_PROJECT)
             R.id.appTranslation -> openUrl(Constants.TRANSLATE)
             R.id.appRate -> {
-                //TODO rate app
+                activity?.let {
+                    it.rateApp(packageName = it.packageName)
+                }
             }
+
             R.id.appShare -> shareApp()
             R.id.donateLink -> {
 //                NavigationUtil.goToSupportDevelopment(requireActivity())
             }
+
             R.id.instagramLink -> openUrl(Constants.APP_INSTAGRAM_LINK)
             R.id.twitterLink -> openUrl(Constants.APP_TWITTER_LINK)
             R.id.changelog -> NavigationUtil.gotoWhatNews(requireActivity())
