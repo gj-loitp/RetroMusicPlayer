@@ -1,9 +1,12 @@
 package code.roy.retromusic.model.lyrics;
 
+import androidx.annotation.Keep;
+
 import java.util.ArrayList;
 
 import code.roy.retromusic.model.Song;
 
+@Keep
 public class Lyrics {
 
     private static final ArrayList<Class<? extends Lyrics>> FORMATS = new ArrayList<>();

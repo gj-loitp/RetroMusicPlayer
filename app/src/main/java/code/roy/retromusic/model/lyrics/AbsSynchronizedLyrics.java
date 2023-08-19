@@ -2,6 +2,9 @@ package code.roy.retromusic.model.lyrics;
 
 import android.util.SparseArray;
 
+import androidx.annotation.Keep;
+
+@Keep
 public abstract class AbsSynchronizedLyrics extends Lyrics {
 
     private static final int TIME_OFFSET_MS =

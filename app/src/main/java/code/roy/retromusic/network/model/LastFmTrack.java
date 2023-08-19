@@ -1,10 +1,13 @@
 package code.roy.retromusic.network.model;
 
+import androidx.annotation.Keep;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+@Keep
 public class LastFmTrack {
 
     @Expose

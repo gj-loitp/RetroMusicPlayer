@@ -1,8 +1,11 @@
 package code.roy.retromusic.model.lyrics;
 
+import androidx.annotation.Keep;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Keep
 class SynchronizedLyricsLRC extends AbsSynchronizedLyrics {
 
     private static final Pattern LRC_LINE_PATTERN = Pattern.compile("((?:\\[.*?\\])+)(.*)");

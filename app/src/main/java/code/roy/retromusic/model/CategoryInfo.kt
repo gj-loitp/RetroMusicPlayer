@@ -14,6 +14,7 @@ data class CategoryInfo(
     var visible: Boolean,
 ) : Parcelable {
 
+    @Keep
     enum class Category(
         val id: Int,
         @StringRes val stringRes: Int,
