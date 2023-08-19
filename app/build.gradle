@@ -111,8 +111,8 @@ android {
         }
     }
 
-    flavorDimensions "type"
-//    flavorDimensions ["type"]
+//    flavorDimensions "type"
+    flavorDimensions = ["type"]
     productFlavors {
 
         dev {
@@ -215,6 +215,6 @@ dependencies {
     implementation libs.fastscroll.library
     implementation libs.customactivityoncrash
     implementation libs.tankery.circularSeekBar
-    implementation 'com.applovin:applovin-sdk:11.11.2'
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.10'
+    implementation libs.applovin.sdk
+    debugImplementation libs.leakcanary.android
 }
