@@ -18,6 +18,7 @@ import org.koin.core.context.startKoin
 
 //TODO ic_launcher
 //TODO keystore
+//TODO app_name
 
 //done
 //leak canary
