@@ -30,7 +30,7 @@
         android:name="android.permission.BLUETOOTH_CONNECT"
         android:usesPermissionFlags="neverForLocation"
         tools:targetApi="s" />
-
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
     <application
         android:name="code.roy.retromusic.App"
         android:allowBackup="@bool/allowBackup"

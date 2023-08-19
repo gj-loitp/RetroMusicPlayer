@@ -15,10 +15,8 @@ import org.koin.core.context.startKoin
 
 //TODO applovin
 //TODO firebase
+
 //TODO ic_launcher
-//TODO manifest ad id
-//TODO proguard
-//TODO leak canary
 //TODO share app
 //TODO more app
 //TODO rate app
@@ -26,6 +24,9 @@ import org.koin.core.context.startKoin
 //TODO keystore
 
 //done
+//leak canary
+//proguard
+//manifest ad id
 
 class App : Application() {
 
