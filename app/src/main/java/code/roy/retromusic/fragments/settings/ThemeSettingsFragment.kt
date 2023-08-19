@@ -8,7 +8,7 @@ import androidx.preference.TwoStatePreference
 import code.roy.appthemehelper.ACCENT_COLORS
 import code.roy.appthemehelper.ACCENT_COLORS_SUB
 import code.roy.appthemehelper.ThemeStore
-import code.roy.appthemehelper.common.prefs.ATEColorPreference
+import code.roy.appthemehelper.common.prefs.supportv7.ATEColorPreference
 import code.roy.appthemehelper.common.prefs.supportv7.ATESwitchPreference
 import code.roy.appthemehelper.util.ColorUtil
 import code.roy.appthemehelper.util.VersionUtils
