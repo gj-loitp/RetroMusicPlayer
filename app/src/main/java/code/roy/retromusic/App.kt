@@ -13,6 +13,20 @@ import code.roy.retromusic.helper.WallpaperAccentManager
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
+//TODO applovin
+//TODO firebase
+//TODO ic_launcher
+//TODO manifest ad id
+//TODO proguard
+//TODO leak canary
+//TODO share app
+//TODO more app
+//TODO rate app
+//TODO policy
+//TODO keystore
+
+//done
+
 class App : Application() {
 
     private lateinit var billingManager: BillingManager
