@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/MaterialCardViewStroke"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -32,6 +33,7 @@
             android:id="@+id/appGithub"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
@@ -39,12 +41,14 @@
             app:layout_constraintTop_toBottomOf="@id/sb2"
             app:listItemIcon="@drawable/ic_github_circle"
             app:listItemSummary="@string/git_hub_summary"
-            app:listItemTitle="@string/git_hub" />
+            app:listItemTitle="@string/git_hub"
+            tools:visibility="visible" />
 
         <code.roy.retromusic.views.ListItemView
             android:id="@+id/appTranslation"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
@@ -52,7 +56,8 @@
             app:layout_constraintTop_toBottomOf="@id/appGithub"
             app:listItemIcon="@drawable/ic_flag"
             app:listItemSummary="@string/translate_community"
-            app:listItemTitle="@string/translate" />
+            app:listItemTitle="@string/translate"
+            tools:visibility="visible" />
 
         <code.roy.retromusic.views.ListItemView
             android:id="@+id/appRate"
@@ -71,6 +76,7 @@
             android:id="@+id/donateLink"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
@@ -78,7 +84,8 @@
             app:layout_constraintTop_toBottomOf="@id/appRate"
             app:listItemIcon="@drawable/ic_gift"
             app:listItemSummary="@string/donate_summary"
-            app:listItemTitle="@string/donate" />
+            app:listItemTitle="@string/donate"
+            tools:visibility="visible" />
 
 
         <code.roy.retromusic.views.ListItemView

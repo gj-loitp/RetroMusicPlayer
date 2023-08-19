@@ -62,9 +62,13 @@ class AboutFragment : Fragment(R.layout.f_about), View.OnClickListener {
             R.id.telegramLink -> openUrl(Constants.APP_TELEGRAM_LINK)
             R.id.appGithub -> openUrl(Constants.GITHUB_PROJECT)
             R.id.appTranslation -> openUrl(Constants.TRANSLATE)
-            R.id.appRate -> openUrl(Constants.RATE_ON_GOOGLE_PLAY)
+            R.id.appRate -> {
+                //TODO rate app
+            }
             R.id.appShare -> shareApp()
-            R.id.donateLink -> NavigationUtil.goToSupportDevelopment(requireActivity())
+            R.id.donateLink -> {
+//                NavigationUtil.goToSupportDevelopment(requireActivity())
+            }
             R.id.instagramLink -> openUrl(Constants.APP_INSTAGRAM_LINK)
             R.id.twitterLink -> openUrl(Constants.APP_TWITTER_LINK)
             R.id.changelog -> NavigationUtil.gotoWhatNews(requireActivity())
