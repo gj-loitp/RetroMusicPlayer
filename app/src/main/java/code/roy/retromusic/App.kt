@@ -17,7 +17,6 @@ import org.koin.core.context.startKoin
 //TODO firebase
 
 //TODO ic_launcher
-//TODO policy
 //TODO keystore
 
 //done
@@ -27,6 +26,7 @@ import org.koin.core.context.startKoin
 //share app
 //rate app
 //more app
+//policy
 
 class App : Application() {
 

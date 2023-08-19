@@ -508,4 +508,6 @@
     <string name="i_music">I ❤ Music</string>
     <string name="check_out_our_great_apps">Check out our great apps</string>
     <string name="get_more_apps">Get more apps</string>
+    <string name="term_policy"><![CDATA[Term & Policy]]></string>
+    <string name="check_out_our_policy">Check out our policy</string>
 </resources>

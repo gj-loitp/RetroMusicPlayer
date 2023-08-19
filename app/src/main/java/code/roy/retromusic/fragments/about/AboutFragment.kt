@@ -13,6 +13,7 @@ import code.roy.retromusic.R
 import code.roy.retromusic.adapter.ContributorAdapter
 import code.roy.retromusic.databinding.FAboutBinding
 import code.roy.retromusic.ext.moreApp
+import code.roy.retromusic.ext.openBrowserPolicy
 import code.roy.retromusic.ext.rateApp
 import code.roy.retromusic.extensions.openUrl
 import code.roy.retromusic.fragments.LibraryViewModel
@@ -45,6 +46,7 @@ class AboutFragment : Fragment(R.layout.f_about), View.OnClickListener {
         binding.aboutContent.cardRetroInfo.faqLink.setOnClickListener(this)
         binding.aboutContent.cardRetroInfo.appRate.setOnClickListener(this)
         binding.aboutContent.cardRetroInfo.appMore.setOnClickListener(this)
+        binding.aboutContent.cardRetroInfo.appPolicy.setOnClickListener(this)
         binding.aboutContent.cardRetroInfo.appTranslation.setOnClickListener(this)
         binding.aboutContent.cardRetroInfo.appShare.setOnClickListener(this)
         binding.aboutContent.cardRetroInfo.donateLink.setOnClickListener(this)
@@ -70,10 +72,14 @@ class AboutFragment : Fragment(R.layout.f_about), View.OnClickListener {
                     it.rateApp(packageName = it.packageName)
                 }
             }
-            R.id.appMore ->{
+
+            R.id.appMore -> {
                 activity?.moreApp()
             }
 
+            R.id.appPolicy -> {
+                activity?.openBrowserPolicy()
+            }
             R.id.appShare -> shareApp()
             R.id.donateLink -> {
 //                NavigationUtil.goToSupportDevelopment(requireActivity())
