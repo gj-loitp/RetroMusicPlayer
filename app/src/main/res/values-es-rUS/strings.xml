@@ -400,7 +400,7 @@
     <string name="reset_artist_image">Reiniciar imagen del artista</string>
     <string name="restore">Restaurar</string>
     <string name="retro_music_player">Reproductor Retro</string>
-    <string name="retro_music_pro">Reproductor Retro Pro</string>
+    <string name="retro_music_pro">Reproductor Baby Pro</string>
     <string name="ringtone_summary">La aplicación necesita permiso para acceder a la configuración de tu dispositivo para establecer música como Tono de Llamada</string>
     <string name="ringtone_title">Tono de Llamada (Opcional)</string>
     <string name="saf_delete_failed">La eliminación del archivo: %s falló</string>
