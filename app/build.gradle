@@ -32,10 +32,10 @@ android {
     }
     buildTypes {
         release {
-            shrinkResources true
-            minifyEnabled true
+//            shrinkResources true
+//            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig releaseSigning
+            signingConfig signingConfigs.debug
         }
         debug {
             signingConfig releaseSigning
@@ -43,15 +43,15 @@ android {
             versionNameSuffix ' DEBUG'
         }
     }
-    flavorDimensions = ["version"]
-    productFlavors {
-        normal {
-            dimension "version"
-        }
-        fdroid {
-            dimension "version"
-        }
-    }
+//    flavorDimensions = ["version"]
+//    productFlavors {
+//        normal {
+//            dimension "version"
+//        }
+//        fdroid {
+//            dimension "version"
+//        }
+//    }
 
     buildFeatures {
         viewBinding true
@@ -107,8 +107,10 @@ dependencies {
     implementation libs.androidx.core.ktx
     implementation libs.androidx.palette.ktx
     implementation libs.androidx.mediarouter
-    normalImplementation libs.google.play.services.cast.framework
-    normalImplementation libs.nanohttpd
+//    normalImplementation libs.google.play.services.cast.framework
+//    normalImplementation libs.nanohttpd
+    implementation libs.google.play.services.cast.framework
+    implementation libs.nanohttpd
     implementation libs.androidx.navigation.runtime.ktx
     implementation libs.androidx.navigation.fragment.ktx
     implementation libs.androidx.navigation.ui.ktx
@@ -119,8 +121,10 @@ dependencies {
     implementation libs.androidx.lifecycle.livedata.ktx
     implementation libs.androidx.lifecycle.common.java8
     implementation libs.androidx.core.splashscreen
-    normalImplementation libs.google.feature.delivery
-    normalImplementation libs.google.play.review
+//    normalImplementation libs.google.feature.delivery
+//    normalImplementation libs.google.play.review
+    implementation libs.google.feature.delivery
+    implementation libs.google.play.review
     implementation libs.android.material
     implementation libs.retrofit
     implementation libs.retrofit.converter.gson
@@ -142,7 +146,8 @@ dependencies {
     implementation libs.chrisbanes.insetter
     implementation libs.org.eclipse.egit.github.core
     implementation libs.jaudiotagger
-    normalImplementation libs.android.lab.library
+//    normalImplementation libs.android.lab.library
+    implementation libs.android.lab.library
     implementation libs.slidableactivity
     implementation libs.material.intro
     implementation libs.dhaval2404.imagepicker
