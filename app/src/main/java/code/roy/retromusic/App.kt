@@ -16,7 +16,6 @@ import org.koin.core.context.startKoin
 //TODO applovin
 //TODO firebase
 
-//TODO ic_launcher
 //TODO keystore
 //TODO app_name
 
@@ -28,6 +27,7 @@ import org.koin.core.context.startKoin
 //rate app
 //more app
 //policy
+//ic_launcher
 
 class App : Application() {
 
