@@ -73,6 +73,19 @@
             app:listItemTitle="@string/rate_app" />
 
         <code.roy.retromusic.views.ListItemView
+            android:id="@+id/appMore"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appRate"
+            app:listItemIcon="@drawable/ic_gift"
+            app:listItemSummary="@string/check_out_our_great_apps"
+            app:listItemTitle="@string/get_more_apps" />
+
+        <code.roy.retromusic.views.ListItemView
             android:id="@+id/donateLink"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -81,7 +94,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/appRate"
+            app:layout_constraintTop_toBottomOf="@id/appMore"
             app:listItemIcon="@drawable/ic_gift"
             app:listItemSummary="@string/donate_summary"
             app:listItemTitle="@string/donate"

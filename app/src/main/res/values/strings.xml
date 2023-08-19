@@ -506,4 +506,6 @@
     <string name="you_will_be_forwarded_to_the_issue_tracker_website">You will be forwarded to the issue tracker website.</string>
     <string name="could_not_write_tags_to_file">Could not write tags to the music file!</string>
     <string name="i_music">I ❤ Music</string>
+    <string name="check_out_our_great_apps">Check out our great apps</string>
+    <string name="get_more_apps">Get more apps</string>
 </resources>
