@@ -141,7 +141,7 @@
     <string name="deleted_x_songs">Usunięto %1$d utworów.</string>
     <string name="depth">Głębia</string>
     <string name="device_info">Informacje o urządzeniu</string>
-    <string name="dialog_message_set_ringtone">Pozwól Retro Music na modyfikację ustawień dźwięku</string>
+    <string name="dialog_message_set_ringtone">Pozwól Baby Music na modyfikację ustawień dźwięku</string>
     <string name="dialog_title_set_ringtone">Ustaw jako dzwonek</string>
     <string name="disc_hint">Numer płyty</string>
     <string name="do_you_want_to_clear_the_blacklist">Czy chcesz wyczyścić listę ignorowanych?</string>
@@ -199,7 +199,7 @@
     <string name="import_label">Importuj</string>
     <string name="import_playlist">Importuj playlistę</string>
     <string name="import_playlist_message">Importuje wszystkie playlisty wymienione w Android Media Store z utworami; jeśli playlisty już istnieją, utwory zostaną scalone.</string>
-    <string name="instagram_page_summary">Udostępnij swój desigm aplikacji Retro Music na Instagramie</string>
+    <string name="instagram_page_summary">Udostępnij swój desigm aplikacji Baby Music na Instagramie</string>
     <string name="keyboard">Klawiatura</string>
     <string name="label_bit_rate">Jakość</string>
     <string name="label_file_format">Typ</string>
@@ -273,7 +273,7 @@
     <string name="personalize_settings_summary">Dostosuj interfejs i odtwarzacz</string>
     <string name="pick_from_local_storage">Wybierz z pamięci lokalnej</string>
     <string name="pinterest_page">Pinterest</string>
-    <string name="pinterest_page_summary">Śledź stronę Retro Music na Pintrescie po więcej inspiracji</string>
+    <string name="pinterest_page_summary">Śledź stronę Baby Music na Pintrescie po więcej inspiracji</string>
     <string name="plain">Wyraźny</string>
     <string name="playback_pitch">Tonacja</string>
     <string name="playback_settings">Ustawienia odtwarzania</string>
@@ -403,8 +403,8 @@
     <string name="reset_action">Zresetuj</string>
     <string name="reset_artist_image">Zresetuj grafikę wykonawcy</string>
     <string name="restore">Przywróć</string>
-    <string name="retro_music_player">Odtwarzacz Retro Music</string>
-    <string name="retro_music_pro">Retro Music Pro</string>
+    <string name="retro_music_player">Odtwarzacz Baby Music</string>
+    <string name="retro_music_pro">Baby Music Pro</string>
     <string name="ringtone_summary">Potrzebujemy uprawnień do ustawień Twojego urządzenia, aby ustawić utwór jako dzwonek</string>
     <string name="ringtone_title">Dzwonek (opcjonalny)</string>
     <string name="saf_delete_failed">Nie udało się usunąć pliku: %s</string>
@@ -481,7 +481,7 @@
     <string name="translate">Przetłumacz</string>
     <string name="translate_community">Pomóż nam przetłumaczyć aplikację na swój język</string>
     <string name="twitter_page">Strona na Twitterze</string>
-    <string name="twitter_page_summary">Podziel się swoim designem z Retro Music</string>
+    <string name="twitter_page_summary">Podziel się swoim designem z Baby Music</string>
     <string name="unlabeled">Niepodpisane</string>
     <string name="unplayable_file">Nie można odtworzyć utworu.</string>
     <string name="up_next">Następne</string>
