@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.adapter.artist
 
 import android.annotation.SuppressLint
@@ -47,7 +33,7 @@ class ArtistAdapter(
     var dataSet: List<Artist>,
     var itemLayoutRes: Int,
     val IArtistClickListener: IArtistClickListener,
-    val IAlbumArtistClickListener: IAlbumArtistClickListener? = null
+    val IAlbumArtistClickListener: IAlbumArtistClickListener? = null,
 ) : AbsMultiSelectAdapter<ArtistAdapter.ViewHolder, Artist>(activity, R.menu.menu_media_selection),
     PopupTextProvider {
 
@@ -137,7 +123,7 @@ class ArtistAdapter(
 
     override fun onMultipleItemAction(
         menuItem: MenuItem,
-        selection: List<Artist>
+        selection: List<Artist>,
     ) {
         SongsMenuHelper.handleMenuClick(activity, getSongList(selection), menuItem.itemId)
     }

@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.activities
 
 import android.content.Intent
@@ -50,13 +36,12 @@ class MainActivity : AbsCastActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setTaskDescriptionColorAuto()
         hideStatusBar()
         updateTabs()
         AppRater.appLaunched(this)
-
         setupNavigationController()
-
         WhatsNewFragment.showChangeLog(this)
     }
 
@@ -104,9 +89,11 @@ class MainActivity : AbsCastActivity() {
                     // Show Bottom Navigation Bar
                     setBottomNavVisibility(visible = true, animate = true)
                 }
+
                 R.id.playing_queue_fragment -> {
                     setBottomNavVisibility(visible = false, hideBottomSheet = true)
                 }
+
                 else -> setBottomNavVisibility(
                     visible = false,
                     animate = true
@@ -151,9 +138,13 @@ class MainActivity : AbsCastActivity() {
             ) {
                 val songs: List<Song> = getSongs(intent.extras!!)
                 if (MusicPlayerRemote.shuffleMode == MusicService.SHUFFLE_MODE_SHUFFLE) {
-                    MusicPlayerRemote.openAndShuffleQueue(songs, true)
+                    MusicPlayerRemote.openAndShuffleQueue(queue = songs, startPlaying = true)
                 } else {
-                    MusicPlayerRemote.openQueue(songs, 0, true)
+                    MusicPlayerRemote.openQueue(
+                        queue = songs,
+                        startPosition = 0,
+                        startPlaying = true
+                    )
                 }
                 handled = true
             }
@@ -174,9 +165,9 @@ class MainActivity : AbsCastActivity() {
                     val position: Int = intent.getIntExtra("position", 0)
                     val songs = libraryViewModel.albumById(id).songs
                     MusicPlayerRemote.openQueue(
-                        songs,
-                        position,
-                        true
+                        queue = songs,
+                        startPosition = position,
+                        startPlaying = true
                     )
                     handled = true
                 }
@@ -186,9 +177,9 @@ class MainActivity : AbsCastActivity() {
                     val position: Int = intent.getIntExtra("position", 0)
                     val songs: List<Song> = libraryViewModel.artistById(id).songs
                     MusicPlayerRemote.openQueue(
-                        songs,
-                        position,
-                        true
+                        queue = songs,
+                        startPosition = position,
+                        startPlaying = true
                     )
                     handled = true
                 }

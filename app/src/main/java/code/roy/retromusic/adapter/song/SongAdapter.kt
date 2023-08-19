@@ -1,19 +1,6 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.adapter.song
 
+import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.content.res.Resources
 import android.view.LayoutInflater
@@ -45,15 +32,11 @@ import code.roy.retromusic.util.color.MediaNotificationProcessor
 import com.bumptech.glide.Glide
 import me.zhanghai.android.fastscroll.PopupTextProvider
 
-/**
- * Created by hemanths on 13/08/17.
- */
-
 open class SongAdapter(
-    override val activity: FragmentActivity,
+    final override val activity: FragmentActivity,
     var dataSet: MutableList<Song>,
     protected var itemLayoutRes: Int,
-    showSectionName: Boolean = true
+    showSectionName: Boolean = true,
 ) : AbsMultiSelectAdapter<SongAdapter.ViewHolder, Song>(
     activity,
     R.menu.menu_media_selection
@@ -66,6 +49,7 @@ open class SongAdapter(
         this.setHasStableIds(true)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     open fun swapDataSet(dataSet: List<Song>) {
         this.dataSet = ArrayList(dataSet)
         notifyDataSetChanged()
@@ -154,14 +138,18 @@ open class SongAdapter(
     }
 
     override fun onMultipleItemAction(menuItem: MenuItem, selection: List<Song>) {
-        SongsMenuHelper.handleMenuClick(activity, selection, menuItem.itemId)
+        SongsMenuHelper.handleMenuClick(
+            activity = activity,
+            songs = selection,
+            menuItemId = menuItem.itemId
+        )
     }
 
     override fun getPopupText(position: Int): String {
         val sectionName: String? = when (PreferenceUtil.songSortOrder) {
             SortOrder.SongSortOrder.SONG_DEFAULT -> return MusicUtil.getSectionName(
-                dataSet[position].title,
-                true
+                mediaTitle = dataSet[position].title,
+                stripPrefix = true
             )
 
             SortOrder.SongSortOrder.SONG_A_Z, SortOrder.SongSortOrder.SONG_Z_A -> dataSet[position].title
@@ -202,8 +190,8 @@ open class SongAdapter(
                     R.id.action_go_to_album -> {
                         activity.findNavController(R.id.fragment_container)
                             .navigate(
-                                R.id.albumDetailsFragment,
-                                bundleOf(EXTRA_ALBUM_ID to song.albumId)
+                                resId = R.id.albumDetailsFragment,
+                                args = bundleOf(EXTRA_ALBUM_ID to song.albumId)
                             )
                         return true
                     }
@@ -216,7 +204,11 @@ open class SongAdapter(
             if (isInQuickSelectMode) {
                 toggleChecked(layoutPosition)
             } else {
-                MusicPlayerRemote.openQueue(dataSet, layoutPosition, true)
+                MusicPlayerRemote.openQueue(
+                    queue = dataSet,
+                    startPosition = layoutPosition,
+                    startPlaying = true
+                )
             }
         }
 

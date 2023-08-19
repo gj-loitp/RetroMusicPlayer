@@ -1,19 +1,6 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.adapter.playlist
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,10 +14,11 @@ class LegacyPlaylistAdapter(
     private val activity: FragmentActivity,
     private var list: List<Playlist>,
     private val layoutRes: Int,
-    private val playlistClickListener: PlaylistClickListener
+    private val playlistClickListener: PlaylistClickListener,
 ) :
     RecyclerView.Adapter<LegacyPlaylistAdapter.ViewHolder>() {
 
+    @SuppressLint("NotifyDataSetChanged")
     fun swapData(list: List<Playlist>) {
         this.list = list
         notifyDataSetChanged()
@@ -40,7 +28,7 @@ class LegacyPlaylistAdapter(
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
-        viewType: Int
+        viewType: Int,
     ): ViewHolder {
         return ViewHolder(
             LayoutInflater.from(parent.context).inflate(layoutRes, parent, false)

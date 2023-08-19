@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.adapter.album
 
 import android.os.Bundle
@@ -47,7 +33,7 @@ import kotlinx.coroutines.withContext
 
 class AlbumCoverPagerAdapter(
     fragmentManager: FragmentManager,
-    private val dataSet: List<Song>
+    private val dataSet: List<Song>,
 ) : CustomFragmentStatePagerAdapter(fragmentManager) {
 
     private var currentColorReceiver: AlbumCoverFragment.ColorReceiver? = null
@@ -105,7 +91,7 @@ class AlbumCoverPagerAdapter(
         override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
-            savedInstanceState: Bundle?
+            savedInstanceState: Bundle?,
         ): View? {
             val view = inflater.inflate(getLayoutWithPlayerTheme(), container, false)
             view.setOnClickListener {
@@ -121,8 +107,8 @@ class AlbumCoverPagerAdapter(
                 val data: String? = MusicUtil.getLyrics(song)
                 withContext(Dispatchers.Main) {
                     MaterialAlertDialogBuilder(
-                        requireContext(),
-                        com.google.android.material.R.style.ThemeOverlay_MaterialComponents_Dialog_Alert
+                        /* context = */ requireContext(),
+                        /* overrideThemeResId = */ com.google.android.material.R.style.ThemeOverlay_MaterialComponents_Dialog_Alert
                     ).apply {
                         setTitle(song.title)
                         setMessage(if (data.isNullOrEmpty()) "No lyrics found" else data)
@@ -191,7 +177,7 @@ class AlbumCoverPagerAdapter(
 
         internal fun receiveColor(colorReceiver: ColorReceiver, request: Int) {
             if (isColorReady) {
-                colorReceiver.onColorReady(color, request)
+                colorReceiver.onColorReady(color = color, request = request)
             } else {
                 this.colorReceiver = colorReceiver
                 this.request = request

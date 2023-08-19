@@ -29,13 +29,13 @@ import java.nio.charset.StandardCharsets
 import java.util.*
 
 class WhatsNewFragment : BottomSheetDialogFragment() {
-    private var _binding: code.roy.retromusic.databinding.FWhatsNewBinding? = null
+    private var _binding: FWhatsNewBinding? = null
     val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FWhatsNewBinding.inflate(inflater, container, false)
         return binding.root
@@ -43,6 +43,7 @@ class WhatsNewFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         try {
             val buf = StringBuilder()
             val stream = requireContext().assets.open("changelog.html")
@@ -83,7 +84,7 @@ class WhatsNewFragment : BottomSheetDialogFragment() {
             binding.webView.webViewClient = object : WebViewClient() {
                 override fun shouldOverrideUrlLoading(
                     view: WebView?,
-                    request: WebResourceRequest?
+                    request: WebResourceRequest?,
                 ): Boolean {
                     val url = request?.url ?: return false
                     //you can do checks here e.g. url.host equals to target one
@@ -122,7 +123,7 @@ class WhatsNewFragment : BottomSheetDialogFragment() {
         const val TAG = "WhatsNewFragment"
         private fun colorToCSS(color: Int): String {
             return String.format(
-                Locale.getDefault(),
+                locale = Locale.getDefault(),
                 "rgba(%d, %d, %d, %d)",
                 Color.red(color),
                 Color.green(color),

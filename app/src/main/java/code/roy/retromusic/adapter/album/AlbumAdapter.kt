@@ -1,19 +1,6 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.adapter.album
 
+import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -43,7 +30,7 @@ open class AlbumAdapter(
     override val activity: FragmentActivity,
     var dataSet: List<Album>,
     var itemLayoutRes: Int,
-    val listener: IAlbumClickListener?
+    val listener: IAlbumClickListener?,
 ) : AbsMultiSelectAdapter<AlbumAdapter.ViewHolder?, Album>(
     activity,
     R.menu.menu_media_selection
@@ -53,6 +40,7 @@ open class AlbumAdapter(
         this.setHasStableIds(true)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun swapDataSet(dataSet: List<Album>) {
         this.dataSet = dataSet
         notifyDataSetChanged()
@@ -142,7 +130,7 @@ open class AlbumAdapter(
 
     override fun onMultipleItemAction(
         menuItem: MenuItem,
-        selection: List<Album>
+        selection: List<Album>,
     ) {
         SongsMenuHelper.handleMenuClick(activity, getSongList(selection), menuItem.itemId)
     }

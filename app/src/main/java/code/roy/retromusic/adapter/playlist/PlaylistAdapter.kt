@@ -1,19 +1,6 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.adapter.playlist
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
@@ -48,7 +35,7 @@ class PlaylistAdapter(
     override val activity: FragmentActivity,
     var dataSet: List<PlaylistWithSongs>,
     private var itemLayoutRes: Int,
-    private val listener: IPlaylistClickListener
+    private val listener: IPlaylistClickListener,
 ) : AbsMultiSelectAdapter<PlaylistAdapter.ViewHolder, PlaylistWithSongs>(
     activity,
     R.menu.menu_playlists_selection
@@ -58,6 +45,7 @@ class PlaylistAdapter(
         setHasStableIds(true)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun swapDataSet(dataSet: List<PlaylistWithSongs>) {
         this.dataSet = dataSet
         notifyDataSetChanged()
@@ -112,11 +100,12 @@ class PlaylistAdapter(
         }
     }
 
-    private fun getIconRes(): Drawable = code.roy.appthemehelper.util.TintHelper.createTintedDrawable(
-        activity,
-        R.drawable.ic_playlist_play,
-        ATHUtil.resolveColor(activity, android.R.attr.colorControlNormal)
-    )
+    private fun getIconRes(): Drawable =
+        code.roy.appthemehelper.util.TintHelper.createTintedDrawable(
+            /* context = */ activity,
+            /* res = */ R.drawable.ic_playlist_play,
+            /* color = */ ATHUtil.resolveColor(activity, android.R.attr.colorControlNormal)
+        )
 
     override fun getItemCount(): Int {
         return dataSet.size
@@ -133,9 +122,9 @@ class PlaylistAdapter(
     override fun onMultipleItemAction(menuItem: MenuItem, selection: List<PlaylistWithSongs>) {
         when (menuItem.itemId) {
             else -> SongsMenuHelper.handleMenuClick(
-                activity,
-                getSongList(selection),
-                menuItem.itemId
+                activity = activity,
+                songs = getSongList(selection),
+                menuItemId = menuItem.itemId
             )
         }
     }
@@ -154,7 +143,11 @@ class PlaylistAdapter(
                 val popupMenu = PopupMenu(activity, view)
                 popupMenu.inflate(R.menu.menu_item_playlist)
                 popupMenu.setOnMenuItemClickListener { item ->
-                    PlaylistMenuHelper.handleMenuClick(activity, dataSet[layoutPosition], item)
+                    PlaylistMenuHelper.handleMenuClick(
+                        activity = activity,
+                        playlistWithSongs = dataSet[layoutPosition],
+                        item = item
+                    )
                 }
                 popupMenu.show()
             }

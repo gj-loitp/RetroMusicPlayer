@@ -1,5 +1,6 @@
 package code.roy.retromusic.adapter.base
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.ActionMode
 import android.view.Menu
@@ -51,6 +52,7 @@ abstract class AbsMultiSelectAdapter<V : RecyclerView.ViewHolder?, I>(
         onBackPressedCallback.remove()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun checkAll() {
         if (actionMode != null) {
             checked.clear()
@@ -91,6 +93,7 @@ abstract class AbsMultiSelectAdapter<V : RecyclerView.ViewHolder?, I>(
         return true
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun clearChecked() {
         checked.clear()
         notifyDataSetChanged()
@@ -108,9 +111,10 @@ abstract class AbsMultiSelectAdapter<V : RecyclerView.ViewHolder?, I>(
             size <= 0 -> {
                 actionMode?.finish()
             }
+
             else -> {
                 actionMode?.customView?.findViewById<NumberRollView>(R.id.selection_mode_number)
-                    ?.setNumber(size, true)
+                    ?.setNumber(number = size, animate = true)
             }
         }
     }

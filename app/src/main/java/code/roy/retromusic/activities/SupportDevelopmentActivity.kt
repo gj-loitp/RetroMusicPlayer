@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.activities
 
 import android.os.Bundle
@@ -23,7 +9,6 @@ import code.roy.retromusic.extensions.openUrl
 import code.roy.retromusic.extensions.setStatusBarColorAuto
 import code.roy.retromusic.extensions.setTaskDescriptionColorAuto
 import code.roy.retromusic.extensions.surfaceColor
-
 
 class SupportDevelopmentActivity : AbsThemeActivity() {
 
@@ -56,7 +41,7 @@ class SupportDevelopmentActivity : AbsThemeActivity() {
 
     private fun setupToolbar() {
         binding.toolbar.setBackgroundColor(surfaceColor())
-        code.roy.appthemehelper.util.ToolbarContentTintHelper.colorBackButton(binding.toolbar)
+        ToolbarContentTintHelper.colorBackButton(binding.toolbar)
         setSupportActionBar(binding.toolbar)
     }
 

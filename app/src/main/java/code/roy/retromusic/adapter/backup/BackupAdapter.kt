@@ -11,11 +11,10 @@ import code.roy.retromusic.R
 import code.roy.retromusic.databinding.VItemListBackupBinding
 import java.io.File
 
-
 class BackupAdapter(
     val activity: FragmentActivity,
     var dataSet: MutableList<File>,
-    val backupClickedListener: BackupClickedListener
+    val backupClickedListener: BackupClickedListener,
 ) : RecyclerView.Adapter<BackupAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -45,8 +44,8 @@ class BackupAdapter(
                 popupMenu.inflate(R.menu.menu_backup)
                 popupMenu.setOnMenuItemClickListener { menuItem ->
                     return@setOnMenuItemClickListener backupClickedListener.onBackupMenuClicked(
-                        dataSet[bindingAdapterPosition],
-                        menuItem
+                        file = dataSet[bindingAdapterPosition],
+                        menuItem = menuItem
                     )
                 }
                 popupMenu.show()

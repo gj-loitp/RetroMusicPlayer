@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2020 Hemanth Savarla.
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- */
 package code.roy.retromusic.activities
 
 import android.Manifest.permission.BLUETOOTH_CONNECT
@@ -42,6 +28,7 @@ class PermissionActivity : AbsMusicServiceActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = APermissionBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setStatusBarColorAuto()
@@ -66,9 +53,9 @@ class PermissionActivity : AbsMusicServiceActivity() {
             binding.bluetoothPermission.show()
             binding.bluetoothPermission.setButtonClick {
                 ActivityCompat.requestPermissions(
-                    this,
-                    arrayOf(BLUETOOTH_CONNECT),
-                    BLUETOOTH_PERMISSION_REQUEST
+                    /* activity = */ this,
+                    /* permissions = */ arrayOf(BLUETOOTH_CONNECT),
+                    /* requestCode = */ BLUETOOTH_PERMISSION_REQUEST
                 )
             }
         } else {
@@ -143,7 +130,6 @@ class PermissionActivity : AbsMusicServiceActivity() {
         ) == PackageManager.PERMISSION_GRANTED
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     private fun hasAudioPermission(): Boolean {
         return Settings.System.canWrite(this)
     }
